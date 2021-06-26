@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "M3w17PT+4s2htQjd5PAObcLpDNR92sq0hs47BQsaFoUv2b5g8h0ElU7omkq9CuzOK7Prd+FCY0mbZ9dEv3m7zw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fazol\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

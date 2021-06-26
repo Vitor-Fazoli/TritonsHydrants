@@ -1,0 +1,3 @@
+displayName = Greatsword's Mod
+author = Fazzoliie
+version = 0.1
