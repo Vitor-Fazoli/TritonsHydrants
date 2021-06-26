@@ -8,7 +8,7 @@ using GreatswordsMod.Slash;
 
 namespace GreatswordsMod.Weapon
 {
-    public class IronGreatswordP : Greatsword
+    public class GoldGreatswordP : Greatsword
     {
         public override void SetDefaults()
         {
@@ -26,8 +26,8 @@ namespace GreatswordsMod.Weapon
             projectile.localNPCHitCooldown = -1;
             projectile.extraUpdates = 1;
 
-            dmg = 3;
-            cooldown = 60;
+            dmg = 6;
+            cooldown = 45;
         } 
     }
 }
