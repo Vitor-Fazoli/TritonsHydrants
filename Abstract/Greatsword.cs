@@ -4,39 +4,46 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using GreatswordsMod.Slash;
+using GreatswordsMod.Attack;
 
-namespace GreatswordsMod.Weapon
+namespace GreatswordsMod.Abstract
 {
     public abstract class Greatsword : ModProjectile
     {
+        //Local Variable
         private bool max = false;
 
+        #region Greatsword Attributes
         protected int dmg = 10;
         protected float cooldown = 30;
         protected int proj = ModContent.ProjectileType<IronSlash>();
         protected float dmgMult = 1.5f;
-
+        #endregion
         public override void AI()
         {
-
+            #region Basic Attributes
             Player player = Main.player[projectile.owner];
             bool channeling = player.channel && !player.noItems && !player.CCed && !player.dead;
             float speed = player.meleeSpeed / 2;
-  
+            #endregion
+
+            #region Projectile Position
             projectile.velocity.Y = 0;
             projectile.velocity.X = 0;
             projectile.position.Y = player.position.Y - 62;
+            #endregion
+
+            #region Projectile Direction
             projectile.direction = player.direction;
             projectile.spriteDirection = projectile.direction;
-
 
             if (player.direction > 0)
                 projectile.position.X = player.position.X -74;
             else 
                 projectile.position.X = player.position.X +13;
-            
+            #endregion
 
+            #region Channeling
             if (channeling && projectile.ai[0] > cooldown)
             {
                 player.velocity.X *= 0.98f;
@@ -75,6 +82,9 @@ namespace GreatswordsMod.Weapon
                 player.itemTime = 2;
                 player.itemAnimation = 2;
             }
+            #endregion
+
+            #region End of Channeling / Projectile Kill
             if (!channeling && projectile.ai[0] >= cooldown)
             {
                 projectile.Kill();
@@ -90,6 +100,7 @@ namespace GreatswordsMod.Weapon
                 Main.PlaySound(SoundID.Item, player.position, 1);
                 Projectile.NewProjectileDirect(player.position,Vector2.Zero,proj,dmg,3,projectile.owner);
             }
+            #endregion
         }
     }
 }

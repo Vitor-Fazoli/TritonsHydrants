@@ -1,10 +1,6 @@
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using GreatswordsMod.Slash;
+using GreatswordsMod.Attack;
+using GreatswordsMod.Abstract;
 
 namespace GreatswordsMod.Weapon
 {
@@ -12,6 +8,7 @@ namespace GreatswordsMod.Weapon
     {
         public override void SetDefaults()
         {
+            //properties - Default
             projectile.width = 0;
             projectile.height = 0;
             projectile.aiStyle = 0;
@@ -26,8 +23,10 @@ namespace GreatswordsMod.Weapon
             projectile.localNPCHitCooldown = -1;
             projectile.extraUpdates = 1;
 
-            dmg = 6;
-            cooldown = 45;
+            //properties - Greatsword
+            dmg = 3;
+            cooldown = 60;
+            proj = ModContent.ProjectileType<IronSlash>();
         } 
     }
 }
