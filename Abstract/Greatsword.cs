@@ -18,6 +18,7 @@ namespace GreatswordsMod.Abstract
         protected float cooldown = 30;
         protected int proj = ModContent.ProjectileType<IronSlash>();
         protected float dmgMult = 1.5f;
+        protected int wEffect = 16;
         #endregion
         public override void AI()
         {
@@ -48,7 +49,17 @@ namespace GreatswordsMod.Abstract
             {
                 player.velocity.X *= 0.98f;
                 projectile.ai[0] = cooldown;
-                
+
+                //right
+                int num1 = Dust.NewDust(new Vector2(player.position.X,player.Center.Y + 17),(player.width/2),(player.height/5), wEffect, +5f,-1);
+                Main.dust[num1].scale = 1f;
+                Main.dust[num1].noGravity = true;
+
+                //left
+                int num2 = Dust.NewDust(new Vector2(player.position.X,player.Center.Y + 17),(player.width/2), (player.height/5),wEffect,-5f,-1);
+                Main.dust[num2].scale = 1f;
+                Main.dust[num2].noGravity = true;
+
                 if (max == false)
                 {
                     max = true;
@@ -90,7 +101,7 @@ namespace GreatswordsMod.Abstract
                 projectile.Kill();
                 player.itemTime = 2;
                 player.itemAnimation = 2;
-                Main.PlaySound(SoundID.Item, player.position, 1);
+                Main.PlaySound(SoundID.Item, player.position, 60);
                 Projectile.NewProjectileDirect(player.position,Vector2.Zero,proj,(int)(dmg * dmgMult),3,projectile.owner);
             }else if(!channeling && projectile.ai[0] < cooldown)
             {

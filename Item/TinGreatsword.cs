@@ -6,11 +6,11 @@ using Terraria;
 
 namespace GreatswordsMod.Item
 {
-	public class GoldGreatsword : ModItem
+	public class TinGreatsword : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Gold Greatsword");
+			DisplayName.SetDefault("Tin Greatsword");
 			Tooltip.SetDefault("holding the attack it will come out stronger");
 		}
 
@@ -27,14 +27,14 @@ namespace GreatswordsMod.Item
 			item.rare = ItemRarityID.White;
 			item.noUseGraphic = true;
 			item.noMelee = true;
-			item.shoot = ModContent.ProjectileType<GoldGreatswordP>();
+			item.shoot = ModContent.ProjectileType<TinGreatswordP>();
 			item.channel = true;
 		}
         public override bool CanUseItem(Player player)
         {
 			return player.ownedProjectileCounts[item.shoot] + 
-				player.ownedProjectileCounts[ModContent.ProjectileType<GoldGreatswordP>()] + 
-				player.ownedProjectileCounts[ModContent.ProjectileType<GoldSlash>()] < 1;
+				player.ownedProjectileCounts[ModContent.ProjectileType<TinGreatswordP>()] + 
+				player.ownedProjectileCounts[ModContent.ProjectileType<TinSlash>()] < 1;
 		}
 	}
 }

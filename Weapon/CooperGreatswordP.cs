@@ -4,7 +4,7 @@ using GreatswordsMod.Abstract;
 
 namespace GreatswordsMod.Weapon
 {
-    public class LeadGreatswordP : Greatsword
+    public class CooperGreatswordP : Greatsword
     {
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace GreatswordsMod.Weapon
             //properties - Greatsword
             dmg = 3;
             cooldown = 60;
-            proj = ModContent.ProjectileType<LeadSlash>();
+            proj = ModContent.ProjectileType<CooperSlash>();
         } 
     }
 }

@@ -26,7 +26,7 @@ namespace GreatswordsMod.Weapon
             //properties - Greatsword
             dmg = 3;
             cooldown = 60;
-            proj = ModContent.ProjectileType<IronSlash>();
+            proj = ModContent.ProjectileType<GoldSlash>();
         } 
     }
 }

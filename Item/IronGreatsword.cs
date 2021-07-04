@@ -1,16 +1,16 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using GreatswordsMod.Weapon;
-using GreatswordsMod.Slash;
+using GreatswordsMod.Attack;
 using Terraria;
 
 namespace GreatswordsMod.Item
 {
-	public class GoldGreatsword : ModItem
+	public class IronGreatsword : ModItem
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Gold Greatsword");
+			DisplayName.SetDefault("Iron Greatsword");
 			Tooltip.SetDefault("holding the attack it will come out stronger");
 		}
 
@@ -27,14 +27,14 @@ namespace GreatswordsMod.Item
 			item.rare = ItemRarityID.White;
 			item.noUseGraphic = true;
 			item.noMelee = true;
-			item.shoot = ModContent.ProjectileType<GoldGreatswordP>();
+			item.shoot = ModContent.ProjectileType<IronGreatswordP>();
 			item.channel = true;
 		}
         public override bool CanUseItem(Player player)
         {
-			return player.ownedProjectileCounts[item.shoot] + 
-				player.ownedProjectileCounts[ModContent.ProjectileType<GoldGreatswordP>()] + 
-				player.ownedProjectileCounts[ModContent.ProjectileType<IronSlash>()] < 1;
+			return player.ownedProjectileCounts[item.shoot] +
+			player.ownedProjectileCounts[ModContent.ProjectileType<IronGreatswordP>()] +
+			player.ownedProjectileCounts[ModContent.ProjectileType<IronSlash>()] < 1;
 		}
 	}
 }
