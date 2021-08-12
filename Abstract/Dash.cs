@@ -26,11 +26,12 @@ namespace GreatswordsMod.Abstract
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            player.eocDash = Projectile.timeLeft;
             player.armorEffectDrawShadowEOCShield = true;
 
             Projectile.velocity.Y = 0;
             player.Center = new Vector2(Projectile.Center.X + 20 * player.direction, Projectile.Center.Y);
+
+            Projectile.spriteDirection = player.direction;
 
             if (Projectile.timeLeft >= 5)
             {

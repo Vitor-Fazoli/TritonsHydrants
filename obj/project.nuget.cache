@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "60UcFLow5n7rliKjx2qImCXbLrYA58BsS0reN6iN9dQQYG8SW9B1uDFEyVZMnQ2ezCjbKImsDsAAe4YUjt1R2A==",
+=======
+  "dgSpecHash": "uslrJ3w/702WA3aBkAt1AaMhBhjjbteumYQH5xUl+chm7fvB9tnHPssH7/zWaJe77Fa8YkhNcJLx7sJotIb6yg==",
+>>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
   "success": true,
   "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
   "expectedPackageFiles": [

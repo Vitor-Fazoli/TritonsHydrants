@@ -3,6 +3,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using GreatswordsMod.Buffs;
+<<<<<<< HEAD
+using Terraria.DataStructures;
+=======
+>>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
 
 namespace GreatswordsMod
 {
@@ -40,6 +44,16 @@ namespace GreatswordsMod
             
 
         }
+<<<<<<< HEAD
+        public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+        {
+            Player.ClearBuff(ModContent.BuffType<slayerPower1>());
+            Player.ClearBuff(ModContent.BuffType<slayerPower2>());
+            Player.ClearBuff(ModContent.BuffType<slayerPower3>());
+        }
+
+    }
+=======
 
 		public static readonly int DashRight = -1;
 		public static readonly int DashLeft = 1;
@@ -71,4 +85,5 @@ namespace GreatswordsMod
 		}
 
 	}
+>>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
 }
