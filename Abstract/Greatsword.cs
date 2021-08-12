@@ -1,83 +1,127 @@
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using GreatswordsMod.Attack;
 
 namespace GreatswordsMod.Abstract
 {
     public abstract class Greatsword : ModProjectile
     {
-        //Local Variable
-        private bool max = false;
+        private bool soundBreak = false;
 
         #region Greatsword Attributes
         protected int dmg = 10;
+        protected const int knk = 2;
         protected float cooldown = 30;
-        protected int proj = ModContent.ProjectileType<IronSlash>();
-        protected float dmgMult = 1.5f;
+        protected int proj = ModContent.ProjectileType<Item.CopperSlash>();
+        protected int critical = 6;
         protected int wEffect = 16;
+        protected float velPlayer = 0;
+        protected int timeMax = 10;
+        protected int rare = 1;
         #endregion
+
+        public override void SetDefaults()
+        {
+
+        }
+        public override void Load()
+        {
+            Player player = Main.player[Projectile.owner];
+
+            Projectile.position.Y = player.position.Y - 62;
+        }
         public override void AI()
         {
             #region Basic Attributes
-            Player player = Main.player[projectile.owner];
+            Player player = Main.player[Projectile.owner];
+            GreatPlayer modPlayer = player.GetModPlayer<GreatPlayer>();
             bool channeling = player.channel && !player.noItems && !player.CCed && !player.dead;
             float speed = player.meleeSpeed / 2;
+            critical = modPlayer.slayerPower * 10;
             #endregion
 
             #region Projectile Position
-            projectile.velocity.Y = 0;
-            projectile.velocity.X = 0;
-            projectile.position.Y = player.position.Y - 62;
-            #endregion
 
-            #region Projectile Direction
-            projectile.direction = player.direction;
-            projectile.spriteDirection = projectile.direction;
+            //Direction
+            if (Main.MouseScreen.X > Main.screenWidth / 2)
+            {
+                Projectile.spriteDirection = 1;
+                player.direction = Projectile.spriteDirection;
+            }
+            else
+            {
+                Projectile.spriteDirection = -1;
+                player.direction = Projectile.spriteDirection;
+            }
+            
+            //Velocity
+            Vector2 moveTo;
+
+            moveTo.Y = player.position.Y - 62;
 
             if (player.direction > 0)
-                projectile.position.X = player.position.X -74;
-            else 
-                projectile.position.X = player.position.X +13;
+            {
+                Projectile.position.X = player.position.X - 74;
+                moveTo.X = player.position.X - 74;
+            }
+            else
+            {
+                Projectile.position.X = player.position.X + 13;
+                moveTo.X = player.position.X + 13;
+            }
+
+
+            float speedProj = 25f;
+            Vector2 move = moveTo - Projectile.Center;
+            float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speedProj)
+            {
+                move *= speedProj / magnitude;
+            }
+            float turnResistance = 2f;
+            move = (Projectile.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speedProj)
+            {
+                move *= speedProj / magnitude;
+            }
+
+            Projectile.velocity.Y = move.Y;
             #endregion
 
             #region Channeling
-            if (channeling && projectile.ai[0] > cooldown)
+            if (channeling && Projectile.ai[0] >= cooldown)
             {
-                player.velocity.X *= 0.98f;
-                projectile.ai[0] = cooldown;
+                dustEffect(wEffect);
 
-                //right
-                int num1 = Dust.NewDust(new Vector2(player.position.X,player.Center.Y + 17),(player.width/2),(player.height/5), wEffect, +5f,-1);
-                Main.dust[num1].scale = 1f;
-                Main.dust[num1].noGravity = true;
-
-                //left
-                int num2 = Dust.NewDust(new Vector2(player.position.X,player.Center.Y + 17),(player.width/2), (player.height/5),wEffect,-5f,-1);
-                Main.dust[num2].scale = 1f;
-                Main.dust[num2].noGravity = true;
-
-                if (max == false)
+                if (soundBreak == false)
                 {
-                    max = true;
-                    Main.PlaySound(SoundID.Item, player.position, 28);
+                    soundBreak = true;
+                    SoundEngine.PlaySound(SoundID.Item,player.position, 28);
+                }
+
+                if (Projectile.ai[0] >= cooldown + (timeMax * 2))
+                {
+                    Projectile.ai[0] = cooldown + (timeMax * 2);
                 }
             }
-            if (projectile.ai[0] <= cooldown + 2)
+
+            if (Projectile.ai[0] <= cooldown + (timeMax * 2))
             {
-                projectile.ai[0] += speed;
-                projectile.timeLeft = 122;
+                Projectile.ai[0] += speed;
+                Projectile.timeLeft = 122;
             }
 
-            player.heldProj = projectile.whoAmI;
+            player.heldProj = Projectile.whoAmI;
 
-            if (projectile.ai[1] < cooldown)
+            if (Projectile.ai[1] < cooldown)
             {
-                player.itemTime = (int)((45f / (speed * 2)) - ((projectile.ai[1] / 15f) * 2 / speed));
-                player.itemAnimation = (int)((45f / (speed * 2)) - ((projectile.ai[1] / 15f) * 2 / speed));
+                player.itemTime = (int)((45f / (speed * 2)) - ((Projectile.ai[1] / 15f) * 2 / speed));
+                player.itemAnimation = (int)((45f / (speed * 2)) - ((Projectile.ai[1] / 15f) * 2 / speed));
 
                 if (player.itemTime < 2)
                 {
@@ -96,22 +140,59 @@ namespace GreatswordsMod.Abstract
             #endregion
 
             #region End of Channeling / Projectile Kill
-            if (!channeling && projectile.ai[0] >= cooldown)
+            if (!channeling)
             {
-                projectile.Kill();
-                player.itemTime = 2;
-                player.itemAnimation = 2;
-                Main.PlaySound(SoundID.Item, player.position, 60);
-                Projectile.NewProjectileDirect(player.position,Vector2.Zero,proj,(int)(dmg * dmgMult),3,projectile.owner);
-            }else if(!channeling && projectile.ai[0] < cooldown)
-            {
-                projectile.Kill();
-                player.itemTime = 2;
-                player.itemAnimation = 2;
-                Main.PlaySound(SoundID.Item, player.position, 1);
-                Projectile.NewProjectileDirect(player.position,Vector2.Zero,proj,dmg,3,projectile.owner);
+                if (Projectile.ai[0] < cooldown)
+                {
+                    modPlayer.slayerPower = 0;
+                    AnimationSlash(2, 1);
+                    ProjectileSlash((dmg * 3) / 5, proj, knk);
+                }
+                else
+                {
+                    modPlayer.slayerPower++;
+                    AnimationSlash(2, 60);
+                    ProjectileSlash(dmg * 3, proj, knk * 5);
+                }
             }
             #endregion
+        }
+        private void AnimationSlash(int idSound, int type)
+        {
+            Player player = Main.player[Projectile.owner];
+
+            Projectile.Kill();
+            player.itemTime = 2;
+            player.itemAnimation = 2;
+            SoundEngine.PlaySound(idSound, player.position, type);
+        }
+        private void ProjectileSlash(int damage, int projectileVar, int knock)
+        {
+            Player player = Main.player[Projectile.owner];
+            Projectile.NewProjectileDirect(new ProjectileSource_TileBreak(2,2), player.position, Vector2.Zero, projectileVar, damage, knock, Projectile.owner);
+        }
+        private void dustEffect(int idDust)
+        {
+            Player player = Main.player[Projectile.owner];
+
+            int num1 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, +5f, -1);
+            Main.dust[num1].scale = 1f;
+            Main.dust[num1].noGravity = true;
+
+            int num2 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, -5f, -1);
+            Main.dust[num2].scale = 1f;
+            Main.dust[num2].noGravity = true;
+        }
+        public int GetDmg()
+        {
+            return dmg;
+        }
+        public int GetKnk()
+        {
+            return knk;
+        }
+        public int GetCrit() {
+            return critical;
         }
     }
 }

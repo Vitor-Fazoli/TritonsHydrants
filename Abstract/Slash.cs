@@ -10,30 +10,54 @@ namespace GreatswordsMod.Abstract
         #region Slash Attributes
         protected int frames = 5;
         protected int spdFrame = 4;
+        private bool resultDir = false;
         #endregion
         public override void SetStaticDefaults()
         {
-            Main.projFrames[projectile.type] = frames;
+            Main.projFrames[Projectile.type] = frames;
+        }
+        public override bool PreAI()
+        {
+            #region SetDirection
+            if (!resultDir)
+            {
+                if (Main.MouseScreen.X > Main.screenWidth / 2)
+                {
+                    Projectile.spriteDirection = 1;
+                }
+                else
+                {
+                    Projectile.spriteDirection = -1;
+                }
+                resultDir = true;
+            }
+            return true;
+            #endregion
         }
         public override void AI()
         {
             #region Projectile Position
-            Player p = Main.player[projectile.owner];
-            projectile.Center = p.Center;
-            projectile.spriteDirection = p.direction;
+            Player p = Main.player[Projectile.owner];
+            Projectile.Center = p.Center;
+            p.direction = Projectile.spriteDirection;   
             #endregion
 
             #region Animation
-            if (++projectile.frameCounter >= spdFrame)
+            if (++Projectile.frameCounter >= spdFrame)
             {
-                projectile.frameCounter = 0;
-                if (++projectile.frame >= frames)
+                Projectile.frameCounter = 0;
+                if (++Projectile.frame >= frames)
                 {
-                    projectile.frame = 0;
-                    projectile.Kill();
+                    Projectile.frame = 0;
+                    Projectile.Kill();
                 }
             }
             #endregion
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.defense = 0;
         }
     }
 }
