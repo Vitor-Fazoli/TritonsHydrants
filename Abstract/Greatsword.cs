@@ -14,17 +14,10 @@ namespace GreatswordsMod.Abstract
 
         #region Greatsword Attributes
         protected int dmg = 10;
-<<<<<<< HEAD
         protected const int knk = 2;
         protected float cooldown = 30;
         protected int proj = ModContent.ProjectileType<Item.CopperSlash>();
         protected const int critical = 6;
-=======
-        protected int knk = 3;
-        protected float cooldown = 30;
-        protected int proj = ModContent.ProjectileType<Item.CopperSlash>();
-        protected int grtCritical;
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
         protected int wEffect = 16;
         protected float velPlayer = 0;
         protected int timeMax = 10;
@@ -48,7 +41,6 @@ namespace GreatswordsMod.Abstract
             GreatPlayer modPlayer = player.GetModPlayer<GreatPlayer>();
             bool channeling = player.channel && !player.noItems && !player.CCed && !player.dead;
             float speed = player.meleeSpeed / 2;
-            grtCritical = modPlayer.slayerPower * 10;
             #endregion
 
             #region Projectile Position
@@ -64,7 +56,7 @@ namespace GreatswordsMod.Abstract
                 Projectile.spriteDirection = -1;
                 player.direction = Projectile.spriteDirection;
             }
-            
+
             //Velocity
             Vector2 moveTo;
 
@@ -94,32 +86,23 @@ namespace GreatswordsMod.Abstract
             magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)
             {
-<<<<<<< HEAD
                 move *= speedProj / magnitude;
             }
-
-=======
-                move *= speed / magnitude;
-            }
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
             Projectile.velocity.Y = move.Y;
             #endregion
 
             #region Channeling
             if (channeling && Projectile.ai[0] >= cooldown)
             {
-<<<<<<< HEAD
                 DustEffect(wEffect);
-=======
+
                 player.velocity.X *= 0.99f * (1 + velPlayer);
 
-                dustEffect(wEffect);
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
 
                 if (soundBreak == false)
                 {
                     soundBreak = true;
-                    SoundEngine.PlaySound(SoundID.Item,player.position, 28);
+                    SoundEngine.PlaySound(SoundID.Item, player.position, 28);
                 }
 
                 if (Projectile.ai[0] >= cooldown + (timeMax * 2))
@@ -164,7 +147,6 @@ namespace GreatswordsMod.Abstract
                 {
                     modPlayer.slayerPower = 0;
                     AnimationSlash(2, 1);
-<<<<<<< HEAD
                     ProjectileSlash((dmg * 3) / 5, proj, knk);
                 }
                 else
@@ -172,21 +154,6 @@ namespace GreatswordsMod.Abstract
                     modPlayer.slayerPower++;
                     AnimationSlash(2, 60);
                     ProjectileSlash(dmg * 3, proj, knk * 5);
-=======
-                    ProjectileSlash(dmg, proj, knk);
-                }
-                else if (Projectile.ai[0] > cooldown && Projectile.ai[0] < cooldown + timeMax)
-                {
-                    modPlayer.slayerPower++;
-                    AnimationSlash(2, 60);
-                    ProjectileSlash(dmg, proj, knk * 2);
-                }
-                else if (Projectile.ai[0] >= cooldown + timeMax)
-                {
-                    modPlayer.slayerPower = 0;
-                    AnimationSlash(42, 222);
-                    ProjectileSlash(dmg, proj, knk);
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
                 }
             }
             #endregion
@@ -203,13 +170,9 @@ namespace GreatswordsMod.Abstract
         private void ProjectileSlash(int damage, int projectileVar, int knock)
         {
             Player player = Main.player[Projectile.owner];
-            Projectile.NewProjectileDirect(new ProjectileSource_TileBreak(2,2), player.position, Vector2.Zero, projectileVar, damage, knock, Projectile.owner);
+            Projectile.NewProjectileDirect(new ProjectileSource_TileBreak(2, 2), player.position, Vector2.Zero, projectileVar, damage, knock, Projectile.owner);
         }
-<<<<<<< HEAD
         private void DustEffect(int idDust)
-=======
-        private void dustEffect(int idDust)
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
         {
             Player player = Main.player[Projectile.owner];
 
@@ -221,28 +184,18 @@ namespace GreatswordsMod.Abstract
             Main.dust[num2].scale = 1f;
             Main.dust[num2].noGravity = true;
         }
-<<<<<<< HEAD
-        public int GetDmg(){
-            return dmg;
-        }
-        public static int GetKnk(){
-            return knk;
-        }
-        public static int GetCrit(){
-            GreatPlayer p = new();
-            return critical + (p.slayerPower * 10);
-=======
         public int GetDmg()
         {
             return dmg;
         }
-        public int GetKnk()
+        public static int GetKnk()
         {
             return knk;
         }
-        public int GetCrit() {
-            return grtCritical;
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
+        public static int GetCrit()
+        {
+            GreatPlayer p = new();
+            return critical + (p.slayerPower * 10);
         }
     }
 }

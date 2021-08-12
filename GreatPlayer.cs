@@ -3,10 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using GreatswordsMod.Buffs;
-<<<<<<< HEAD
 using Terraria.DataStructures;
-=======
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
 
 namespace GreatswordsMod
 {
@@ -44,7 +41,6 @@ namespace GreatswordsMod
             
 
         }
-<<<<<<< HEAD
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
         {
             Player.ClearBuff(ModContent.BuffType<slayerPower1>());
@@ -53,37 +49,4 @@ namespace GreatswordsMod
         }
 
     }
-=======
-
-		public static readonly int DashRight = -1;
-		public static readonly int DashLeft = 1;
-
-		public int DashDir = -1;
-
-		public bool DashActive = false;
-		public int DashDelay = MAX_DASH_DELAY;
-		public int DashTimer = MAX_DASH_TIMER;
-
-		public readonly float DashVelocity = 10f;
-
-		public static readonly int MAX_DASH_DELAY = 50;
-		public static readonly int MAX_DASH_TIMER = 35;
-
-		public override void ResetEffects()
-		{
-			bool dashAccessoryEquipped = false;
-
-			for (int i = 3; i < 8; i++)
-			{
-
-			}
-
-			if (!dashAccessoryEquipped || Player.setSolar || Player.mount.Active || DashActive)
-				return;
-
-			DashActive = true;
-		}
-
-	}
->>>>>>> 337fab235ffe1f67df12154b5ced31d62c4d2c99
 }
