@@ -12,12 +12,6 @@ namespace GreatswordsMod.Item
 		public override void SetStaticDefaults() 
 		{
 			DisplayName.SetDefault("Copper Greatsword");
-			Tooltip.SetDefault("holding the attack it will come out stronger");
-		}
-		public override void ModifyTooltips(List<TooltipLine> tooltips)
-		{
-			TooltipLine tooltip = new(Mod, "GreatswordsMod: Copper Greatsword", $"Hold for greater damage!") { overrideColor = Color.Red };
-			tooltips.Add(tooltip);
 		}
 		public override void SetDefaults()
         {
@@ -31,7 +25,7 @@ namespace GreatswordsMod.Item
 			Item.noMelee = true;
 			Item.shoot = ModContent.ProjectileType<Item.CopperGreatswordP>();
 			Item.channel = true;
-			Item.crit = CopperGreatswordP.GetCrit();
+			Item.crit = -4;
 		}
 		public override bool CanUseItem(Player player)
 		{
@@ -42,7 +36,9 @@ namespace GreatswordsMod.Item
         public override void AddRecipes()
         {
 			CreateRecipe()
-			.AddIngredient(ItemID.DirtBlock, 5)
+			.AddIngredient(ItemID.CopperBar, 9)
+			.AddIngredient(ItemID.CopperShortsword)
+			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}
@@ -66,13 +62,9 @@ namespace GreatswordsMod.Item
 
 			//properties - Greatsword
 			dmg = 10;
-			cooldown = 60;
+			cooldown = 90;
 			proj = ModContent.ProjectileType<CopperSlash>();
-			wEffect = 20;
-		}
-		public override void AI()
-		{
-			base.AI();
+			wEffect = DustID.Cloud;
 		}
 	}
 	public class CopperSlash : Slash
@@ -92,6 +84,7 @@ namespace GreatswordsMod.Item
 			Projectile.penetrate = -1;
 			Projectile.tileCollide = false;
 			Projectile.ignoreWater = true;
+			Projectile.DamageType = DamageClass.Melee;
 
 			//properties - Slash
 			frames = 5;

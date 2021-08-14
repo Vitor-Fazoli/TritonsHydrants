@@ -14,10 +14,9 @@ namespace GreatswordsMod.Abstract
 
         #region Greatsword Attributes
         protected int dmg = 10;
-        protected const int knk = 2;
-        protected float cooldown = 30;
+        protected const int knk = 1;
+        protected float cooldown;
         protected int proj = ModContent.ProjectileType<Item.CopperSlash>();
-        protected const int critical = 6;
         protected int wEffect = 16;
         protected float velPlayer = 0;
         protected int timeMax = 10;
@@ -26,8 +25,10 @@ namespace GreatswordsMod.Abstract
 
         public override void SetDefaults()
         {
-
+            Projectile.damage = 0;
+            Projectile.DamageType = DamageClass.Melee;
         }
+
         public override void Load()
         {
             Player player = Main.player[Projectile.owner];
@@ -92,7 +93,7 @@ namespace GreatswordsMod.Abstract
             #endregion
 
             #region Channeling
-            if (channeling && Projectile.ai[0] >= cooldown)
+            if (channeling && Projectile.ai[0] >= (cooldown - modPlayer.speedCDR))
             {
                 DustEffect(wEffect);
 
@@ -143,7 +144,7 @@ namespace GreatswordsMod.Abstract
             #region End of Channeling / Projectile Kill
             if (!channeling)
             {
-                if (Projectile.ai[0] < cooldown)
+                if (Projectile.ai[0] <= (cooldown - modPlayer.speedCDR))
                 {
                     modPlayer.slayerPower = 0;
                     AnimationSlash(2, 1);
@@ -153,7 +154,7 @@ namespace GreatswordsMod.Abstract
                 {
                     modPlayer.slayerPower++;
                     AnimationSlash(2, 60);
-                    ProjectileSlash(dmg * 3, proj, knk * 5);
+                    ProjectileSlash((int)(dmg * 2.5f), proj, knk * 7);
                 }
             }
             #endregion
@@ -191,11 +192,6 @@ namespace GreatswordsMod.Abstract
         public static int GetKnk()
         {
             return knk;
-        }
-        public static int GetCrit()
-        {
-            GreatPlayer p = new();
-            return critical + (p.slayerPower * 10);
         }
     }
 }

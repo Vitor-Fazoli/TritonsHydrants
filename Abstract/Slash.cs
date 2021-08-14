@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria.ID;
 
 namespace GreatswordsMod.Abstract
 {
@@ -11,6 +12,7 @@ namespace GreatswordsMod.Abstract
         protected int frames = 5;
         protected int spdFrame = 4;
         private bool resultDir = false;
+        private bool hit = false;
         #endregion
         public override void SetStaticDefaults()
         {
@@ -53,11 +55,20 @@ namespace GreatswordsMod.Abstract
                 }
             }
             #endregion
+
+            if (hit)
+                Projectile.damage = 0;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.defense = 0;
+            hit = true;
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            target.statDefense = target.statDefense/2;
+            hit = true;
         }
     }
 }

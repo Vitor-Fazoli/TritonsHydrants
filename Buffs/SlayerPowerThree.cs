@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace GreatswordsMod.Buffs
 {
-	public class slayerPower3 : ModBuff
+	public class SlayerPowerThree : ModBuff
 	{
 		public override void SetStaticDefaults()
 		{
@@ -12,6 +12,10 @@ namespace GreatswordsMod.Buffs
 			Main.buffNoSave[Type] = true;
 			Main.debuff[Type] = true;
 			CanBeCleared = false;
+		}
+		public override void Update(Player player, ref int buffIndex)
+		{
+			player.GetCritChance(DamageClass.Melee) += 30;
 		}
 	}
 }
