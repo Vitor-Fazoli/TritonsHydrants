@@ -1,17 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "60UcFLow5n7rliKjx2qImCXbLrYA58BsS0reN6iN9dQQYG8SW9B1uDFEyVZMnQ2ezCjbKImsDsAAe4YUjt1R2A==",
+  "dgSpecHash": "+bgHK/DMoWWKZynz40WP9JbRKsF12xlCzDK6mNoaXW1CfT+qQzq8I9cFTwU7BJqzJY+xx3szQkzvKF9OebW7uA==",
   "success": true,
   "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fazol\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

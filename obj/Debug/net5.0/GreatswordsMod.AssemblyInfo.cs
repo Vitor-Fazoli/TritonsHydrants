@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("GreatswordsMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("5.0.8.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("5.0.8")]
 [assembly: System.Reflection.AssemblyProductAttribute("GreatswordsMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GreatswordsMod")]
-[assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("5.0.8.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.
 
