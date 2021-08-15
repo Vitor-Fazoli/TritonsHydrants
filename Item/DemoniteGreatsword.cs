@@ -5,35 +5,35 @@ using GreatswordsMod.Abstract;
 
 namespace GreatswordsMod.Item
 {
-	public class CopperGreatsword : ItemGreatsword
+	public class DemoniteGreatsword : ItemGreatsword
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Copper Greatsword");
-			DisplayName.AddTranslation(8, "Espada Grande de Cobre");
+			DisplayName.SetDefault("Demonite Greatsword");
+			DisplayName.AddTranslation(8, "Espada Grande de Demonita");
 
 			Tooltip.SetDefault("Hold attack to greater damage\nHolding weapon to increase your resistance");
 			Tooltip.AddTranslation(8, "Segure o ataque para maior dano\nEnquanto estiver com a espada selecionada ganha resistencia");
 		}
 		public override void SetDefaults()
         {
-			Item.damage = ModContent.GetInstance<CopperGreatswordP>().GetDmg();
+			Item.damage = ModContent.GetInstance<DemoniteGreatswordP>().GetDmg();
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = CopperGreatswordP.GetKnk();
+			Item.knockBack = DemoniteGreatswordP.GetKnk();
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
-			Item.shoot = ModContent.ProjectileType<CopperGreatswordP>();
+			Item.shoot = ModContent.ProjectileType<DemoniteGreatswordP>();
 			Item.channel = true;
 			Item.crit = -4;
 		}
 		public override bool CanUseItem(Player player)
 		{
 			return base.CanUseItem(player) && player.ownedProjectileCounts[Item.shoot] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperGreatswordP>()] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperSlash>()] < 1;
+				player.ownedProjectileCounts[ModContent.ProjectileType<DemoniteGreatswordP>()] +
+				player.ownedProjectileCounts[ModContent.ProjectileType<DemoniteSlash>()] < 1;
 		}
         public override void AddRecipes()
         {
@@ -44,7 +44,7 @@ namespace GreatswordsMod.Item
 			.Register();
 		}
 	}
-	public class CopperGreatswordP : Greatsword
+	public class DemoniteGreatswordP : Greatsword
 	{
 		public override void SetDefaults()
 		{
@@ -65,16 +65,16 @@ namespace GreatswordsMod.Item
 			//properties - Greatsword
 			dmg = 10;
 			cooldown = 90;
-			proj = ModContent.ProjectileType<CopperSlash>();
+			proj = ModContent.ProjectileType<DemoniteSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
-	public class CopperSlash : Slash
+	public class DemoniteSlash : Slash
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cooper Slash");
-			DisplayName.AddTranslation(8, "Corte de Cobre");
+			DisplayName.SetDefault("Demonite Slash");
+			DisplayName.AddTranslation(8, "Corte de Demonita");
 			Main.projFrames[Projectile.type] = frames;
 		}
 		public override void SetDefaults()

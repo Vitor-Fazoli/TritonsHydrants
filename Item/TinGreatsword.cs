@@ -1,50 +1,55 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GreatswordsMod.Abstract;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using GreatswordsMod.Abstract;
 
 namespace GreatswordsMod.Item
 {
-	public class CopperGreatsword : ItemGreatsword
-	{
-		public override void SetStaticDefaults() 
+    class TinGreatsword : ItemGreatsword
+    {
+		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Copper Greatsword");
-			DisplayName.AddTranslation(8, "Espada Grande de Cobre");
+			DisplayName.SetDefault("Tin Greatsword");
+			DisplayName.AddTranslation(8, "Espada Grande de Estanho");
 
 			Tooltip.SetDefault("Hold attack to greater damage\nHolding weapon to increase your resistance");
 			Tooltip.AddTranslation(8, "Segure o ataque para maior dano\nEnquanto estiver com a espada selecionada ganha resistencia");
 		}
 		public override void SetDefaults()
-        {
-			Item.damage = ModContent.GetInstance<CopperGreatswordP>().GetDmg();
+		{
+			Item.damage = ModContent.GetInstance<TinGreatswordP>().GetDmg();
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = CopperGreatswordP.GetKnk();
+			Item.knockBack = TinGreatswordP.GetKnk();
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
-			Item.shoot = ModContent.ProjectileType<CopperGreatswordP>();
+			Item.shoot = ModContent.ProjectileType<TinGreatswordP>();
 			Item.channel = true;
 			Item.crit = -4;
 		}
 		public override bool CanUseItem(Player player)
 		{
 			return base.CanUseItem(player) && player.ownedProjectileCounts[Item.shoot] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperGreatswordP>()] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperSlash>()] < 1;
+				player.ownedProjectileCounts[ModContent.ProjectileType<TinGreatswordP>()] +
+				player.ownedProjectileCounts[ModContent.ProjectileType<TinSlash>()] < 1;
 		}
-        public override void AddRecipes()
-        {
+		public override void AddRecipes()
+		{
 			CreateRecipe()
-			.AddIngredient(ItemID.CopperBar, 9)
-			.AddIngredient(ItemID.CopperShortsword)
+			.AddIngredient(ItemID.TinBar, 9)
+			.AddIngredient(ItemID.TinShortsword)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}
-	public class CopperGreatswordP : Greatsword
+	public class TinGreatswordP : Greatsword
 	{
 		public override void SetDefaults()
 		{
@@ -63,18 +68,18 @@ namespace GreatswordsMod.Item
 			Projectile.extraUpdates = 1;
 
 			//properties - Greatsword
-			dmg = 10;
+			dmg = 11;
 			cooldown = 90;
-			proj = ModContent.ProjectileType<CopperSlash>();
+			proj = ModContent.ProjectileType<TinSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
-	public class CopperSlash : Slash
+	public class TinSlash : Slash
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cooper Slash");
-			DisplayName.AddTranslation(8, "Corte de Cobre");
+			DisplayName.SetDefault("Tin Slash");
+			DisplayName.AddTranslation(8, "Corte de Estanho");
 			Main.projFrames[Projectile.type] = frames;
 		}
 		public override void SetDefaults()

@@ -5,7 +5,7 @@ using GreatswordsMod.Abstract;
 
 namespace GreatswordsMod.Item
 {
-	public class CopperGreatsword : ItemGreatsword
+	public class LeadGreatsword : ItemGreatsword
 	{
 		public override void SetStaticDefaults() 
 		{
@@ -17,23 +17,23 @@ namespace GreatswordsMod.Item
 		}
 		public override void SetDefaults()
         {
-			Item.damage = ModContent.GetInstance<CopperGreatswordP>().GetDmg();
+			Item.damage = ModContent.GetInstance<LeadGreatswordP>().GetDmg();
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = CopperGreatswordP.GetKnk();
+			Item.knockBack = LeadGreatswordP.GetKnk();
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
-			Item.shoot = ModContent.ProjectileType<CopperGreatswordP>();
+			Item.shoot = ModContent.ProjectileType<LeadGreatswordP>();
 			Item.channel = true;
 			Item.crit = -4;
 		}
 		public override bool CanUseItem(Player player)
 		{
 			return base.CanUseItem(player) && player.ownedProjectileCounts[Item.shoot] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperGreatswordP>()] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperSlash>()] < 1;
+				player.ownedProjectileCounts[ModContent.ProjectileType<LeadGreatswordP>()] +
+				player.ownedProjectileCounts[ModContent.ProjectileType<LeadSlash>()] < 1;
 		}
         public override void AddRecipes()
         {
@@ -44,7 +44,7 @@ namespace GreatswordsMod.Item
 			.Register();
 		}
 	}
-	public class CopperGreatswordP : Greatsword
+	public class LeadGreatswordP : Greatsword
 	{
 		public override void SetDefaults()
 		{
@@ -65,11 +65,11 @@ namespace GreatswordsMod.Item
 			//properties - Greatsword
 			dmg = 10;
 			cooldown = 90;
-			proj = ModContent.ProjectileType<CopperSlash>();
+			proj = ModContent.ProjectileType<LeadSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
-	public class CopperSlash : Slash
+	public class LeadSlash : Slash
 	{
 		public override void SetStaticDefaults()
 		{

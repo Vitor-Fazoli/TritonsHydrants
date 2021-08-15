@@ -1,6 +1,5 @@
 ﻿using GreatswordsMod.Abstract;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using GreatswordsMod.Buffs;
 using Terraria.DataStructures;
@@ -15,7 +14,6 @@ namespace GreatswordsMod
         {
             if((Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword) && !Player.dead)
             {
-
                 if (slayerPower == 1)
                 {
                     Player.AddBuff(ModContent.BuffType<SlayerPowerOne>(), 2);
