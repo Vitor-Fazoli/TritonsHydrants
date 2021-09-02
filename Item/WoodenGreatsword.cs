@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using GreatswordsMod.Abstract;
+using Microsoft.Xna.Framework;
 
 namespace GreatswordsMod.Item
 {
@@ -71,27 +72,18 @@ namespace GreatswordsMod.Item
 	}
 	public class WoodenSlash : Slash
 	{
+		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cooper Slash");
-			DisplayName.AddTranslation(8, "Corte de Cobre");
+			DisplayName.SetDefault("Wooden Slash");
+			DisplayName.AddTranslation(8, "Corte de Madeira");
 			Main.projFrames[Projectile.type] = frames;
-		}
-		public override void SetDefaults()
-		{
-			//properties - Default
-			Projectile.width = 200;
-			Projectile.height = 200;
-			Projectile.aiStyle = 0;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.DamageType = DamageClass.Melee;
 
-			//properties - Slash
-			frames = 5;
-			spdFrame = 4;
+		}
+		public override bool PreDraw(ref Color lightColor)
+		{
+			lightColor = new(132, 86, 60);
+			return base.PreDraw(ref lightColor);
 		}
 	}
 }

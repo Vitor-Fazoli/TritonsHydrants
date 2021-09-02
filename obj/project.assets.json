@@ -34,7 +34,7 @@
     "C:\\Users\\fazol\\.nuget\\packages\\": {}
   },
   "project": {
-    "version": "5.0.8",
+    "version": "1.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
       "projectName": "GreatswordsMod",
@@ -89,7 +89,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

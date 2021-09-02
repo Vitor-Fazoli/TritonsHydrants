@@ -6,11 +6,11 @@ using Terraria.ID;
 
 namespace GreatswordsMod.Abstract
 {
-    public abstract class Slash : ModProjectile
+    public class Slash : ModProjectile
     {
         #region Slash Attributes
-        protected int frames = 5;
-        protected int spdFrame = 4;
+        protected int frames = 11;
+        protected int spdFrame = 2;
         private bool resultDir = false;
         private bool hit = false;
         #endregion
@@ -18,9 +18,21 @@ namespace GreatswordsMod.Abstract
         {
             Main.projFrames[Projectile.type] = frames;
         }
+        public override void SetDefaults()
+        {
+            Projectile.width = 400;
+            Projectile.height = 200;
+            Projectile.aiStyle = 0;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.DamageType = DamageClass.Melee;
+        }
         public override bool PreAI()
         {
             #region SetDirection
+
             if (!resultDir)
             {
                 if (Main.MouseScreen.X > Main.screenWidth / 2)
@@ -41,7 +53,26 @@ namespace GreatswordsMod.Abstract
             #region Projectile Position
             Player p = Main.player[Projectile.owner];
             Projectile.Center = p.Center;
-            p.direction = Projectile.spriteDirection;   
+            p.direction = Projectile.spriteDirection;
+            #endregion
+
+            #region Speed Projectile
+            Vector2 moveTo = Main.MouseWorld;
+            float speedProj = 12f;
+            Vector2 move = moveTo - Projectile.Center;
+            float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speedProj)
+            {
+                move *= speedProj / magnitude;
+            }
+            float turnResistance = 5f;
+            move = (Projectile.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speedProj)
+            {
+                move *= speedProj / magnitude;
+            }
+            Projectile.velocity.X = move.X;
             #endregion
 
             #region Animation
@@ -59,7 +90,11 @@ namespace GreatswordsMod.Abstract
             if (hit)
                 Projectile.damage = 0;
         }
-
+        public override void ModifyDamageHitbox(ref Rectangle hitbox)
+        {
+            hitbox.Height = 100;
+            hitbox.Y += 50;
+        }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.defense = 0;
@@ -67,7 +102,7 @@ namespace GreatswordsMod.Abstract
         }
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
-            target.statDefense = target.statDefense/2;
+            target.statDefense /= 2;
             hit = true;
         }
     }

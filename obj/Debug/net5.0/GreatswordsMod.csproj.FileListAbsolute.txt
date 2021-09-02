@@ -32,7 +32,6 @@ C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\Greatsword
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\System.Security.Permissions.dll
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\System.Windows.Extensions.dll
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\TerrariaHooks.dll
-C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\tModLoader.pdb
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\tModLoader.xml
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\FNA.dll.config
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\Microsoft.CodeAnalysis.xml
@@ -84,3 +83,5 @@ C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\Greatsword
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\obj\Debug\net5.0\GreatswordsMod.dll
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\obj\Debug\net5.0\ref\GreatswordsMod.dll
 C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\obj\Debug\net5.0\GreatswordsMod.pdb
+C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\Hjson.dll
+C:\Users\fazol\Documents\My Games\Terraria\ModLoader\Beta\Mod Sources\GreatswordsMod\bin\Debug\net5.0\Hjson.xml

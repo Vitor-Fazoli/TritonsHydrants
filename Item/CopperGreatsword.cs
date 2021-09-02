@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using GreatswordsMod.Abstract;
+using Microsoft.Xna.Framework;
 
 namespace GreatswordsMod.Item
 {
@@ -64,34 +65,24 @@ namespace GreatswordsMod.Item
 
 			//properties - Greatsword
 			dmg = 10;
-			cooldown = 90;
+			cooldown = 100;
 			proj = ModContent.ProjectileType<CopperSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
 	public class CopperSlash : Slash
 	{
+		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cooper Slash");
 			DisplayName.AddTranslation(8, "Corte de Cobre");
 			Main.projFrames[Projectile.type] = frames;
 		}
-		public override void SetDefaults()
+		public override bool PreDraw(ref Color lightColor)
 		{
-			//properties - Default
-			Projectile.width = 200;
-			Projectile.height = 200;
-			Projectile.aiStyle = 0;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.DamageType = DamageClass.Melee;
-
-			//properties - Slash
-			frames = 5;
-			spdFrame = 4;
+			lightColor = new(235, 167, 136);
+			return base.PreDraw(ref lightColor);
 		}
 	}
 }

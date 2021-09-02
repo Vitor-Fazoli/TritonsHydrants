@@ -71,27 +71,12 @@ namespace GreatswordsMod.Item
 	}
 	public class DemoniteSlash : Slash
 	{
+		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Demonite Slash");
 			DisplayName.AddTranslation(8, "Corte de Demonita");
 			Main.projFrames[Projectile.type] = frames;
-		}
-		public override void SetDefaults()
-		{
-			//properties - Default
-			Projectile.width = 200;
-			Projectile.height = 200;
-			Projectile.aiStyle = 0;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.DamageType = DamageClass.Melee;
-
-			//properties - Slash
-			frames = 5;
-			spdFrame = 4;
 		}
 	}
 }

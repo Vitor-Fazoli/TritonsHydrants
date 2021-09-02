@@ -16,7 +16,7 @@ namespace GreatswordsMod.Abstract
         protected int dmg = 10;
         protected const int knk = 1;
         protected float cooldown;
-        protected int proj = ModContent.ProjectileType<Item.CopperSlash>();
+        protected int proj = ModContent.ProjectileType<Slash>();
         protected int wEffect = 16;
         protected float velPlayer = 0;
         protected int timeMax = 10;
@@ -150,7 +150,7 @@ namespace GreatswordsMod.Abstract
                     AnimationSlash(2, 1);
                     ProjectileSlash((dmg * 3) / 5, proj, knk);
                 }
-                else
+                else if(Projectile.ai[0] > (cooldown - modPlayer.speedCDR))
                 {
                     modPlayer.slayerPower++;
                     AnimationSlash(2, 60);
@@ -158,6 +158,10 @@ namespace GreatswordsMod.Abstract
                 }
             }
             #endregion
+        }
+        public override void Kill(int timeLeft)
+        {
+            Projectile.alpha = 50;
         }
         private void AnimationSlash(int idSound, int type)
         {

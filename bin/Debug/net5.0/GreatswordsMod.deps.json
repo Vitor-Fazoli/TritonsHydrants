@@ -12,6 +12,7 @@
           "tModLoader": "1.4.2.3",
           "CsvHelper": "2.0.0.0",
           "FNA": "21.8.0.0",
+          "Hjson": "1.0.0.0",
           "Ionic.Zip.Reduced": "1.9.1.8",
           "log4net": "2.0.8.0",
           "Microsoft.CodeAnalysis.CSharp": "3.9.0.0",
@@ -66,6 +67,14 @@
           "FNA.dll": {
             "assemblyVersion": "21.8.0.0",
             "fileVersion": "21.8.0.0"
+          }
+        }
+      },
+      "Hjson/1.0.0.0": {
+        "runtime": {
+          "Hjson.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "3.0.0.0"
           }
         }
       },
@@ -393,6 +402,11 @@
       "sha512": ""
     },
     "FNA/21.8.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Hjson/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

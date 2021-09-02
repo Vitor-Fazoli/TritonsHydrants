@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using GreatswordsMod.Abstract;
+using Microsoft.Xna.Framework;
 
 namespace GreatswordsMod.Item
 {
@@ -9,8 +10,8 @@ namespace GreatswordsMod.Item
 	{
 		public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Copper Greatsword");
-			DisplayName.AddTranslation(8, "Espada Grande de Cobre");
+			DisplayName.SetDefault("Lead Greatsword");
+			DisplayName.AddTranslation(8, "Espada Grande de Chumbo");
 
 			Tooltip.SetDefault("Hold attack to greater damage\nHolding weapon to increase your resistance");
 			Tooltip.AddTranslation(8, "Segure o ataque para maior dano\nEnquanto estiver com a espada selecionada ganha resistencia");
@@ -71,27 +72,17 @@ namespace GreatswordsMod.Item
 	}
 	public class LeadSlash : Slash
 	{
+		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cooper Slash");
-			DisplayName.AddTranslation(8, "Corte de Cobre");
+			DisplayName.SetDefault("Lead Slash");
+			DisplayName.AddTranslation(8, "Corte de Chumbo");
 			Main.projFrames[Projectile.type] = frames;
 		}
-		public override void SetDefaults()
+		public override bool PreDraw(ref Color lightColor)
 		{
-			//properties - Default
-			Projectile.width = 200;
-			Projectile.height = 200;
-			Projectile.aiStyle = 0;
-			Projectile.friendly = true;
-			Projectile.penetrate = -1;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.DamageType = DamageClass.Melee;
-
-			//properties - Slash
-			frames = 5;
-			spdFrame = 4;
+			lightColor = new(157, 184, 193);
+			return base.PreDraw(ref lightColor);
 		}
 	}
 }

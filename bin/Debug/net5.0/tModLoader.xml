@@ -181,6 +181,9 @@
         <member name="F:Terraria.DataStructures.PlayerDrawLayers.Head">
             <summary> Draws the player's head, including hair, armor, and etc. </summary>
         </member>
+        <member name="F:Terraria.DataStructures.PlayerDrawLayers.FinchNest">
+            <summary> Draws a finch nest on the player's head, if the player has a finch summoned. </summary>
+        </member>
         <member name="F:Terraria.DataStructures.PlayerDrawLayers.FaceAcc">
             <summary> Draws the player's face accessory. </summary>
         </member>
@@ -304,6 +307,121 @@
             <summary>
             Locks the vanilla scrollbar for the upcoming cycle when called. Autoclears in Player.
             Takes a string to denote that your UI has registered to lock vanilla scrolling. String does not need to be unique.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.BreatheBubble">
+            <summary>
+            Only survives while in liquid
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.GlowingMushroom">
+            <summary>
+            Wanders and lingers with gravity enabled.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.JungleSpore">
+            <summary>
+            Wanders and lingers with gravity enabled.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Enchanted_Gold">
+            <summary>
+            Stuff like Enchanted Boomerang, Enchanted Sword, and Jester Arrows
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Enchanted_Pink">
+            <summary>
+            Stuff like Enchanted Boomerang, Enchanted Sword, and Jester Arrows
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.RainbowRod">
+            <summary>
+            Lingers and scales up with gravity enabled
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Snow">
+            <summary>
+            Wanders and lingers with gravity enabled
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Corruption">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Jungle">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Hallowed">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Snow">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Desert">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Space">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_GlowingMushroom">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Cavern">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_BloodMoon">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Water_Crimson">
+            <summary>
+            Use Dust.dustWater() if you want to calculate water dust based on water style
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.Paint">
+            <summary>
+            When you paint a tile
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.PlanteraBulb">
+            <summary>
+            Lingers and scales with gravity enabled
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.DrillContainmentUnit">
+            <summary>
+            Scales with gravity enabled
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.CosmicCarKeys">
+            <summary>
+            Scales with gravity enabled
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.DustID.LastPrism">
+            <summary>
+            Lingers and scales with gravity enabled
             </summary>
         </member>
         <member name="T:Terraria.ID.ItemRarityID">
@@ -455,192 +573,970 @@
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Arrow">
             <summary>
-            Includes Bullets and Lasers
+            Behavior: Includes Bullets and Lasers<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.WoodenArrowFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.FireArrow"/>, <see cref="F:Terraria.ID.ProjectileID.UnholyArrow"/>, <see cref="F:Terraria.ID.ProjectileID.JestersArrow"/>, <see cref="F:Terraria.ID.ProjectileID.Bullet"/>, <see cref="F:Terraria.ID.ProjectileID.GreenLaser"/>, <see cref="F:Terraria.ID.ProjectileID.MeteorShot"/>, <see cref="F:Terraria.ID.ProjectileID.HarpyFeather"/>, <see cref="F:Terraria.ID.ProjectileID.HellfireArrow"/>, <see cref="F:Terraria.ID.ProjectileID.Seed"/>, <see cref="F:Terraria.ID.ProjectileID.Stinger"/>, <see cref="F:Terraria.ID.ProjectileID.WoodenArrowHostile"/>, <see cref="F:Terraria.ID.ProjectileID.FlamingArrow"/>, <see cref="F:Terraria.ID.ProjectileID.EyeLaser"/>, <see cref="F:Terraria.ID.ProjectileID.PinkLaser"/>, <see cref="F:Terraria.ID.ProjectileID.PurpleLaser"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalBullet"/>, <see cref="F:Terraria.ID.ProjectileID.HolyArrow"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonDart"/>, <see cref="F:Terraria.ID.ProjectileID.DeathLaser"/>, <see cref="F:Terraria.ID.ProjectileID.CursedArrow"/>, <see cref="F:Terraria.ID.ProjectileID.CursedBullet"/>, <see cref="F:Terraria.ID.ProjectileID.BulletSnowman"/>, <see cref="F:Terraria.ID.ProjectileID.BoneArrow"/>, <see cref="F:Terraria.ID.ProjectileID.FrostArrow"/>, <see cref="F:Terraria.ID.ProjectileID.CopperCoin"/>, <see cref="F:Terraria.ID.ProjectileID.SilverCoin"/>, <see cref="F:Terraria.ID.ProjectileID.GoldCoin"/>, <see cref="F:Terraria.ID.ProjectileID.PlatinumCoin"/>, <see cref="F:Terraria.ID.ProjectileID.FrostburnArrow"/>, <see cref="F:Terraria.ID.ProjectileID.IceSpike"/>, <see cref="F:Terraria.ID.ProjectileID.JungleSpike"/>, <see cref="F:Terraria.ID.ProjectileID.ConfettiGun"/>, <see cref="F:Terraria.ID.ProjectileID.BulletDeadeye"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonDartTrap"/>, <see cref="F:Terraria.ID.ProjectileID.PygmySpear"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteBullet"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteArrow"/>, <see cref="F:Terraria.ID.ProjectileID.BulletHighVelocity"/>, <see cref="F:Terraria.ID.ProjectileID.Stynger"/>, <see cref="F:Terraria.ID.ProjectileID.FlowerPowPetal"/>, <see cref="F:Terraria.ID.ProjectileID.FrostBeam"/>, <see cref="F:Terraria.ID.ProjectileID.EyeBeam"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonFang"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonDartBlowgun"/>, <see cref="F:Terraria.ID.ProjectileID.Skull"/>, <see cref="F:Terraria.ID.ProjectileID.SeedPlantera"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonSeedPlantera"/>, <see cref="F:Terraria.ID.ProjectileID.IchorArrow"/>, <see cref="F:Terraria.ID.ProjectileID.IchorBullet"/>, <see cref="F:Terraria.ID.ProjectileID.VenomArrow"/>, <see cref="F:Terraria.ID.ProjectileID.VenomBullet"/>, <see cref="F:Terraria.ID.ProjectileID.PartyBullet"/>, <see cref="F:Terraria.ID.ProjectileID.NanoBullet"/>, <see cref="F:Terraria.ID.ProjectileID.ExplosiveBullet"/>, <see cref="F:Terraria.ID.ProjectileID.GoldenBullet"/>, <see cref="F:Terraria.ID.ProjectileID.ConfettiMelee"/>, <see cref="F:Terraria.ID.ProjectileID.Shadowflames"/>, <see cref="F:Terraria.ID.ProjectileID.SniperBullet"/>, <see cref="F:Terraria.ID.ProjectileID.CandyCorn"/>, <see cref="F:Terraria.ID.ProjectileID.JackOLantern"/>, <see cref="F:Terraria.ID.ProjectileID.Stake"/>, <see cref="F:Terraria.ID.ProjectileID.FlamingWood"/>, <see cref="F:Terraria.ID.ProjectileID.PineNeedleFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.Blizzard"/>, <see cref="F:Terraria.ID.ProjectileID.NorthPoleSnowflake"/>, <see cref="F:Terraria.ID.ProjectileID.PineNeedleHostile"/>, <see cref="F:Terraria.ID.ProjectileID.FrostWave"/>, <see cref="F:Terraria.ID.ProjectileID.FrostShard"/>, <see cref="F:Terraria.ID.ProjectileID.Missile"/>, <see cref="F:Terraria.ID.ProjectileID.VenomFang"/>, <see cref="F:Terraria.ID.ProjectileID.PulseBolt"/>, <see cref="F:Terraria.ID.ProjectileID.HornetStinger"/>, <see cref="F:Terraria.ID.ProjectileID.ImpFireball"/>, <see cref="F:Terraria.ID.ProjectileID.MiniRetinaLaser"/>, <see cref="F:Terraria.ID.ProjectileID.MiniSharkron"/>, <see cref="F:Terraria.ID.ProjectileID.Meteor1"/>, <see cref="F:Terraria.ID.ProjectileID.Meteor2"/>, <see cref="F:Terraria.ID.ProjectileID.Meteor3"/>, <see cref="F:Terraria.ID.ProjectileID.MartianTurretBolt"/>, <see cref="F:Terraria.ID.ProjectileID.BrainScramblerBolt"/>, <see cref="F:Terraria.ID.ProjectileID.GigaZapperSpear"/>, <see cref="F:Terraria.ID.ProjectileID.RayGunnerLaser"/>, <see cref="F:Terraria.ID.ProjectileID.LaserMachinegunLaser"/>, <see cref="F:Terraria.ID.ProjectileID.ElectrosphereMissile"/>, <see cref="F:Terraria.ID.ProjectileID.SaucerLaser"/>, <see cref="F:Terraria.ID.ProjectileID.ChargedBlasterOrb"/>, <see cref="F:Terraria.ID.ProjectileID.PhantasmalBolt"/>, <see cref="F:Terraria.ID.ProjectileID.CultistBossFireBall"/>, <see cref="F:Terraria.ID.ProjectileID.CultistBossFireBallClone"/>, <see cref="F:Terraria.ID.ProjectileID.BeeArrow"/>, <see cref="F:Terraria.ID.ProjectileID.WebSpit"/>, <see cref="F:Terraria.ID.ProjectileID.BoneArrowFromMerchant"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalDart"/>, <see cref="F:Terraria.ID.ProjectileID.CursedDart"/>, <see cref="F:Terraria.ID.ProjectileID.IchorDart"/>, <see cref="F:Terraria.ID.ProjectileID.SeedlerThorn"/>, <see cref="F:Terraria.ID.ProjectileID.Hellwing"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowFlameArrow"/>, <see cref="F:Terraria.ID.ProjectileID.Nail"/>, <see cref="F:Terraria.ID.ProjectileID.JavelinFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.JavelinHostile"/>, <see cref="F:Terraria.ID.ProjectileID.BoneGloveProj"/>, <see cref="F:Terraria.ID.ProjectileID.SalamanderSpit"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaLaser"/>, <see cref="F:Terraria.ID.ProjectileID.VortexLaser"/>, <see cref="F:Terraria.ID.ProjectileID.VortexAcid"/>, <see cref="F:Terraria.ID.ProjectileID.ClothiersCurse"/>, <see cref="F:Terraria.ID.ProjectileID.PainterPaintball"/>, <see cref="F:Terraria.ID.ProjectileID.MartianWalkerLaser"/>, <see cref="F:Terraria.ID.ProjectileID.AncientDoomProjectile"/>, <see cref="F:Terraria.ID.ProjectileID.BlowupSmoke"/>, <see cref="F:Terraria.ID.ProjectileID.PortalGunBolt"/>, <see cref="F:Terraria.ID.ProjectileID.SpikedSlimeSpike"/>, <see cref="F:Terraria.ID.ProjectileID.ScutlixLaser"/>, <see cref="F:Terraria.ID.ProjectileID.VortexBeaterRocket"/>, <see cref="F:Terraria.ID.ProjectileID.BlowupSmokeMoonlord"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaBlaze1"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaBlaze2"/>, <see cref="F:Terraria.ID.ProjectileID.MoonlordBullet"/>, <see cref="F:Terraria.ID.ProjectileID.MoonlordArrow"/>, <see cref="F:Terraria.ID.ProjectileID.MoonlordArrowTrail"/>, <see cref="F:Terraria.ID.ProjectileID.LunarFlare"/>, <see cref="F:Terraria.ID.ProjectileID.SkyFracture"/>, <see cref="F:Terraria.ID.ProjectileID.BlackBolt"/>, <see cref="F:Terraria.ID.ProjectileID.DD2JavelinHostile"/>, <see cref="F:Terraria.ID.ProjectileID.DD2DrakinShot"/>, <see cref="F:Terraria.ID.ProjectileID.DD2DarkMageBolt"/>, <see cref="F:Terraria.ID.ProjectileID.DD2OgreSpit"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BallistraProj"/>, <see cref="F:Terraria.ID.ProjectileID.DD2LightningBugZap"/>, <see cref="F:Terraria.ID.ProjectileID.DD2SquireSonicBoom"/>, <see cref="F:Terraria.ID.ProjectileID.DD2JavelinHostileT3"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BetsyFireball"/>, <see cref="F:Terraria.ID.ProjectileID.DD2PhoenixBowShot"/>, <see cref="F:Terraria.ID.ProjectileID.MonkStaffT3_AltShot"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BetsyArrow"/>, <see cref="F:Terraria.ID.ProjectileID.ApprenticeStaffT3Shot"/>, <see cref="F:Terraria.ID.ProjectileID.BookStaffShot"/>, <see cref="F:Terraria.ID.ProjectileID.QueenBeeStinger"/>, <see cref="F:Terraria.ID.ProjectileID.RollingCactusSpike"/>, <see cref="F:Terraria.ID.ProjectileID.Geode"/>, <see cref="F:Terraria.ID.ProjectileID.BloodShot"/>, <see cref="F:Terraria.ID.ProjectileID.BloodNautilusShot"/>, <see cref="F:Terraria.ID.ProjectileID.BloodArrow"/>, <see cref="F:Terraria.ID.ProjectileID.BookOfSkullsSkull"/>, <see cref="F:Terraria.ID.ProjectileID.ZapinatorLaser"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimeMinionBlueSpike"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimeMinionPinkBall"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimeGelAttack"/>, <see cref="F:Terraria.ID.ProjectileID.VolatileGelatinBall"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ThrownProjectile">
             <summary>
-            Includes Shurikens, Bones, and Knives
+            Behavior: Includes Shurikens, Bones, and Knives<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Shuriken"/>, <see cref="F:Terraria.ID.ProjectileID.Bone"/>, <see cref="F:Terraria.ID.ProjectileID.ThrowingKnife"/>, <see cref="F:Terraria.ID.ProjectileID.PoisonedKnife"/>, <see cref="F:Terraria.ID.ProjectileID.HolyWater"/>, <see cref="F:Terraria.ID.ProjectileID.UnholyWater"/>, <see cref="F:Terraria.ID.ProjectileID.MagicDagger"/>, <see cref="F:Terraria.ID.ProjectileID.CannonballFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.SnowBallFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.CannonballHostile"/>, <see cref="F:Terraria.ID.ProjectileID.StyngerShrapnel"/>, <see cref="F:Terraria.ID.ProjectileID.PaladinsHammerHostile"/>, <see cref="F:Terraria.ID.ProjectileID.VampireKnife"/>, <see cref="F:Terraria.ID.ProjectileID.EatersBite"/>, <see cref="F:Terraria.ID.ProjectileID.RottenEgg"/>, <see cref="F:Terraria.ID.ProjectileID.StarAnise"/>, <see cref="F:Terraria.ID.ProjectileID.OrnamentHostileShrapnel"/>, <see cref="F:Terraria.ID.ProjectileID.LovePotion"/>, <see cref="F:Terraria.ID.ProjectileID.FoulPotion"/>, <see cref="F:Terraria.ID.ProjectileID.SkeletonBone"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowFlameKnife"/>, <see cref="F:Terraria.ID.ProjectileID.DrManFlyFlask"/>, <see cref="F:Terraria.ID.ProjectileID.Spark"/>, <see cref="F:Terraria.ID.ProjectileID.ToxicFlask"/>, <see cref="F:Terraria.ID.ProjectileID.FrostDaggerfish"/>, <see cref="F:Terraria.ID.ProjectileID.NurseSyringeHurt"/>, <see cref="F:Terraria.ID.ProjectileID.SantaBombs"/>, <see cref="F:Terraria.ID.ProjectileID.BoneDagger"/>, <see cref="F:Terraria.ID.ProjectileID.BloodWater"/>, <see cref="F:Terraria.ID.ProjectileID.Football"/>, <see cref="F:Terraria.ID.ProjectileID.TreeGlobe"/>, <see cref="F:Terraria.ID.ProjectileID.WorldGlobe"/>, <see cref="F:Terraria.ID.ProjectileID.RockGolemRock"/>, <see cref="F:Terraria.ID.ProjectileID.GelBalloon"/>, <see cref="F:Terraria.ID.ProjectileID.WandOfSparkingSpark"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Boomerang">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.EnchantedBoomerang"/>, <see cref="F:Terraria.ID.ProjectileID.Flamarang"/>, <see cref="F:Terraria.ID.ProjectileID.ThornChakram"/>, <see cref="F:Terraria.ID.ProjectileID.WoodenBoomerang"/>, <see cref="F:Terraria.ID.ProjectileID.LightDisc"/>, <see cref="F:Terraria.ID.ProjectileID.IceBoomerang"/>, <see cref="F:Terraria.ID.ProjectileID.PossessedHatchet"/>, <see cref="F:Terraria.ID.ProjectileID.Bananarang"/>, <see cref="F:Terraria.ID.ProjectileID.PaladinsHammerFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.BloodyMachete"/>, <see cref="F:Terraria.ID.ProjectileID.FruitcakeChakram"/>, <see cref="F:Terraria.ID.ProjectileID.Anchor"/>, <see cref="F:Terraria.ID.ProjectileID.BouncingShield"/>, <see cref="F:Terraria.ID.ProjectileID.Shroomerang"/>, <see cref="F:Terraria.ID.ProjectileID.CombatWrench"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Vilethorn">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.VilethornBase"/>, <see cref="F:Terraria.ID.ProjectileID.VilethornTip"/>, <see cref="F:Terraria.ID.ProjectileID.NettleBurstRight"/>, <see cref="F:Terraria.ID.ProjectileID.NettleBurstLeft"/>, <see cref="F:Terraria.ID.ProjectileID.NettleBurstEnd"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalVileShardHead"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalVileShardShaft"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FallingStar">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Starfury"/>, <see cref="F:Terraria.ID.ProjectileID.FallingStar"/>, <see cref="F:Terraria.ID.ProjectileID.HallowStar"/>, <see cref="F:Terraria.ID.ProjectileID.StarWrath"/>, <see cref="F:Terraria.ID.ProjectileID.ManaCloakStar"/>, <see cref="F:Terraria.ID.ProjectileID.BeeCloakStar"/>, <see cref="F:Terraria.ID.ProjectileID.StarVeilStar"/>, <see cref="F:Terraria.ID.ProjectileID.StarCloakStar"/>, <see cref="F:Terraria.ID.ProjectileID.StarCannonStar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Powder">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PurificationPowder"/>, <see cref="F:Terraria.ID.ProjectileID.VilePowder"/>, <see cref="F:Terraria.ID.ProjectileID.ViciousPowder"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Hook">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Hook"/>, <see cref="F:Terraria.ID.ProjectileID.IvyWhip"/>, <see cref="F:Terraria.ID.ProjectileID.DualHookBlue"/>, <see cref="F:Terraria.ID.ProjectileID.DualHookRed"/>, <see cref="F:Terraria.ID.ProjectileID.Web"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookAmethyst"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookTopaz"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookSapphire"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookEmerald"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookRuby"/>, <see cref="F:Terraria.ID.ProjectileID.GemHookDiamond"/>, <see cref="F:Terraria.ID.ProjectileID.SkeletronHand"/>, <see cref="F:Terraria.ID.ProjectileID.BatHook"/>, <see cref="F:Terraria.ID.ProjectileID.WoodHook"/>, <see cref="F:Terraria.ID.ProjectileID.CandyCaneHook"/>, <see cref="F:Terraria.ID.ProjectileID.ChristmasHook"/>, <see cref="F:Terraria.ID.ProjectileID.FishHook"/>, <see cref="F:Terraria.ID.ProjectileID.SlimeHook"/>, <see cref="F:Terraria.ID.ProjectileID.TrackHook"/>, <see cref="F:Terraria.ID.ProjectileID.AntiGravityHook"/>, <see cref="F:Terraria.ID.ProjectileID.TendonHook"/>, <see cref="F:Terraria.ID.ProjectileID.ThornHook"/>, <see cref="F:Terraria.ID.ProjectileID.IlluminantHook"/>, <see cref="F:Terraria.ID.ProjectileID.WormHook"/>, <see cref="F:Terraria.ID.ProjectileID.LunarHookSolar"/>, <see cref="F:Terraria.ID.ProjectileID.LunarHookVortex"/>, <see cref="F:Terraria.ID.ProjectileID.LunarHookNebula"/>, <see cref="F:Terraria.ID.ProjectileID.LunarHookStardust"/>, <see cref="F:Terraria.ID.ProjectileID.StaticHook"/>, <see cref="F:Terraria.ID.ProjectileID.AmberHook"/>, <see cref="F:Terraria.ID.ProjectileID.SquirrelHook"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimeHook"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Bounce">
             <summary>
-            Includes the Flower of Fire, Waterbolt, Cursed Flame, and Meowmere projectiles
+            Behavior: Includes the Flower of Fire, Waterbolt, Cursed Flame, and Meowmere projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BallofFire"/>, <see cref="F:Terraria.ID.ProjectileID.WaterBolt"/>, <see cref="F:Terraria.ID.ProjectileID.CursedFlameFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.CursedFlameHostile"/>, <see cref="F:Terraria.ID.ProjectileID.BallofFrost"/>, <see cref="F:Terraria.ID.ProjectileID.Fireball"/>, <see cref="F:Terraria.ID.ProjectileID.Meowmere"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.MagicMissile">
             <summary>
-            Includes Flame Lash and Magic Missile
+            Behavior: Includes Flame Lash and Magic Missile<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MagicMissile"/>, <see cref="F:Terraria.ID.ProjectileID.Flamelash"/>, <see cref="F:Terraria.ID.ProjectileID.RainbowRodBullet"/>, <see cref="F:Terraria.ID.ProjectileID.FlyingKnife"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FallingTile">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DirtBall"/>, <see cref="F:Terraria.ID.ProjectileID.SandBallFalling"/>, <see cref="F:Terraria.ID.ProjectileID.MudBall"/>, <see cref="F:Terraria.ID.ProjectileID.AshBallFalling"/>, <see cref="F:Terraria.ID.ProjectileID.SandBallGun"/>, <see cref="F:Terraria.ID.ProjectileID.EbonsandBallFalling"/>, <see cref="F:Terraria.ID.ProjectileID.EbonsandBallGun"/>, <see cref="F:Terraria.ID.ProjectileID.PearlSandBallFalling"/>, <see cref="F:Terraria.ID.ProjectileID.PearlSandBallGun"/>, <see cref="F:Terraria.ID.ProjectileID.SiltBall"/>, <see cref="F:Terraria.ID.ProjectileID.SnowBallHostile"/>, <see cref="F:Terraria.ID.ProjectileID.SlushBall"/>, <see cref="F:Terraria.ID.ProjectileID.CrimsandBallFalling"/>, <see cref="F:Terraria.ID.ProjectileID.CrimsandBallGun"/>, <see cref="F:Terraria.ID.ProjectileID.CopperCoinsFalling"/>, <see cref="F:Terraria.ID.ProjectileID.SilverCoinsFalling"/>, <see cref="F:Terraria.ID.ProjectileID.GoldCoinsFalling"/>, <see cref="F:Terraria.ID.ProjectileID.PlatinumCoinsFalling"/>, <see cref="F:Terraria.ID.ProjectileID.BlueDungeonDebris"/>, <see cref="F:Terraria.ID.ProjectileID.GreenDungeonDebris"/>, <see cref="F:Terraria.ID.ProjectileID.PinkDungeonDebris"/>, <see cref="F:Terraria.ID.ProjectileID.ShellPileFalling"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.FloatingFollow">
             <summary>
-            Includes Shadow Orb and Fairy pets
+            Behavior: Includes Shadow Orb and Fairy pets<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ShadowOrb"/>, <see cref="F:Terraria.ID.ProjectileID.BlueFairy"/>, <see cref="F:Terraria.ID.ProjectileID.PinkFairy"/>, <see cref="F:Terraria.ID.ProjectileID.GreenFairy"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Stream">
             <summary>
-            Includes Aqua Scepter and Golden Shower projectiles
+            Behavior: Includes Aqua Scepter and Golden Shower projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.WaterStream"/>, <see cref="F:Terraria.ID.ProjectileID.GoldenShowerFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.GoldenShowerHostile"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Harpoon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Harpoon"/>, <see cref="F:Terraria.ID.ProjectileID.GolemFist"/>, <see cref="F:Terraria.ID.ProjectileID.BoxingGlove"/>, <see cref="F:Terraria.ID.ProjectileID.ChainKnife"/>, <see cref="F:Terraria.ID.ProjectileID.ChainGuillotine"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.GroundProjectile">
             <summary>
-            Includes most non-destructive Explosive, Glowstick, and Spike Ball projectiles
+            Behavior: Includes most non-destructive Explosive, Glowstick, and Spike Ball projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SpikyBall"/>, <see cref="F:Terraria.ID.ProjectileID.Glowstick"/>, <see cref="F:Terraria.ID.ProjectileID.StickyGlowstick"/>, <see cref="F:Terraria.ID.ProjectileID.Beenade"/>, <see cref="F:Terraria.ID.ProjectileID.SpikyBallTrap"/>, <see cref="F:Terraria.ID.ProjectileID.SmokeBomb"/>, <see cref="F:Terraria.ID.ProjectileID.BoulderStaffOfEarth"/>, <see cref="F:Terraria.ID.ProjectileID.ThornBall"/>, <see cref="F:Terraria.ID.ProjectileID.GreekFire1"/>, <see cref="F:Terraria.ID.ProjectileID.GreekFire2"/>, <see cref="F:Terraria.ID.ProjectileID.GreekFire3"/>, <see cref="F:Terraria.ID.ProjectileID.OrnamentHostile"/>, <see cref="F:Terraria.ID.ProjectileID.Spike"/>, <see cref="F:Terraria.ID.ProjectileID.SpiderEgg"/>, <see cref="F:Terraria.ID.ProjectileID.MolotovFire"/>, <see cref="F:Terraria.ID.ProjectileID.MolotovFire2"/>, <see cref="F:Terraria.ID.ProjectileID.MolotovFire3"/>, <see cref="F:Terraria.ID.ProjectileID.SaucerScrap"/>, <see cref="F:Terraria.ID.ProjectileID.SpelunkerGlowstick"/>, <see cref="F:Terraria.ID.ProjectileID.CursedDartFlame"/>, <see cref="F:Terraria.ID.ProjectileID.SeedlerNut"/>, <see cref="F:Terraria.ID.ProjectileID.BouncyGlowstick"/>, <see cref="F:Terraria.ID.ProjectileID.Twinkle"/>, <see cref="F:Terraria.ID.ProjectileID.FairyGlowstick"/>, <see cref="F:Terraria.ID.ProjectileID.DripplerFlailExtraBall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Flail">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BallOHurt"/>, <see cref="F:Terraria.ID.ProjectileID.BlueMoon"/>, <see cref="F:Terraria.ID.ProjectileID.Sunfury"/>, <see cref="F:Terraria.ID.ProjectileID.TheDaoofPow"/>, <see cref="F:Terraria.ID.ProjectileID.TheMeatball"/>, <see cref="F:Terraria.ID.ProjectileID.FlowerPow"/>, <see cref="F:Terraria.ID.ProjectileID.DripplerFlail"/>, <see cref="F:Terraria.ID.ProjectileID.Mace"/>, <see cref="F:Terraria.ID.ProjectileID.FlamingMace"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Explosive">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Bomb"/>, <see cref="F:Terraria.ID.ProjectileID.Dynamite"/>, <see cref="F:Terraria.ID.ProjectileID.Grenade"/>, <see cref="F:Terraria.ID.ProjectileID.StickyBomb"/>, <see cref="F:Terraria.ID.ProjectileID.HappyBomb"/>, <see cref="F:Terraria.ID.ProjectileID.BombSkeletronPrime"/>, <see cref="F:Terraria.ID.ProjectileID.Explosives"/>, <see cref="F:Terraria.ID.ProjectileID.GrenadeI"/>, <see cref="F:Terraria.ID.ProjectileID.RocketI"/>, <see cref="F:Terraria.ID.ProjectileID.ProximityMineI"/>, <see cref="F:Terraria.ID.ProjectileID.GrenadeII"/>, <see cref="F:Terraria.ID.ProjectileID.RocketII"/>, <see cref="F:Terraria.ID.ProjectileID.ProximityMineII"/>, <see cref="F:Terraria.ID.ProjectileID.GrenadeIII"/>, <see cref="F:Terraria.ID.ProjectileID.RocketIII"/>, <see cref="F:Terraria.ID.ProjectileID.ProximityMineIII"/>, <see cref="F:Terraria.ID.ProjectileID.GrenadeIV"/>, <see cref="F:Terraria.ID.ProjectileID.RocketIV"/>, <see cref="F:Terraria.ID.ProjectileID.ProximityMineIV"/>, <see cref="F:Terraria.ID.ProjectileID.Landmine"/>, <see cref="F:Terraria.ID.ProjectileID.RocketSkeleton"/>, <see cref="F:Terraria.ID.ProjectileID.RocketSnowmanI"/>, <see cref="F:Terraria.ID.ProjectileID.RocketSnowmanII"/>, <see cref="F:Terraria.ID.ProjectileID.RocketSnowmanIII"/>, <see cref="F:Terraria.ID.ProjectileID.RocketSnowmanIV"/>, <see cref="F:Terraria.ID.ProjectileID.StickyGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.StickyDynamite"/>, <see cref="F:Terraria.ID.ProjectileID.BouncyBomb"/>, <see cref="F:Terraria.ID.ProjectileID.BouncyGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.BombFish"/>, <see cref="F:Terraria.ID.ProjectileID.PartyGirlGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.BouncyDynamite"/>, <see cref="F:Terraria.ID.ProjectileID.DD2GoblinBomb"/>, <see cref="F:Terraria.ID.ProjectileID.ScarabBomb"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterRocketI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterGrenadeI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterMineI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterFragmentsI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterRocketII"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterGrenadeII"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterMineII"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterFragmentsII"/>, <see cref="F:Terraria.ID.ProjectileID.WetRocket"/>, <see cref="F:Terraria.ID.ProjectileID.WetGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.WetMine"/>, <see cref="F:Terraria.ID.ProjectileID.LavaRocket"/>, <see cref="F:Terraria.ID.ProjectileID.LavaGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.LavaMine"/>, <see cref="F:Terraria.ID.ProjectileID.HoneyRocket"/>, <see cref="F:Terraria.ID.ProjectileID.HoneyGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.HoneyMine"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeRocketI"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeGrenadeI"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeMineI"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeRocketII"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeGrenadeII"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeMineII"/>, <see cref="F:Terraria.ID.ProjectileID.DryRocket"/>, <see cref="F:Terraria.ID.ProjectileID.DryGrenade"/>, <see cref="F:Terraria.ID.ProjectileID.DryMine"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterSnowmanRocketI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterSnowmanRocketII"/>, <see cref="F:Terraria.ID.ProjectileID.WetSnowmanRocket"/>, <see cref="F:Terraria.ID.ProjectileID.LavaSnowmanRocket"/>, <see cref="F:Terraria.ID.ProjectileID.HoneySnowmanRocket"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeSnowmanRocketI"/>, <see cref="F:Terraria.ID.ProjectileID.MiniNukeSnowmanRocketII"/>, <see cref="F:Terraria.ID.ProjectileID.DrySnowmanRocket"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterSnowmanFragmentsI"/>, <see cref="F:Terraria.ID.ProjectileID.ClusterSnowmanFragmentsII"/>, <see cref="F:Terraria.ID.ProjectileID.WetBomb"/>, <see cref="F:Terraria.ID.ProjectileID.LavaBomb"/>, <see cref="F:Terraria.ID.ProjectileID.HoneyBomb"/>, <see cref="F:Terraria.ID.ProjectileID.DryBomb"/>, <see cref="F:Terraria.ID.ProjectileID.DirtBomb"/>, <see cref="F:Terraria.ID.ProjectileID.DirtStickyBomb"/>, <see cref="F:Terraria.ID.ProjectileID.SantankMountRocket"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.GraveMarker">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Tombstone"/>, <see cref="F:Terraria.ID.ProjectileID.GraveMarker"/>, <see cref="F:Terraria.ID.ProjectileID.CrossGraveMarker"/>, <see cref="F:Terraria.ID.ProjectileID.Headstone"/>, <see cref="F:Terraria.ID.ProjectileID.Gravestone"/>, <see cref="F:Terraria.ID.ProjectileID.Obelisk"/>, <see cref="F:Terraria.ID.ProjectileID.RichGravestone1"/>, <see cref="F:Terraria.ID.ProjectileID.RichGravestone2"/>, <see cref="F:Terraria.ID.ProjectileID.RichGravestone3"/>, <see cref="F:Terraria.ID.ProjectileID.RichGravestone4"/>, <see cref="F:Terraria.ID.ProjectileID.RichGravestone5"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Sickle">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DemonSickle"/>, <see cref="F:Terraria.ID.ProjectileID.DemonScythe"/>, <see cref="F:Terraria.ID.ProjectileID.IceSickle"/>, <see cref="F:Terraria.ID.ProjectileID.DeathSickle"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Spear">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DarkLance"/>, <see cref="F:Terraria.ID.ProjectileID.Trident"/>, <see cref="F:Terraria.ID.ProjectileID.Spear"/>, <see cref="F:Terraria.ID.ProjectileID.MythrilHalberd"/>, <see cref="F:Terraria.ID.ProjectileID.AdamantiteGlaive"/>, <see cref="F:Terraria.ID.ProjectileID.CobaltNaginata"/>, <see cref="F:Terraria.ID.ProjectileID.Gungnir"/>, <see cref="F:Terraria.ID.ProjectileID.MushroomSpear"/>, <see cref="F:Terraria.ID.ProjectileID.TheRottedFork"/>, <see cref="F:Terraria.ID.ProjectileID.PalladiumPike"/>, <see cref="F:Terraria.ID.ProjectileID.OrichalcumHalberd"/>, <see cref="F:Terraria.ID.ProjectileID.TitaniumTrident"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophytePartisan"/>, <see cref="F:Terraria.ID.ProjectileID.NorthPoleWeapon"/>, <see cref="F:Terraria.ID.ProjectileID.ObsidianSwordfish"/>, <see cref="F:Terraria.ID.ProjectileID.Swordfish"/>, <see cref="F:Terraria.ID.ProjectileID.ThunderSpear"/>, <see cref="F:Terraria.ID.ProjectileID.JoustingLance"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowJoustingLance"/>, <see cref="F:Terraria.ID.ProjectileID.HallowJoustingLance"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Drill">
             <summary>
-            Includes Saws
+            Behavior: Includes Saws<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CobaltChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.MythrilChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.CobaltDrill"/>, <see cref="F:Terraria.ID.ProjectileID.MythrilDrill"/>, <see cref="F:Terraria.ID.ProjectileID.AdamantiteChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.AdamantiteDrill"/>, <see cref="F:Terraria.ID.ProjectileID.Hamdrax"/>, <see cref="F:Terraria.ID.ProjectileID.PalladiumDrill"/>, <see cref="F:Terraria.ID.ProjectileID.PalladiumChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.OrichalcumDrill"/>, <see cref="F:Terraria.ID.ProjectileID.OrichalcumChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.TitaniumDrill"/>, <see cref="F:Terraria.ID.ProjectileID.TitaniumChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteDrill"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteJackhammer"/>, <see cref="F:Terraria.ID.ProjectileID.SawtoothShark"/>, <see cref="F:Terraria.ID.ProjectileID.VortexChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.VortexDrill"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaDrill"/>, <see cref="F:Terraria.ID.ProjectileID.SolarFlareChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.SolarFlareDrill"/>, <see cref="F:Terraria.ID.ProjectileID.ButchersChainsaw"/>, <see cref="F:Terraria.ID.ProjectileID.StardustDrill"/>, <see cref="F:Terraria.ID.ProjectileID.StardustChainsaw"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MusicNote">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.QuarterNote"/>, <see cref="F:Terraria.ID.ProjectileID.EighthNote"/>, <see cref="F:Terraria.ID.ProjectileID.TiedEighthNote"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.IceRod">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.IceBlock"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Flames">
             <summary>
-            Includes Flamethrower Flames, Cursed Flames, and Eye Fire
+            Behavior: Includes Flamethrower Flames, Cursed Flames, and Eye Fire<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Flames"/>, <see cref="F:Terraria.ID.ProjectileID.EyeFire"/>, <see cref="F:Terraria.ID.ProjectileID.FlamesTrap"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CrystalShard">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CrystalShard"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalStorm"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Boulder">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Boulder"/>, <see cref="F:Terraria.ID.ProjectileID.BeeHive"/>, <see cref="F:Terraria.ID.ProjectileID.RollingCactus"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Pet">
             <summary>
-            Includes some minions with simple AI, such as the Baby Slime
+            Behavior: Includes some minions with simple AI, such as the Baby Slime<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Bunny"/>, <see cref="F:Terraria.ID.ProjectileID.Penguin"/>, <see cref="F:Terraria.ID.ProjectileID.Turtle"/>, <see cref="F:Terraria.ID.ProjectileID.BabyEater"/>, <see cref="F:Terraria.ID.ProjectileID.Pygmy"/>, <see cref="F:Terraria.ID.ProjectileID.Pygmy2"/>, <see cref="F:Terraria.ID.ProjectileID.Pygmy3"/>, <see cref="F:Terraria.ID.ProjectileID.Pygmy4"/>, <see cref="F:Terraria.ID.ProjectileID.BabySkeletronHead"/>, <see cref="F:Terraria.ID.ProjectileID.BabyHornet"/>, <see cref="F:Terraria.ID.ProjectileID.TikiSpirit"/>, <see cref="F:Terraria.ID.ProjectileID.PetLizard"/>, <see cref="F:Terraria.ID.ProjectileID.Parrot"/>, <see cref="F:Terraria.ID.ProjectileID.Truffle"/>, <see cref="F:Terraria.ID.ProjectileID.Sapling"/>, <see cref="F:Terraria.ID.ProjectileID.Wisp"/>, <see cref="F:Terraria.ID.ProjectileID.BabyDino"/>, <see cref="F:Terraria.ID.ProjectileID.BabySlime"/>, <see cref="F:Terraria.ID.ProjectileID.EyeSpring"/>, <see cref="F:Terraria.ID.ProjectileID.BabySnowman"/>, <see cref="F:Terraria.ID.ProjectileID.Spider"/>, <see cref="F:Terraria.ID.ProjectileID.Squashling"/>, <see cref="F:Terraria.ID.ProjectileID.BlackCat"/>, <see cref="F:Terraria.ID.ProjectileID.CursedSapling"/>, <see cref="F:Terraria.ID.ProjectileID.Puppy"/>, <see cref="F:Terraria.ID.ProjectileID.BabyGrinch"/>, <see cref="F:Terraria.ID.ProjectileID.ZephyrFish"/>, <see cref="F:Terraria.ID.ProjectileID.VenomSpider"/>, <see cref="F:Terraria.ID.ProjectileID.JumperSpider"/>, <see cref="F:Terraria.ID.ProjectileID.DangerousSpider"/>, <see cref="F:Terraria.ID.ProjectileID.MiniMinotaur"/>, <see cref="F:Terraria.ID.ProjectileID.BabyFaceMonster"/>, <see cref="F:Terraria.ID.ProjectileID.SugarGlider"/>, <see cref="F:Terraria.ID.ProjectileID.SharkPup"/>, <see cref="F:Terraria.ID.ProjectileID.LilHarpy"/>, <see cref="F:Terraria.ID.ProjectileID.FennecFox"/>, <see cref="F:Terraria.ID.ProjectileID.GlitteryButterfly"/>, <see cref="F:Terraria.ID.ProjectileID.BabyImp"/>, <see cref="F:Terraria.ID.ProjectileID.BabyRedPanda"/>, <see cref="F:Terraria.ID.ProjectileID.Plantero"/>, <see cref="F:Terraria.ID.ProjectileID.DynamiteKitten"/>, <see cref="F:Terraria.ID.ProjectileID.BabyWerewolf"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowMimic"/>, <see cref="F:Terraria.ID.ProjectileID.VoltBunny"/>, <see cref="F:Terraria.ID.ProjectileID.KingSlimePet"/>, <see cref="F:Terraria.ID.ProjectileID.BrainOfCthulhuPet"/>, <see cref="F:Terraria.ID.ProjectileID.SkeletronPet"/>, <see cref="F:Terraria.ID.ProjectileID.QueenBeePet"/>, <see cref="F:Terraria.ID.ProjectileID.SkeletronPrimePet"/>, <see cref="F:Terraria.ID.ProjectileID.PlanteraPet"/>, <see cref="F:Terraria.ID.ProjectileID.GolemPet"/>, <see cref="F:Terraria.ID.ProjectileID.DukeFishronPet"/>, <see cref="F:Terraria.ID.ProjectileID.MoonLordPet"/>, <see cref="F:Terraria.ID.ProjectileID.EverscreamPet"/>, <see cref="F:Terraria.ID.ProjectileID.MartianPet"/>, <see cref="F:Terraria.ID.ProjectileID.DD2OgrePet"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BetsyPet"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimePet"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Beam">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.UnholyTridentFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.UnholyTridentHostile"/>, <see cref="F:Terraria.ID.ProjectileID.SwordBeam"/>, <see cref="F:Terraria.ID.ProjectileID.TerraBeam"/>, <see cref="F:Terraria.ID.ProjectileID.LightBeam"/>, <see cref="F:Terraria.ID.ProjectileID.NightBeam"/>, <see cref="F:Terraria.ID.ProjectileID.EnchantedBeam"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ColdBolt">
             <summary>
-            Includes Ice Sword, Frost Hydra, Frost Bolt, and Icy Spit projectiles
+            Behavior: Includes Ice Sword, Frost Hydra, Frost Bolt, and Icy Spit projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.IceBolt"/>, <see cref="F:Terraria.ID.ProjectileID.FrostBoltSword"/>, <see cref="F:Terraria.ID.ProjectileID.FrostBlastHostile"/>, <see cref="F:Terraria.ID.ProjectileID.RuneBlast"/>, <see cref="F:Terraria.ID.ProjectileID.IcewaterSpit"/>, <see cref="F:Terraria.ID.ProjectileID.FrostBlastFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.FrostBoltStaff"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.GemStaffBolt">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.AmethystBolt"/>, <see cref="F:Terraria.ID.ProjectileID.TopazBolt"/>, <see cref="F:Terraria.ID.ProjectileID.SapphireBolt"/>, <see cref="F:Terraria.ID.ProjectileID.EmeraldBolt"/>, <see cref="F:Terraria.ID.ProjectileID.RubyBolt"/>, <see cref="F:Terraria.ID.ProjectileID.DiamondBolt"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalPulse"/>, <see cref="F:Terraria.ID.ProjectileID.CrystalPulse2"/>, <see cref="F:Terraria.ID.ProjectileID.AmberBolt"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaArcanumExplosionShot"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaArcanumExplosionShotShard"/>, <see cref="F:Terraria.ID.ProjectileID.ThunderStaffShot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Mushroom">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Mushroom"/>, <see cref="F:Terraria.ID.ProjectileID.OrnamentFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.OrnamentStar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Spray">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PureSpray"/>, <see cref="F:Terraria.ID.ProjectileID.HallowSpray"/>, <see cref="F:Terraria.ID.ProjectileID.CorruptSpray"/>, <see cref="F:Terraria.ID.ProjectileID.MushroomSpray"/>, <see cref="F:Terraria.ID.ProjectileID.CrimsonSpray"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.BeachBall">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BeachBall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Flare">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Flare"/>, <see cref="F:Terraria.ID.ProjectileID.BlueFlare"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FireWork">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.RocketFireworkRed"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworkGreen"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworkBlue"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworkYellow"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworksBoxRed"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworksBoxGreen"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworksBoxBlue"/>, <see cref="F:Terraria.ID.ProjectileID.RocketFireworksBoxYellow"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.RopeCoil">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.RopeCoil"/>, <see cref="F:Terraria.ID.ProjectileID.VineRopeCoil"/>, <see cref="F:Terraria.ID.ProjectileID.SilkRopeCoil"/>, <see cref="F:Terraria.ID.ProjectileID.WebRopeCoil"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.SmallFlying">
             <summary>
-            Includes Bee, Wasp, Tiny Eater, and Bat projectiles
+            Behavior: Includes Bee, Wasp, Tiny Eater, and Bat projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Bee"/>, <see cref="F:Terraria.ID.ProjectileID.Wasp"/>, <see cref="F:Terraria.ID.ProjectileID.TinyEater"/>, <see cref="F:Terraria.ID.ProjectileID.Bat"/>, <see cref="F:Terraria.ID.ProjectileID.GiantBee"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SpearTrap">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SpearTrap"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlameThrower">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlamethrowerTrap"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MechanicalPiranha">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MechanicalPiranha"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Leaf">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Leaf"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlowerPetal">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlowerPetal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CrystalLeaf">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CrystalLeaf"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CrystalLeafShot">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CrystalLeafShot"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.MoveShort">
             <summary>
-            Moves a short distance and then stops, includes Spore Cloud, Chlorophyte Orb, and Storm Spear Shot projectiles
+            Behavior: Moves a short distance and then stops, includes Spore Cloud, Chlorophyte Orb, and Storm Spear Shot projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SporeCloud"/>, <see cref="F:Terraria.ID.ProjectileID.ChlorophyteOrb"/>, <see cref="F:Terraria.ID.ProjectileID.ThunderSpearShot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.RainCloud">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.RainCloudMoving"/>, <see cref="F:Terraria.ID.ProjectileID.RainCloudRaining"/>, <see cref="F:Terraria.ID.ProjectileID.RainFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.BloodCloudMoving"/>, <see cref="F:Terraria.ID.ProjectileID.BloodCloudRaining"/>, <see cref="F:Terraria.ID.ProjectileID.BloodRain"/>, <see cref="F:Terraria.ID.ProjectileID.RainNimbus"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Rainbow">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.RainbowFront"/>, <see cref="F:Terraria.ID.ProjectileID.RainbowBack"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MagnetSphere">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MagnetSphereBall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Ray">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MagnetSphereBolt"/>, <see cref="F:Terraria.ID.ProjectileID.HeatRay"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowBeamHostile"/>, <see cref="F:Terraria.ID.ProjectileID.ShadowBeamFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.UFOLaser"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ExplosiveBunny">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ExplosiveBunny"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Inferno">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.InfernoHostileBolt"/>, <see cref="F:Terraria.ID.ProjectileID.InfernoHostileBlast"/>, <see cref="F:Terraria.ID.ProjectileID.InfernoFriendlyBolt"/>, <see cref="F:Terraria.ID.ProjectileID.InfernoFriendlyBlast"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.LostSoul">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.LostSoulHostile"/>, <see cref="F:Terraria.ID.ProjectileID.LostSoulFriendly"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Heal">
             <summary>
-            Includes Spirit Heal from the Spectre Hood and Vampire Heal from the Vampire Knives
+            Behavior: Includes Spirit Heal from the Spectre Hood and Vampire Heal from the Vampire Knives<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SpiritHeal"/>, <see cref="F:Terraria.ID.ProjectileID.VampireHeal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FrostHydra">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FrostHydra"/>, <see cref="F:Terraria.ID.ProjectileID.SpiderHiver"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Raven">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Raven"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlamingJack">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlamingJack"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlamingScythe">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlamingScythe"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.NorthPoleSpear">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NorthPoleSpear"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Present">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Present"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SpectreWrath">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SpectreWrath"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.WaterJet">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.WaterGun"/>, <see cref="F:Terraria.ID.ProjectileID.SlimeGun"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Bobber">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BobberWooden"/>, <see cref="F:Terraria.ID.ProjectileID.BobberReinforced"/>, <see cref="F:Terraria.ID.ProjectileID.BobberFiberglass"/>, <see cref="F:Terraria.ID.ProjectileID.BobberFisherOfSouls"/>, <see cref="F:Terraria.ID.ProjectileID.BobberGolden"/>, <see cref="F:Terraria.ID.ProjectileID.BobberMechanics"/>, <see cref="F:Terraria.ID.ProjectileID.BobbersittingDuck"/>, <see cref="F:Terraria.ID.ProjectileID.BobberFleshcatcher"/>, <see cref="F:Terraria.ID.ProjectileID.BobberHotline"/>, <see cref="F:Terraria.ID.ProjectileID.BobberBloody"/>, <see cref="F:Terraria.ID.ProjectileID.BobberScarab"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Hornet">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Hornet"/>, <see cref="F:Terraria.ID.ProjectileID.FlyingImp"/>, <see cref="F:Terraria.ID.ProjectileID.Tempest"/>, <see cref="F:Terraria.ID.ProjectileID.UFOMinion"/>, <see cref="F:Terraria.ID.ProjectileID.StardustCellMinion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.BabySpider">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BabySpider"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Nado">
             <summary>
-            Includes Sharknado and Cthulunado projectiles
+            Behavior: Includes Sharknado and Cthulunado projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Sharknado"/>, <see cref="F:Terraria.ID.ProjectileID.Cthulunado"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SharknadoBolt">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SharknadoBolt"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MiniTwins">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Retanimini"/>, <see cref="F:Terraria.ID.ProjectileID.Spazmamini"/>, <see cref="F:Terraria.ID.ProjectileID.DeadlySphere"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.CommonFollow">
             <summary>
-            Includes Mini Pirate, Crimson Heart, Companion Cube, Vampire Frog, and Desert Tiger projectiles
+            Behavior: Includes Mini Pirate, Crimson Heart, Companion Cube, Vampire Frog, and Desert Tiger projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.OneEyedPirate"/>, <see cref="F:Terraria.ID.ProjectileID.SoulscourgePirate"/>, <see cref="F:Terraria.ID.ProjectileID.PirateCaptain"/>, <see cref="F:Terraria.ID.ProjectileID.CrimsonHeart"/>, <see cref="F:Terraria.ID.ProjectileID.CompanionCube"/>, <see cref="F:Terraria.ID.ProjectileID.VampireFrog"/>, <see cref="F:Terraria.ID.ProjectileID.StormTigerTier1"/>, <see cref="F:Terraria.ID.ProjectileID.StormTigerTier2"/>, <see cref="F:Terraria.ID.ProjectileID.StormTigerTier3"/>, <see cref="F:Terraria.ID.ProjectileID.FlinxMinion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MolotovCocktail">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MolotovCocktail"/>, <see cref="F:Terraria.ID.ProjectileID.Ale"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Flairon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Flairon"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlaironBubble">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlaironBubble"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Typhoon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Typhoon"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Bubble">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Bubble"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FireWorkFountain">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FireworkFountainYellow"/>, <see cref="F:Terraria.ID.ProjectileID.FireworkFountainRed"/>, <see cref="F:Terraria.ID.ProjectileID.FireworkFountainBlue"/>, <see cref="F:Terraria.ID.ProjectileID.FireworkFountainRainbow"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ScutlixLaser">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ScutlixLaserFriendly"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.HeldProjectile">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.LaserMachinegun"/>, <see cref="F:Terraria.ID.ProjectileID.LaserDrill"/>, <see cref="F:Terraria.ID.ProjectileID.ChargedBlasterCannon"/>, <see cref="F:Terraria.ID.ProjectileID.Arkhalis"/>, <see cref="F:Terraria.ID.ProjectileID.PortalGun"/>, <see cref="F:Terraria.ID.ProjectileID.SolarWhipSword"/>, <see cref="F:Terraria.ID.ProjectileID.VortexBeater"/>, <see cref="F:Terraria.ID.ProjectileID.Phantasm"/>, <see cref="F:Terraria.ID.ProjectileID.LastPrism"/>, <see cref="F:Terraria.ID.ProjectileID.DD2PhoenixBow"/>, <see cref="F:Terraria.ID.ProjectileID.Celeb2Weapon"/>, <see cref="F:Terraria.ID.ProjectileID.Terragrim"/>, <see cref="F:Terraria.ID.ProjectileID.PiercingStarlight"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Crosshair">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ScutlixLaserCrosshair"/>, <see cref="F:Terraria.ID.ProjectileID.DrillMountCrosshair"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Electrosphere">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Electrosphere"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Xenopopper">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Xenopopper"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MartianDeathRay">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SaucerDeathray"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MartianRocket">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SaucerMissile"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.InfluxWaver">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.InfluxWaver"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.PhantasmalEye">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PhantasmalEye"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.PhantasmalSphere">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PhantasmalSphere"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ThickLaser">
             <summary>
-            Includes Charged Laser Blaster, Stardust Laser, Last Prism, and Lunar Portal Laser projectiles
+            Behavior: Includes Charged Laser Blaster, Stardust Laser, Last Prism, and Lunar Portal Laser projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PhantasmalDeathray"/>, <see cref="F:Terraria.ID.ProjectileID.ChargedBlasterLaser"/>, <see cref="F:Terraria.ID.ProjectileID.StardustSoldierLaser"/>, <see cref="F:Terraria.ID.ProjectileID.LastPrismLaser"/>, <see cref="F:Terraria.ID.ProjectileID.MoonlordTurretLaser"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MoonLeech">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MoonLeech"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.IceMist">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CultistBossIceMist"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CursedFlameWall">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ClingerStaff"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.LightningOrb">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CultistBossLightningOrb"/>, <see cref="F:Terraria.ID.ProjectileID.CultistBossLightningOrbArc"/>, <see cref="F:Terraria.ID.ProjectileID.VortexLightning"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.LightningRitual">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CultistRitual"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MagicLantern">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MagicLantern"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ShadowFlame">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ShadowFlame"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ToxicCloud">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ToxicCloud"/>, <see cref="F:Terraria.ID.ProjectileID.ToxicCloud2"/>, <see cref="F:Terraria.ID.ProjectileID.ToxicCloud3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Nail">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NailFriendly"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CoinPortal">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CoinPortal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ToxicBubble">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ToxicBubble"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.IchorSplash">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.IchorSplash"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FlyingPiggyBank">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FlyingPiggyBank"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MysteriousTablet">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CultistBossParticle"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Yoyo">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Code1"/>, <see cref="F:Terraria.ID.ProjectileID.WoodYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.CorruptYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.CrimsonYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.JungleYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.Cascade"/>, <see cref="F:Terraria.ID.ProjectileID.Chik"/>, <see cref="F:Terraria.ID.ProjectileID.Code2"/>, <see cref="F:Terraria.ID.ProjectileID.Rally"/>, <see cref="F:Terraria.ID.ProjectileID.Yelets"/>, <see cref="F:Terraria.ID.ProjectileID.RedsYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.ValkyrieYoyo"/>, <see cref="F:Terraria.ID.ProjectileID.Amarok"/>, <see cref="F:Terraria.ID.ProjectileID.HelFire"/>, <see cref="F:Terraria.ID.ProjectileID.Kraken"/>, <see cref="F:Terraria.ID.ProjectileID.TheEyeOfCthulhu"/>, <see cref="F:Terraria.ID.ProjectileID.BlackCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.BlueCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.GreenCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.PurpleCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.RedCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.YellowCounterweight"/>, <see cref="F:Terraria.ID.ProjectileID.FormatC"/>, <see cref="F:Terraria.ID.ProjectileID.Gradient"/>, <see cref="F:Terraria.ID.ProjectileID.Valor"/>, <see cref="F:Terraria.ID.ProjectileID.Terrarian"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MedusaRay">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MedusaHead"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.HorizontalRay">
             <summary>
-            Includes Medusa Head Ray and Mechanical Cart Laser projectiles
+            Behavior: Includes Medusa Head Ray and Mechanical Cart Laser projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MedusaHeadRay"/>, <see cref="F:Terraria.ID.ProjectileID.MinecartMechLaser"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.LunarProjectile">
             <summary>
-            Includes Flow Invader, Nebular Piercer, and Nebula Eye projectiles
+            Behavior: Includes Flow Invader, Nebular Piercer, and Nebula Eye projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.StardustJellyfishSmall"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaBolt"/>, <see cref="F:Terraria.ID.ProjectileID.NebulaEye"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Starmark">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.StardustTowerMark"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.BrainofConfusion">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BrainOfConfusion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SporeTrap">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SporeTrap"/>, <see cref="F:Terraria.ID.ProjectileID.SporeTrap2"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SporeGas">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SporeGas"/>, <see cref="F:Terraria.ID.ProjectileID.SporeGas2"/>, <see cref="F:Terraria.ID.ProjectileID.SporeGas3"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.NebulaSphere">
             <summary>
-            Includes Desert Sprit's Curse
+            Behavior: Includes Desert Sprit's Curse<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NebulaSphere"/>, <see cref="F:Terraria.ID.ProjectileID.DesertDjinnCurse"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Vortex">
             <summary>
-            Includes Blood Tears
+            Behavior: Includes Blood Tears<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.VortexVortexLightning"/>, <see cref="F:Terraria.ID.ProjectileID.VortexVortexPortal"/>, <see cref="F:Terraria.ID.ProjectileID.BloodNautilusTears"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.MechanicWrench">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MechanicWrench"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.NurseSyringe">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NurseSyringeHeal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DryadWard">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DryadsWardCircle"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.SmallProximityExplosion">
             <summary>
-            Includes Truffle Spore, Rainbow Crystal Explosion, and Dandelion Seed projectiles
+            Behavior: Includes Truffle Spore, Rainbow Crystal Explosion, and Dandelion Seed projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.TruffleSpore"/>, <see cref="F:Terraria.ID.ProjectileID.RainbowCrystalExplosion"/>, <see cref="F:Terraria.ID.ProjectileID.DandelionSeed"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.StickProjectile">
             <summary>
-            Includes Bone Javelin, Stardust Cell Shot, and Daybreak projectiles
+            Behavior: Includes Bone Javelin, Stardust Cell Shot, and Daybreak projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BoneJavelin"/>, <see cref="F:Terraria.ID.ProjectileID.StardustCellMinionShot"/>, <see cref="F:Terraria.ID.ProjectileID.Daybreak"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.PortalGate">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PortalGunGate"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.TerrarianBeam">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.TerrarianBeam"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DrakomiteFlare">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SolarFlareRay"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.SolarEffect">
             <summary>
-            Includes Solar Radience and Solar Eruption Explosion projectiles
+            Behavior: Includes Solar Radience and Solar Eruption Explosion projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SolarCounter"/>, <see cref="F:Terraria.ID.ProjectileID.SolarWhipSwordExplosion"/>, <see cref="F:Terraria.ID.ProjectileID.StardustGuardianExplosion"/>, <see cref="F:Terraria.ID.ProjectileID.DaybreakExplosion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.NebulaArcanum">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NebulaArcanum"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ArcanumSubShot">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.NebulaArcanumSubshot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.StardustGuardian">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.StardustGuardian"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.StardustDragon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.StardustDragon1"/>, <see cref="F:Terraria.ID.ProjectileID.StardustDragon2"/>, <see cref="F:Terraria.ID.ProjectileID.StardustDragon3"/>, <see cref="F:Terraria.ID.ProjectileID.StardustDragon4"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ReleasedEnergy">
             <summary>
-            The effect displayed when killing a Lunar Event enemy while it's respective Celestial Pillar is alive, also used by Phantasm Arrow
+            Behavior: The effect displayed when killing a Lunar Event enemy while it's respective Celestial Pillar is alive, also used by Phantasm Arrow<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.TowerDamageBolt"/>, <see cref="F:Terraria.ID.ProjectileID.PhantasmArrow"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.LunarSentry">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MoonlordTurret"/>, <see cref="F:Terraria.ID.ProjectileID.RainbowCrystal"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.FloatInFrontPet">
             <summary>
-            Includes Suspicious Looking Tentacle, Suspicious Eye, Rez and Spaz, Fairy Princess, Jack 'O Lantern, and Ice Queen pets
+            Behavior: Includes Suspicious Looking Tentacle, Suspicious Eye, Rez and Spaz, Fairy Princess, Jack 'O Lantern, and Ice Queen pets<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SuspiciousTentacle"/>, <see cref="F:Terraria.ID.ProjectileID.EyeOfCthulhuPet"/>, <see cref="F:Terraria.ID.ProjectileID.TwinsPet"/>, <see cref="F:Terraria.ID.ProjectileID.FairyQueenPet"/>, <see cref="F:Terraria.ID.ProjectileID.PumpkingPet"/>, <see cref="F:Terraria.ID.ProjectileID.IceQueenPet"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.WireKite">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.WireKite"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Geyser">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.GeyserTrap"/>, <see cref="F:Terraria.ID.ProjectileID.DD2OgreStomp"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.AncientStorm">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SandnadoFriendly"/>, <see cref="F:Terraria.ID.ProjectileID.SandnadoHostile"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.AncientStormMark">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SandnadoHostileMark"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SpiritFlame">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SpiritFlame"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2FlameBurst">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT1"/>, <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT2"/>, <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2FlameBurstShot">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT1Shot"/>, <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT2Shot"/>, <see cref="F:Terraria.ID.ProjectileID.DD2FlameBurstTowerT3Shot"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.DD2GrimEnd">
             <summary>
-            Eternia Crystal destroyed
+            Behavior: Eternia Crystal destroyed<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2ElderWins"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2DarkSigil">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2DarkMageRaise"/>, <see cref="F:Terraria.ID.ProjectileID.DD2DarkMageHeal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2Ballista">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2BallistraTowerT1"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BallistraTowerT2"/>, <see cref="F:Terraria.ID.ProjectileID.DD2BallistraTowerT3"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.UpwardExpand">
             <summary>
-            Includes Ogre's Stomp and Geyser projectiles
+            Behavior: Includes Ogre's Stomp and Geyser projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2OgreSmash"/>, <see cref="F:Terraria.ID.ProjectileID.QueenSlimeSmash"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2BetsysBreath">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2BetsyFlameBreath"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2LightningAura">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2LightningAuraT1"/>, <see cref="F:Terraria.ID.ProjectileID.DD2LightningAuraT2"/>, <see cref="F:Terraria.ID.ProjectileID.DD2LightningAuraT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2ExplosiveTrap">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT1"/>, <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT2"/>, <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DD2ExplosiveTrapExplosion">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT1Explosion"/>, <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT2Explosion"/>, <see cref="F:Terraria.ID.ProjectileID.DD2ExplosiveTrapT3Explosion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SleepyOctopod">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MonkStaffT1"/>, <see cref="F:Terraria.ID.ProjectileID.MonkStaffT3"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.PoleSmash">
             <summary>
-            The effect created on use of the Sleepy Octopod
+            Behavior: The effect created on use of the Sleepy Octopod<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MonkStaffT1Explosion"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ForwardStab">
             <summary>
-            Use style of the Ghastly Glaive and Sky Dragon's Fury alt1
+            Behavior: Use style of the Ghastly Glaive and Sky Dragon's Fury alt1<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MonkStaffT2"/>, <see cref="F:Terraria.ID.ProjectileID.MonkStaffT3_Alt"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Ghast">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MonkStaffT2Ghast"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.FloatBehindPet">
             <summary>
-            Includes the Hoardragon, Flickerwick, Estee, and Propeller Gato
+            Behavior: Includes the Hoardragon, Flickerwick, Estee, and Propeller Gato<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2PetDragon"/>, <see cref="F:Terraria.ID.ProjectileID.DD2PetGhost"/>, <see cref="F:Terraria.ID.ProjectileID.DD2PetGato"/>, <see cref="F:Terraria.ID.ProjectileID.UpbeatStar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.WisdomWhirlwind">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2ApprenticeStorm"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.DD2Victory">
             <summary>
-            Old One's Army defeated
+            Behavior: Old One's Army defeated<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DD2Win"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CelebrationMk2Shots">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Celeb2Rocket"/>, <see cref="F:Terraria.ID.ProjectileID.Celeb2RocketExplosive"/>, <see cref="F:Terraria.ID.ProjectileID.Celeb2RocketLarge"/>, <see cref="F:Terraria.ID.ProjectileID.Celeb2RocketExplosiveLarge"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FallingStarAnimation">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FallingStarSpawner"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.GolfBall">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.DirtGolfBall"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedBlack"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedBlue"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedBrown"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedCyan"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedGreen"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedLimeGreen"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedOrange"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedPink"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedPurple"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedRed"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedSkyBlue"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedTeal"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedViolet"/>, <see cref="F:Terraria.ID.ProjectileID.GolfBallDyedYellow"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.GolfClub">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.GolfClubHelper"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SuperStar">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SuperStar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SuperStarBeam">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SuperStarSlash"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ToiletEffect">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ToiletEffect"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.VoidBag">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.VoidLens"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SnakeCoil">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.MysticSnakeCoil"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Terraprisma">
             <summary>
-            Includes the Sanguine Bat
+            Behavior: Includes the Sanguine Bat<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BatOfLight"/>, <see cref="F:Terraria.ID.ProjectileID.EmpressBlade"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.BloodThorn">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SharpTears"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Finch">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BabyBird"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.PaperPlane">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PaperAirplaneA"/>, <see cref="F:Terraria.ID.ProjectileID.PaperAirplaneB"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Kite">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.KiteBlue"/>, <see cref="F:Terraria.ID.ProjectileID.KiteBlueAndYellow"/>, <see cref="F:Terraria.ID.ProjectileID.KiteRed"/>, <see cref="F:Terraria.ID.ProjectileID.KiteRedAndYellow"/>, <see cref="F:Terraria.ID.ProjectileID.KiteYellow"/>, <see cref="F:Terraria.ID.ProjectileID.KiteWyvern"/>, <see cref="F:Terraria.ID.ProjectileID.KiteBoneSerpent"/>, <see cref="F:Terraria.ID.ProjectileID.KiteWorldFeeder"/>, <see cref="F:Terraria.ID.ProjectileID.KiteBunny"/>, <see cref="F:Terraria.ID.ProjectileID.KitePigron"/>, <see cref="F:Terraria.ID.ProjectileID.KiteManEater"/>, <see cref="F:Terraria.ID.ProjectileID.KiteJellyfishBlue"/>, <see cref="F:Terraria.ID.ProjectileID.KiteJellyfishPink"/>, <see cref="F:Terraria.ID.ProjectileID.KiteShark"/>, <see cref="F:Terraria.ID.ProjectileID.KiteSandShark"/>, <see cref="F:Terraria.ID.ProjectileID.KiteBunnyCorrupt"/>, <see cref="F:Terraria.ID.ProjectileID.KiteBunnyCrimson"/>, <see cref="F:Terraria.ID.ProjectileID.KiteGoldfish"/>, <see cref="F:Terraria.ID.ProjectileID.KiteAngryTrapper"/>, <see cref="F:Terraria.ID.ProjectileID.KiteKoi"/>, <see cref="F:Terraria.ID.ProjectileID.KiteCrawltipede"/>, <see cref="F:Terraria.ID.ProjectileID.KiteSpectrum"/>, <see cref="F:Terraria.ID.ProjectileID.KiteWanderingEye"/>, <see cref="F:Terraria.ID.ProjectileID.KiteUnicorn"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ShortSword">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.GladiusStab"/>, <see cref="F:Terraria.ID.ProjectileID.RulerStab"/>, <see cref="F:Terraria.ID.ProjectileID.CopperShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.TinShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.IronShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.LeadShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.SilverShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.TungstenShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.GoldShortswordStab"/>, <see cref="F:Terraria.ID.ProjectileID.PlatinumShortswordStab"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DesertTiger">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.WhiteTigerPounce"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Chum">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ChumBucket"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.DesertTigerBall">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.StormTigerGem"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Whip">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.BlandWhip"/>, <see cref="F:Terraria.ID.ProjectileID.SwordWhip"/>, <see cref="F:Terraria.ID.ProjectileID.MaceWhip"/>, <see cref="F:Terraria.ID.ProjectileID.ScytheWhip"/>, <see cref="F:Terraria.ID.ProjectileID.CoolWhip"/>, <see cref="F:Terraria.ID.ProjectileID.FireWhip"/>, <see cref="F:Terraria.ID.ProjectileID.ThornWhip"/>, <see cref="F:Terraria.ID.ProjectileID.RainbowWhip"/>, <see cref="F:Terraria.ID.ProjectileID.BoneWhip"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.ReleasedProjectile">
             <summary>
-            Includes Dove and Lantern projectiles
+            Behavior: Includes Dove and Lantern projectiles<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ReleaseDoves"/>, <see cref="F:Terraria.ID.ProjectileID.ReleaseLantern"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.StellarTune">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SparkleGuitar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FirstFractal">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FirstFractal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.EnchantedDagger">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.Smolstar"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.FairyGlowStick">
             <summary>
-            Only used when the Fairy GlowSticks's ai[1] is greater than 0
+            Behavior: Only used when the Fairy GlowSticks's ai[1] is greater than 0<br/>
+            Used by: None
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.FloatAndFly">
             <summary>
-            Includes the Prismatic Bolt and Nightglow projectiles, these float for a second and then fly toward their target
+            Behavior: Includes the Prismatic Bolt and Nightglow projectiles, these float for a second and then fly toward their target<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.HallowBossRainbowStreak"/>, <see cref="F:Terraria.ID.ProjectileID.FairyQueenMagicItemShot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SplitShotCore">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.HallowBossSplitShotCore"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.EverlastingRainbow">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.HallowBossLastingRainbow"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.WormPet">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.EaterOfWorldsPet"/>, <see cref="F:Terraria.ID.ProjectileID.DestroyerPet"/>, <see cref="F:Terraria.ID.ProjectileID.LunaticCultistPet"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.TitaniumShard">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.TitaniumStormShard"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Reaping">
             <summary>
-            The effect displayed when an enemy is hit with the Dark Harvest whip
+            Behavior: The effect displayed when an enemy is hit with the Dark Harvest whip<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ScytheWhipProj"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.CoolFlake">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.CoolWhipProj"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.FireCracker">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FireWhipProj"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.EtherealLance">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FairyQueenLance"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.SunDance">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FairyQueenSunDance"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.TwilightLance">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FairyQueenRangedItemShot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.Zenith">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.FinalFractal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.ZoologistStike">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.ZoologistStrikeGreen"/>, <see cref="F:Terraria.ID.ProjectileID.ZoologistStrikeRed"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.TorchGod">
             <summary>
-            The Torch God event, not the projectiles fired out of the torches
+            Behavior: The Torch God event, not the projectiles fired out of the torches<br/>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.TorchGod"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.LifeDrain">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.SoulDrain"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ProjAIStyleID.PrincessWeapon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.ProjectileID.PrincessWeapon"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.TileID.Sets.DisableSmartCursor">
@@ -2979,14 +3875,15 @@
             <param name="projectile"></param>
             <returns></returns>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalProjectile.TileCollideStyle(Terraria.Projectile,System.Int32@,System.Int32@,System.Boolean@)">
+        <member name="M:Terraria.ModLoader.GlobalProjectile.TileCollideStyle(Terraria.Projectile,System.Int32@,System.Int32@,System.Boolean@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
-            Allows you to determine how a projectile interacts with tiles. Width and height determine the projectile's hitbox for tile collision, and default to -1. Leave them as -1 to use the projectile's real size. Fallthrough determines whether the projectile can fall through platforms, etc., and defaults to true.
+            Allows you to determine how a projectile interacts with tiles. Return false if you completely override or cancel a projectile's tile collision behavior. Returns true by default.
             </summary>
-            <param name="projectile"></param>
-            <param name="width"></param>
-            <param name="height"></param>
-            <param name="fallThrough"></param>
+            <param name="projectile"> The projectile. </param>
+            <param name="width"> The width of the hitbox the projectile will use for tile collision. If vanilla or a mod don't modify it, defaults to projectile.width. </param>
+            <param name="height"> The height of the hitbox the projectile will use for tile collision. If vanilla or a mod don't modify it, defaults to projectile.height. </param>
+            <param name="fallThrough"> Whether or not the projectile falls through platforms and similar tiles. </param>
+            <param name="hitboxCenterFrac"> Determines by how much the tile collision hitbox's position (top left corner) will be offset from the projectile's real center. If vanilla or a mod don't modify it, defaults to half the hitbox size (new Vector2(0.5f, 0.5f)). </param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.OnTileCollide(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)">
@@ -3504,6 +4401,12 @@
             Called when loading the type.
             </summary>
             <param name="mod">The mod instance associated with this type.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ILoadable.IsLoadingEnabled(Terraria.ModLoader.Mod)">
+            <summary>
+            Whether or not this type should be loaded when it's told to. Returning false disables <see cref="M:Terraria.ModLoader.Mod.AddContent(Terraria.ModLoader.ILoadable)"/> from actually loading this type.
+            </summary>
+            <param name="mod">The mod instance trying to add this content</param>
         </member>
         <member name="M:Terraria.ModLoader.ILoadable.Unload">
             <summary>
@@ -4101,6 +5004,31 @@
             This version number of this mod.
             </summary>
         </member>
+        <member name="P:Terraria.ModLoader.Mod.ContentAutoloadingEnabled">
+            <summary>
+            Whether or not this mod will autoload content by default. Autoloading content means you do not need to manually add content through methods.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Mod.GoreAutoloadingEnabled">
+            <summary>
+            Whether or not this mod will automatically add images in the Gores folder as gores to the game, along with any ModGore classes that share names with the images. This means you do not need to manually call Mod.AddGore.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Mod.SoundAutoloadingEnabled">
+            <summary>
+            Whether or not this mod will automatically add sounds in the Sounds folder to the game. Place sounds in Sounds/Item to autoload them as item sounds, Sounds/NPCHit to add them as npcHit sounds, and Sounds/NPCKilled to add them as npcKilled sounds. Sounds placed anywhere else in the Sounds folder will be added as custom sounds. Any ModSound classes that share the same name as the sound files will be bound to them. Setting this field to true means that you do not need to manually call AddSound.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Mod.MusicAutoloadingEnabled">
+            <summary>
+            Whether or not this mod will automatically add music in the Sounds folder to the game. Place music tracks in Sounds/Music to autoload them.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Mod.BackgroundAutoloadingEnabled">
+            <summary>
+            Whether or not this mod will automatically add images in the Backgrounds folder as background textures to the game. This means you do not need to manually call Mod.AddBackgroundTexture.
+            </summary>
+        </member>
         <member name="P:Terraria.ModLoader.Mod.Side">
             <summary>
             The ModSide that controls how this mod is synced between client and server.
@@ -4212,36 +5140,6 @@
             <param name="name">The name.</param>
             <returns></returns>
         </member>
-        <member name="M:Terraria.ModLoader.Mod.AddMusicBox(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Allows you to tie a music ID, and item ID, and a tile ID together to form a music box. When music with the given ID is playing, equipped music boxes have a chance to change their ID to the given item type. When an item with the given item type is equipped, it will play the music that has musicSlot as its ID. When a tile with the given type and Y-frame is nearby, if its X-frame is >= 36, it will play the music that has musicSlot as its ID.
-            </summary>
-            <param name="musicSlot">The music slot.</param>
-            <param name="itemType">Type of the item.</param>
-            <param name="tileType">Type of the tile.</param>
-            <param name="tileFrameY">The tile frame y.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Cannot assign music box to vanilla music ID " + musicSlot
-            or
-            Music ID " + musicSlot + " does not exist
-            or
-            Cannot assign music box to vanilla item ID " + itemType
-            or
-            Item ID " + itemType + " does not exist
-            or
-            Cannot assign music box to vanilla tile ID " + tileType
-            or
-            Tile ID " + tileType + " does not exist
-            </exception>
-            <exception cref="T:System.ArgumentException">
-            Music ID " + musicSlot + " has already been assigned a music box
-            or
-            Item ID " + itemType + " has already been assigned a music
-            or
-            or
-            Y-frame must be divisible by 36
-            </exception>
-        </member>
         <member name="M:Terraria.ModLoader.Mod.GetFileBytes(System.String)">
             <summary>
             Retrieve contents of files within the tmod file
@@ -4252,21 +5150,6 @@
         <member name="M:Terraria.ModLoader.Mod.GetFileStream(System.String,System.Boolean)">
             <summary>
             Retrieve contents of files within the tmod file
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.Mod.GetMusic(System.String)">
-            <summary>
-            Shorthand for calling ModContent.GetMusic(this.FileName(name)).
-            </summary>
-            <param name="name">The name.</param>
-            <returns></returns>
-            <exception cref="T:Terraria.ModLoader.Exceptions.MissingResourceException"></exception>
-        </member>
-        <member name="M:Terraria.ModLoader.Mod.MusicExists(System.String)">
-            <summary>
-            Shorthand for calling ModLoader.MusicExists(this.FileName(name)).
             </summary>
             <param name="name">The name.</param>
             <returns></returns>
@@ -4845,17 +5728,6 @@
             <summary>
             Returns whether or not a asset with the specified name exists.
             Includes the mod name prefix like GetAsset
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModContent.GetMusic(System.String)">
-            <summary>
-            Gets the music with the specified name. The name is in the same format as for texture names. Throws an ArgumentException if the music does not exist. Note: SoundMP3 is in the Terraria.ModLoader namespace.
-            </summary>
-            <exception cref="T:Terraria.ModLoader.Exceptions.MissingResourceException">Missing mod: " + name</exception>
-        </member>
-        <member name="M:Terraria.ModLoader.ModContent.MusicExists(System.String)">
-            <summary>
-            Returns whether or not a sound with the specified name exists.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModContent.GetModNPC(System.Int32)">
@@ -7280,7 +8152,7 @@
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.HideDrawLayers(Terraria.DataStructures.PlayerDrawSet)">
             <summary>
-            Allows you to modify the visiblity of layers about to be drawn
+            Allows you to modify the visibility of layers about to be drawn
             </summary>
             <param name="layers"></param>
         </member>
@@ -7559,13 +8431,15 @@
             Whether or not this projectile should update its position based on factors such as its velocity, whether it is in liquid, etc. Return false to make its velocity have no effect on its position. Returns true by default.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModProjectile.TileCollideStyle(System.Int32@,System.Int32@,System.Boolean@)">
+        <member name="M:Terraria.ModLoader.ModProjectile.TileCollideStyle(System.Int32@,System.Int32@,System.Boolean@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
-            Allows you to determine how this projectile interacts with tiles. Width and height determine the projectile's hitbox for tile collision, and default to -1. Leave them as -1 to use the projectile's real size. Fallthrough determines whether the projectile can fall through platforms, etc., and defaults to true.
+            Allows you to determine how this projectile interacts with tiles. Return false if you completely override or cancel this projectile's tile collision behavior. Returns true by default.
             </summary>
-            <param name="width">Width of the hitbox.</param>
-            <param name="height">Height of the hitbox.</param>
-            <param name="fallThrough">If the projectile can fall through platforms etc.</param>
+            <param name="width"> The width of the hitbox this projectile will use for tile collision. If vanilla doesn't modify it, defaults to projectile.width. </param>
+            <param name="height"> The height of the hitbox this projectile will use for tile collision. If vanilla doesn't modify it, defaults to projectile.height. </param>
+            <param name="fallThrough"> Whether or not this projectile falls through platforms and similar tiles. </param>
+            <param name="hitboxCenterFrac"> Determines by how much the tile collision hitbox's position (top left corner) will be offset from this projectile's real center. If vanilla doesn't modify it, defaults to half the hitbox size (new Vector2(0.5f, 0.5f)). </param>
+            <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModProjectile.OnTileCollide(Microsoft.Xna.Framework.Vector2)">
             <summary>
@@ -7761,36 +8635,6 @@
         <member name="M:Terraria.ModLoader.ModProjectile.DrawBehind(System.Int32,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
             <summary>
             When used in conjunction with "projectile.hide = true", allows you to specify that this projectile should be drawn behind certain elements. Add the index to one and only one of the lists. For example, the Nebula Arcanum projectile draws behind NPCs and tiles.
-            </summary>
-        </member>
-        <member name="T:Terraria.ModLoader.ModProperties">
-            <summary>
-            This is a struct that stores the properties of a mod. Without setting it in your Mod constructor, all properties default to true.
-            </summary>
-        </member>
-        <member name="F:Terraria.ModLoader.ModProperties.Autoload">
-            <summary>
-            Whether or not this mod will autoload content by default. Autoloading content means you do not need to manually add content through methods.
-            </summary>
-        </member>
-        <member name="F:Terraria.ModLoader.ModProperties.AutoloadGores">
-            <summary>
-            Whether or not this mod will automatically add images in the Gores folder as gores to the game, along with any ModGore classes that share names with the images. This means you do not need to manually call Mod.AddGore.
-            </summary>
-        </member>
-        <member name="F:Terraria.ModLoader.ModProperties.AutoloadSounds">
-            <summary>
-            Whether or not this mod will automatically add sounds in the Sounds folder to the game. Place sounds in Sounds/Item to autoload them as item sounds, Sounds/NPCHit to add them as npcHit sounds, Sounds/NPCKilled to add them as npcKilled sounds, and Sounds/Music to add them as music tracks. Sounds placed anywhere else in the Sounds folder will be added as custom sounds. Any ModSound classes that share the same name as the sound files will be bound to them. Setting this field to true means that you do not need to manually call AddSound.
-            </summary>
-        </member>
-        <member name="F:Terraria.ModLoader.ModProperties.AutoloadBackgrounds">
-            <summary>
-            Whether or not this mod will automatically add images in the Backgrounds folder as background textures to the game. This means you do not need to manually call Mod.AddBackgroundTexture.
-            </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModProperties.AutoLoadAll">
-            <summary>
-            Automatically return a ModProperties object which has all AutoLoad values set to true.
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModRarity.RarityColor">
@@ -8587,6 +9431,12 @@
             <para>Use <see cref="M:Terraria.ModLoader.ModType.SetStaticDefaults"/> when you need to access content.</para>
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.ModType.IsLoadingEnabled(Terraria.ModLoader.Mod)">
+            <summary>
+            Allows you to stop <see cref="M:Terraria.ModLoader.Mod.AddContent(Terraria.ModLoader.ILoadable)"/> from actually adding this content. Useful for items that can be disabled by a config.
+            </summary>
+            <param name="mod">The mod adding this content</param>
+        </member>
         <member name="M:Terraria.ModLoader.ModType.Register">
             <summary>
             If you make a new ModType, seal this override.
@@ -8757,6 +9607,64 @@
             <summary>
             This is an enum of all possible types of extra mount textures for custom mounts. Use these as keys in the extraTextures dictionary passed to Mod.AddMount to give your mount front and back textures.
             </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.GetMusicSlot(Terraria.ModLoader.Mod,System.String)">
+            <summary> Gets the music id of the track with the specified mod path. The path must not have a file extension. </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.GetMusicSlot(System.String)">
+            <summary> Gets the music id of the track with the specified full path. The path must be prefixed with a mod name and must not have a file extension. </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.MusicExists(Terraria.ModLoader.Mod,System.String)">
+            <summary> Returns whether or not a music track with the specified mod path exists. The path must not have a file extension. </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.MusicExists(System.String)">
+            <summary> Returns whether or not a music track with the specified path exists. The path must be prefixed with a mod name and must not have a file extension.</summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.GetMusic(Terraria.ModLoader.Mod,System.String)">
+            <summary> Gets the music track with the specified mod path. The path must not have a file extension. </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.GetMusic(System.String)">
+            <summary> Gets the music track with the specified full path. The path must be prefixed with a mod name and must not have a file extension. </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.AddMusic(Terraria.ModLoader.Mod,System.String)">
+            <summary>
+            Registers a new music track with the provided mod and its local path to the sound file.
+            </summary>
+            <param name="mod"> The mod that owns the music track. </param>
+            <param name="musicPath"> The provided mod's local path to the music track file, case-sensitive and without extensions. </param>
+        </member>
+        <member name="M:Terraria.ModLoader.MusicLoader.AddMusicBox(Terraria.ModLoader.Mod,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Allows you to tie a music ID, and item ID, and a tile ID together to form a music box.
+            <br/> When music with the given ID is playing, equipped music boxes have a chance to change their ID to the given item type.
+            <br/> When an item with the given item type is equipped, it will play the music that has musicSlot as its ID.
+            <br/> When a tile with the given type and Y-frame is nearby, if its X-frame is >= 36, it will play the music that has musicSlot as its ID.
+            </summary>
+            <param name="mod"> The music slot. </param>
+            <param name="musicSlot"> The music slot. </param>
+            <param name="itemType"> Type of the item. </param>
+            <param name="tileType"> Type of the tile. </param>
+            <param name="tileFrameY"> The tile frame y. </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Cannot assign music box to vanilla music id.
+            or
+            The provided music id does not exist.
+            or
+            Cannot assign music box to a vanilla item id.
+            or
+            The provided item id does not exist.
+            or
+            Cannot assign music box to a vanilla tile id.
+            or
+            The provided tile id does not exist
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            The provided music id has already been assigned a music box.
+            or
+            The provided item id has already been assigned a music.
+            or
+            Y-frame must be divisible by 36
+            </exception>
         </member>
         <member name="T:Terraria.ModLoader.NPCHeadLoader">
             <summary>
@@ -8942,9 +9850,12 @@
         <member name="P:Terraria.ModLoader.PlayerDrawLayer.IsHeadLayer">
             <summary> Returns whether or not this layer should be rendered for the minimap icon. </summary>
         </member>
-        <member name="M:Terraria.ModLoader.PlayerDrawLayer.GetDefaultVisiblity(Terraria.DataStructures.PlayerDrawSet)">
+        <member name="M:Terraria.ModLoader.PlayerDrawLayer.GetDefaultVisibility(Terraria.DataStructures.PlayerDrawSet)">
             <summary> Returns the layer's default visibility. This is usually called as a layer is queued for drawing, but modders can call it too for information. </summary>
             <returns> Whether or not this layer will be visible by default. Modders can hide layers later, if needed.</returns>
+        </member>
+        <member name="M:Terraria.ModLoader.PlayerDrawLayer.GetDefaultPosition">
+            <summary> Returns the layer's default position in regards to other layers. Make use of e.g <see cref="T:Terraria.ModLoader.PlayerDrawLayer.BeforeParent"/>/<see cref="T:Terraria.ModLoader.PlayerDrawLayer.AfterParent"/>, and provide a layer (usually a vanilla one from <see cref="T:Terraria.DataStructures.PlayerDrawLayers"/>). </summary>
         </member>
         <member name="M:Terraria.ModLoader.PlayerDrawLayer.Draw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary> Draws this layer. </summary>
@@ -9546,12 +10457,12 @@
             </summary>
             <exception cref="T:Terraria.ModLoader.Exceptions.RecipeException">A recipe without any result has been added.</exception>
         </member>
-        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.Download(System.Collections.Generic.List{Terraria.ModLoader.UI.ModBrowser.UIModDownloadItem})">
+        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.Download(System.Collections.Generic.List{Terraria.ModLoader.UI.ModBrowser.UIModDownloadItem},System.Collections.Generic.List{System.String}@)">
             <summary>
             Downloads all UIModDownloadItems provided.
             </summary>
         </member>
-        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.InnerDownload(Terraria.ModLoader.UI.DownloadManager.UIWorkshopDownload)">
+        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.InnerDownload(Terraria.ModLoader.UI.DownloadManager.UIWorkshopDownload,System.Boolean)">
             <summary>
             Updates and/or Downloads the Item specified when generating the ModManager Instance.
             </summary>
