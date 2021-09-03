@@ -9,7 +9,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Audio;
-using GreatswordsMod.Dusts;
 
 namespace GreatswordsMod.Projectiles
 {
@@ -41,22 +40,22 @@ namespace GreatswordsMod.Projectiles
 
             if (p.ownedProjectileCounts[ModContent.ProjectileType<BoneProtector>()] <= 1 && Projectile.ai[1] <= 10)
             {
-                int dust = ModContent.DustType<CursedSkull>();
+                int dust = DustID.Bone;
 
                 SoundEngine.PlaySound(SoundID.DD2_DarkMageCastHeal.SoundId,p.position,0);
-                int num0 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, +5f, 0);
+                int num0 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, +5f, 0,100,new(58, 50, 85));
                 Main.dust[num0].scale = 1f;
                 Main.dust[num0].noGravity = true;
 
-                int num1 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, -5f, 0);
+                int num1 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, -5f, 0, 100, new(58, 50, 85));
                 Main.dust[num1].scale = 1f;
                 Main.dust[num1].noGravity = true;
 
-                int num2 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, 0, -5f);
+                int num2 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, 0, -5f, 100, new(58, 50, 85));
                 Main.dust[num2].scale = 1f;
                 Main.dust[num2].noGravity = true;
 
-                int num3 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, 0, +5f);
+                int num3 = Dust.NewDust(new Vector2(p.position.X, p.Center.Y), (p.width / 2), (p.height / 5), dust, 0, +5f, 100, new(58, 50, 85));
                 Main.dust[num3].scale = 1f;
                 Main.dust[num3].noGravity = true;
             }

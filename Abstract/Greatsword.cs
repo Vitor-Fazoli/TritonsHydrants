@@ -11,6 +11,7 @@ namespace GreatswordsMod.Abstract
     public abstract class Greatsword : ModProjectile
     {
         private bool soundBreak = false;
+        
 
         #region Greatsword Attributes
         protected int dmg = 10;
@@ -21,6 +22,7 @@ namespace GreatswordsMod.Abstract
         protected float velPlayer = 0;
         protected int timeMax = 10;
         protected int rare = 1;
+        protected Color color = default;
         #endregion
 
         public override void SetDefaults()
@@ -180,12 +182,13 @@ namespace GreatswordsMod.Abstract
         private void DustEffect(int idDust)
         {
             Player player = Main.player[Projectile.owner];
+            
 
-            int num1 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, +5f, -1);
+            int num1 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, +5f, -1,100,color);
             Main.dust[num1].scale = 1f;
             Main.dust[num1].noGravity = true;
 
-            int num2 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, -5f, -1);
+            int num2 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, -5f, -1,100,color);
             Main.dust[num2].scale = 1f;
             Main.dust[num2].noGravity = true;
         }

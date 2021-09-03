@@ -6,7 +6,6 @@ using GreatswordsMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
-using GreatswordsMod.Dusts;
 
 namespace GreatswordsMod.Item
 {
@@ -107,7 +106,8 @@ namespace GreatswordsMod.Item
 			dmg = 37;
 			cooldown = 85;
 			proj = ModContent.ProjectileType<MaidenSlash>();
-			wEffect = ModContent.DustType<CursedSkull>();
+			wEffect = 16;
+			color = new(58, 50, 85);
 		}
 	}
 	public class MaidenSlash : Slash

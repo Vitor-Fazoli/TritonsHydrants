@@ -97,7 +97,9 @@ namespace GreatswordsMod.Abstract
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.defense = 0;
+            if (!hit)
+                target.defense /= 2;
+
             hit = true;
         }
         public override void OnHitPvp(Player target, int damage, bool crit)

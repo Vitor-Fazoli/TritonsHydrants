@@ -424,6 +424,23 @@
             Lingers and scales with gravity enabled
             </summary>
         </member>
+        <member name="F:Terraria.ID.ItemID.Sets.AnimatesAsSoul">
+            <summary>
+            Use in conjunction with Main.RegisterItemAnimation to enable its animation in the world
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ItemID.Sets.BossBag">
+            <summary>
+            Set for all boss bags. Causes bags to drop dev armor.
+            <br/> If your bag is pre-hardmode, don't forget to use the <see cref="F:Terraria.ID.ItemID.Sets.PreHardmodeLikeBossBag"/> set in conjuction with this one.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ItemID.Sets.PreHardmodeLikeBossBag">
+            <summary>
+            Set for pre-hardmode boss bags, except it also contains the Queen Slime's Boss Bag. Affects the way dev armor drops function, making it only drop in special world seeds.
+            <br/> Don't forget to use the <see cref="F:Terraria.ID.ItemID.Sets.BossBag"/> set in conjuction with this one.
+            </summary>
+        </member>
         <member name="T:Terraria.ID.ItemRarityID">
             <summary>Enumerates the values used with Item.rare</summary>
         </member>
@@ -1586,6 +1603,14 @@
         <member name="M:Terraria.Item.TryGetGlobalItem``1(``0,``0@)">
             <summary> Safely attempts to get the local instance of the type of the specified GlobalItem instance. </summary>
             <returns> Whether or not the requested instance has been found. </returns>
+        </member>
+        <member name="M:Terraria.Main.RegisterItemAnimation(System.Int32,Terraria.DataStructures.DrawAnimation)">
+            <summary>
+            Registers an animation for an item type to draw inside UI (not world or held item on player).
+            To enable its animation in the world, use ItemID.Sets.AnimatesAsSoul in conjunction with this
+            </summary>
+            <param name="index">Item type</param>
+            <param name="animation">Draw animation</param>
         </member>
         <member name="T:Terraria.ModLoader.AutoloadAttribute">
             <summary>
@@ -9154,9 +9179,11 @@
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModTile.SetDrawPositions(System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32@)">
+        <member name="M:Terraria.ModLoader.ModTile.SetDrawPositions(System.Int32,System.Int32,System.Int32@,System.Int32@,System.Int32@,System.Int16@,System.Int16@)">
             <summary>
-            Allows you to customize the position in which this tile is drawn. Width refers to the width of one frame of the tile, offsetY refers to how many pixels below its actual position the tile should be drawn, and height refers to the height of one frame of the tile. By default the values will be set to the values you give this tile's TileObjectData. If this tile has no TileObjectData then they will default to 16, 0, and 16, respectively.
+            Allows you to customize the position in which this tile is drawn. Width refers to the width of one frame of the tile, offsetY refers to how many pixels below its actual position the tile should be drawn, height refers to the height of one frame of the tile.
+            <para> By default the values will be set to the values you give this tile's TileObjectData. If this tile has no TileObjectData then they will default to 16, 0, and 16, respectively.</para>
+            <para> tileFrameX and tileFrameY allow you to change which frames are drawn, keeping tile.frameX/Y intact for other purposes.</para>
             </summary>
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
@@ -10457,7 +10484,7 @@
             </summary>
             <exception cref="T:Terraria.ModLoader.Exceptions.RecipeException">A recipe without any result has been added.</exception>
         </member>
-        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.Download(System.Collections.Generic.List{Terraria.ModLoader.UI.ModBrowser.UIModDownloadItem},System.Collections.Generic.List{System.String}@)">
+        <member name="M:Terraria.Social.Steam.WorkshopHelper.ModManager.Download(System.Collections.Generic.List{Terraria.ModLoader.UI.ModBrowser.ModDownloadItem})">
             <summary>
             Downloads all UIModDownloadItems provided.
             </summary>
@@ -10467,7 +10494,7 @@
             Updates and/or Downloads the Item specified when generating the ModManager Instance.
             </summary>
         </member>
-        <member name="M:Terraria.Social.Steam.WorkshopHelper.QueryHelper.ReleaseWorkshopQuery">
+        <member name="M:Terraria.Social.Steam.WorkshopHelper.QueryHelper.AQueryInstance.ReleaseWorkshopQuery">
             <summary>
             Ought be called to release the existing query when we are done with it. Frees memory associated with the handle.
             </summary>
