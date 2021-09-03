@@ -9,7 +9,7 @@ namespace GreatswordsMod.Abstract
 {
     public abstract class ItemGreatsword : ModItem
     {
-        public override void SetDefaults()
+		public override void SetDefaults()
 		{
 			Item.damage = 10;
 			Item.DamageType = DamageClass.Melee;

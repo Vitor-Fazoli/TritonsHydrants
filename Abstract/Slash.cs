@@ -9,6 +9,7 @@ namespace GreatswordsMod.Abstract
     public class Slash : ModProjectile
     {
         #region Slash Attributes
+        public override string Texture => ("GreatswordsMod/Abstract/Slash");
         protected int frames = 11;
         protected int spdFrame = 2;
         private bool resultDir = false;

@@ -10,6 +10,8 @@ namespace GreatswordsMod.Abstract
 {
     public abstract class Greatsword : ModProjectile
     {
+        public override string Texture => (GetType().Namespace + "." + Name.Remove(Name.Length - 1, 1)).Replace('.', '/');
+
         private bool soundBreak = false;
         
 
@@ -51,13 +53,13 @@ namespace GreatswordsMod.Abstract
             //Direction
             if (Main.MouseScreen.X > Main.screenWidth / 2)
             {
-                Projectile.spriteDirection = 1;
-                player.direction = Projectile.spriteDirection;
+                Projectile.spriteDirection = -1;
+                player.direction = -Projectile.spriteDirection;
             }
             else
             {
-                Projectile.spriteDirection = -1;
-                player.direction = Projectile.spriteDirection;
+                Projectile.spriteDirection = 1;
+                player.direction = -Projectile.spriteDirection;
             }
 
             //Velocity
@@ -68,7 +70,7 @@ namespace GreatswordsMod.Abstract
             if (player.direction > 0)
             {
                 Projectile.position.X = player.position.X - 74;
-                moveTo.X = player.position.X - 74;
+                moveTo.X = player.position.X + 13;
             }
             else
             {

@@ -6,35 +6,35 @@ using Microsoft.Xna.Framework;
 
 namespace GreatswordsMod.Item
 {
-	public class CopperGreatsword : ItemGreatsword
+	public class PlatinumGreatsword : ItemGreatsword
 	{
         public override void SetStaticDefaults() 
 		{
-			DisplayName.SetDefault("Copper Greatsword");
-			DisplayName.AddTranslation(8, "Espada Grande de Cobre");
+			DisplayName.SetDefault("Platinum Greatsword");
+			DisplayName.AddTranslation(8, "Espada Grande de Platina");
 
 			Tooltip.SetDefault("Hold attack to greater damage\nHolding weapon to increase your resistance");
 			Tooltip.AddTranslation(8, "Segure o ataque para maior dano\nEnquanto estiver com a espada selecionada ganha resistencia");
 		}
 		public override void SetDefaults()
         {
-			Item.damage = ModContent.GetInstance<CopperGreatswordP>().GetDmg();
+			Item.damage = ModContent.GetInstance<PlatinumGreatswordP>().GetDmg();
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = CopperGreatswordP.GetKnk();
+			Item.knockBack = PlatinumGreatswordP.GetKnk();
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
-			Item.shoot = ModContent.ProjectileType<CopperGreatswordP>();
+			Item.shoot = ModContent.ProjectileType<PlatinumGreatswordP>();
 			Item.channel = true;
 			Item.crit = -4;
 		}
 		public override bool CanUseItem(Player player)
 		{
 			return base.CanUseItem(player) && player.ownedProjectileCounts[Item.shoot] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperGreatswordP>()] +
-				player.ownedProjectileCounts[ModContent.ProjectileType<CopperSlash>()] < 1;
+				player.ownedProjectileCounts[ModContent.ProjectileType<PlatinumGreatswordP>()] +
+				player.ownedProjectileCounts[ModContent.ProjectileType<PlatinumSlash>()] < 1;
 		}
         public override void AddRecipes()
         {
@@ -45,7 +45,7 @@ namespace GreatswordsMod.Item
 			.Register();
 		}
 	}
-	public class CopperGreatswordP : Greatsword
+	public class PlatinumGreatswordP : Greatsword
 	{
 		public override void SetDefaults()
 		{
@@ -70,13 +70,12 @@ namespace GreatswordsMod.Item
 			wEffect = DustID.Cloud;
 		}
 	}
-	public class CopperSlash : Slash
+	public class PlatinumSlash : Slash
 	{
-		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Cooper Slash");
-			DisplayName.AddTranslation(8, "Corte de Cobre");
+			DisplayName.SetDefault("Platinum Slash");
+			DisplayName.AddTranslation(8, "Corte de Platina");
 			Main.projFrames[Projectile.type] = frames;
 		}
 		public override bool PreDraw(ref Color lightColor)
