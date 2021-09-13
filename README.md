@@ -1,6 +1,3 @@
-# GreatswordsMod
-The ideia is create a new mode of play with melee on terraria
+# Arsenal de Gearon
 
-initially with more than 20 greatswords for you play
-
-this is a real melee
+A ideia é trazer armas pesadas e destrutivas para o terraria e assim despertar o verdadeiro guerreiro, com um NPC que irá lhe guiar em sua trajetória gearon será seu melhor amigo a caminho de se tornar um grande espadachim
