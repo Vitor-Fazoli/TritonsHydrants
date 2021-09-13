@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GreatswordsMod.Abstract
+namespace GearonArsenalMod.Abstract
 {
     public abstract class Greatsword : ModProjectile
     {
@@ -43,7 +43,7 @@ namespace GreatswordsMod.Abstract
         {
             #region Basic Attributes
             Player player = Main.player[Projectile.owner];
-            GreatPlayer modPlayer = player.GetModPlayer<GreatPlayer>();
+            ModPlayer modPlayer = player.GetModPlayer<ModPlayer>();
             bool channeling = player.channel && !player.noItems && !player.CCed && !player.dead;
             float speed = player.meleeSpeed / 2;
             #endregion
@@ -79,7 +79,7 @@ namespace GreatswordsMod.Abstract
             }
 
 
-            float speedProj = 25f;
+            float speedProj = 30f;
             Vector2 move = moveTo - Projectile.Center;
             float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)

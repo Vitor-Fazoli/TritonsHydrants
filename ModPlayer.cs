@@ -1,12 +1,12 @@
-﻿using GreatswordsMod.Abstract;
+﻿using GearonArsenalMod.Abstract;
 using Terraria;
 using Terraria.ModLoader;
-using GreatswordsMod.Buffs;
+using GearonArsenalMod.Buffs;
 using Terraria.DataStructures;
 
-namespace GreatswordsMod
+namespace GearonArsenalMod
 {
-    public class GreatPlayer : ModPlayer
+    public class ModPlayer : Terraria.ModLoader.ModPlayer
     {
         public int slayerPower = 0;
         public float speedCDR;

@@ -3,13 +3,14 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using GearonArsenalMod.Buffs;
 
-namespace GreatswordsMod.Abstract
+namespace GearonArsenalMod.Abstract
 {
     public class Slash : ModProjectile
     {
         #region Slash Attributes
-        public override string Texture => ("GreatswordsMod/Abstract/Slash");
+        public override string Texture => ("GearonArsenalMod/Abstract/Slash");
         protected int frames = 11;
         protected int spdFrame = 2;
         private bool resultDir = false;
@@ -99,13 +100,15 @@ namespace GreatswordsMod.Abstract
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (!hit)
-                target.defense /= 2;
+                target.AddBuff(ModContent.BuffType<Marked>(),120);
 
             hit = true;
         }
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
-            target.statDefense /= 2;
+            if(!hit)
+                target.AddBuff(ModContent.BuffType<Marked>(), 120);
+
             hit = true;
         }
     }

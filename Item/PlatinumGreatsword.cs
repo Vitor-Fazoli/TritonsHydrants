@@ -1,10 +1,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using GreatswordsMod.Abstract;
+using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
 	public class PlatinumGreatsword : ItemGreatsword
 	{
@@ -39,8 +39,8 @@ namespace GreatswordsMod.Item
         public override void AddRecipes()
         {
 			CreateRecipe()
-			.AddIngredient(ItemID.CopperBar, 9)
-			.AddIngredient(ItemID.CopperShortsword)
+			.AddIngredient(ItemID.PlatinumBar, 9)
+			.AddIngredient(ItemID.PlatinumShortsword)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

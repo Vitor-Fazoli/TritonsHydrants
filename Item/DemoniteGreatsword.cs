@@ -1,9 +1,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using GreatswordsMod.Abstract;
+using GearonArsenalMod.Abstract;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
 	public class DemoniteGreatsword : ItemGreatsword
 	{
@@ -71,7 +71,6 @@ namespace GreatswordsMod.Item
 	}
 	public class DemoniteSlash : Slash
 	{
-		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Demonite Slash");

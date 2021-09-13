@@ -2,10 +2,10 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using GreatswordsMod.Item;
+using GearonArsenalMod.Item;
 using System.Collections.Generic;
 
-namespace GreatswordsMod.Abstract
+namespace GearonArsenalMod.Abstract
 {
     public abstract class ItemGreatsword : ModItem
     {

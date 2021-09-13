@@ -1,11 +1,11 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using GreatswordsMod.Abstract;
+using GearonArsenalMod.Abstract;
 using System;
 using Microsoft.Xna.Framework;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
 	public class GreatswordOfHell : ItemGreatsword
 	{
@@ -73,7 +73,6 @@ namespace GreatswordsMod.Item
 	}
 	public class HellSlash : Slash
 	{
-		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Hell Slash");

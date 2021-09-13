@@ -1,10 +1,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using GreatswordsMod.Abstract;
+using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
 	public class SilverGreatsword : ItemGreatsword
 	{
@@ -72,7 +72,6 @@ namespace GreatswordsMod.Item
 	}
 	public class SilverSlash : Slash
 	{
-		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Silver Slash");

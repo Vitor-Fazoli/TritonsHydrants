@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace GreatswordsMod.Buffs
+namespace GearonArsenalMod.Buffs
 {
 	public class SlayerPowerTwo : ModBuff
 	{

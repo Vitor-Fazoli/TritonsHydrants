@@ -9,8 +9,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Audio;
+using GearonArsenalMod.Buffs;
 
-namespace GreatswordsMod.Projectiles
+namespace GearonArsenalMod.Projectiles
 {
     public class BoneProtector : ModProjectile
     {
@@ -27,8 +28,8 @@ namespace GreatswordsMod.Projectiles
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             Projectile.knockBack = 10;
-            Projectile.timeLeft = 3600/2;
-            Projectile.damage = p.statDefense / 4;
+            Projectile.timeLeft = 1800;
+            Projectile.damage = p.statDefense / 5;
         }
         public override void AI()
         {

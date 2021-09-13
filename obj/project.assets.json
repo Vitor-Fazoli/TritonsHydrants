@@ -36,11 +36,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
+      "projectUniqueName": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
       "projectName": "GreatswordsMod",
-      "projectPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
+      "projectPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
       "packagesPath": "C:\\Users\\fazol\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\obj\\",
+      "outputPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fazol\\AppData\\Roaming\\NuGet\\NuGet.Config",

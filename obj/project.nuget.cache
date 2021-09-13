@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oqkV/fUApY1KsgnMwfKYBhjOFmwXLa6KxlslJgzHxLAAnR4ZAQf8EoFWuZ4dk4Uqfye4sPE1EDLd2lBtCUA2GA==",
+  "dgSpecHash": "kOwGpRvyA2KtURQvI4s/wcjoQouMAwCCaNxyXhR33R9I6IHD0oqQr9OUmPKpbmfGh3IcLYn4Hm8ixKD56CB0jw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GreatswordsMod\\GreatswordsMod.csproj",
+  "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fazol\\.nuget\\packages\\tmodloader.codeassist\\0.1.2\\tmodloader.codeassist.0.1.2.nupkg.sha512"
   ],

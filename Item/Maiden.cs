@@ -1,13 +1,14 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using GreatswordsMod.Abstract;
-using GreatswordsMod.Projectiles;
+using GearonArsenalMod.Abstract;
+using GearonArsenalMod.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
+using GearonArsenalMod.Buffs;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
 	public class Maiden : ItemGreatsword
 	{
@@ -39,7 +40,7 @@ namespace GreatswordsMod.Item
 		}
 		public override bool CanUseItem(Player player)
 		{
-			GreatPlayer modPlayer = player.GetModPlayer<GreatPlayer>();
+            ModPlayer modPlayer = player.GetModPlayer<ModPlayer>();
 			if (player.altFunctionUse == 2)
 			{
 				if(modPlayer.slayerPower >= 3 && player.ownedProjectileCounts[ModContent.ProjectileType<BoneProtector>()] <= 0)
@@ -50,6 +51,7 @@ namespace GreatswordsMod.Item
 					Item.damage = 50;
 					Item.shoot = ModContent.ProjectileType<BoneProtector>();
 					modPlayer.slayerPower = 0;
+					player.AddBuff(ModContent.BuffType<CursedSkull>(),1800);
 				}
                 else
                 {
@@ -112,7 +114,6 @@ namespace GreatswordsMod.Item
 	}
 	public class MaidenSlash : Slash
 	{
-        public override string Texture => ("GreatswordsMod/Abstract/Slash");
         public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Maiden Slash");

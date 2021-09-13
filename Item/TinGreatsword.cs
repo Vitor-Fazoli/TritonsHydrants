@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GreatswordsMod.Abstract;
+using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GreatswordsMod.Item
+namespace GearonArsenalMod.Item
 {
     class TinGreatsword : ItemGreatsword
     {
@@ -77,7 +77,6 @@ namespace GreatswordsMod.Item
 	}
 	public class TinSlash : Slash
 	{
-		public override string Texture => ("GreatswordsMod/Abstract/Slash");
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Tin Slash");
