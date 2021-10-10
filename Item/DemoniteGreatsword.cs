@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using GearonArsenalMod.Abstract;
+using Microsoft.Xna.Framework;
 
 namespace GearonArsenalMod.Item
 {
@@ -76,6 +77,11 @@ namespace GearonArsenalMod.Item
 			DisplayName.SetDefault("Demonite Slash");
 			DisplayName.AddTranslation(8, "Corte de Demonita");
 			Main.projFrames[Projectile.type] = frames;
+		}
+		public override bool PreDraw(ref Color lightColor)
+		{
+			lightColor = new(104, 77, 138);
+			return base.PreDraw(ref lightColor);
 		}
 	}
 }

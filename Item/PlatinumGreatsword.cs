@@ -66,7 +66,7 @@ namespace GearonArsenalMod.Item
 			//properties - Greatsword
 			dmg = 10;
 			cooldown = 100;
-			proj = ModContent.ProjectileType<CopperSlash>();
+			proj = ModContent.ProjectileType<PlatinumSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
@@ -80,7 +80,7 @@ namespace GearonArsenalMod.Item
 		}
 		public override bool PreDraw(ref Color lightColor)
 		{
-			lightColor = new(235, 167, 136);
+			lightColor = new(196,196, 241);
 			return base.PreDraw(ref lightColor);
 		}
 	}

@@ -29,7 +29,7 @@ namespace GearonArsenalMod.Projectiles
             Projectile.penetrate = -1;
             Projectile.knockBack = 10;
             Projectile.timeLeft = 1800;
-            Projectile.damage = p.statDefense / 5;
+            Projectile.damage = 20;
         }
         public override void AI()
         {

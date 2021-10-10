@@ -22,12 +22,12 @@ namespace GearonArsenalMod.Item
 		}
 		public override void SetDefaults()
 		{
-			Item.damage = ModContent.GetInstance<MaidenP>().GetDmg();
+			Item.damage = 0;
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = MaidenP.GetKnk();
+			Item.knockBack = 0;
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
 			Item.shoot = ModContent.ProjectileType<MaidenP>();
@@ -43,15 +43,15 @@ namespace GearonArsenalMod.Item
             ModPlayer modPlayer = player.GetModPlayer<ModPlayer>();
 			if (player.altFunctionUse == 2)
 			{
-				if(modPlayer.slayerPower >= 3 && player.ownedProjectileCounts[ModContent.ProjectileType<BoneProtector>()] <= 0)
+				if(modPlayer.slayerPower >= 3)
                 {
 					Item.useStyle = ItemUseStyleID.HoldUp;
 					Item.useTime = 20;
 					Item.useAnimation = 20;
-					Item.damage = 50;
-					Item.shoot = ModContent.ProjectileType<BoneProtector>();
 					modPlayer.slayerPower = 0;
-					player.AddBuff(ModContent.BuffType<CursedSkull>(),1800);
+					player.AddBuff(ModContent.BuffType<CursedSkull>(),600);
+					Item.shoot = ProjectileID.None;
+					SoundEngine.PlaySound(4,player.position);
 				}
                 else
                 {
@@ -60,7 +60,6 @@ namespace GearonArsenalMod.Item
 			}
 			else
 			{
-				Item.damage = ModContent.GetInstance<MaidenP>().GetDmg();
 				Item.DamageType = DamageClass.Melee;
 				Item.useTime = 50;
 				Item.useAnimation = 50;
@@ -71,6 +70,7 @@ namespace GearonArsenalMod.Item
 				Item.shoot = ModContent.ProjectileType<MaidenP>();
 				Item.channel = true;
 				Item.crit = -4;
+				Item.damage = ModContent.GetInstance<MaidenP>().GetDmg();
 			}
 			
 			return base.CanUseItem(player) && player.ownedProjectileCounts[Item.shoot] +

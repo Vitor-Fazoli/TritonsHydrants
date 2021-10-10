@@ -11,7 +11,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Microsoft.Xna.Framework.Graphics;
 using GearonArsenalMod.Item;
-using GearonArsenalMod.Item.Materials;
+using GearonArsenalMod.Materials;
 
 namespace GearonArsenalMod.NPCs
 {
@@ -29,20 +29,17 @@ namespace GearonArsenalMod.NPCs
 			NPCID.Sets.AttackAverageChance[Type] = 30;
 			NPCID.Sets.HatOffsetY[Type] = 4;
 
-			// Influences how the NPC looks in the Bestiary
 			NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-				Velocity = 0.75f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-				Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
-				// Rotation = MathHelper.ToRadians(180) // You can also change the rotation of an NPC. Rotation is measured in radians
-				// If you want to see an example of manually modifying these when the NPC is drawn, see PreDraw
+				Velocity = 0.75f,
+				Direction = 1
 			};
 
 			NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 		}
 
 		public override void SetDefaults() {
-			NPC.townNPC = true; // Sets NPC to be a Town NPC
-			NPC.friendly = true; // NPC Will not attack player
+			NPC.townNPC = true;
+			NPC.friendly = true;
 			NPC.width = 18;
 			NPC.height = 40;
 			NPC.aiStyle = 7;
@@ -57,7 +54,6 @@ namespace GearonArsenalMod.NPCs
 		}
 
 		public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-			// We can use AddRange instead of calling Add multiple times in order to add multiple items at once
 			bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
 				// Sets the preferred biomes of this town NPC listed in the bestiary.
 				// With Town NPCs, you usually set this to what biome it likes the most in regards to NPC happiness.
@@ -80,7 +76,6 @@ namespace GearonArsenalMod.NPCs
 			if (NPCID.Sets.NPCBestiaryDrawOffset.TryGetValue(Type, out NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers)) {
                 drawModifiers.Rotation += 0.001f;
 
-				// Replace the existing NPCBestiaryDrawModifiers with our new one with an adjusted rotation
 				NPCID.Sets.NPCBestiaryDrawOffset.Remove(Type);
 				NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 			}
@@ -111,7 +106,6 @@ namespace GearonArsenalMod.NPCs
 			return false;
 		}
 
-		// Example Person needs a house built out of ExampleMod tiles. You can delete this whole method in your townNPC for the regular house conditions.
 		public override bool CheckConditions(int left, int right, int top, int bottom) {
 			int score = 0;
 			for (int x = left; x <= right; x++) {
@@ -177,10 +171,8 @@ namespace GearonArsenalMod.NPCs
 				button = "Give " + Lang.GetItemNameValue(ModContent.ItemType<BrokenHammer>());
 			}
 		}
-
 		public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
 			if (firstButton) {
-
 				if (Main.LocalPlayer.HasItem(ModContent.ItemType<BrokenHammer>())) {
 					SoundEngine.PlaySound(SoundID.Item37);
 

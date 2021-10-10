@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../tModLoader.targets" />
   <PropertyGroup>
-    <AssemblyName>GreatswordsMod</AssemblyName>
+    <AssemblyName>GearonArsenalMod</AssemblyName>
     <TargetFramework>net5.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>

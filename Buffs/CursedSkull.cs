@@ -6,8 +6,8 @@ namespace GearonArsenalMod.Buffs
 {
     public class CursedSkull : ModBuff
     {
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults(){
+
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = true;
             DisplayName.SetDefault("Cursed Skulls");

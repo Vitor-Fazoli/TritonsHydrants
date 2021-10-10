@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj": {}
+    "C:\\Users\\fazol\\Documents\\My Games\\GearonArsenalMod\\GearonArsenalMod.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj": {
+    "C:\\Users\\fazol\\Documents\\My Games\\GearonArsenalMod\\GearonArsenalMod.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
-        "projectName": "GreatswordsMod",
-        "projectPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
+        "projectUniqueName": "C:\\Users\\fazol\\Documents\\My Games\\GearonArsenalMod\\GearonArsenalMod.csproj",
+        "projectName": "GearonArsenalMod",
+        "projectPath": "C:\\Users\\fazol\\Documents\\My Games\\GearonArsenalMod\\GearonArsenalMod.csproj",
         "packagesPath": "C:\\Users\\fazol\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\obj\\",
+        "outputPath": "C:\\Users\\fazol\\Documents\\My Games\\GearonArsenalMod\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fazol\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

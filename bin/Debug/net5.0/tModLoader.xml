@@ -242,16 +242,21 @@
         <member name="M:Terraria.DataStructures.TileEntitiesManager.TryGetTileEntity``1(System.Int32,``0@)">
             <summary> Attempts to get the base ModTileEntity object with the given id. </summary>
         </member>
-        <member name="M:Terraria.DataStructures.TileEntity.Save">
+        <member name="M:Terraria.DataStructures.TileEntity.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to save custom data for this tile entity.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.DataStructures.TileEntity.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.DataStructures.TileEntity.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to load the custom data you have saved for this tile entity.
+            Allows you to load custom data that you have saved for this tile entity.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.DataStructures.TileEntity.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -294,6 +299,16 @@
             <param name="mod">The mod to calculate bestiary completeness (null for Terraria)</param>
             <returns>A float ranging from 0 to 1 representing the completeness of the bestiary or returns -1 if the mod has no entries</returns>
         </member>
+        <member name="M:Terraria.GameContent.Events.Sandstorm.StartSandstorm">
+            <summary>
+            Starts sandstorm for a random amount of time. Should be called on the server (netMode != client) - the method syncs it automatically.
+            </summary>
+        </member>
+        <member name="M:Terraria.GameContent.Events.Sandstorm.StopSandstorm">
+            <summary>
+            Stops sandstorm. Should be called on the server (netMode != client) - the method syncs it automatically.
+            </summary>
+        </member>
         <member name="M:Terraria.GameContent.UI.BigProgressBar.BigProgressBarSystem.TryGetSpecialVanillaBossBar(System.Int32,Terraria.GameContent.UI.BigProgressBar.IBigProgressBar@)">
             <summary>
             Gets the special IBigProgressBar associated with this vanilla NPCs netID (usually the type).
@@ -307,6 +322,11 @@
             <summary>
             Locks the vanilla scrollbar for the upcoming cycle when called. Autoclears in Player.
             Takes a string to denote that your UI has registered to lock vanilla scrolling. String does not need to be unique.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ArmorIDs.Head.Sets.DrawBackHair">
+            <summary>
+            Index using Player.hair
             </summary>
         </member>
         <member name="F:Terraria.ID.DustID.Water">
@@ -492,100 +512,638 @@
         <member name="F:Terraria.ID.ItemRarityID.Purple">
             <summary>Eleven (11)</summary>
         </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Slime">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BigCrimslime"/>, <see cref="F:Terraria.ID.NPCID.LittleCrimslime"/>, <see cref="F:Terraria.ID.NPCID.JungleSlime"/>, <see cref="F:Terraria.ID.NPCID.YellowSlime"/>, <see cref="F:Terraria.ID.NPCID.RedSlime"/>, <see cref="F:Terraria.ID.NPCID.PurpleSlime"/>, <see cref="F:Terraria.ID.NPCID.BlackSlime"/>, <see cref="F:Terraria.ID.NPCID.BabySlime"/>, <see cref="F:Terraria.ID.NPCID.Pinky"/>, <see cref="F:Terraria.ID.NPCID.GreenSlime"/>, <see cref="F:Terraria.ID.NPCID.Slimer2"/>, <see cref="F:Terraria.ID.NPCID.Slimeling"/>, <see cref="F:Terraria.ID.NPCID.BlueSlime"/>, <see cref="F:Terraria.ID.NPCID.MotherSlime"/>, <see cref="F:Terraria.ID.NPCID.LavaSlime"/>, <see cref="F:Terraria.ID.NPCID.DungeonSlime"/>, <see cref="F:Terraria.ID.NPCID.CorruptSlime"/>, <see cref="F:Terraria.ID.NPCID.IlluminantSlime"/>, <see cref="F:Terraria.ID.NPCID.ToxicSludge"/>, <see cref="F:Terraria.ID.NPCID.IceSlime"/>, <see cref="F:Terraria.ID.NPCID.Crimslime"/>, <see cref="F:Terraria.ID.NPCID.SpikedIceSlime"/>, <see cref="F:Terraria.ID.NPCID.SpikedJungleSlime"/>, <see cref="F:Terraria.ID.NPCID.UmbrellaSlime"/>, <see cref="F:Terraria.ID.NPCID.RainbowSlime"/>, <see cref="F:Terraria.ID.NPCID.SlimeMasked"/>, <see cref="F:Terraria.ID.NPCID.HoppinJack"/>, <see cref="F:Terraria.ID.NPCID.SlimeRibbonWhite"/>, <see cref="F:Terraria.ID.NPCID.SlimeRibbonYellow"/>, <see cref="F:Terraria.ID.NPCID.SlimeRibbonGreen"/>, <see cref="F:Terraria.ID.NPCID.SlimeRibbonRed"/>, <see cref="F:Terraria.ID.NPCID.Grasshopper"/>, <see cref="F:Terraria.ID.NPCID.GoldGrasshopper"/>, <see cref="F:Terraria.ID.NPCID.SlimeSpiked"/>, <see cref="F:Terraria.ID.NPCID.SandSlime"/>, <see cref="F:Terraria.ID.NPCID.QueenSlimeMinionBlue"/>, <see cref="F:Terraria.ID.NPCID.QueenSlimeMinionPink"/>, <see cref="F:Terraria.ID.NPCID.GoldenSlime"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DemonEye">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DemonEye2"/>, <see cref="F:Terraria.ID.NPCID.PurpleEye2"/>, <see cref="F:Terraria.ID.NPCID.GreenEye2"/>, <see cref="F:Terraria.ID.NPCID.DialatedEye2"/>, <see cref="F:Terraria.ID.NPCID.SleepyEye2"/>, <see cref="F:Terraria.ID.NPCID.CataractEye2"/>, <see cref="F:Terraria.ID.NPCID.DemonEye"/>, <see cref="F:Terraria.ID.NPCID.TheHungryII"/>, <see cref="F:Terraria.ID.NPCID.WanderingEye"/>, <see cref="F:Terraria.ID.NPCID.PigronCorruption"/>, <see cref="F:Terraria.ID.NPCID.PigronHallow"/>, <see cref="F:Terraria.ID.NPCID.PigronCrimson"/>, <see cref="F:Terraria.ID.NPCID.CataractEye"/>, <see cref="F:Terraria.ID.NPCID.SleepyEye"/>, <see cref="F:Terraria.ID.NPCID.DialatedEye"/>, <see cref="F:Terraria.ID.NPCID.GreenEye"/>, <see cref="F:Terraria.ID.NPCID.PurpleEye"/>, <see cref="F:Terraria.ID.NPCID.DemonEyeOwl"/>, <see cref="F:Terraria.ID.NPCID.DemonEyeSpaceship"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Fighter">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BigRainZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallRainZombie"/>, <see cref="F:Terraria.ID.NPCID.BigPantlessSkeleton"/>, <see cref="F:Terraria.ID.NPCID.SmallPantlessSkeleton"/>, <see cref="F:Terraria.ID.NPCID.BigMisassembledSkeleton"/>, <see cref="F:Terraria.ID.NPCID.SmallMisassembledSkeleton"/>, <see cref="F:Terraria.ID.NPCID.BigHeadacheSkeleton"/>, <see cref="F:Terraria.ID.NPCID.SmallHeadacheSkeleton"/>, <see cref="F:Terraria.ID.NPCID.BigSkeleton"/>, <see cref="F:Terraria.ID.NPCID.SmallSkeleton"/>, <see cref="F:Terraria.ID.NPCID.BigFemaleZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallFemaleZombie"/>, <see cref="F:Terraria.ID.NPCID.BigTwiggyZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallTwiggyZombie"/>, <see cref="F:Terraria.ID.NPCID.BigSwampZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallSwampZombie"/>, <see cref="F:Terraria.ID.NPCID.BigSlimedZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallSlimedZombie"/>, <see cref="F:Terraria.ID.NPCID.BigPincushionZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallPincushionZombie"/>, <see cref="F:Terraria.ID.NPCID.BigBaldZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallBaldZombie"/>, <see cref="F:Terraria.ID.NPCID.BigZombie"/>, <see cref="F:Terraria.ID.NPCID.SmallZombie"/>, <see cref="F:Terraria.ID.NPCID.HeavySkeleton"/>, <see cref="F:Terraria.ID.NPCID.BigBoned"/>, <see cref="F:Terraria.ID.NPCID.ShortBones"/>, <see cref="F:Terraria.ID.NPCID.Zombie"/>, <see cref="F:Terraria.ID.NPCID.Skeleton"/>, <see cref="F:Terraria.ID.NPCID.GoblinPeon"/>, <see cref="F:Terraria.ID.NPCID.GoblinThief"/>, <see cref="F:Terraria.ID.NPCID.GoblinWarrior"/>, <see cref="F:Terraria.ID.NPCID.AngryBones"/>, <see cref="F:Terraria.ID.NPCID.UndeadMiner"/>, <see cref="F:Terraria.ID.NPCID.CorruptBunny"/>, <see cref="F:Terraria.ID.NPCID.DoctorBones"/>, <see cref="F:Terraria.ID.NPCID.TheGroom"/>, <see cref="F:Terraria.ID.NPCID.Crab"/>, <see cref="F:Terraria.ID.NPCID.GoblinScout"/>, <see cref="F:Terraria.ID.NPCID.ArmoredSkeleton"/>, <see cref="F:Terraria.ID.NPCID.Mummy"/>, <see cref="F:Terraria.ID.NPCID.DarkMummy"/>, <see cref="F:Terraria.ID.NPCID.LightMummy"/>, <see cref="F:Terraria.ID.NPCID.Werewolf"/>, <see cref="F:Terraria.ID.NPCID.Clown"/>, <see cref="F:Terraria.ID.NPCID.SkeletonArcher"/>, <see cref="F:Terraria.ID.NPCID.GoblinArcher"/>, <see cref="F:Terraria.ID.NPCID.ChaosElemental"/>, <see cref="F:Terraria.ID.NPCID.BaldZombie"/>, <see cref="F:Terraria.ID.NPCID.PossessedArmor"/>, <see cref="F:Terraria.ID.NPCID.Vampire"/>, <see cref="F:Terraria.ID.NPCID.ZombieEskimo"/>, <see cref="F:Terraria.ID.NPCID.Frankenstein"/>, <see cref="F:Terraria.ID.NPCID.BlackRecluse"/>, <see cref="F:Terraria.ID.NPCID.WallCreeper"/>, <see cref="F:Terraria.ID.NPCID.SwampThing"/>, <see cref="F:Terraria.ID.NPCID.UndeadViking"/>, <see cref="F:Terraria.ID.NPCID.CorruptPenguin"/>, <see cref="F:Terraria.ID.NPCID.FaceMonster"/>, <see cref="F:Terraria.ID.NPCID.SnowFlinx"/>, <see cref="F:Terraria.ID.NPCID.PincushionZombie"/>, <see cref="F:Terraria.ID.NPCID.SlimedZombie"/>, <see cref="F:Terraria.ID.NPCID.SwampZombie"/>, <see cref="F:Terraria.ID.NPCID.TwiggyZombie"/>, <see cref="F:Terraria.ID.NPCID.Nymph"/>, <see cref="F:Terraria.ID.NPCID.ArmoredViking"/>, <see cref="F:Terraria.ID.NPCID.Lihzahrd"/>, <see cref="F:Terraria.ID.NPCID.LihzahrdCrawler"/>, <see cref="F:Terraria.ID.NPCID.FemaleZombie"/>, <see cref="F:Terraria.ID.NPCID.HeadacheSkeleton"/>, <see cref="F:Terraria.ID.NPCID.MisassembledSkeleton"/>, <see cref="F:Terraria.ID.NPCID.PantlessSkeleton"/>, <see cref="F:Terraria.ID.NPCID.IcyMerman"/>, <see cref="F:Terraria.ID.NPCID.PirateDeckhand"/>, <see cref="F:Terraria.ID.NPCID.PirateCorsair"/>, <see cref="F:Terraria.ID.NPCID.PirateDeadeye"/>, <see cref="F:Terraria.ID.NPCID.PirateCrossbower"/>, <see cref="F:Terraria.ID.NPCID.PirateCaptain"/>, <see cref="F:Terraria.ID.NPCID.CochinealBeetle"/>, <see cref="F:Terraria.ID.NPCID.CyanBeetle"/>, <see cref="F:Terraria.ID.NPCID.LacBeetle"/>, <see cref="F:Terraria.ID.NPCID.SeaSnail"/>, <see cref="F:Terraria.ID.NPCID.ZombieRaincoat"/>, <see cref="F:Terraria.ID.NPCID.JungleCreeper"/>, <see cref="F:Terraria.ID.NPCID.BloodCrawler"/>, <see cref="F:Terraria.ID.NPCID.IceGolem"/>, <see cref="F:Terraria.ID.NPCID.Eyezor"/>, <see cref="F:Terraria.ID.NPCID.ZombieMushroom"/>, <see cref="F:Terraria.ID.NPCID.ZombieMushroomHat"/>, <see cref="F:Terraria.ID.NPCID.AnomuraFungus"/>, <see cref="F:Terraria.ID.NPCID.MushiLadybug"/>, <see cref="F:Terraria.ID.NPCID.RustyArmoredBonesAxe"/>, <see cref="F:Terraria.ID.NPCID.RustyArmoredBonesFlail"/>, <see cref="F:Terraria.ID.NPCID.RustyArmoredBonesSword"/>, <see cref="F:Terraria.ID.NPCID.RustyArmoredBonesSwordNoArmor"/>, <see cref="F:Terraria.ID.NPCID.BlueArmoredBones"/>, <see cref="F:Terraria.ID.NPCID.BlueArmoredBonesMace"/>, <see cref="F:Terraria.ID.NPCID.BlueArmoredBonesNoPants"/>, <see cref="F:Terraria.ID.NPCID.BlueArmoredBonesSword"/>, <see cref="F:Terraria.ID.NPCID.HellArmoredBones"/>, <see cref="F:Terraria.ID.NPCID.HellArmoredBonesSpikeShield"/>, <see cref="F:Terraria.ID.NPCID.HellArmoredBonesMace"/>, <see cref="F:Terraria.ID.NPCID.HellArmoredBonesSword"/>, <see cref="F:Terraria.ID.NPCID.BoneLee"/>, <see cref="F:Terraria.ID.NPCID.Paladin"/>, <see cref="F:Terraria.ID.NPCID.SkeletonSniper"/>, <see cref="F:Terraria.ID.NPCID.TacticalSkeleton"/>, <see cref="F:Terraria.ID.NPCID.SkeletonCommando"/>, <see cref="F:Terraria.ID.NPCID.AngryBonesBig"/>, <see cref="F:Terraria.ID.NPCID.AngryBonesBigMuscle"/>, <see cref="F:Terraria.ID.NPCID.AngryBonesBigHelmet"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow1"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow2"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow3"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow4"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow5"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow6"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow7"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow8"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow9"/>, <see cref="F:Terraria.ID.NPCID.Scarecrow10"/>, <see cref="F:Terraria.ID.NPCID.ZombieDoctor"/>, <see cref="F:Terraria.ID.NPCID.ZombieSuperman"/>, <see cref="F:Terraria.ID.NPCID.ZombiePixie"/>, <see cref="F:Terraria.ID.NPCID.SkeletonTopHat"/>, <see cref="F:Terraria.ID.NPCID.SkeletonAstonaut"/>, <see cref="F:Terraria.ID.NPCID.SkeletonAlien"/>, <see cref="F:Terraria.ID.NPCID.Splinterling"/>, <see cref="F:Terraria.ID.NPCID.ZombieXmas"/>, <see cref="F:Terraria.ID.NPCID.ZombieSweater"/>, <see cref="F:Terraria.ID.NPCID.ZombieElf"/>, <see cref="F:Terraria.ID.NPCID.ZombieElfBeard"/>, <see cref="F:Terraria.ID.NPCID.ZombieElfGirl"/>, <see cref="F:Terraria.ID.NPCID.GingerbreadMan"/>, <see cref="F:Terraria.ID.NPCID.Yeti"/>, <see cref="F:Terraria.ID.NPCID.Nutcracker"/>, <see cref="F:Terraria.ID.NPCID.NutcrackerSpinning"/>, <see cref="F:Terraria.ID.NPCID.ElfArcher"/>, <see cref="F:Terraria.ID.NPCID.Krampus"/>, <see cref="F:Terraria.ID.NPCID.CultistArcherBlue"/>, <see cref="F:Terraria.ID.NPCID.CultistArcherWhite"/>, <see cref="F:Terraria.ID.NPCID.BrainScrambler"/>, <see cref="F:Terraria.ID.NPCID.RayGunner"/>, <see cref="F:Terraria.ID.NPCID.MartianOfficer"/>, <see cref="F:Terraria.ID.NPCID.GrayGrunt"/>, <see cref="F:Terraria.ID.NPCID.MartianEngineer"/>, <see cref="F:Terraria.ID.NPCID.GigaZapper"/>, <see cref="F:Terraria.ID.NPCID.Scutlix"/>, <see cref="F:Terraria.ID.NPCID.StardustSpiderBig"/>, <see cref="F:Terraria.ID.NPCID.StardustSoldier"/>, <see cref="F:Terraria.ID.NPCID.SolarDrakomire"/>, <see cref="F:Terraria.ID.NPCID.SolarSolenian"/>, <see cref="F:Terraria.ID.NPCID.NebulaSoldier"/>, <see cref="F:Terraria.ID.NPCID.VortexRifleman"/>, <see cref="F:Terraria.ID.NPCID.VortexHornetQueen"/>, <see cref="F:Terraria.ID.NPCID.VortexHornet"/>, <see cref="F:Terraria.ID.NPCID.VortexLarva"/>, <see cref="F:Terraria.ID.NPCID.VortexSoldier"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombie"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombieEskimo"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombiePincussion"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombieSlimed"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombieSwamp"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombieTwiggy"/>, <see cref="F:Terraria.ID.NPCID.ArmedZombieCenx"/>, <see cref="F:Terraria.ID.NPCID.BoneThrowingSkeleton"/>, <see cref="F:Terraria.ID.NPCID.BoneThrowingSkeleton2"/>, <see cref="F:Terraria.ID.NPCID.BoneThrowingSkeleton3"/>, <see cref="F:Terraria.ID.NPCID.BoneThrowingSkeleton4"/>, <see cref="F:Terraria.ID.NPCID.Butcher"/>, <see cref="F:Terraria.ID.NPCID.CreatureFromTheDeep"/>, <see cref="F:Terraria.ID.NPCID.Fritz"/>, <see cref="F:Terraria.ID.NPCID.Nailhead"/>, <see cref="F:Terraria.ID.NPCID.CrimsonBunny"/>, <see cref="F:Terraria.ID.NPCID.Psycho"/>, <see cref="F:Terraria.ID.NPCID.DrManFly"/>, <see cref="F:Terraria.ID.NPCID.ThePossessed"/>, <see cref="F:Terraria.ID.NPCID.CrimsonPenguin"/>, <see cref="F:Terraria.ID.NPCID.GoblinSummoner"/>, <see cref="F:Terraria.ID.NPCID.Medusa"/>, <see cref="F:Terraria.ID.NPCID.GreekSkeleton"/>, <see cref="F:Terraria.ID.NPCID.GraniteGolem"/>, <see cref="F:Terraria.ID.NPCID.BloodZombie"/>, <see cref="F:Terraria.ID.NPCID.Crawdad"/>, <see cref="F:Terraria.ID.NPCID.Crawdad2"/>, <see cref="F:Terraria.ID.NPCID.Salamander"/>, <see cref="F:Terraria.ID.NPCID.Salamander2"/>, <see cref="F:Terraria.ID.NPCID.Salamander3"/>, <see cref="F:Terraria.ID.NPCID.Salamander4"/>, <see cref="F:Terraria.ID.NPCID.Salamander5"/>, <see cref="F:Terraria.ID.NPCID.Salamander6"/>, <see cref="F:Terraria.ID.NPCID.Salamander7"/>, <see cref="F:Terraria.ID.NPCID.Salamander8"/>, <see cref="F:Terraria.ID.NPCID.Salamander9"/>, <see cref="F:Terraria.ID.NPCID.GiantWalkingAntlion"/>, <see cref="F:Terraria.ID.NPCID.SolarSpearman"/>, <see cref="F:Terraria.ID.NPCID.MartianWalker"/>, <see cref="F:Terraria.ID.NPCID.DesertGhoul"/>, <see cref="F:Terraria.ID.NPCID.DesertGhoulCorruption"/>, <see cref="F:Terraria.ID.NPCID.DesertGhoulCrimson"/>, <see cref="F:Terraria.ID.NPCID.DesertGhoulHallow"/>, <see cref="F:Terraria.ID.NPCID.DesertLamiaLight"/>, <see cref="F:Terraria.ID.NPCID.DesertLamiaDark"/>, <see cref="F:Terraria.ID.NPCID.DesertScorpionWalk"/>, <see cref="F:Terraria.ID.NPCID.DesertBeast"/>, <see cref="F:Terraria.ID.NPCID.DemonTaxCollector"/>, <see cref="F:Terraria.ID.NPCID.TheBride"/>, <see cref="F:Terraria.ID.NPCID.WalkingAntlion"/>, <see cref="F:Terraria.ID.NPCID.LarvaeAntlion"/>, <see cref="F:Terraria.ID.NPCID.ZombieMerman"/>, <see cref="F:Terraria.ID.NPCID.TorchZombie"/>, <see cref="F:Terraria.ID.NPCID.ArmedTorchZombie"/>, <see cref="F:Terraria.ID.NPCID.Gnome"/>, <see cref="F:Terraria.ID.NPCID.BloodMummy"/>, <see cref="F:Terraria.ID.NPCID.RockGolem"/>, <see cref="F:Terraria.ID.NPCID.MaggotZombie"/>, <see cref="F:Terraria.ID.NPCID.SporeSkeleton"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.EyeOfCthulhu">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.EyeofCthulhu"/>
+            </summary>
+        </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Flying">
             <summary>
-            Includes things such as Eaters of Souls
+            Behavior: Includes things such as Eaters of Souls<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.BigHornetStingy"/>, <see cref="F:Terraria.ID.NPCID.LittleHornetStingy"/>, <see cref="F:Terraria.ID.NPCID.BigHornetSpikey"/>, <see cref="F:Terraria.ID.NPCID.LittleHornetSpikey"/>, <see cref="F:Terraria.ID.NPCID.BigHornetLeafy"/>, <see cref="F:Terraria.ID.NPCID.LittleHornetLeafy"/>, <see cref="F:Terraria.ID.NPCID.BigHornetHoney"/>, <see cref="F:Terraria.ID.NPCID.LittleHornetHoney"/>, <see cref="F:Terraria.ID.NPCID.BigHornetFatty"/>, <see cref="F:Terraria.ID.NPCID.LittleHornetFatty"/>, <see cref="F:Terraria.ID.NPCID.BigCrimera"/>, <see cref="F:Terraria.ID.NPCID.LittleCrimera"/>, <see cref="F:Terraria.ID.NPCID.GiantMossHornet"/>, <see cref="F:Terraria.ID.NPCID.BigMossHornet"/>, <see cref="F:Terraria.ID.NPCID.LittleMossHornet"/>, <see cref="F:Terraria.ID.NPCID.TinyMossHornet"/>, <see cref="F:Terraria.ID.NPCID.BigStinger"/>, <see cref="F:Terraria.ID.NPCID.LittleStinger"/>, <see cref="F:Terraria.ID.NPCID.BigEater"/>, <see cref="F:Terraria.ID.NPCID.LittleEater"/>, <see cref="F:Terraria.ID.NPCID.ServantofCthulhu"/>, <see cref="F:Terraria.ID.NPCID.EaterofSouls"/>, <see cref="F:Terraria.ID.NPCID.MeteorHead"/>, <see cref="F:Terraria.ID.NPCID.Hornet"/>, <see cref="F:Terraria.ID.NPCID.Corruptor"/>, <see cref="F:Terraria.ID.NPCID.Probe"/>, <see cref="F:Terraria.ID.NPCID.Crimera"/>, <see cref="F:Terraria.ID.NPCID.MossHornet"/>, <see cref="F:Terraria.ID.NPCID.Moth"/>, <see cref="F:Terraria.ID.NPCID.Bee"/>, <see cref="F:Terraria.ID.NPCID.BeeSmall"/>, <see cref="F:Terraria.ID.NPCID.HornetFatty"/>, <see cref="F:Terraria.ID.NPCID.HornetHoney"/>, <see cref="F:Terraria.ID.NPCID.HornetLeafy"/>, <see cref="F:Terraria.ID.NPCID.HornetSpikey"/>, <see cref="F:Terraria.ID.NPCID.HornetStingy"/>, <see cref="F:Terraria.ID.NPCID.Parrot"/>, <see cref="F:Terraria.ID.NPCID.BloodSquid"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Worm">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DevourerHead"/>, <see cref="F:Terraria.ID.NPCID.DevourerBody"/>, <see cref="F:Terraria.ID.NPCID.DevourerTail"/>, <see cref="F:Terraria.ID.NPCID.GiantWormHead"/>, <see cref="F:Terraria.ID.NPCID.GiantWormBody"/>, <see cref="F:Terraria.ID.NPCID.GiantWormTail"/>, <see cref="F:Terraria.ID.NPCID.EaterofWorldsHead"/>, <see cref="F:Terraria.ID.NPCID.EaterofWorldsBody"/>, <see cref="F:Terraria.ID.NPCID.EaterofWorldsTail"/>, <see cref="F:Terraria.ID.NPCID.BoneSerpentHead"/>, <see cref="F:Terraria.ID.NPCID.BoneSerpentBody"/>, <see cref="F:Terraria.ID.NPCID.BoneSerpentTail"/>, <see cref="F:Terraria.ID.NPCID.WyvernHead"/>, <see cref="F:Terraria.ID.NPCID.WyvernLegs"/>, <see cref="F:Terraria.ID.NPCID.WyvernBody"/>, <see cref="F:Terraria.ID.NPCID.WyvernBody2"/>, <see cref="F:Terraria.ID.NPCID.WyvernBody3"/>, <see cref="F:Terraria.ID.NPCID.WyvernTail"/>, <see cref="F:Terraria.ID.NPCID.DiggerHead"/>, <see cref="F:Terraria.ID.NPCID.DiggerBody"/>, <see cref="F:Terraria.ID.NPCID.DiggerTail"/>, <see cref="F:Terraria.ID.NPCID.SeekerHead"/>, <see cref="F:Terraria.ID.NPCID.SeekerBody"/>, <see cref="F:Terraria.ID.NPCID.SeekerTail"/>, <see cref="F:Terraria.ID.NPCID.LeechHead"/>, <see cref="F:Terraria.ID.NPCID.LeechBody"/>, <see cref="F:Terraria.ID.NPCID.LeechTail"/>, <see cref="F:Terraria.ID.NPCID.TruffleWormDigger"/>, <see cref="F:Terraria.ID.NPCID.StardustWormHead"/>, <see cref="F:Terraria.ID.NPCID.SolarCrawltipedeHead"/>, <see cref="F:Terraria.ID.NPCID.SolarCrawltipedeBody"/>, <see cref="F:Terraria.ID.NPCID.SolarCrawltipedeTail"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonHead"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonBody1"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonBody2"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonBody3"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonBody4"/>, <see cref="F:Terraria.ID.NPCID.CultistDragonTail"/>, <see cref="F:Terraria.ID.NPCID.DuneSplicerHead"/>, <see cref="F:Terraria.ID.NPCID.DuneSplicerBody"/>, <see cref="F:Terraria.ID.NPCID.DuneSplicerTail"/>, <see cref="F:Terraria.ID.NPCID.TombCrawlerHead"/>, <see cref="F:Terraria.ID.NPCID.TombCrawlerBody"/>, <see cref="F:Terraria.ID.NPCID.TombCrawlerTail"/>, <see cref="F:Terraria.ID.NPCID.BloodEelHead"/>, <see cref="F:Terraria.ID.NPCID.BloodEelBody"/>, <see cref="F:Terraria.ID.NPCID.BloodEelTail"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Passive">
             <summary>
-            Includes Town NPCs and some ambient creatures, only Town NPCs will have defense with this AI, due to type-based hardcode
+            Behavior: Includes Town NPCs and some ambient creatures, only Town NPCs will have defense with this AI, due to type-based hardcode<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.Merchant"/>, <see cref="F:Terraria.ID.NPCID.Nurse"/>, <see cref="F:Terraria.ID.NPCID.ArmsDealer"/>, <see cref="F:Terraria.ID.NPCID.Dryad"/>, <see cref="F:Terraria.ID.NPCID.Guide"/>, <see cref="F:Terraria.ID.NPCID.OldMan"/>, <see cref="F:Terraria.ID.NPCID.Demolitionist"/>, <see cref="F:Terraria.ID.NPCID.Bunny"/>, <see cref="F:Terraria.ID.NPCID.Clothier"/>, <see cref="F:Terraria.ID.NPCID.GoblinTinkerer"/>, <see cref="F:Terraria.ID.NPCID.Wizard"/>, <see cref="F:Terraria.ID.NPCID.Mechanic"/>, <see cref="F:Terraria.ID.NPCID.SantaClaus"/>, <see cref="F:Terraria.ID.NPCID.Penguin"/>, <see cref="F:Terraria.ID.NPCID.PenguinBlack"/>, <see cref="F:Terraria.ID.NPCID.Truffle"/>, <see cref="F:Terraria.ID.NPCID.Steampunker"/>, <see cref="F:Terraria.ID.NPCID.DyeTrader"/>, <see cref="F:Terraria.ID.NPCID.PartyGirl"/>, <see cref="F:Terraria.ID.NPCID.Cyborg"/>, <see cref="F:Terraria.ID.NPCID.Painter"/>, <see cref="F:Terraria.ID.NPCID.WitchDoctor"/>, <see cref="F:Terraria.ID.NPCID.Pirate"/>, <see cref="F:Terraria.ID.NPCID.GoldfishWalker"/>, <see cref="F:Terraria.ID.NPCID.Squirrel"/>, <see cref="F:Terraria.ID.NPCID.Mouse"/>, <see cref="F:Terraria.ID.NPCID.BunnySlimed"/>, <see cref="F:Terraria.ID.NPCID.BunnyXmas"/>, <see cref="F:Terraria.ID.NPCID.Stylist"/>, <see cref="F:Terraria.ID.NPCID.Frog"/>, <see cref="F:Terraria.ID.NPCID.Duck"/>, <see cref="F:Terraria.ID.NPCID.DuckWhite"/>, <see cref="F:Terraria.ID.NPCID.ScorpionBlack"/>, <see cref="F:Terraria.ID.NPCID.Scorpion"/>, <see cref="F:Terraria.ID.NPCID.TravellingMerchant"/>, <see cref="F:Terraria.ID.NPCID.Angler"/>, <see cref="F:Terraria.ID.NPCID.TaxCollector"/>, <see cref="F:Terraria.ID.NPCID.GoldBunny"/>, <see cref="F:Terraria.ID.NPCID.GoldFrog"/>, <see cref="F:Terraria.ID.NPCID.GoldMouse"/>, <see cref="F:Terraria.ID.NPCID.SkeletonMerchant"/>, <see cref="F:Terraria.ID.NPCID.SquirrelRed"/>, <see cref="F:Terraria.ID.NPCID.SquirrelGold"/>, <see cref="F:Terraria.ID.NPCID.PartyBunny"/>, <see cref="F:Terraria.ID.NPCID.DD2Bartender"/>, <see cref="F:Terraria.ID.NPCID.Golfer"/>, <see cref="F:Terraria.ID.NPCID.GoldGoldfishWalker"/>, <see cref="F:Terraria.ID.NPCID.Seagull"/>, <see cref="F:Terraria.ID.NPCID.Grebe"/>, <see cref="F:Terraria.ID.NPCID.Rat"/>, <see cref="F:Terraria.ID.NPCID.ExplosiveBunny"/>, <see cref="F:Terraria.ID.NPCID.Turtle"/>, <see cref="F:Terraria.ID.NPCID.TurtleJungle"/>, <see cref="F:Terraria.ID.NPCID.SeaTurtle"/>, <see cref="F:Terraria.ID.NPCID.BestiaryGirl"/>, <see cref="F:Terraria.ID.NPCID.TownCat"/>, <see cref="F:Terraria.ID.NPCID.TownDog"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelAmethyst"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelTopaz"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelSapphire"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelEmerald"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelRuby"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelDiamond"/>, <see cref="F:Terraria.ID.NPCID.GemSquirrelAmber"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyAmethyst"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyTopaz"/>, <see cref="F:Terraria.ID.NPCID.GemBunnySapphire"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyEmerald"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyRuby"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyDiamond"/>, <see cref="F:Terraria.ID.NPCID.GemBunnyAmber"/>, <see cref="F:Terraria.ID.NPCID.TownBunny"/>, <see cref="F:Terraria.ID.NPCID.Princess"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Caster">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.FireImp"/>, <see cref="F:Terraria.ID.NPCID.GoblinSorcerer"/>, <see cref="F:Terraria.ID.NPCID.DarkCaster"/>, <see cref="F:Terraria.ID.NPCID.Tim"/>, <see cref="F:Terraria.ID.NPCID.RuneWizard"/>, <see cref="F:Terraria.ID.NPCID.RaggedCaster"/>, <see cref="F:Terraria.ID.NPCID.RaggedCasterOpenCoat"/>, <see cref="F:Terraria.ID.NPCID.Necromancer"/>, <see cref="F:Terraria.ID.NPCID.NecromancerArmored"/>, <see cref="F:Terraria.ID.NPCID.DiabolistRed"/>, <see cref="F:Terraria.ID.NPCID.DiabolistWhite"/>, <see cref="F:Terraria.ID.NPCID.DesertDjinn"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Spell">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BurningSphere"/>, <see cref="F:Terraria.ID.NPCID.ChaosBall"/>, <see cref="F:Terraria.ID.NPCID.WaterSphere"/>, <see cref="F:Terraria.ID.NPCID.VileSpit"/>, <see cref="F:Terraria.ID.NPCID.SolarFlare"/>, <see cref="F:Terraria.ID.NPCID.ChaosBallTim"/>, <see cref="F:Terraria.ID.NPCID.VileSpitEaterOfWorlds"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.CursedSkull">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.CursedSkull"/>, <see cref="F:Terraria.ID.NPCID.GiantCursedSkull"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SkeletronHead">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SkeletronHead"/>, <see cref="F:Terraria.ID.NPCID.DungeonGuardian"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SkeletronHand">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SkeletronHand"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.ManEater">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.ManEater"/>, <see cref="F:Terraria.ID.NPCID.Snatcher"/>, <see cref="F:Terraria.ID.NPCID.Clinger"/>, <see cref="F:Terraria.ID.NPCID.AngryTrapper"/>, <see cref="F:Terraria.ID.NPCID.FungiBulb"/>, <see cref="F:Terraria.ID.NPCID.GiantFungiBulb"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Bat">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Harpy"/>, <see cref="F:Terraria.ID.NPCID.CaveBat"/>, <see cref="F:Terraria.ID.NPCID.JungleBat"/>, <see cref="F:Terraria.ID.NPCID.Hellbat"/>, <see cref="F:Terraria.ID.NPCID.Demon"/>, <see cref="F:Terraria.ID.NPCID.VoodooDemon"/>, <see cref="F:Terraria.ID.NPCID.GiantBat"/>, <see cref="F:Terraria.ID.NPCID.Slimer"/>, <see cref="F:Terraria.ID.NPCID.IlluminantBat"/>, <see cref="F:Terraria.ID.NPCID.IceBat"/>, <see cref="F:Terraria.ID.NPCID.Lavabat"/>, <see cref="F:Terraria.ID.NPCID.GiantFlyingFox"/>, <see cref="F:Terraria.ID.NPCID.RedDevil"/>, <see cref="F:Terraria.ID.NPCID.VampireBat"/>, <see cref="F:Terraria.ID.NPCID.FlyingSnake"/>, <see cref="F:Terraria.ID.NPCID.SporeBat"/>, <see cref="F:Terraria.ID.NPCID.QueenSlimeMinionPurple"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.KingSlime">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.KingSlime"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Piranha">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Goldfish"/>, <see cref="F:Terraria.ID.NPCID.CorruptGoldfish"/>, <see cref="F:Terraria.ID.NPCID.Piranha"/>, <see cref="F:Terraria.ID.NPCID.Shark"/>, <see cref="F:Terraria.ID.NPCID.AnglerFish"/>, <see cref="F:Terraria.ID.NPCID.Arapaima"/>, <see cref="F:Terraria.ID.NPCID.BloodFeeder"/>, <see cref="F:Terraria.ID.NPCID.CrimsonGoldfish"/>, <see cref="F:Terraria.ID.NPCID.GoldGoldfish"/>, <see cref="F:Terraria.ID.NPCID.Pupfish"/>, <see cref="F:Terraria.ID.NPCID.Dolphin"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Vulture">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Vulture"/>, <see cref="F:Terraria.ID.NPCID.Raven"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Jellyfish">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BlueJellyfish"/>, <see cref="F:Terraria.ID.NPCID.PinkJellyfish"/>, <see cref="F:Terraria.ID.NPCID.GreenJellyfish"/>, <see cref="F:Terraria.ID.NPCID.Squid"/>, <see cref="F:Terraria.ID.NPCID.BloodJelly"/>, <see cref="F:Terraria.ID.NPCID.FungoFish"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Antlion">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Antlion"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.SpikeBall">
             <summary>
-            For the spike balls in the dungoen, not the projectile
+            Behavior: For the spike balls in the dungoen, not the projectile<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.SpikeBall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.BlazingWheel">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BlazingWheel"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.HoveringFighter">
             <summary>
-            Includes enemies such as Wraiths or Ghosts
+            Behavior: Includes enemies such as Wraiths or Ghosts<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.Pixie"/>, <see cref="F:Terraria.ID.NPCID.Wraith"/>, <see cref="F:Terraria.ID.NPCID.Gastropod"/>, <see cref="F:Terraria.ID.NPCID.IceElemental"/>, <see cref="F:Terraria.ID.NPCID.FloatyGross"/>, <see cref="F:Terraria.ID.NPCID.Reaper"/>, <see cref="F:Terraria.ID.NPCID.IchorSticker"/>, <see cref="F:Terraria.ID.NPCID.Ghost"/>, <see cref="F:Terraria.ID.NPCID.Poltergeist"/>, <see cref="F:Terraria.ID.NPCID.Drippler"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.EnchantedSword">
             <summary>
-            Includes Shadow Hammer and Crimson Axe
+            Behavior: Includes Shadow Hammer and Crimson Axe<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.CursedHammer"/>, <see cref="F:Terraria.ID.NPCID.EnchantedSword"/>, <see cref="F:Terraria.ID.NPCID.CrimsonAxe"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Bird">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Bird"/>, <see cref="F:Terraria.ID.NPCID.BirdBlue"/>, <see cref="F:Terraria.ID.NPCID.BirdRed"/>, <see cref="F:Terraria.ID.NPCID.GoldBird"/>, <see cref="F:Terraria.ID.NPCID.Owl"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Mimic">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Mimic"/>, <see cref="F:Terraria.ID.NPCID.PresentMimic"/>, <see cref="F:Terraria.ID.NPCID.IceMimic"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Unicorn">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Unicorn"/>, <see cref="F:Terraria.ID.NPCID.Wolf"/>, <see cref="F:Terraria.ID.NPCID.HeadlessHorseman"/>, <see cref="F:Terraria.ID.NPCID.Hellhound"/>, <see cref="F:Terraria.ID.NPCID.StardustSpiderSmall"/>, <see cref="F:Terraria.ID.NPCID.NebulaBeast"/>, <see cref="F:Terraria.ID.NPCID.Tumbleweed"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.WallOfFleshMouth">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.WallofFlesh"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.WallOfFleshEye">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.WallofFleshEye"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.TheHungry">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.TheHungry"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Retinazer">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Retinazer"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Spaazmatism">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Spazmatism"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SkeletronPrimeHead">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SkeletronPrime"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PrimeSaw">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PrimeSaw"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PrimeVice">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PrimeVice"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PrimeCannon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PrimeCannon"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PrimeLaser">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PrimeLaser"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.TheDestroyer">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.TheDestroyer"/>, <see cref="F:Terraria.ID.NPCID.TheDestroyerBody"/>, <see cref="F:Terraria.ID.NPCID.TheDestroyerTail"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Snowman">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SnowmanGangsta"/>, <see cref="F:Terraria.ID.NPCID.MisterStabby"/>, <see cref="F:Terraria.ID.NPCID.SnowBalla"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.GiantTortoise">
             <summary>
-            Also includes Srollers and Giant Shellies
+            Behavior: Also includes Srollers and Giant Shellies<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.GiantTortoise"/>, <see cref="F:Terraria.ID.NPCID.IceTortoise"/>, <see cref="F:Terraria.ID.NPCID.SolarSroller"/>, <see cref="F:Terraria.ID.NPCID.GiantShelly"/>, <see cref="F:Terraria.ID.NPCID.GiantShelly2"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Spider">
             <summary>
-            Used for the wall climbing varieants of spiders, the ground variant is <see cref="F:Terraria.ID.NPCAIStyleID.Fighter"/>
+            Behavior: Used for the wall climbing varieants of spiders, the ground variant is<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.WallCreeperWall"/>, <see cref="F:Terraria.ID.NPCID.JungleCreeperWall"/>, <see cref="F:Terraria.ID.NPCID.BlackRecluseWall"/>, <see cref="F:Terraria.ID.NPCID.BloodCrawlerWall"/>, <see cref="F:Terraria.ID.NPCID.DesertScorpionWall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Herpling">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Herpling"/>, <see cref="F:Terraria.ID.NPCID.Derpling"/>, <see cref="F:Terraria.ID.NPCID.ChatteringTeethBomb"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.LostGirl">
             <summary>
-            Only used for the Lost Girl, nymphs use <see cref="F:Terraria.ID.NPCAIStyleID.Fighter"/>
+            Behavior: Only used for the Lost Girl, nymphs use<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.LostGirl"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.QueenBee">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.QueenBee"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.FlyingFish">
             <summary>
-            Also used for Antlion Swarmers
+            Behavior: Also used for Antlion Swarmers<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.FlyingFish"/>, <see cref="F:Terraria.ID.NPCID.GiantFlyingAntlion"/>, <see cref="F:Terraria.ID.NPCID.FlyingAntlion"/>, <see cref="F:Terraria.ID.NPCID.EyeballFlyingFish"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.GolemBody">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Golem"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.GolemHead">
             <summary>
-            Only used for the unmoving golem head, the moving one is <see cref="F:Terraria.ID.NPCAIStyleID.FreeGolemHead"/>
+            Behavior: Only used for the unmoving golem head, the moving one is<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.GolemHead"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.GolemFist">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.GolemFistLeft"/>, <see cref="F:Terraria.ID.NPCID.GolemFistRight"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.FreeGolemHead">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.GolemHeadFree"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.AngryNimbus">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.AngryNimbus"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Spore">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.FungiSpore"/>, <see cref="F:Terraria.ID.NPCID.Spore"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Plantera">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Plantera"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PlanteraHook">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PlanterasHook"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PlanteraTentacle">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PlanterasTentacle"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.BrainOfCthulhu">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BrainofCthulhu"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Creeper">
             <summary>
-            For the Brain of Cthulhu's minions
+            Behavior: For the Brain of Cthulhu's minions<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.Creeper"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DungeonSpirit">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DungeonSpirit"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.MourningWood">
             <summary>
-            Includes Everscream
+            Behavior: Includes Everscream<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.MourningWood"/>, <see cref="F:Terraria.ID.NPCID.Everscream"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Pumpking">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Pumpking"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PumpkingScythe">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PumpkingBlade"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.IceQueen">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.IceQueen"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SantaNK1">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SantaNK1"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.ElfCopter">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.ElfCopter"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Flocko">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Flocko"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Firefly">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Firefly"/>, <see cref="F:Terraria.ID.NPCID.LightningBug"/>, <see cref="F:Terraria.ID.NPCID.Lavafly"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Butterfly">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Butterfly"/>, <see cref="F:Terraria.ID.NPCID.GoldButterfly"/>, <see cref="F:Terraria.ID.NPCID.HellButterfly"/>, <see cref="F:Terraria.ID.NPCID.EmpressButterfly"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.CritterWorm">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Worm"/>, <see cref="F:Terraria.ID.NPCID.TruffleWorm"/>, <see cref="F:Terraria.ID.NPCID.GoldWorm"/>, <see cref="F:Terraria.ID.NPCID.EnchantedNightcrawler"/>, <see cref="F:Terraria.ID.NPCID.Grubby"/>, <see cref="F:Terraria.ID.NPCID.Sluggy"/>, <see cref="F:Terraria.ID.NPCID.Buggy"/>, <see cref="F:Terraria.ID.NPCID.Maggot"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Snail">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Snail"/>, <see cref="F:Terraria.ID.NPCID.GlowingSnail"/>, <see cref="F:Terraria.ID.NPCID.MagmaSnail"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Duck">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Duck2"/>, <see cref="F:Terraria.ID.NPCID.DuckWhite2"/>, <see cref="F:Terraria.ID.NPCID.Seagull2"/>, <see cref="F:Terraria.ID.NPCID.Grebe2"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DukeFishron">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DukeFishron"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DukeFishronBubble">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DetonatingBubble"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Sharkron">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Sharkron"/>, <see cref="F:Terraria.ID.NPCID.Sharkron2"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.BubbleShield">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.ForceBubble"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.TeslaTurret">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MartianTurret"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Corite">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MartianDrone"/>, <see cref="F:Terraria.ID.NPCID.SolarCorite"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Rider">
             <summary>
-            Includes Drakomire Rider, Dutchman Cannon, Martian Saucer,
-            Martian Saucer Cannon, Martian Saucer Turret, and Scutlix Gunner
+            Behavior: Includes Drakomire Rider, Dutchman Cannon, Martian Saucer,Martian Saucer Cannon, Martian Saucer Turret, and Scutlix Gunner<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.ScutlixRider"/>, <see cref="F:Terraria.ID.NPCID.MartianSaucer"/>, <see cref="F:Terraria.ID.NPCID.MartianSaucerTurret"/>, <see cref="F:Terraria.ID.NPCID.MartianSaucerCannon"/>, <see cref="F:Terraria.ID.NPCID.SolarDrakomireRider"/>, <see cref="F:Terraria.ID.NPCID.PirateShipCannon"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MartianSaucer">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MartianSaucerCore"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MoonLordCore">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MoonLordCore"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MoonLordHand">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MoonLordHand"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MoonLordHead">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MoonLordHead"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MartianProbe">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MartianProbe"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.TrueEyeOfCthulhu">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MoonLordFreeEye"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MoonLeachClot">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MoonLordLeechBlob"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.LunaticDevote">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.CultistTablet"/>, <see cref="F:Terraria.ID.NPCID.CultistDevote"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.LunaticCultist">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.CultistBoss"/>, <see cref="F:Terraria.ID.NPCID.CultistBossClone"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.StarCell">
             <summary>
-            Includes Brain Sucklers and Deadly Spheres
+            Behavior: Includes Brain Sucklers and Deadly Spheres<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.StardustCellBig"/>, <see cref="F:Terraria.ID.NPCID.NebulaHeadcrab"/>, <see cref="F:Terraria.ID.NPCID.DeadlySphere"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.AncientVision">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.ShadowFlameApparition"/>, <see cref="F:Terraria.ID.NPCID.AncientCultistSquidhead"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.BiomeMimic">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BigMimicCorruption"/>, <see cref="F:Terraria.ID.NPCID.BigMimicCrimson"/>, <see cref="F:Terraria.ID.NPCID.BigMimicHallow"/>, <see cref="F:Terraria.ID.NPCID.BigMimicJungle"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Mothron">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Mothron"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.MothronEgg">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MothronEgg"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.BabyMothron">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.MothronSpawn"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.GraniteElemental">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.GraniteFlyer"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.TargetDummy">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.TargetDummy"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.FlyingDutchman">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PirateShip"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.CelestialPillar">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.LunarTowerVortex"/>, <see cref="F:Terraria.ID.NPCID.LunarTowerStardust"/>, <see cref="F:Terraria.ID.NPCID.LunarTowerNebula"/>, <see cref="F:Terraria.ID.NPCID.LunarTowerSolar"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SmallStarCell">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.StardustCellSmall"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.FlowInvader">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.StardustJellyfishBig"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.NebulaFloater">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.NebulaBrain"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Unused0">
             <summary>
-            Stays in place and shoots
+            Behavior: Stays in place and shoots<br/>
+            Used by: None
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.SolarFragment">
             <summary>
-            The fireball-like "projectiles" shot by the solar pillar
+            Behavior: The fireball-like "projectiles" shot by the solar pillar<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.SolarGoop"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.AncientLight">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.AncientLight"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.AncientDoom">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.AncientDoom"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SandElemental">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SandElemental"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.SandShark">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.SandShark"/>, <see cref="F:Terraria.ID.NPCID.SandsharkCorrupt"/>, <see cref="F:Terraria.ID.NPCID.SandsharkCrimson"/>, <see cref="F:Terraria.ID.NPCID.SandsharkHallow"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.Unknown1">
             <summary>
-            Instantly despawns
+            Behavior: Instantly despawns<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2AttackerTest"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DD2EterniaCrystal">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2EterniaCrystal"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DD2MysteriousPortal">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2LanePortal"/>
             </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.DD2Fighter">
             <summary>
-            Used for things such as Etherian Goblins
-            </summary>
+            Behavior: Used for things such as Etherian Goblins<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2GoblinT1"/>, <see cref="F:Terraria.ID.NPCID.DD2GoblinT2"/>, <see cref="F:Terraria.ID.NPCID.DD2GoblinT3"/>, <see cref="F:Terraria.ID.NPCID.DD2GoblinBomberT1"/>, <see cref="F:Terraria.ID.NPCID.DD2GoblinBomberT2"/>, <see cref="F:Terraria.ID.NPCID.DD2GoblinBomberT3"/>, <see cref="F:Terraria.ID.NPCID.DD2JavelinstT1"/>, <see cref="F:Terraria.ID.NPCID.DD2JavelinstT2"/>, <see cref="F:Terraria.ID.NPCID.DD2JavelinstT3"/>, <see cref="F:Terraria.ID.NPCID.DD2SkeletonT1"/>, <see cref="F:Terraria.ID.NPCID.DD2SkeletonT3"/>, <see cref="F:Terraria.ID.NPCID.DD2WitherBeastT2"/>, <see cref="F:Terraria.ID.NPCID.DD2WitherBeastT3"/>, <see cref="F:Terraria.ID.NPCID.DD2DrakinT2"/>, <see cref="F:Terraria.ID.NPCID.DD2DrakinT3"/>, <see cref="F:Terraria.ID.NPCID.DD2KoboldWalkerT2"/>, <see cref="F:Terraria.ID.NPCID.DD2KoboldWalkerT3"/>, <see cref="F:Terraria.ID.NPCID.DD2OgreT2"/>, <see cref="F:Terraria.ID.NPCID.DD2OgreT3"/>, <see cref="F:Terraria.ID.NPCID.GoblinShark"/>/// </summary>
         </member>
         <member name="F:Terraria.ID.NPCAIStyleID.DD2Flying">
             <summary>
-            Used for things such as Etherian Wyverns
+            Behavior: Used for things such as Etherian Wyverns<br/>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2WyvernT1"/>, <see cref="F:Terraria.ID.NPCID.DD2WyvernT2"/>, <see cref="F:Terraria.ID.NPCID.DD2WyvernT3"/>, <see cref="F:Terraria.ID.NPCID.DD2KoboldFlyerT2"/>, <see cref="F:Terraria.ID.NPCID.DD2KoboldFlyerT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DD2DarkMage">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2DarkMageT1"/>, <see cref="F:Terraria.ID.NPCID.DD2DarkMageT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DD2Betsy">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2Betsy"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.DD2LightningBug">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.DD2LightningBugT3"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Fairy">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.FairyCritterPink"/>, <see cref="F:Terraria.ID.NPCID.FairyCritterGreen"/>, <see cref="F:Terraria.ID.NPCID.FairyCritterBlue"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Balloon">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.WindyBalloon"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Dragonfly">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BlackDragonfly"/>, <see cref="F:Terraria.ID.NPCID.BlueDragonfly"/>, <see cref="F:Terraria.ID.NPCID.GreenDragonfly"/>, <see cref="F:Terraria.ID.NPCID.OrangeDragonfly"/>, <see cref="F:Terraria.ID.NPCID.RedDragonfly"/>, <see cref="F:Terraria.ID.NPCID.YellowDragonfly"/>, <see cref="F:Terraria.ID.NPCID.GoldDragonfly"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Ladybug">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.LadyBug"/>, <see cref="F:Terraria.ID.NPCID.GoldLadyBug"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.WaterStrider">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.WaterStrider"/>, <see cref="F:Terraria.ID.NPCID.GoldWaterStrider"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Dreadnautilus">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.BloodNautilus"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.Seahorse">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Seahorse"/>, <see cref="F:Terraria.ID.NPCID.GoldSeahorse"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.AngryDandelion">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.Dandelion"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.EmpressOfLight">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.HallowBoss"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.QueenSlime">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.QueenSlimeBoss"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCAIStyleID.PiratesCurse">
+            <summary>
+            Used by: <see cref="F:Terraria.ID.NPCID.PirateGhost"/>
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.NPCID.Sets.SpawnFromLastEmptySlot">
+            <summary>
+            Whether or not the spawned NPC will start looking for a suitable slot from the end of <seealso cref="F:Terraria.Main.npc"/>, ignoring the Start parameter of <see cref="M:Terraria.NPC.NewNPC(System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>.
+            Useful if you have a multi-segmented boss and want its parts to draw over the main body (body will be in this set).
             </summary>
         </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Arrow">
@@ -1612,6 +2170,24 @@
             <param name="index">Item type</param>
             <param name="animation">Draw animation</param>
         </member>
+        <member name="M:Terraria.Main.StopRain">
+            <summary>
+            Stops rain. Should be called on the server (netMode != client) - vanilla syncs it using <see cref="M:Terraria.Main.SyncRain"/>.
+            <br>You can also call this on the client to update visuals immediately, assuming it was called serverside aswell (Journey Mode rain slider does this).</br>
+            </summary>
+        </member>
+        <member name="M:Terraria.Main.StartRain">
+            <summary>
+            Starts rain for a random amount of time. Should be called on the server (netMode != client) - vanilla syncs it using <see cref="M:Terraria.Main.SyncRain"/>.
+            <br>You can also call this on the client to update visuals immediately, assuming it was/will be called serverside aswell (Journey Mode rain slider does this).</br>
+            </summary>
+        </member>
+        <member name="M:Terraria.Main.SyncRain">
+            <summary>
+            Syncs rain state if <see cref="M:Terraria.Main.StartRain"/> or <see cref="M:Terraria.Main.StopRain"/> were called in the same tick and caused a change to <seealso cref="F:Terraria.Main.maxRaining"/>.
+            <br>Can be called on any side, but only the server will actually sync it.</br>
+            </summary>
+        </member>
         <member name="T:Terraria.ModLoader.AutoloadAttribute">
             <summary>
             Allows for types to be autoloaded and unloaded.
@@ -2351,38 +2927,6 @@
              <param name="equipSlot"></param>
              <param name="robes"></param>
         </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHands(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when this body equipment texture is worn. By default both flags will be false. Note that if drawHands is false, the arms will not be drawn either. If there is an associated ModItem, by default this will call that ModItem's DrawHands.
-            </summary>
-            <param name="drawHands"></param>
-            <param name="drawArms"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHair(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair draws when this head equipment texture is worn. By default both flags will be false. If there is an associated ModItem, by default this will call that ModItem's DrawHair.
-            </summary>
-            <param name="drawHair"></param>
-            <param name="drawAltHair"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawHead">
-            <summary>
-            Return false to hide the player's head when this head equipment texture is worn. By default this will return the associated ModItem's DrawHead, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawBody">
-            <summary>
-            Return false to hide the player's body when this body equipment texture is worn. By default this will return the associated ModItem's DrawBody, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.EquipTexture.DrawLegs">
-            <summary>
-            Return false to hide the player's legs when this leg or shoe equipment texture is worn. By default this will return the associated ModItem's DrawLegs, or true if there is no associated ModItem.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Terraria.ModLoader.EquipTexture.DrawArmorColor(Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Allows you to modify the colors in which this armor texture and surrounding accessories are drawn, in addition to which glow mask and in what color is drawn. By default this will call the associated ModItem's DrawArmorColor if there is an associated ModItem.
@@ -2808,17 +3352,37 @@
             <param name="damage">The damage of the projectile shot</param>
             <param name="knockback">The speed of the projectile shot</param>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.ConsumeAmmo(Terraria.Item,Terraria.Player)">
+        <member name="M:Terraria.ModLoader.GlobalItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)">
             <summary>
-            Whether or not ammo will be consumed upon usage. Called both by the gun and by the ammo; if at least one returns false then the ammo will not be used. By default returns true.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            Whether or not ammo will be consumed upon usage. Called by the weapon; if at least one of this and <see cref="M:Terraria.ModLoader.GlobalItem.CanBeConsumedAsAmmo(Terraria.Item,Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            If false is returned, the <see cref="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)"/> hook is never called.
             </summary>
+            <param name="weapon">The item that the player is using</param>
+            <param name="player">The player using the item</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.CanBeConsumedAsAmmo(Terraria.Item,Terraria.Player)">
+            <summary>
+            Whether or not ammo will be consumed upon usage. Called by the ammo; if at least one of this and <see cref="M:Terraria.ModLoader.GlobalItem.CanConsumeAmmo(Terraria.Item,Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            If false is returned, the <see cref="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)"/> hook is never called.
+            </summary>
+            <param name="ammo">The ammo item</param>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.OnConsumeAmmo(Terraria.Item,Terraria.Player)">
             <summary>
-            Allows you to make things happen when ammo is consumed. Called both by the gun and by the ammo.
-            Called before the ammo stack is reduced.
+            Allows you to make things happen when ammo is consumed. Called by the weapon.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
+            <param name="weapon">The item that the player is using</param>
+            <param name="player">The player consuming the ammo</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.OnConsumedAsAmmo(Terraria.Item,Terraria.Player)">
+            <summary>
+            Allows you to make things happen when ammo is consumed. Called by the ammo.
+            <br>Called before the ammo stack is reduced.</br>
+            </summary>
+            <param name="ammo">The ammo item</param>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.CanShoot(Terraria.Item,Terraria.Player)">
             <summary>
@@ -3030,7 +3594,7 @@
             <summary>
             Allows you to make vanilla bags drop your own items and stop the default items from being dropped. 
             Return false to stop the default items from being dropped; returns true by default. 
-            Context will either be "present", "bossBag", "crate", "lockBox", "herbBag", or "goodieBag". 
+            Context will either be "present", "bossBag", "crate", "lockBox", "obsidianLockBox", "herbBag", or "goodieBag". 
             For boss bags and crates, arg will be set to the type of the item being opened.
             This method is also called for modded bossBags that are properly implemented.
             
@@ -3041,7 +3605,7 @@
             <summary>
             Allows you to make vanilla bags drop your own items in addition to the default items.
             This method will not be called if any other GlobalItem returns false for PreOpenVanillaBag.
-            Context will either be "present", "bossBag", "crate", "lockBox", "herbBag", or "goodieBag".
+            Context will either be "present", "bossBag", "crate", "lockBox", "obsidianLockBox", "herbBag", or "goodieBag".
             For boss bags and crates, arg will be set to the type of the item being opened.
             This method is also called for modded bossBags that are properly implemented.
             
@@ -3075,42 +3639,6 @@
             <summary>
             This hook gets called immediately after an item gets reforged by the Goblin Tinkerer.
             Useful for modifying modded data based on the reforge result.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHands(System.Int32,System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when a body armor is worn.
-            Note that if drawHands is false, the arms will not be drawn either.
-            "body" is the player's associated body equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHair(System.Int32,System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair will be drawn when a head armor is worn.
-            "head" is the player's associated head equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawHead(System.Int32)">
-            <summary>
-            Return false to hide the player's head when a head armor is worn. Returns true by default.
-            "head" is the player's associated head equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawBody(System.Int32)">
-            <summary>
-            Return false to hide the player's body when a body armor is worn. Returns true by default.
-            "body" is the player's associated body equipment texture.
-            This method is not instanced.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.DrawLegs(System.Int32,System.Int32)">
-            <summary>
-            Return false to hide the player's legs when a leg armor or shoe accessory is worn. Returns true by default.
-            "legs" and "shoes" are the player's associated legs and shoes equipment textures.
-            This method is not instanced.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.DrawArmorColor(Terraria.ModLoader.EquipType,System.Int32,Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
@@ -3312,20 +3840,23 @@
             Allows you to modify all the tooltips that display for the given item. See here for information about TooltipLine.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.NeedsSaving(Terraria.Item)">
+        <member name="M:Terraria.ModLoader.GlobalItem.SaveData(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Whether or not the given item needs to save custom data. Returning false will save on the memory used in saving an item, but returning true is necessary in order to save data across all items or vanilla items. Returns false by default. Note that the return value of this hook must be deterministic (randomness is not allowed).
+            Allows you to save custom data for this item.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
+            <param name="item"> The item. </param>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Save(Terraria.Item)">
+        <member name="M:Terraria.ModLoader.GlobalItem.LoadData(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for the given item. Only called when NeedsCustomSaving returns true. Returns false by default.
+            Allows you to load custom data that you have saved for this item.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Load(Terraria.Item,Terraria.ModLoader.IO.TagCompound)">
-            <summary>
-            Allows you to load custom data that you have saved for the given item.
-            </summary>
+            <param name="item"> The item. </param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.NetSend(Terraria.Item,System.IO.BinaryWriter)">
             <summary>
@@ -4624,14 +5155,14 @@
             Calls ModItem.PickAmmo, then all GlobalItem.PickAmmo hooks.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.ConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
+        <member name="M:Terraria.ModLoader.ItemLoader.CanConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
             <summary>
-            Calls ModItem.ConsumeAmmo for the weapon, ModItem.ConsumeAmmo for the ammo, then each GlobalItem.ConsumeAmmo hook for the weapon and ammo, until one of them returns false. If all of them return true, returns true.
+            Calls <see cref="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)"/> for the weapon, <see cref="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)"/> for the ammo, then each corresponding hook for the weapon and ammo, until one of them returns false. If all of them return true, returns true.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.OnConsumeAmmo(Terraria.Item,Terraria.Item,Terraria.Player)">
             <summary>
-            Calls ModItem.OnConsumeAmmo for the weapon, ModItem.OnConsumeAmmo for the ammo, then each GlobalItem.OnConsumeAmmo hook for the weapon and ammo.
+            Calls <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> for the weapon, <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> for the ammo, then each corresponding hook for the weapon and ammo.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.CanShoot(Terraria.Item,Terraria.Player)">
@@ -4791,12 +5322,12 @@
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.IsModBossBag(Terraria.Item)">
             <summary>
-            Returns whether ModItem.bossBagNPC is greater than 0. Returns false if item is not a modded item.
+            Returns whether ModItem.BossBagNPC is greater than 0. Returns false if item is not a modded item.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.OpenBossBag(System.Int32,Terraria.Player,System.Int32@)">
             <summary>
-            If the item is a modded item and ModItem.bossBagNPC is greater than 0, calls ModItem.OpenBossBag and sets npc to ModItem.bossBagNPC.
+            If the item is a modded item and ModItem.BossBagNPC is greater than 0, calls ModItem.OpenBossBag and sets npc to ModItem.BossBagNPC.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.PreOpenVanillaBag(System.String,Terraria.Player,System.Int32)">
@@ -4829,36 +5360,6 @@
         <member name="M:Terraria.ModLoader.ItemLoader.PostReforge(Terraria.Item)">
             <summary>
             Calls ModItem.PostReforge, then all GlobalItem.PostReforge hooks.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHands(Terraria.Player,System.Boolean@,System.Boolean@)">
-            <summary>
-            Calls the item's body equipment texture's DrawHands hook, then all GlobalItem.DrawHands hooks.
-            "body" is the player's associated body equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHair(Terraria.Player,System.Boolean@,System.Boolean@)">
-            <summary>
-            Calls the item's head equipment texture's DrawHair hook, then all GlobalItem.DrawHair hooks.
-            "head" is the player's associated head equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawHead(Terraria.Player)">
-            <summary>
-            Calls the item's head equipment texture's DrawHead hook, then all GlobalItem.DrawHead hooks, until one of them returns false. Returns true if none of them return false.
-            "head" is the player's associated head equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawBody(Terraria.Player)">
-            <summary>
-            Calls the item's body equipment texture's DrawBody hook, then all GlobalItem.DrawBody hooks, until one of them returns false. Returns true if none of them return false.
-            "body" is the player's associated body equipment texture.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ItemLoader.DrawLegs(Terraria.Player)">
-            <summary>
-            Calls the item's leg equipment texture's DrawLegs hook, then the item's shoe equipment texture's DrawLegs hook, then all GlobalItem.DrawLegs hooks, until one of them returns false. Returns true if none of them return false.
-            "legs" and "shoes" are the player's associated legs and shoes equipment textures.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.DrawArmorColor(Terraria.ModLoader.EquipType,System.Int32,Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
@@ -5163,6 +5664,13 @@
             </summary>
             <param name="type">The type.</param>
             <param name="name">The name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.Mod.GetFileNames">
+            <summary>
+            Retrieves the names of every file packaged into this mod.
+            Note that this includes extensions, and for images the extension will always be <c>.rawimg</c>.
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.Mod.GetFileBytes(System.String)">
@@ -6184,20 +6692,35 @@
             <param name="damage">The damage of the projectile shot</param>
             <param name="knockback">The speed of the projectile shot</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.ConsumeAmmo(Terraria.Player)">
+        <member name="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)">
             <summary>
-            Whether or not ammo will be consumed upon usage. Called both by the gun and by the ammo; if at least one returns false then the ammo will not be used. By default returns true.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            Whether or not ammo will be consumed upon usage. Called both by the weapon; if at least one of this and <see cref="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> and <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> hooks are never called.</br>
             </summary>
-            <param name="player">The player.</param>
+            <param name="player">The player using the weapon</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.CanBeConsumedAsAmmo(Terraria.Player)">
+            <summary>
+            Whether or not ammo will be consumed upon usage. Called by the ammo; if at least one of this and <see cref="M:Terraria.ModLoader.ModItem.CanConsumeAmmo(Terraria.Player)"/> returns false then the ammo will not be used. By default returns true.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)"/> and <see cref="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)"/> hooks are never called.</br>
+            </summary>
+            <param name="player">The player consuming the ammo</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.OnConsumeAmmo(Terraria.Player)">
             <summary>
-            Allows you to makes things happen when ammo is consumed. Called both by the gun and by the ammo.
-            Called before the ammo stack is reduced.
+            Allows you to make things happen when ammo is consumed. Called by the weapon.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
-            <param name="player">The player.</param>
+            <param name="player">The player using the weapon</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModItem.OnConsumedAsAmmo(Terraria.Player)">
+            <summary>
+            Allows you to make things happen when ammo is consumed. Called by the ammo.
+            <br>Called before the ammo stack is reduced.</br>
+            </summary>
+            <param name="player">The player consuming the ammo</param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.CanShoot(Terraria.Player)">
             <summary>
@@ -6481,38 +7004,6 @@
             Useful for modifying modded data based on the reforge result.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHands(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the skin/shirt on the player's arms and hands are drawn when this body armor is worn. By default both flags will be false. Note that if drawHands is false, the arms will not be drawn either. Also note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <param name="drawHands">if set to <c>true</c> [draw hands].</param>
-            <param name="drawArms">if set to <c>true</c> [draw arms].</param>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHair(System.Boolean@,System.Boolean@)">
-            <summary>
-            Allows you to determine whether the player's hair or alt (hat) hair draws when this head armor is worn. By default both flags will be false. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <param name="drawHair">if set to <c>true</c> [draw hair].</param>
-            <param name="drawAltHair">if set to <c>true</c> [draw alt hair].</param>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawHead">
-            <summary>
-            Return false to hide the player's head when this head armor is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawBody">
-            <summary>
-            Return false to hide the player's body when this body armor is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.DrawLegs">
-            <summary>
-            Return false to hide the player's legs when this leg armor or shoe accessory is worn. Returns true by default. Note that this hook is only ever called through this item's associated equipment texture.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Terraria.ModLoader.ModItem.DrawArmorColor(Terraria.Player,System.Single,Microsoft.Xna.Framework.Color@,System.Int32@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Allows you to modify the colors in which this armor and surrounding accessories are drawn, in addition to which glow mask and in what color is drawn. Note that this hook is only ever called through this item's associated equipment texture.
@@ -6732,17 +7223,21 @@
             The type of NPC that drops this boss bag. Used to determine how many coins this boss bag contains. Defaults to 0, which means this isn't a boss bag.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.Save">
+        <member name="M:Terraria.ModLoader.ModItem.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this item. Returns null by default.
+            Allows you to save custom data for this item.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.ModLoader.ModItem.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to load custom data that you have saved for this item.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-            <param name="tag">The tag.</param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -6845,6 +7340,10 @@
         <member name="M:Terraria.ModLoader.ModLoader.TryGetMod(System.String,Terraria.ModLoader.Mod@)">
             <summary> Safely attempts to get the instance of the Mod with the specified name. </summary>
             <returns> Whether or not the requested instance has been found. </returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModLoader.HasMod(System.String)">
+            <summary> Safely checks whether or not a mod with the specified internal name is currently loaded. </summary>
+            <returns> Whether or not a mod with the provided internal name has been found. </returns>
         </member>
         <member name="F:Terraria.ModLoader.ModLoader._enabledMods">
             <summary>A cached list of enabled mods (not necessarily currently loaded or even installed), mirroring the enabled.json file.</summary>
@@ -7598,17 +8097,21 @@
             Currently never gets called, so this is useless.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.Save">
+        <member name="M:Terraria.ModLoader.ModPlayer.SaveData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this player. Returns null by default.
+            Allows you to save custom data for this player.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
-            <returns></returns>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.Load(Terraria.ModLoader.IO.TagCompound)">
+        <member name="M:Terraria.ModLoader.ModPlayer.LoadData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to load custom data you have saved for this player.
+            Allows you to load custom data that you have saved for this player.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
-            <param name="tag"></param>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.PreSavePlayer">
             <summary>
@@ -7897,22 +8400,22 @@
             <param name="item">The item</param>
             <param name="crit">The crit chance, ranging from 0 to 100</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.ConsumeAmmo(Terraria.Item,Terraria.Item)">
+        <member name="M:Terraria.ModLoader.ModPlayer.CanConsumeAmmo(Terraria.Item,Terraria.Item)">
             <summary>
             Whether or not ammo will be consumed upon usage. Return false to stop the ammo from being depleted. Returns true by default.
-            If false is returned, the OnConsumeAmmo hook is never called.
+            <br>If false is returned, the <see cref="M:Terraria.ModLoader.ModPlayer.OnConsumeAmmo(Terraria.Item,Terraria.Item)"/> hook is never called.</br>
             </summary>
-            <param name="weapon"></param>
-            <param name="ammo"></param>
+            <param name="weapon">The item that is using this ammo</param>
+            <param name="ammo">The ammo item</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.OnConsumeAmmo(Terraria.Item,Terraria.Item)">
             <summary>
             Allows you to make things happen when ammo is consumed.
-            Called before the ammo stack is reduced.
+            <br>Called before the ammo stack is reduced.</br>
             </summary>
-            <param name="weapon"></param>
-            <param name="ammo"></param>
+            <param name="weapon">The item that is using this ammo</param>
+            <param name="ammo">The ammo item</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.CanShoot(Terraria.Item)">
@@ -8938,15 +9441,22 @@
             <param name="tileUpdateRate">The speed at which tiles in the world update in min/sec.</param>
             <param name="eventUpdateRate">The speed at which various events in the world (weather changes, fallen star/fairy spawns, etc.) update in min/sec.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModSystem.SaveWorldData">
+        <member name="M:Terraria.ModLoader.ModSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
-            Allows you to save custom data for this system in the current world. Useful for things like saving world specific flags. For example, if your mod adds a boss and you want certain NPC to only spawn once it has been defeated, this is where you would store the information that that boss has been defeated in this world. Returns null by default.
+            Allows you to save custom data for this system in the current world. Useful for things like saving world specific flags. 
+            <br/>For example, if your mod adds a boss and you want certain NPC to only spawn once it has been defeated, this is where you would store the information that that boss has been defeated in this world.
+            <br/>
+            <br/><b>NOTE:</b> The provided tag is always empty by default, and is provided as an argument only for the sake of convenience and optimization.
+            <br/><b>NOTE:</b> Try to only save data that isn't default values.
             </summary>
+            <param name="tag"> The TagCompound to save data into. Note that this is always empty by default, and is provided as an argument only for the sake of convenience and optimization. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)">
             <summary>
             Allows you to load custom data you have saved for this system in the currently loading world.
+            <br/><b>Try to write defensive loading code that won't crash if something's missing.</b>
             </summary>
+            <param name="tag"> The TagCompound to load data from. </param>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.NetSend(System.IO.BinaryWriter)">
             <summary>
@@ -9402,11 +9912,6 @@
             Would make the base method internal if not for patch size
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModTileEntity.ValidTile(System.Int32,System.Int32)">
-            <summary>
-            Whether or not this tile entity is allowed to survive at the given coordinates. You should check whether the tile is active, as well as the tile's type and frame.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.ModTileEntity.Hook_AfterPlacement(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             This method does not get called by tModLoader, and is only included for you convenience so you do not have to cast the result of Mod.GetTileEntity.
@@ -9430,6 +9935,11 @@
         <member name="M:Terraria.ModLoader.ModTileEntity.OnKill">
             <summary>
             This method only gets called in the Kill method. If you plan to use that, you can put code here to make things happen when it is called.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModTileEntity.IsTileValidForEntity(System.Int32,System.Int32)">
+            <summary>
+            Whether or not this tile entity is allowed to survive at the given coordinates. You should check whether the tile is active, as well as the tile's type and frame.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.ModType">
@@ -10241,6 +10751,12 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "P:Terraria.NPC.BossBar" -->
+        <member name="M:Terraria.NPC.HasBuff(System.Int32)">
+            <summary> Returns whether or not this NPC currently has a (de)buff of the provided type. </summary>
+        </member>
+        <member name="M:Terraria.NPC.HasBuff``1">
+            <inheritdoc cref="M:Terraria.NPC.HasBuff(System.Int32)" />
+        </member>
         <member name="M:Terraria.NPC.GetGlobalNPC``1(System.Boolean)">
             <summary> Gets the instance of the specified GlobalNPC type. This will throw exceptions on failure. </summary>
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
@@ -10281,6 +10797,12 @@
             <exception cref="T:System.Collections.Generic.KeyNotFoundException"/>
             <exception cref="T:System.IndexOutOfRangeException"/>
             <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.Player.HasBuff(System.Int32)">
+            <summary> Returns whether or not this Player currently has a (de)buff of the provided type. </summary>
+        </member>
+        <member name="M:Terraria.Player.HasBuff``1">
+            <inheritdoc cref="M:Terraria.Player.HasBuff(System.Int32)" />
         </member>
         <member name="M:Terraria.Player.GetCritChance``1">
             <summary>
@@ -10345,6 +10867,7 @@
             Calculates whether or not the player is in the purity/forest biome.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.Program.EnsureMinimumStackSizeOnThreads" -->
         <!-- Badly formed XML comment ignored for member "P:Terraria.Projectile.DamageType" -->
         <member name="M:Terraria.Projectile.GetGlobalProjectile``1(System.Boolean)">
             <summary> Gets the instance of the specified GlobalProjectile type. This will throw exceptions on failure. </summary>

@@ -1,4 +1,4 @@
-﻿using GearonArsenalMod.Item.Materials;
+﻿using GearonArsenalMod.Materials;
 using System;
 using System.Collections.Generic;
 using System.Linq;
