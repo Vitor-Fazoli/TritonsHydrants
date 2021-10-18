@@ -27,13 +27,13 @@ namespace GearonArsenalMod
     }
     internal class BerserkerSystem : ModSystem{
 
-        internal BerserkerBar barActive;
+        internal BerserkerUI barActive;
 
         private UserInterface _barActive;
 
         public override void Load(){
 
-            barActive = new BerserkerBar();
+            barActive = new BerserkerUI();
             barActive.Activate();
             _barActive = new UserInterface();
             _barActive.SetState(barActive);

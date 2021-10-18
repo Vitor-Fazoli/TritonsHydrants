@@ -27,7 +27,7 @@ namespace GearonArsenalMod.Abstract
         protected int timeMax = 10;
         public int aggro = 10;
         public int defense = 4;
-        public int buff = ModContent.BuffType<CursedSkull>();
+        public int buff = ModContent.BuffType<WarriorFlame>();
         protected Color color = default;
         #endregion
 

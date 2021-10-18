@@ -10,7 +10,7 @@ using Terraria.UI;
 
 namespace GearonArsenalMod.Interface
 {
-    class BerserkerBar : UIState
+    class BerserkerUI : UIState
     {
         private const float Precent = 0f;
         private UIElement area;
