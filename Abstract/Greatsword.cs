@@ -1,5 +1,8 @@
+using GearonArsenalMod.Buffs;
+using GearonArsenalMod.Item;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -13,17 +16,18 @@ namespace GearonArsenalMod.Abstract
         public override string Texture => (GetType().Namespace + "." + Name.Remove(Name.Length - 1, 1)).Replace('.', '/');
 
         private bool soundBreak = false;
-        
 
         #region Greatsword Attributes
-        protected int dmg = 10;
-        protected const int knk = 1;
+        protected int gDamage;
+        protected int gKnockback = 1;
         protected float cooldown;
-        protected int proj = ModContent.ProjectileType<Slash>();
+        protected int slash = ModContent.ProjectileType<Slash>();
         protected int wEffect = 16;
-        protected float velPlayer = 0;
+        protected float speedPlayer = 0;
         protected int timeMax = 10;
-        protected int rare = 1;
+        public int aggro = 10;
+        public int defense = 4;
+        public int buff = ModContent.BuffType<CursedSkull>();
         protected Color color = default;
         #endregion
 
@@ -33,17 +37,17 @@ namespace GearonArsenalMod.Abstract
             Projectile.DamageType = DamageClass.Melee;
         }
 
-        public override void Load()
-        {
+        public override void Load(){
+
             Player player = Main.player[Projectile.owner];
 
             Projectile.position.Y = player.position.Y - 62;
         }
-        public override void AI()
-        {
+        public override void AI(){
+
             #region Basic Attributes
             Player player = Main.player[Projectile.owner];
-            ModPlayer modPlayer = player.GetModPlayer<ModPlayer>();
+            GreatswordPlayer modPlayer = player.GetModPlayer<GreatswordPlayer>();
             bool channeling = player.channel && !player.noItems && !player.CCed && !player.dead;
             float speed = player.meleeSpeed / 2;
             #endregion
@@ -79,14 +83,14 @@ namespace GearonArsenalMod.Abstract
             }
 
 
-            float speedProj = 30f;
+            float speedProj = 40f;
             Vector2 move = moveTo - Projectile.Center;
             float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)
             {
                 move *= speedProj / magnitude;
             }
-            float turnResistance = 2f;
+            float turnResistance = 1f;
             move = (Projectile.velocity * turnResistance + move) / (turnResistance + 1f);
             magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)
@@ -97,11 +101,11 @@ namespace GearonArsenalMod.Abstract
             #endregion
 
             #region Channeling
-            if (channeling && Projectile.ai[0] >= (cooldown - modPlayer.speedCDR))
+            if (channeling && Projectile.ai[0] >= (int)(cooldown * player.meleeSpeed))
             {
                 DustEffect(wEffect);
 
-                player.velocity.X *= 0.99f * (1 + velPlayer);
+                player.velocity.X *= 0.99f * (1 + speedPlayer);
 
 
                 if (soundBreak == false)
@@ -110,13 +114,13 @@ namespace GearonArsenalMod.Abstract
                     SoundEngine.PlaySound(SoundID.Item, player.position, 28);
                 }
 
-                if (Projectile.ai[0] >= cooldown + (timeMax * 2))
+                if (Projectile.ai[0] >= (int)(cooldown * player.meleeSpeed) + (timeMax * 2))
                 {
-                    Projectile.ai[0] = cooldown + (timeMax * 2);
+                    Projectile.ai[0] = (int)(cooldown * player.meleeSpeed) + (timeMax * 2);
                 }
             }
 
-            if (Projectile.ai[0] <= cooldown + (timeMax * 2))
+            if (Projectile.ai[0] <= (int)(cooldown * player.meleeSpeed) + (timeMax * 2))
             {
                 Projectile.ai[0] += speed;
                 Projectile.timeLeft = 122;
@@ -124,7 +128,7 @@ namespace GearonArsenalMod.Abstract
 
             player.heldProj = Projectile.whoAmI;
 
-            if (Projectile.ai[1] < cooldown)
+            if (Projectile.ai[1] < (int)cooldown * player.meleeSpeed)
             {
                 player.itemTime = (int)((45f / (speed * 2)) - ((Projectile.ai[1] / 15f) * 2 / speed));
                 player.itemAnimation = (int)((45f / (speed * 2)) - ((Projectile.ai[1] / 15f) * 2 / speed));
@@ -148,17 +152,17 @@ namespace GearonArsenalMod.Abstract
             #region End of Channeling / Projectile Kill
             if (!channeling)
             {
-                if (Projectile.ai[0] <= (cooldown - modPlayer.speedCDR))
+                if (Projectile.ai[0] <= (int)(cooldown * player.meleeSpeed))
                 {
                     modPlayer.slayerPower = 0;
                     AnimationSlash(2, 1);
-                    ProjectileSlash((dmg * 3) / 5, proj, knk);
+                    ProjectileSlash((int)((gDamage * 0.6) * (float)player.GetDamage(DamageClass.Melee)), slash, gKnockback);
                 }
-                else if(Projectile.ai[0] > (cooldown - modPlayer.speedCDR))
+                else if (Projectile.ai[0] > (int)(cooldown * player.meleeSpeed))
                 {
                     modPlayer.slayerPower++;
                     AnimationSlash(2, 60);
-                    ProjectileSlash((int)(dmg * 2.5f), proj, knk * 7);
+                    ProjectileSlash((int)((gDamage * 2.5) * (float)player.GetDamage(DamageClass.Melee)), slash, gKnockback * 7);
                 }
             }
             #endregion
@@ -167,6 +171,8 @@ namespace GearonArsenalMod.Abstract
         {
             Projectile.alpha = 50;
         }
+
+        #region functions of Greatsword
         private void AnimationSlash(int idSound, int type)
         {
             Player player = Main.player[Projectile.owner];
@@ -184,23 +190,29 @@ namespace GearonArsenalMod.Abstract
         private void DustEffect(int idDust)
         {
             Player player = Main.player[Projectile.owner];
-            
 
-            int num1 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, +5f, -1,100,color);
+
+            int num1 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, +5f, -1, 100, color);
             Main.dust[num1].scale = 1f;
             Main.dust[num1].noGravity = true;
 
-            int num2 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, -5f, -1,100,color);
+            int num2 = Dust.NewDust(new Vector2(player.position.X, player.Center.Y + 17), (player.width / 2), (player.height / 5), idDust, -5f, -1, 100, color);
             Main.dust[num2].scale = 1f;
             Main.dust[num2].noGravity = true;
         }
+        #endregion
+        
         public int GetDmg()
         {
-            return dmg;
+            return gDamage;
         }
-        public static int GetKnk()
+        public int GetKnk()
         {
-            return knk;
+            return gKnockback;
+        }
+        public float GetCooldown()
+        {
+            return cooldown;
         }
     }
 }

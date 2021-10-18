@@ -25,32 +25,32 @@ namespace GearonArsenalMod
             
         }
     }
-    internal class BerserkerSystem : ModSystem
-    {
-        internal BarActive barActive;
+    internal class BerserkerSystem : ModSystem{
+
+        internal BerserkerBar barActive;
 
         private UserInterface _barActive;
 
-        public override void Load()
-        {
-            barActive = new BarActive();
+        public override void Load(){
+
+            barActive = new BerserkerBar();
             barActive.Activate();
             _barActive = new UserInterface();
             _barActive.SetState(barActive);
         }
-        public override void UpdateUI(GameTime gameTime)
-        {
+        public override void UpdateUI(GameTime gameTime){
+
             _barActive?.Update(gameTime);
         }
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers){
+
             int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex != -1)
-            {
+            if (mouseTextIndex != -1){
+
                 layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
                     "YourMod: A Description",
-                    delegate
-                    {
+                    delegate{
+
                         _barActive.Draw(Main.spriteBatch, new GameTime());
                         return true;
                     },

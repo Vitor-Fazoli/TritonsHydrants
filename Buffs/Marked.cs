@@ -15,6 +15,7 @@ namespace GearonArsenalMod.Buffs
 
             npc.defense /= 2;
 
+
             effectBuff(npc);
         }
         public override void Update(Player player, ref int buffIndex){

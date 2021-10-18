@@ -98,7 +98,7 @@ namespace GearonArsenalMod.NPCs
 					continue;
 				}
 
-				if (player.inventory.Any(item => item.type == ModContent.ItemType<CopperGreatsword>() || item.type == ModContent.ItemType<TinGreatsword>())) {
+				if (player.inventory.Any(item => item.type == ModContent.ItemType<IronClaymore>() || item.type == ModContent.ItemType<IronClaymore>())) {
 					return true;
 				}
 			}
@@ -254,7 +254,7 @@ namespace GearonArsenalMod.NPCs
         //    }
         //}
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-			 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperGreatsword>(), 1));
+			 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IronClaymore>(), 1));
 		}
 
 		public override bool CanGoToStatue(bool toKingStatue) => true;

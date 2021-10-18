@@ -17,7 +17,6 @@ namespace GearonArsenalMod.Tiles
             DisplayName.SetDefault("Ancestor Forge");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
-
         public override void SetDefaults()
         {
             Item.width = 48;

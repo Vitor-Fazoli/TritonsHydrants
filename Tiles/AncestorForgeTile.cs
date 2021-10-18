@@ -30,7 +30,6 @@ namespace GearonArsenalMod.Tiles
 			name.SetDefault("Ancestor Forge");
 			AddMapEntry(new Color(200, 200, 200), name);
 		}
-
-		public override void NumDust(int x, int y, bool fail, ref int num) => num = fail ? 1 : 3;
+        public override void NumDust(int x, int y, bool fail, ref int num) => num = fail ? 1 : 3;
     }
 }

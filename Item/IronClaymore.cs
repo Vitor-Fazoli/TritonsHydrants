@@ -7,22 +7,24 @@ using GearonArsenalMod.Buffs;
 
 namespace GearonArsenalMod.Item
 {
-	public class CopperGreatsword : ItemGreatsword{
+	public class IronClaymore : ItemGreatsword{
 
 		public override void SetStaticDefaults(){
 
-			DisplayName.SetDefault("Copper Greatsword");
+			DisplayName.SetDefault("Iron Claymore");
+			DisplayName.AddTranslation(8, "Espada Grande de Cobre");
+
 			Tooltip.SetDefault("");
 		}
 		public override void SetDefaults(){
 
 			//properties - Default
-			Item.damage = ModContent.GetInstance<CopperGreatswordP>().GetDmg();
+			Item.damage = ModContent.GetInstance<IronClaymoreP>().GetDmg();
 			Item.DamageType = DamageClass.Melee;
 			Item.useTime = 50;
 			Item.useAnimation = 50;
 			Item.useStyle = ItemUseStyleID.Swing;
-			Item.knockBack = ModContent.GetInstance<CopperGreatswordP>().GetKnk();
+			Item.knockBack = ModContent.GetInstance<IronClaymoreP>().GetKnk();
 			Item.noUseGraphic = true;
 			Item.noMelee = true;
 			Item.shoot = greatsword;
@@ -30,20 +32,20 @@ namespace GearonArsenalMod.Item
 			Item.crit = -4;
 
 			//properties - Item
-			greatsword = ModContent.ProjectileType<CopperGreatswordP>();
-			gStats = ModContent.GetInstance<CopperGreatswordP>();
-			slash = ModContent.ProjectileType<CopperSlash>();
+			greatsword = ModContent.ProjectileType<IronClaymoreP>();
+			gStats = ModContent.GetInstance<IronClaymoreP>();
+			slash = ModContent.ProjectileType<IronSlash>();
 		}
-        public override void AddRecipes(){
+		public override void AddRecipes(){
 
 			CreateRecipe()
-			.AddIngredient(ItemID.CopperBar, 9)
-			.AddIngredient(ItemID.CopperShortsword)
+			.AddIngredient(ItemID.IronBar, 9)
+			.AddIngredient(ItemID.IronShortsword)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}
 	}
-	public class CopperGreatswordP : Greatsword{
+	public class IronClaymoreP : Greatsword{
 
 		public override void SetDefaults(){
 
@@ -62,19 +64,20 @@ namespace GearonArsenalMod.Item
 			Projectile.extraUpdates = 1;
 
 			//properties - Greatsword
-			gDamage = 9;
+			gDamage = 13;
 			cooldown = 75;
 			aggro = 10;
 			defense = 3;
-			slash = ModContent.ProjectileType<CopperSlash>();
+			slash = ModContent.ProjectileType<IronSlash>();
 			wEffect = DustID.Cloud;
 		}
 	}
-	public class CopperSlash : Slash{
+	public class IronSlash : Slash{
 
 		public override void SetStaticDefaults(){
 
-			DisplayName.SetDefault("Cooper Slash");
+			DisplayName.SetDefault("Iron Slash");
+			DisplayName.AddTranslation(8, "Corte de Ferro");
 			Main.projFrames[Projectile.type] = frames;
 		}
 		public override bool PreDraw(ref Color lightColor){

@@ -11,14 +11,15 @@ using Terraria.ModLoader;
 
 namespace GearonArsenalMod
 {
-    class ModGlobalNPC : GlobalNPC
-    {
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            #region Broken Hammer
-            if (npc.type == NPCID.EyeofCthulhu)
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BrokenHammer>(),1));
-            #endregion
+    class ModGlobalNPC : GlobalNPC{
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot){
+
+            //#region Broken Hammer
+            //if (npc.type == NPCID.EyeofCthulhu)
+            //    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BrokenHammer>(),1));
+            //#endregion
+
         }
     }
 }
