@@ -4,10 +4,9 @@ using Terraria;
 using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
 
-namespace GearonArsenalMod.Item.Weapons
+namespace GearonArsenalMod.Content.Item.Weapons
 {
 	public class CopperGreatsword : ItemGreatsword{
-
 		public override void SetStaticDefaults(){
 
 			DisplayName.SetDefault("Copper Greatsword");
@@ -37,7 +36,8 @@ namespace GearonArsenalMod.Item.Weapons
 
 			CreateRecipe()
 			.AddIngredient(ItemID.CopperBar, 9)
-			.AddIngredient(ItemID.CopperShortsword)
+			.AddIngredient(ItemID.CopperShortsword, 3)
+			.AddIngredient(ItemID.SpookyClock, 2)
 			.AddTile(TileID.Anvils)
 			.Register();
 		}

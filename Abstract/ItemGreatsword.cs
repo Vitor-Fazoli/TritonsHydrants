@@ -2,11 +2,12 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
-using GearonArsenalMod.Item;
 using System.Collections.Generic;
 using Terraria.Audio;
-using GearonArsenalMod.Buffs;
 using System.Text;
+using GearonArsenalMod.Common.Players;
+using GearonArsenalMod.Content.Item.Weapons;
+using GearonArsenalMod.Content.Projectiles;
 
 namespace GearonArsenalMod.Abstract
 {
@@ -44,7 +45,7 @@ namespace GearonArsenalMod.Abstract
 
 				if (line.mod.Equals("Terraria") && line.Name.Equals("Speed"))
 				{
-					line.text = ((gStats.GetCooldown() * player.meleeSpeed)/60).ToString("F") + " Seconds to Canalyze";
+					line.text = ((gStats.GetCooldown() * player.meleeSpeed)/60).ToString("F") + " Seconds to channel";
 				}
 
 				if (line.mod.Equals("Terraria") && line.Name.Equals("Tooltip0"))
@@ -79,9 +80,9 @@ namespace GearonArsenalMod.Abstract
 					Item.useTime = 20;
 					Item.useAnimation = 20;
 					modPlayer.slayerPower = 0;
-					player.AddBuff(gStats.buff, 600);
-					Item.shoot = ProjectileID.None;
-					SoundEngine.PlaySound(8, player.position);
+					player.AddBuff(gStats.buff, 420);
+					Item.shoot = ModContent.ProjectileType<WarriorWraithProj>();
+					SoundEngine.PlaySound(26, player.position, 1);
 				}
 				else
 				{

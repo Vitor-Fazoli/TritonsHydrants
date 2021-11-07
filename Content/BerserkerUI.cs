@@ -1,4 +1,5 @@
 ﻿using GearonArsenalMod.Abstract;
+using GearonArsenalMod.Common.Players;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

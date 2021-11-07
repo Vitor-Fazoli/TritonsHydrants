@@ -1,11 +1,10 @@
-﻿using GearonArsenalMod.Tiles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace GearonArsenalMod.Tiles
+namespace GearonArsenalMod.Content.Tiles
 {
 	public class AncestorForgeTile : ModTile
 	{

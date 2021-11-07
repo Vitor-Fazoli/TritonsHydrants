@@ -1,5 +1,5 @@
-using GearonArsenalMod.Buffs;
-using GearonArsenalMod.Item;
+using GearonArsenalMod.Common.Players;
+using GearonArsenalMod.Content.Buffs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ namespace GearonArsenalMod.Abstract
         protected int timeMax = 10;
         public int aggro = 10;
         public int defense = 4;
-        public int buff = ModContent.BuffType<WarriorFlame>();
+        public int buff = ModContent.BuffType<WarriorWraith>();
         protected Color color = default;
         #endregion
 

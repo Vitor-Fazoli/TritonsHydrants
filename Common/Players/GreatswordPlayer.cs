@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using System.Collections.Generic;
+using GearonArsenalMod.Content.Buffs;
 
 namespace GearonArsenalMod.Common.Players{ 
 
@@ -43,7 +44,7 @@ namespace GearonArsenalMod.Common.Players{
         }
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource){
 
-            Player.ClearBuff(ModContent.BuffType<CursedSkull>());
+            Player.ClearBuff(ModContent.BuffType<WarriorWraith>());
         }
     }
 }

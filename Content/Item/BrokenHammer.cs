@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
-namespace GearonArsenalMod.Materials
+namespace GearonArsenalMod.Content.Item
 {
     public class BrokenHammer : ModItem
     {
@@ -16,5 +11,5 @@ namespace GearonArsenalMod.Materials
         public override void SetDefaults()
         {
         }
-    }
+    } 
 }

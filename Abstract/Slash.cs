@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using GearonArsenalMod.Buffs;
 
 namespace GearonArsenalMod.Abstract
 {
@@ -99,15 +98,13 @@ namespace GearonArsenalMod.Abstract
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (!hit)
-                target.AddBuff(ModContent.BuffType<Marked>(),120);
+            //if (!hit) { }
 
             hit = true;
         }
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
-            if(!hit)
-                target.AddBuff(ModContent.BuffType<Marked>(), 120);
+            //if(!hit) { }
 
             hit = true;
         }

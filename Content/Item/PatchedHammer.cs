@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 
-namespace GearonArsenalMod.Materials
+namespace GearonArsenalMod.Content.Item
 {
     public class PatchedHammer : ModItem
     {

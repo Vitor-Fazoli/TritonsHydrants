@@ -1,5 +1,4 @@
-﻿using GearonArsenalMod.Tiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenalMod.Tiles
+namespace GearonArsenalMod.Content.Tiles
 {
     public class AncestorForge : ModItem
     {

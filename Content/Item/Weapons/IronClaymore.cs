@@ -4,7 +4,7 @@ using Terraria;
 using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
 
-namespace GearonArsenalMod.Item.Weapons
+namespace GearonArsenalMod.Content.Item.Weapons
 {
 	public class IronClaymore : ItemGreatsword{
 
