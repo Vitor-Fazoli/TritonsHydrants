@@ -16,21 +16,9 @@ namespace GearonArsenalMod.Common.Players{
 
             if((Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword) && !Player.dead){
 
-                if (slayerPower == 1){
 
-                    Player.GetCritChance(DamageClass.Melee) += 5;
-                    Player.meleeSpeed += 0.10f;
-                }
-                else if (slayerPower == 2){
-
-                   Player.GetCritChance(DamageClass.Melee) += 10;
-                   Player.meleeSpeed += 0.15f;
-                }
-                else if (slayerPower == 3){
-
-                    Player.GetCritChance(DamageClass.Melee) += 20;
-                    Player.meleeSpeed += 0.30f;
-                }
+                Player.GetCritChance(DamageClass.Melee) += 5 * slayerPower;
+                Player.meleeSpeed += 0.05f * slayerPower;
 
                 if (slayerPower > slayerMax){
 

@@ -80,7 +80,7 @@ namespace GearonArsenalMod.Abstract
 					Item.useTime = 20;
 					Item.useAnimation = 20;
 					modPlayer.slayerPower = 0;
-					player.AddBuff(gStats.buff, 420);
+					player.AddBuff(gStats.buff, 120 + (600 * 1/modPlayer.slayerMax));
 					Item.shoot = ModContent.ProjectileType<WarriorWraithProj>();
 					SoundEngine.PlaySound(26, player.position, 1);
 				}

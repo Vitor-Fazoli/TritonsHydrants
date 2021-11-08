@@ -79,7 +79,12 @@ namespace GearonArsenalMod.Content
 				area.Top.Set(40, Precent);
 			}
 
+			if (area.IsMouseHovering)
+			{
+				Main.instance.MouseText(modPlayer.slayerPower + "/" + modPlayer.slayerMax, 0, 0);
+			}
+
 			base.Update(gameTime);
 		}
-	}
+    }
 }

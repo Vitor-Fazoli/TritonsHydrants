@@ -1,4 +1,5 @@
-﻿using GearonArsenalMod.Content.Projectiles;
+﻿using GearonArsenalMod.Common.Players;
+using GearonArsenalMod.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -15,14 +16,16 @@ namespace GearonArsenalMod.Content.Buffs
             Main.debuff[Type] = true;
             DisplayName.SetDefault("Warrior Wraith");
             Description.SetDefault("Attackers also suffer part of damage\n" +
-                "Increase defense by 10");
+                "Increase defense");
         }
         public override void Update(Player player, ref int buffIndex){
-            player.thorns += 0.1f;
-            player.statDefense += 10;
-            effectBuff(player);
+            GreatswordPlayer modPlayer = player.GetModPlayer<GreatswordPlayer>();
+
+            player.thorns += 0.1f + (0.2f * 1 / modPlayer.slayerMax);
+            player.statDefense += 10 + (40 * 1 / modPlayer.slayerMax);
+            Effect(player);
         }
-        public void effectBuff(Entity target){
+        public static void Effect(Entity target){
 
             int num1 = Dust.NewDust(target.position, target.width, target.height, DustID.RedTorch);
             Main.dust[num1].scale = 0.9f;
