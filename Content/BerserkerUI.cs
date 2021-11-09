@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +25,7 @@ namespace GearonArsenalMod.Content
 			area.Width.Set(50, Precent);
 			area.Height.Set(42, Precent);
 
-			barFrame = new UIImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIOne"));
+			barFrame = new UIImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIEmpty"));
 			barFrame.Left.Set(0, Precent);
 			barFrame.Top.Set(0, Precent);
 			barFrame.Width.Set(50, Precent);
@@ -42,7 +43,25 @@ namespace GearonArsenalMod.Content
         }
 		protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
-			base.DrawSelf(spriteBatch);
+			var modPlayer = Main.LocalPlayer.GetModPlayer<GreatswordPlayer>();
+
+			float quotient = (float)modPlayer.slayerPower / modPlayer.slayerMax;
+			quotient = Utils.Clamp(quotient, 0f, 1f);
+
+			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
+			hitbox.X += 12;
+			hitbox.Width -= 24;
+			hitbox.Y += 30;
+			hitbox.Height -= 40;
+
+			int left = hitbox.Left;
+			int right = hitbox.Right;
+			int steps = (int)((right - left) * quotient);
+			for (int i = 0; i < steps; i += 1)
+			{
+				spriteBatch.Draw(((Texture2D)TextureAssets.MagicPixel), new Rectangle(hitbox.X, hitbox.Bottom - i, 25, hitbox.Height),Color.Red);
+				base.DrawSelf(spriteBatch);
+			}
 		}
 		public override void Update(GameTime gameTime)
 		{
@@ -51,22 +70,9 @@ namespace GearonArsenalMod.Content
 			if (!(Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword))
 				return;
 
-			if(modPlayer.slayerPower == 0)
-            {
-				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIEmpty"));
-			}
-			else if (modPlayer.slayerPower == 1)
-			{
-				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIOne"));
-			}
-			else if (modPlayer.slayerPower == 2)
-			{
-				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUITwo"));
-			}
-			else if (modPlayer.slayerPower == 3)
-			{
-				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIThree"));
-			}
+			
+
+
 
             if (Main.playerInventory == false)
             {
@@ -81,7 +87,15 @@ namespace GearonArsenalMod.Content
 
 			if (area.IsMouseHovering)
 			{
-				Main.instance.MouseText(modPlayer.slayerPower + "/" + modPlayer.slayerMax, 0, 0);
+				if(modPlayer.slayerPower < modPlayer.slayerMax)
+                {
+					Main.instance.MouseText(modPlayer.slayerPower + "/" + modPlayer.slayerMax, 0, 0);
+				}
+                else
+                {
+					Main.instance.MouseText("Max");
+                }
+				
 			}
 
 			base.Update(gameTime);
