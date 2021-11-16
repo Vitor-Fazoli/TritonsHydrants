@@ -87,7 +87,7 @@ namespace GearonArsenalMod.Content.Item.Weapons
 		public override bool PreDraw(ref Color lightColor)
 		{
 
-			lightColor = new(197, 146, 0);
+			lightColor = new(242, 211, 108);
 			return base.PreDraw(ref lightColor);
 		}
 	}

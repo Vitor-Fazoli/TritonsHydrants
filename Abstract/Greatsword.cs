@@ -83,15 +83,14 @@ namespace GearonArsenalMod.Abstract
             }
 
 
-            float speedProj = 40f;
+            float speedProj = 100f;
             Vector2 move = moveTo - Projectile.Center;
             float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)
             {
                 move *= speedProj / magnitude;
             }
-            float turnResistance = 1f;
-            move = (Projectile.velocity * turnResistance + move) / (turnResistance + 1f);
+            float turnResistance = 1f;;
             magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj)
             {

@@ -10,8 +10,8 @@ namespace GearonArsenalMod.Common.Players{
     public class GreatswordPlayer : ModPlayer{
 
         public int slayerPower = 0;
-        public int slayerMax = 5;
-        public bool lampion = false;
+        public int slayerMax = 3;
+        public bool Lampion;
 
         public override void PreUpdateBuffs(){
 
@@ -33,18 +33,15 @@ namespace GearonArsenalMod.Common.Players{
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource){
 
             Player.ClearBuff(ModContent.BuffType<WarriorWraith>());
+            Player.ClearBuff(ModContent.BuffType<LampionFlames>());
         }
         public override void ResetEffects()
         {
-            lampion = false;
+            Lampion = false;
         }
         public override void UpdateEquips()
         {
-            if (lampion)
-            {
-                slayerMax += 2;
-                lampion = false;
-            }
+
         }
     }
 }
