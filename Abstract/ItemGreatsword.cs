@@ -74,7 +74,7 @@ namespace GearonArsenalMod.Abstract
 
 			if (player.altFunctionUse == 2)
 			{
-				if (modPlayer.slayerPower >= 3)
+				if (modPlayer.slayerPower >= modPlayer.slayerMax)
 				{
 					Item.useStyle = ItemUseStyleID.HoldUp;
 					Item.useTime = 20;

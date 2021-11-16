@@ -59,7 +59,8 @@ namespace GearonArsenalMod.Content
 			int steps = (int)((right - left) * quotient);
 			for (int i = 0; i < steps; i += 1)
 			{
-				spriteBatch.Draw(((Texture2D)TextureAssets.MagicPixel), new Rectangle(hitbox.X, hitbox.Bottom - i, 25, hitbox.Height),Color.Red);
+				float percent = (float)i / (hitbox.Top - hitbox.Bottom);
+				spriteBatch.Draw((Texture2D)TextureAssets.MagicPixel, new Rectangle(hitbox.X, hitbox.Bottom - i, 25, hitbox.Height), Color.Lerp(Color.Red, Color.Orange, percent));
 				base.DrawSelf(spriteBatch);
 			}
 		}
@@ -69,10 +70,6 @@ namespace GearonArsenalMod.Content
 
 			if (!(Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword))
 				return;
-
-			
-
-
 
             if (Main.playerInventory == false)
             {
@@ -85,17 +82,20 @@ namespace GearonArsenalMod.Content
 				area.Top.Set(40, Precent);
 			}
 
-			if (area.IsMouseHovering)
+			if(modPlayer.slayerPower < modPlayer.slayerMax)
 			{
-				if(modPlayer.slayerPower < modPlayer.slayerMax)
-                {
+
+				if (area.IsMouseHovering)
 					Main.instance.MouseText(modPlayer.slayerPower + "/" + modPlayer.slayerMax, 0, 0);
-				}
-                else
-                {
+
+				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIEmpty"));
+			}
+            else{
+
+				if (area.IsMouseHovering)
 					Main.instance.MouseText("Max");
-                }
-				
+
+				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIMax"));
 			}
 
 			base.Update(gameTime);

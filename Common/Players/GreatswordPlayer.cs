@@ -10,17 +10,17 @@ namespace GearonArsenalMod.Common.Players{
     public class GreatswordPlayer : ModPlayer{
 
         public int slayerPower = 0;
-        public int slayerMax = 3;
+        public int slayerMax = 5;
+        public bool lampion = false;
 
         public override void PreUpdateBuffs(){
 
             if((Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword) && !Player.dead){
 
-
                 Player.GetCritChance(DamageClass.Melee) += 5 * slayerPower;
                 Player.meleeSpeed += 0.05f * slayerPower;
 
-                if (slayerPower > slayerMax){
+                if (slayerPower >= slayerMax){
 
                     slayerPower = slayerMax;
                 }
@@ -33,6 +33,18 @@ namespace GearonArsenalMod.Common.Players{
         public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource){
 
             Player.ClearBuff(ModContent.BuffType<WarriorWraith>());
+        }
+        public override void ResetEffects()
+        {
+            lampion = false;
+        }
+        public override void UpdateEquips()
+        {
+            if (lampion)
+            {
+                slayerMax += 2;
+                lampion = false;
+            }
         }
     }
 }
