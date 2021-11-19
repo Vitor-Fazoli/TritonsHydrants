@@ -45,6 +45,6 @@ namespace GearonArsenalMod.Content.NPCs.Enemy
 			return SpawnCondition.OverworldBloodMoon
         }*/
 
-		public override void HitEffect
+		// public override void HitEffect
     }
 }
