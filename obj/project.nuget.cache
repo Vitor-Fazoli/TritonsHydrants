@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jeSF2cih1Ec6xQ/Q3dpt/Ilk4GcP464XBmHoGzT5DjxYnvHYmZ5xWAZYK9i0h1VxFFw7jkCelxav+geUe0pDsw==",
+  "dgSpecHash": "oslnsvh/5VASrh6s59Z+WKEyqHNQ/Fp7zxbLlwvReQP+s2aCMQINniZixJ820Bx3FDQKrh1qH0g93+Qx0KJruw==",
   "success": true,
   "projectFilePath": "C:\\Users\\fazol\\Documents\\My Games\\Terraria\\ModLoader\\Beta\\Mod Sources\\GearonArsenalMod\\GearonArsenalMod.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\fazol\\.nuget\\packages\\tmodloader.codeassist\\0.1.3\\tmodloader.codeassist.0.1.3.nupkg.sha512"
+  ],
   "logs": []
 }
