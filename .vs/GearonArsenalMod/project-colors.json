@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "552d4ee8-303f-45ea-839a-af2873706508": {
+      "ProjectGuid": "552d4ee8-303f-45ea-839a-af2873706508",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
+    },
+    "15dc0d23-9aee-4ca9-8e0c-1361cf6754a0": {
+      "ProjectGuid": "15dc0d23-9aee-4ca9-8e0c-1361cf6754a0",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 1
+    },
+    "a6d03c28-8d86-4365-9861-1a0e81208928": {
+      "ProjectGuid": "a6d03c28-8d86-4365-9861-1a0e81208928",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

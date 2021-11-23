@@ -59,8 +59,7 @@ namespace GearonArsenalMod.Content
 			int steps = (int)((right - left) * quotient);
 			for (int i = 0; i < steps; i += 1)
 			{
-				float percent = (float)i / (hitbox.Bottom - hitbox.Top);
-				spriteBatch.Draw((Texture2D)TextureAssets.MagicPixel, new Rectangle(hitbox.X, hitbox.Bottom - i, 25, hitbox.Height), Color.Lerp(Color.Red, Color.White, percent));
+				spriteBatch.Draw((Texture2D)TextureAssets.MagicPixel, new Rectangle(hitbox.X, hitbox.Bottom - i, 25, hitbox.Height),Color.OrangeRed);
 				base.DrawSelf(spriteBatch);
 			}
 		}
@@ -97,7 +96,6 @@ namespace GearonArsenalMod.Content
 
 				barFrame.SetImage(ModContent.Request<Texture2D>("GearonArsenalMod/Assets/Textures/GUI/BerserkerUIMax"));
 			}
-
 			base.Update(gameTime);
 		}
     }
