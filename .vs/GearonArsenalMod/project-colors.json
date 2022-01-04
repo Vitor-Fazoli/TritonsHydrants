@@ -20,7 +20,52 @@
       "ProjectGuid": "a6d03c28-8d86-4365-9861-1a0e81208928",
       "DisplayName": "GearonArsenalMod",
       "ColorIndex": 2
+    },
+    "ee7f76c4-9cef-42cb-911d-6cbf31b941e5": {
+      "ProjectGuid": "ee7f76c4-9cef-42cb-911d-6cbf31b941e5",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 3
+    },
+    "5e3e860c-a25f-4a74-953b-adb88bbbb868": {
+      "ProjectGuid": "5e3e860c-a25f-4a74-953b-adb88bbbb868",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 4
+    },
+    "544b8e1d-9a93-4ace-a247-83b1cb8cbf51": {
+      "ProjectGuid": "544b8e1d-9a93-4ace-a247-83b1cb8cbf51",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 5
+    },
+    "7502614a-a7e1-44e5-9bf0-01d1608a29d6": {
+      "ProjectGuid": "7502614a-a7e1-44e5-9bf0-01d1608a29d6",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 6
+    },
+    "3776c61d-e2d7-47c0-98ec-bf7bc73d5a29": {
+      "ProjectGuid": "3776c61d-e2d7-47c0-98ec-bf7bc73d5a29",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 7
+    },
+    "d6ec48b1-1512-49c3-a240-4e3f334c5744": {
+      "ProjectGuid": "d6ec48b1-1512-49c3-a240-4e3f334c5744",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 8
+    },
+    "6b1e3ec2-5144-456c-b92f-6ffd9f4eee91": {
+      "ProjectGuid": "6b1e3ec2-5144-456c-b92f-6ffd9f4eee91",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 9
+    },
+    "b2efba53-a65f-47be-8f7c-693b379b1be1": {
+      "ProjectGuid": "b2efba53-a65f-47be-8f7c-693b379b1be1",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 10
+    },
+    "b0a88849-cd27-4b75-8f9b-ae0a1ebb8d5c": {
+      "ProjectGuid": "b0a88849-cd27-4b75-8f9b-ae0a1ebb8d5c",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 11
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 12
 }

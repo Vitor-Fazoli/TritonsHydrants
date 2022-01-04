@@ -5,9 +5,9 @@ using Terraria.DataStructures;
 using System.Collections.Generic;
 using GearonArsenalMod.Content.Buffs;
 
-namespace GearonArsenalMod.Common.Players{ 
+namespace GearonArsenalMod.Common.Players {
 
-    public class GreatswordPlayer : ModPlayer{
+    public class GreatswordPlayer : ModPlayer {
         //All of greatswords things
         public int slayerPower = 0;
         public int slayerMax = 3;
@@ -15,41 +15,33 @@ namespace GearonArsenalMod.Common.Players{
         public bool balm = false;
 
 
-        public override void PreUpdateBuffs(){
+        public override void PreUpdateBuffs() {
 
-            if((Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword) && !Player.dead){
+            if ((Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword) && !Player.dead) {
 
                 Player.GetCritChance(DamageClass.Melee) += 5 * slayerPower;
                 Player.meleeSpeed += 0.05f * slayerPower;
 
-                if (slayerPower >= slayerMax){
+                if (slayerPower >= slayerMax) {
 
                     slayerPower = slayerMax;
                 }
-            }
-            else{
+            } else {
 
                 slayerPower = 0;
             }
         }
-        public override void ResetEffects()
-        {
+        public override void ResetEffects() {
             lantern = false;
             balm = false;
         }
 
-        public override void UpdateEquips()
-        {
-            if (lantern)
-            {
+        public override void UpdateEquips() {
+            if (lantern) {
                 Player.GetModPlayer<GreatswordPlayer>().slayerMax = 5;
-            }
-            else if (balm)
-            {
+            } else if (balm) {
                 Player.GetModPlayer<GreatswordPlayer>().slayerMax = 2;
-            }
-            else
-            {
+            } else {
                 Player.GetModPlayer<GreatswordPlayer>().slayerMax = 3;
             }
         }

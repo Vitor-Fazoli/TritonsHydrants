@@ -12,68 +12,59 @@ using Terraria.GameContent.ItemDropRules;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.Utilities;
 
-namespace GearonArsenalMod.Content.NPCs.Enemies
-{
-    public class BloodWorm : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
-			// The name the enemy displays
-			DisplayName.SetDefault("Blood Worm");
+namespace GearonArsenalMod.Content.NPCs.Enemies {
+    public class BloodWorm : ModNPC {
+        public override void SetStaticDefaults() {
+            // The name the enemy displays
+            DisplayName.SetDefault("Blood Worm");
 
-			Main.npcFrameCount[NPC.type] = 5;
+            Main.npcFrameCount[NPC.type] = 5;
         }
-		
-		public override void SetDefaults()
-        {
+
+        public override void SetDefaults() {
             // Enemy hitbox
             NPC.width = 46;
-			NPC.height = 42;
-			// The AI Style
-			NPC.aiStyle = 3;
-			// Enemy damage and defense
-			NPC.damage = 1;
-			NPC.defense = 1;
-			// Enemy max health
-			NPC.lifeMax = 200;
-			// Enemy sound upon hit or death
-			NPC.HitSound = SoundID.NPCHit1;
-			NPC.DeathSound = SoundID.NPCDeath1;
-			// How much the knockback is resisted
-			NPC.knockBackResist = 0.75f;
-		}
-        public override void FindFrame(int frameHeight)
-        {
+            NPC.height = 42;
+            // The AI Style
+            NPC.aiStyle = 3;
+            // Enemy damage and defense
+            NPC.damage = 1;
+            NPC.defense = 1;
+            // Enemy max health
+            NPC.lifeMax = 200;
+            // Enemy sound upon hit or death
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            // How much the knockback is resisted
+            NPC.knockBackResist = 0.75f;
+        }
+        public override void FindFrame(int frameHeight) {
             NPC.frameCounter++;
 
-            if (NPC.frameCounter < 10)
-            {
+            if (NPC.frameCounter < 10) {
                 NPC.frame.Y = 0 * frameHeight;
-            }
-            else if (NPC.frameCounter < 20)
-            {
+            } else if (NPC.frameCounter < 20) {
                 NPC.frame.Y = 1 * frameHeight;
-            }
-            else if (NPC.frameCounter < 30)
-            {
+            } else if (NPC.frameCounter < 30) {
                 NPC.frame.Y = 2 * frameHeight;
-            }
-            else if (NPC.frameCounter < 40)
-            {
+            } else if (NPC.frameCounter < 40) {
                 NPC.frame.Y = 3 * frameHeight;
-            }
-            else if (NPC.frameCounter < 50)
-            {
+            } else if (NPC.frameCounter < 50) {
                 NPC.frame.Y = 4 * frameHeight;
-            }
-            else
-            {
+            } else {
                 NPC.frameCounter = 0;
             }
 
             NPC.spriteDirection = -NPC.direction;
         }
+        public override void HitEffect(int hitDirection, double damage) {
+            for (int i = 0; i < 10; i++) {
+                var dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Blood);
 
-        // public override void HitEffect
+                dust.velocity.X += Main.rand.NextFloat(-0.05f, 0.05f);
+                dust.velocity.Y += Main.rand.NextFloat(-0.05f, 0.05f);
+                dust.scale *= 1f + Main.rand.NextFloat(-0.03f, 0.03f);
+            }
+        }
     }
 }
