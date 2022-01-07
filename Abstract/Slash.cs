@@ -25,6 +25,7 @@ namespace GearonArsenalMod.Abstract {
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.DamageType = DamageClass.Melee;
+            Projectile.knockBack = 3;
         }
         public override bool PreAI() {
             #region SetDirection
@@ -82,13 +83,17 @@ namespace GearonArsenalMod.Abstract {
             hitbox.Y += 50;
         }
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
-            //if (!hit) { }
-
             hit = true;
+
+            Player p = Main.player[Projectile.owner];
+
+            if(target.position.X > p.position.X) {
+                target.velocity.X += knockback * .8f;
+            } else if(target.position.X <= p.position.X) {
+                target.velocity.X -= knockback * .8f;
+            }
         }
         public override void OnHitPvp(Player target, int damage, bool crit) {
-            //if(!hit) { }
-
             hit = true;
         }
     }

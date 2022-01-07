@@ -13,7 +13,7 @@ namespace GearonArsenalMod.Abstract {
     public abstract class ItemGreatsword : ModItem {
 
         protected int greatsword = ModContent.ProjectileType<CopperGreatswordP>();
-        protected Greatsword gStats = ModContent.GetInstance<CopperGreatswordP>();
+        protected Greatsword greatswordStat = ModContent.GetInstance<CopperGreatswordP>();
         protected int slash = ModContent.ProjectileType<CopperSlash>();
 
         public override void SetDefaults() {
@@ -25,9 +25,9 @@ namespace GearonArsenalMod.Abstract {
             Item.noMelee = true;
             Item.channel = true;
             Item.crit = -4;
-            Item.knockBack = 0;
+            Item.knockBack = 3;
             Item.shoot = greatsword;
-            Item.defense = gStats.defense;
+            Item.defense = greatswordStat.defense;
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
             Player player = Main.player[Item.playerIndexTheItemIsReservedFor];
@@ -35,12 +35,12 @@ namespace GearonArsenalMod.Abstract {
             foreach (TooltipLine line in tooltips) {
                 if (line.mod.Equals("Terraria") && line.Name.Equals("Damage")) {
 
-                    line.text = (int)(gStats.GetDmg() * 0.6 * player.GetDamage(DamageClass.Melee)) + " Light Melee Damage" +
-                        "\n" + (int)(gStats.GetDmg() * 2.5 * player.GetDamage(DamageClass.Melee)) + " Heavy Melee Damage";
+                    line.text = (int)(greatswordStat.GetDmg() * 0.6 * player.GetDamage(DamageClass.Melee)) + " Light Melee Damage" +
+                        "\n" + (int)(greatswordStat.GetDmg() * 2.5 * player.GetDamage(DamageClass.Melee)) + " Heavy Melee Damage";
                 }
 
                 if (line.mod.Equals("Terraria") && line.Name.Equals("Speed"))
-                    line.text = ((gStats.GetCooldown() * player.meleeSpeed) / 60).ToString("F2") + " Seconds to channel";
+                    line.text = ((greatswordStat.GetCooldown() * player.meleeSpeed) / 60).ToString("F2") + " Seconds to channel";
 
                 if (line.mod.Equals("Terraria") && line.Name.Equals("Tooltip0"))
                     line.text = "Hold attack to do greater damage";
@@ -48,8 +48,8 @@ namespace GearonArsenalMod.Abstract {
         }
 
         public override void HoldItem(Player player) {
-            player.statDefense += gStats.defense;
-            player.aggro += gStats.aggro;
+            player.statDefense += greatswordStat.defense;
+            player.aggro += greatswordStat.aggro;
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             position.Y = player.position.Y - 62;
@@ -66,8 +66,8 @@ namespace GearonArsenalMod.Abstract {
                     Item.useTime = 20;
                     Item.useAnimation = 20;
                     modPlayer.slayerPower = 0;
-                    player.AddBuff(gStats.buff, 120 + (600 * 1 / modPlayer.slayerMax));
-                    Item.shoot = gStats.buffVisual;
+                    player.AddBuff(greatswordStat.buff, 120 + (600 * 1 / modPlayer.slayerMax));
+                    Item.shoot = greatswordStat.buffVisual;
                     SoundEngine.PlaySound(26, player.position, 1);
                 } else {
                     return false;

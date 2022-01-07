@@ -65,7 +65,12 @@
       "ProjectGuid": "b0a88849-cd27-4b75-8f9b-ae0a1ebb8d5c",
       "DisplayName": "GearonArsenalMod",
       "ColorIndex": 11
+    },
+    "d0047a82-e2bb-441c-bd6f-c8b97943f335": {
+      "ProjectGuid": "d0047a82-e2bb-441c-bd6f-c8b97943f335",
+      "DisplayName": "GearonArsenalMod",
+      "ColorIndex": 12
     }
   },
-  "NextColorIndex": 12
+  "NextColorIndex": 13
 }

@@ -28,7 +28,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
 
             //properties - Item
             greatsword = ModContent.ProjectileType<GoldGreatswordP>();
-            gStats = ModContent.GetInstance<GoldGreatswordP>();
+            greatswordStat = ModContent.GetInstance<GoldGreatswordP>();
             slash = ModContent.ProjectileType<GoldSlash>();
         }
         public override void AddRecipes() {
@@ -65,7 +65,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
             aggro = 10;
             defense = 3;
             slash = ModContent.ProjectileType<GoldSlash>();
-            wEffect = DustID.Cloud;
+            windEffect = DustID.Cloud;
         }
     }
     public class GoldSlash : Slash {

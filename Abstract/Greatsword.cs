@@ -20,14 +20,16 @@ namespace GearonArsenalMod.Abstract {
         protected int gDamage;
         protected float cooldown;
         protected int slash = ModContent.ProjectileType<Slash>();
-        protected int wEffect = 16;
+        protected int windEffect = 16;
         protected float speedPlayer = 0;
         protected int timeMax = 10;
+        protected int knockback = 2;
+        protected Color color = default;
+
         public int aggro = 10;
         public int defense = 4;
         public int buff = ModContent.BuffType<WarriorWraith>();
         public int buffVisual = ModContent.ProjectileType<WarriorWraithProj>();
-        protected Color color = default;
         #endregion
 
         public override void SetDefaults() {
@@ -68,14 +70,14 @@ namespace GearonArsenalMod.Abstract {
 
             if (player.direction > 0) {
                 Projectile.position.X = player.position.X - 74;
-                moveTo.X = player.position.X + 13;
+                moveTo.X = player.position.X - 74;
             } else {
                 Projectile.position.X = player.position.X + 13;
                 moveTo.X = player.position.X + 13;
             }
 
 
-            float speedProj = 100f;
+            float speedProj = 45f;
             Vector2 move = moveTo - Projectile.Center;
             float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
             if (magnitude > speedProj) {
@@ -90,7 +92,7 @@ namespace GearonArsenalMod.Abstract {
 
             #region Channeling
             if (channeling && Projectile.ai[0] >= (int)(cooldown * player.meleeSpeed)) {
-                DustEffect(wEffect);
+                DustEffect(windEffect);
 
                 player.velocity.X *= 0.99f * (1 + speedPlayer);
 
@@ -133,11 +135,11 @@ namespace GearonArsenalMod.Abstract {
                 if (Projectile.ai[0] <= (int)(cooldown * player.meleeSpeed)) {
                     modPlayer.slayerPower = 0;
                     AnimationSlash(2, 1);
-                    ProjectileSlash((int)((gDamage * 0.6) * (float)player.GetDamage(DamageClass.Melee)), slash, 0);
+                    ProjectileSlash((int)((gDamage * 0.6) * (float)player.GetDamage(DamageClass.Melee)), slash, knockback);
                 } else if (Projectile.ai[0] > (int)(cooldown * player.meleeSpeed)) {
                     modPlayer.slayerPower++;
                     AnimationSlash(2, 60);
-                    ProjectileSlash((int)((gDamage * 2.5) * (float)player.GetDamage(DamageClass.Melee)), slash, 0);
+                    ProjectileSlash((int)((gDamage * 2.5) * (float)player.GetDamage(DamageClass.Melee)), slash, knockback);
                 }
             }
             #endregion
