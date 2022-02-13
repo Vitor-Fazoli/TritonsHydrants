@@ -28,7 +28,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
 
             //properties - Item
             greatsword = ModContent.ProjectileType<TugstenVineBladeP>();
-            greatswordStat = ModContent.GetInstance<TugstenVineBladeP>();
+            gStats = ModContent.GetInstance<TugstenVineBladeP>();
             slash = ModContent.ProjectileType<VineSlash>();
         }
         public override void AddRecipes() {
@@ -65,7 +65,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
             aggro = 10;
             defense = 3;
             slash = ModContent.ProjectileType<VineSlash>();
-            windEffect = DustID.Cloud;
+            wEffect = DustID.Cloud;
         }
     }
     public class VineSlash : Slash {

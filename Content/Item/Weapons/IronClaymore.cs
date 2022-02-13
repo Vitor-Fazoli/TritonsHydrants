@@ -29,7 +29,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
 
             //properties - Item
             greatsword = ModContent.ProjectileType<IronClaymoreP>();
-            greatswordStat = ModContent.GetInstance<IronClaymoreP>();
+            gStats = ModContent.GetInstance<IronClaymoreP>();
             slash = ModContent.ProjectileType<IronSlash>();
         }
         public override void AddRecipes() {
@@ -65,7 +65,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
             aggro = 10;
             defense = 3;
             slash = ModContent.ProjectileType<IronSlash>();
-            windEffect = DustID.Cloud;
+            wEffect = DustID.Cloud;
         }
     }
     public class IronSlash : Slash {

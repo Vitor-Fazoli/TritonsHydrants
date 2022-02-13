@@ -3,7 +3,6 @@ using Terraria.ModLoader;
 using Terraria;
 using GearonArsenalMod.Abstract;
 using Microsoft.Xna.Framework;
-using GearonArsenalMod.Content.Projectiles;
 
 namespace GearonArsenalMod.Content.Item.Weapons {
     public class CopperGreatsword : ItemGreatsword {
@@ -29,7 +28,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
 
             //properties - Item
             greatsword = ModContent.ProjectileType<CopperGreatswordP>();
-            greatswordStat = ModContent.GetInstance<CopperGreatswordP>();
+            gStats = ModContent.GetInstance<CopperGreatswordP>();
             slash = ModContent.ProjectileType<CopperSlash>();
         }
         public override void AddRecipes() {
@@ -66,8 +65,7 @@ namespace GearonArsenalMod.Content.Item.Weapons {
             aggro = 10;
             defense = 3;
             slash = ModContent.ProjectileType<CopperSlash>();
-            windEffect = DustID.Cloud;
-            buffVisual = ModContent.ProjectileType<WarriorWraithProj>();
+            wEffect = DustID.Cloud;
         }
     }
     public class CopperSlash : Slash {
