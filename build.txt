@@ -1,3 +1,3 @@
-displayName = Gearon Arsenal
-author = Fazzolie
-version = 0.1.3
+displayName = Gearon Arsenal Mod
+author = Fazoli and dev's
+version = 0.1
