@@ -8,6 +8,7 @@ namespace GearonArsenal.Content.Items.Armors {
 
     [AutoloadEquip(EquipType.Head)]
     public class WitchMask : ModItem {
+
         public override void SetStaticDefaults() {
             Tooltip.SetDefault("This mask have a curse, if are using this your life its your mana\n" +
                 "increased life max in 20 \n" +
@@ -15,7 +16,6 @@ namespace GearonArsenal.Content.Items.Armors {
                 "have a sinergy with many armors");
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; 
         }
-
         public override void SetDefaults() {
             Item.width = 18;
             Item.height = 18;
