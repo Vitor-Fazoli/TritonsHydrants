@@ -10,9 +10,10 @@ namespace GearonArsenal.Content.Projectiles {
             Main.projFrames[Projectile.type] = 11;
         }
         public override void SetDefaults() {
+            Projectile.CloneDefaults(ProjectileID.Arkhalis);
             Projectile.width = 400;
             Projectile.height = 200;
-            Projectile.CloneDefaults(ProjectileID.Arkhalis);
+
 
             AIType = ProjectileID.Arkhalis;
         }

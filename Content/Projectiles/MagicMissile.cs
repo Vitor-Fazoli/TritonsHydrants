@@ -9,7 +9,13 @@ using Terraria.DataStructures;
 namespace GearonArsenal.Content.Projectiles {
     public class MagicMissile : ModProjectile {
 
-        private bool Power = false;
+        private bool waterPower = false;
+        private bool lavaPower = false;
+        private bool honeyPower = false;
+
+        private short dust = DustID.YellowStarDust;
+        private Color color = new Color(255, 255, 255, 0);
+
         public override void SetDefaults() {
             Projectile.width = 20;
             Projectile.height = 14;
@@ -20,7 +26,7 @@ namespace GearonArsenal.Content.Projectiles {
             Projectile.timeLeft = 600;
         }
 
-        public override Color? GetAlpha(Color lightColor) => new Color(255, 255, 255, 0);
+        public override Color? GetAlpha(Color lightColor) => color;
 
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void AI() {
@@ -28,46 +34,97 @@ namespace GearonArsenal.Content.Projectiles {
             Projectile.rotation = Projectile.velocity.ToRotation();
 
             if (Projectile.wet) {
-                Power = true;
+                lavaPower = false;
+                honeyPower = false;
+
+                waterPower = true;
+                Projectile.velocity *= 1.01f;
+
+            } else if (Projectile.lavaWet) {
+                waterPower = false;
+                honeyPower = false;
+
+                lavaPower = true;
+                Projectile.velocity *= 1.01f;
+
+            } else if (Projectile.honeyWet) {
+                waterPower = false;
+                lavaPower = false;
+
+                honeyPower = true;
                 Projectile.velocity *= 1.01f;
             }
 
-            if (Power) {
 
-                Power = true;
+
+
+            if (waterPower) {
+                dust = DustID.Water;
+                color = Color.AliceBlue;
+
+                waterPower = true;
                 Projectile.ai[0]++;
-
-                if (Projectile.ai[0] <= 1) {
-                    for (int i = 0; i < 40; i++) {
-                        Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
-                        Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.BubbleBurst_Blue, speed * 5);
-                        d.noGravity = true;
-                    }
-                }
-
-                for (int i = 0; i < 5; i++) {
-                    Vector2 speed = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
-                    Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.BubbleBurst_Blue, speed * 5);
-                    d.noGravity = true;
-                    d.fadeIn = 0.8f;
-                }
-
-                Projectile.scale = 1.5f;
-
-
-
 
                 if (Projectile.ai[0] >= 40 && Projectile.ai[0] <= 60) {
 
 
-                }
+                } else if (Projectile.ai[0] >= 60) {
 
-                if (Projectile.ai[0] >= 60) {
-
-                    Empowered();
+                    EmpoweredWater();
 
                     if (Projectile.velocity == Vector2.Zero) {
                         Projectile.Kill();
+                    }
+                }
+                if (Projectile.ai[0] <= 1) {
+                    for (int i = 0; i < 40; i++) {
+                        Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
+                        Dust d = Dust.NewDustPerfect(Projectile.Center, dust, speed * 5);
+                        d.noGravity = true;
+                    }
+                }
+            }
+
+            if (lavaPower) {
+                dust = DustID.Lava;
+                color = Color.Orange;
+
+                lavaPower = true;
+                Projectile.ai[0]++;
+
+                if (Projectile.ai[0] >= 40 && Projectile.ai[0] <= 60) {
+
+
+                } else if (Projectile.ai[0] >= 60) {
+                    EmpoweredLava();
+                }
+                if (Projectile.ai[0] <= 1) {
+                    for (int i = 0; i < 40; i++) {
+                        Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
+                        Dust d = Dust.NewDustPerfect(Projectile.Center, dust, speed * 5);
+                        d.noGravity = true;
+                    }
+                }
+            }
+
+            if (honeyPower) {
+                dust = DustID.Honey;
+                color = Color.Honeydew;
+
+                honeyPower = true;
+                Projectile.ai[0]++;
+
+                if (Projectile.ai[0] >= 40 && Projectile.ai[0] <= 60) {
+
+
+                } else if (Projectile.ai[0] >= 60) {
+                    EmpoweredLava();
+                }
+                if (Projectile.ai[0] <= 1) {
+                    for (int i = 0; i < 40; i++) {
+                        Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
+                        Dust d = Dust.NewDustPerfect(Projectile.Center, dust, speed * 5);
+                        d.noGravity = true;
                     }
                 }
             }
@@ -76,6 +133,7 @@ namespace GearonArsenal.Content.Projectiles {
                 Projectile.soundDelay = 10;
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
+
         }
         public override void Kill(int timeLeft) {
             for (int i = 0; i < 40; i++) {
@@ -84,8 +142,15 @@ namespace GearonArsenal.Content.Projectiles {
                 d.noGravity = true;
             }
         }
+        private void EmpoweredHoney() {
 
-        public void Empowered() {
+
+        }
+        private void EmpoweredLava() {
+
+
+        }
+        private void EmpoweredWater() {
 
             Vector2 move = Vector2.Zero;
             float distance = 400f;

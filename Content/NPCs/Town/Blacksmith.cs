@@ -9,9 +9,8 @@ namespace GearonArsenal.Content.NPCs.Town {
     [AutoloadHead]
     public class Blacksmith : ModNPC {
         public override void SetStaticDefaults() {
-            Main.npcFrameCount[NPC.type] = 60;
-            NPCID.Sets.ExtraFramesCount[Type] = 10;
-
+            Main.npcFrameCount[NPC.type] = 20;
+            NPCID.Sets.ExtraFramesCount[Type] = 13;
             NPCID.Sets.DangerDetectRange[Type] = 700;
             NPCID.Sets.AttackType[Type] = 0;
             NPCID.Sets.AttackTime[Type] = 90;
@@ -40,6 +39,8 @@ namespace GearonArsenal.Content.NPCs.Town {
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
+
+            AnimationType = NPCID.Guide;
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
@@ -57,38 +58,6 @@ namespace GearonArsenal.Content.NPCs.Town {
             }
 
             return false;
-        }
-        public override void FindFrame(int frameHeight) {
-
-
-
-            NPC.frameCounter++;
-            NPC.spriteDirection = NPC.direction;
-
-            int startFrame = 0;
-            int finalFrame = 28;
-
-            if (NPC.velocity.X == 0) {
-                startFrame = 45;
-                finalFrame = 45;
-
-                if (NPC.frame.Y < startFrame * frameHeight) {
-                    NPC.frame.Y = startFrame * frameHeight;
-                }
-            }
-
-            int frameSpeed = 5;
-            NPC.frameCounter += 0.5f;
-            NPC.frameCounter += NPC.velocity.Length() / 10f;
-            if (NPC.frameCounter > frameSpeed) {
-                NPC.frameCounter = 0;
-                NPC.frame.Y += frameHeight;
-
-                if (NPC.frame.Y > finalFrame * frameHeight) {
-                    NPC.frame.Y = startFrame * frameHeight;
-
-                }
-            }
         }
         public override string TownNPCName() {
 
