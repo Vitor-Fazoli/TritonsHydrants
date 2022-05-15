@@ -26,5 +26,16 @@ namespace GearonArsenal.Content.NPCs.Enemies
             AIType = NPCID.BlueSlime;
             AnimationType = NPCID.BlueSlime;
         }
+        public override void AI()
+        {
+            base.AI();
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (crit)
+            {
+                target.AddBuff(BuffID.Poisoned, 120);
+            }
+        }
     }
 }

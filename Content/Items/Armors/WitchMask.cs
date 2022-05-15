@@ -4,39 +4,32 @@ using Terraria.ID;
 using Terraria.GameContent.Creative;
 using GearonArsenal.Common;
 
-namespace GearonArsenal.Content.Items.Armors {
-
-    [AutoloadEquip(EquipType.Head)]
-    public class WitchMask : ModItem {
-
-        public override void SetStaticDefaults() {
+namespace GearonArsenal.Content.Items.Armors
+{
+    public class WitchMask : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
             Tooltip.SetDefault("This mask have a curse, if are using this your life its your mana\n" +
                 "increased life max in 20 \n" +
                 "your life regen is increased \n" +
                 "have a sinergy with many armors");
-            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; 
         }
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ModContent.RarityType<Artifact>();
             Item.defense = 3;
+            Item.accessory = true;
         }
-
-        public override void UpdateEquip(Player player) {
+        public override void UpdateEquip(Player player)
+        {
             player.statLifeMax2 += 20;
             player.lifeRegen += 10;
 
             player.GetModPlayer<Witch>().witchMask = true;
-        }
-
-        public override bool IsArmorSet(Item head, Item body, Item legs) {
-        	return body.type == ItemID.NebulaBreastplate && legs.type == ItemID.NebulaLeggings;
-        }
-
-        public override void UpdateArmorSet(Player player) {
-            player.setNebula = true;
         }
     }
 }

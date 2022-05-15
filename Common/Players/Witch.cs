@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace GearonArsenal.Common {
@@ -24,7 +25,7 @@ namespace GearonArsenal.Common {
     /// <summary>
     /// Part of a big change, your items change when you are wearing Witch Mask
     /// </summary>
-    public class WitchItems : GlobalItem {
+    public class WitchSystem : GlobalItem {
         public override bool CanUseItem(Item item, Player player) {
             //making a player dont kill yourself with a witch mask
             if (item.DamageType == DamageClass.Magic && player.GetModPlayer<Witch>().witchMask == true) {

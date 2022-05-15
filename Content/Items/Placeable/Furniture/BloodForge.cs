@@ -9,7 +9,6 @@ namespace GearonArsenal.Content.Items.Placeable.Furniture {
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
-
 		public override void SetDefaults() {
 			Item.DefaultToPlaceableTile(ModContent.TileType<Content.Tiles.BloodForge>());
 			Item.value = 150;
@@ -17,13 +16,5 @@ namespace GearonArsenal.Content.Items.Placeable.Furniture {
 			Item.width = 38;
 			Item.height = 24;
 		}
-
-		// Please see Content/ExampleRecipes.cs for a detailed explanation of recipe creation.
-		//public override void AddRecipes() {
-		//	CreateRecipe()
-		//		.AddIngredient(ItemID.WoodenTable)
-		//		.AddIngredient(itemID)
-		//		.Register();
-		//}
 	}
 }
