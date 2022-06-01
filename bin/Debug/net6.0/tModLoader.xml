@@ -49,6 +49,95 @@
             Call this before loading the FAudio dll
             </summary>
         </member>
+        <member name="M:Terraria.Audio.SoundEngine.PlaySound(Terraria.Audio.SoundStyle@,System.Nullable{Microsoft.Xna.Framework.Vector2})">
+            <summary>
+            Attempts to play a sound, and returns a valid <see cref="T:ReLogic.Utilities.SlotId"/> handle to it on success.
+            </summary>
+            <param name="style"> The sound style that describes everything about the played sound. </param>
+            <param name="position"> An optional 2D position to play the sound at. When null, this sound will be heard everywhere. </param>
+        </member>
+        <member name="M:Terraria.Audio.SoundEngine.TryGetActiveSound(ReLogic.Utilities.SlotId,Terraria.Audio.ActiveSound@)">
+            <inheritdoc cref="M:Terraria.Audio.SoundPlayer.TryGetActiveSound(ReLogic.Utilities.SlotId,Terraria.Audio.ActiveSound@)"/>
+        </member>
+        <member name="M:Terraria.Audio.SoundPlayer.TryGetActiveSound(ReLogic.Utilities.SlotId,Terraria.Audio.ActiveSound@)">
+            <summary>
+            Safely attempts to get a currently playing <see cref="T:Terraria.Audio.ActiveSound"/> instance, tied to the provided <see cref="T:ReLogic.Utilities.SlotId"/>.
+            </summary>
+        </member>
+        <member name="T:Terraria.Audio.SoundStyle">
+            <summary>
+            This data type describes in detail how a sound should be played.
+            <br/> Passable to the <see cref="M:Terraria.Audio.SoundEngine.PlaySound(Terraria.Audio.SoundStyle@,System.Nullable{Microsoft.Xna.Framework.Vector2})"/> method.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.SoundPath">
+            <summary> The sound effect to play. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.Type">
+            <summary>
+            Controls which volume setting will this be affected by.
+            <br/> Ambience sounds also don't play when the game is out of focus.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.Identifier">
+            <summary> If defined, this string will be the only thing used to determine which styles should instances be shared with. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.MaxInstances">
+            <summary>
+            The max amount of sound instances that this style will allow creating, before stopping a playing sound or refusing to play a new one.
+            <br/> Set to 0 for no limits.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.SoundLimitBehavior">
+            <summary> Determines what the action taken when the max amount of sound instances is reached. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.PlayOnlyIfFocused">
+            <summary> If true, this sound won't play if the game's window isn't selected. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.IsLooped">
+            <summary> Whether or not to loop played sounds. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.UsesMusicPitch">
+            <summary>
+            Whether or not this sound obeys the <see cref="F:Terraria.Main.musicPitch"/> field to decide its pitch.<br/>
+            Defaults to false. Used in vanilla by the sounds for the Bell, the (Magical) Harp, and The Axe.<br/>
+            Could prove useful, but is kept internal for the moment.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.Variants">
+            <summary>
+            An array of possible suffixes to randomly append to after <see cref="P:Terraria.Audio.SoundStyle.SoundPath"/>.
+            <br/> Setting this property resets <see cref="P:Terraria.Audio.SoundStyle.VariantsWeights"/>.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.VariantsWeights">
+            <summary>
+            An array of randomization weights to optionally go with <see cref="P:Terraria.Audio.SoundStyle.Variants"/>.
+            <br/> Set this last, if at all, as the <see cref="P:Terraria.Audio.SoundStyle.Variants"/>'s setter resets all weights data.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.Volume">
+            <summary> The volume multiplier to play sounds with. </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.Pitch">
+            <summary>
+            The pitch <b>offset</b> to play sounds with.
+            <para/>In XNA and FNA, Pitch ranges from -1.0f (down one octave) to 1.0f (up one octave). 0.0f is unity (normal) pitch.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.PitchVariance">
+            <summary>
+            The pitch offset randomness value. Cannot be negative.
+            <br/>With Pitch at 0.0, and PitchVariance at 1.0, used pitch will range from -0.5 to 0.5. 
+            <para/>In XNA and FNA, Pitch ranges from -1.0f (down one octave) to 1.0f (up one octave). 0.0f is unity (normal) pitch.
+            </summary>
+        </member>
+        <member name="P:Terraria.Audio.SoundStyle.PitchRange">
+            <summary>
+            A helper property for controlling both Pitch and PitchVariance at once.
+            <para/>In XNA and FNA, Pitch ranges from -1.0f (down one octave) to 1.0f (up one octave). 0.0f is unity (normal) pitch.
+            </summary>
+        </member>
         <member name="T:Terraria.DataStructures.BossBarDrawParams">
             <summary>
             Holds data required for boss bar drawing.
@@ -128,6 +217,23 @@
         <member name="F:Terraria.DataStructures.BuffDrawParams.DrawColor">
             <summary>
             Color used to draw the buff. Use Main.buffAlpha[buffIndex] accordingly if you change it.
+            </summary>
+        </member>
+        <member name="T:Terraria.DataStructures.EntitySource_CatchEntity">
+            <summary>
+            Used for when NPCs or other entities are caught by things like bug nets.
+            </summary>
+        </member>
+        <member name="F:Terraria.DataStructures.EntitySource_CatchEntity.Entity">
+            <summary>
+            The entity which performed the act of catching the <see cref="F:Terraria.DataStructures.EntitySource_CatchEntity.CaughtEntity"/>.<br></br>
+            In the vast majority of cases, this will be a <see cref="T:Terraria.Player"/>.
+            </summary>
+        </member>
+        <member name="F:Terraria.DataStructures.EntitySource_CatchEntity.CaughtEntity">
+            <summary>
+            The entity which was caught by the <see cref="F:Terraria.DataStructures.EntitySource_CatchEntity.Entity"/>.<br></br>
+            In the vast majority of cases, this will be an <see cref="T:Terraria.NPC"/>.
             </summary>
         </member>
         <member name="T:Terraria.DataStructures.EntitySource_HitEffect">
@@ -618,6 +724,18 @@
             <summary>
             Set for pre-hardmode boss bags, except it also contains the Queen Slime's Boss Bag. Affects the way dev armor drops function, making it only drop in special world seeds.
             <br/> Don't forget to use the <see cref="F:Terraria.ID.ItemID.Sets.BossBag"/> set in conjuction with this one.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ItemID.Sets.CatchingTool">
+            <summary>
+            Set for catching tools (bug net-type items which can catch critters).<br></br>
+            If you want your catching tool to be able to catch the Underworld's lava critters, don't forget to use the <see cref="F:Terraria.ID.ItemID.Sets.LavaproofCatchingTool"/> set in conjunction with this one.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.ItemID.Sets.LavaproofCatchingTool">
+            <summary>
+            Set for catching tools which can catch the Underworld's lava critters.<br></br>
+            Don't forget to use the <see cref="F:Terraria.ID.ItemID.Sets.CatchingTool"/> set in conjunction with this one. 
             </summary>
         </member>
         <member name="T:Terraria.ID.ItemRarityID">
@@ -2331,6 +2449,12 @@
         <member name="F:Terraria.ID.TileID.Sets.IgnoredByGrowingSaplings">
             <summary> Whether or not saplings count this tile as empty when trying to grow. </summary>
         </member>
+        <member name="F:Terraria.Item.makeNPC">
+            <summary>
+            The numerical ID of the NPC that this item creates when used.<br></br>
+            Mainly used for caught critters as items so that they can be released into the world.
+            </summary>
+        </member>
         <member name="M:Terraria.Item.DefaultToPlacableWall(System.UInt16)">
             <summary>
             This method sets a variety of common Item values common to placeable walls.<br/>
@@ -2688,6 +2812,12 @@
         <member name="F:Terraria.ModLoader.BuildInfo.BuildDate">
             <summary>
             local time, for display purposes
+            </summary>
+        </member>
+        <member name="T:Terraria.ModLoader.CloneByReference">
+            <summary>
+            Indicates that references to this object can be shared between clones.
+            When applied to a class, applies to all fields/properties of that type.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.CommandLoader">
@@ -3377,11 +3507,6 @@
             This is the superclass for GlobalTile and GlobalWall, combining common code
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalBlockType.SetDefaults">
-            <summary>
-            Allows you to modify the properties of any tile/wall in the game. Most properties are stored as arrays throughout the Terraria code.
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalBlockType.KillSound(System.Int32,System.Int32,System.Int32)">
             <summary>
             Allows you to customize which sound you want to play when the tile/wall at the given coordinates is hit. Return false to stop the game from playing its default sound for the tile/wall. Returns true by default.
@@ -3597,13 +3722,6 @@
             <summary>
             This class allows you to modify and use hooks for all items, including vanilla items. Create an instance of an overriding class then call Mod.AddGlobalItem to use this.
             </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.Clone(Terraria.Item,Terraria.Item)">
-            <summary>
-            Create a copy of this instanced GlobalItem. Called when an item is cloned.
-            </summary>
-            <param name="item">The item being cloned</param>
-            <param name="itemClone">The new item</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.SetDefaults(Terraria.Item)">
             <summary>
@@ -3929,17 +4047,30 @@
             Allows you to give melee weapons special effects, such as creating light or dust.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalItem.ModifyItemScale(Terraria.Item,Terraria.Player,System.Single@)">
+        <member name="M:Terraria.ModLoader.GlobalItem.CanCatchNPC(Terraria.Item,Terraria.NPC,Terraria.Player)">
             <summary>
-            Allows you to dynamically modify the given item's size for the given player, similarly to the effect of the Titan Glove.
+            Allows you to determine whether the given item can catch the given NPC.<br></br>
+            Return true or false to say the given NPC can or cannot be caught, respectively, regardless of vanilla rules.<br></br>
+            Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate.<br></br>
+            If this returns false, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is never called.<br></br><br></br>
+            NOTE: this does not classify the given item as an NPC-catching tool, which is necessary for catching NPCs in the first place.<br></br>
+            To do that, you will need to use the "CatchingTool" set in ItemID.Sets.
             </summary>
-            <param name="item">The item to modify the scale of.</param>
-            <param name="player">The player wielding the given item.</param>
-            <param name="scale">
-            The scale multiplier to be applied to the given item.<br></br>
-            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
-            </param>
+            <param name="item">The item with which the player is trying to catch the target NPC.</param>
+            <param name="target">The NPC the player is trying to catch.</param>
+            <param name="player">The player attempting to catch the NPC.</param>
+            <returns></returns>
         </member>
+        <member name="M:Terraria.ModLoader.GlobalItem.OnCatchNPC(Terraria.Item,Terraria.NPC,Terraria.Player,System.Boolean)">
+            <summary>
+            Allows you to make things happen when the given item attempts to catch the given NPC.
+            </summary>
+            <param name="item">The item used to catch the given NPC.</param>
+            <param name="npc">The NPC which the player attempted to catch.</param>
+            <param name="player">The player attempting to catch the given NPC.</param>
+            <param name="failed">Whether or not the given NPC has been successfully caught.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.GlobalItem.ModifyItemScale(Terraria.Item,Terraria.Player,System.Single@)" -->
         <member name="M:Terraria.ModLoader.GlobalItem.CanHitNPC(Terraria.Item,Terraria.Player,Terraria.NPC)">
             <summary>
             Allows you to determine whether a melee weapon can hit the given NPC when swung. Return true to allow hitting the target, return false to block the weapon from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -4400,13 +4531,6 @@
             This class allows you to modify and use hooks for all NPCs, including vanilla mobs. Create an instance of an overriding class then call Mod.AddGlobalNPC to use this.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalNPC.Clone(Terraria.NPC,Terraria.NPC)">
-            <summary>
-            Create a copy of this instanced GlobalNPC. Called when an npc is cloned.
-            </summary>
-            <param name="npc">The npc being cloned</param>
-            <param name="npcClone">The new npc</param>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalNPC.SetDefaults(Terraria.NPC)">
             <summary>
             Allows you to set the properties of any and every NPC that gets created.
@@ -4543,13 +4667,28 @@
             <br/>Return true to allow an NPC to fall through platforms, false to prevent it. Returns null by default, applying vanilla behaviors (based on aiStyle and type).
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalNPC.OnCatchNPC(Terraria.NPC,Terraria.Player,Terraria.Item)">
+        <member name="M:Terraria.ModLoader.GlobalNPC.CanBeCaughtBy(Terraria.NPC,Terraria.Item,Terraria.Player)">
             <summary>
-            Allows you to make things happen when an NPC is caught. Ran Serverside.
+            Allows you to determine whether the given item can catch the given NPC.<br></br>
+            Return true or false to say the given NPC can or cannot be caught, respectively, regardless of vanilla rules.<br></br>
+            Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate.<br></br>
+            If this returns false, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is never called.<br></br><br></br>
+            NOTE: this does not classify the given item as an NPC-catching tool, which is necessary for catching NPCs in the first place.<br></br>
+            To do that, you will need to use the "CatchingTool" set in ItemID.Sets.
             </summary>
-            <param name="npc">The caught NPC</param>
-            <param name="player">The player catching the NPC</param>
-            <param name="item">The item that will be spawned</param>
+            <param name="npc">The NPC that can potentially be caught.</param>
+            <param name="item">The item with which the player is trying to catch the given NPC.</param>
+            <param name="player">The player attempting to catch the given NPC.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalNPC.OnCaughtBy(Terraria.NPC,Terraria.Player,Terraria.Item,System.Boolean)">
+            <summary>
+            Allows you to make things happen when the given item attempts to catch the given NPC.
+            </summary>
+            <param name="npc">The NPC which the player attempted to catch.</param>
+            <param name="player">The player attempting to catch the given NPC.</param>
+            <param name="item">The item used to catch the given NPC.</param>
+            <param name="failed">Whether or not the given NPC has been successfully caught.</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalNPC.ModifyNPCLoot(Terraria.NPC,Terraria.ModLoader.NPCLoot)">
             <summary>
@@ -4943,13 +5082,6 @@
             This class allows you to modify and use hooks for all projectiles, including vanilla projectiles. Create an instance of an overriding class then call Mod.AddGlobalProjectile to use this.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalProjectile.Clone(Terraria.Projectile,Terraria.Projectile)">
-            <summary>
-            Create a copy of this instanced GlobalProjectile. Called when a projectile is cloned.
-            </summary>
-            <param name="projectile">The projectile being cloned</param>
-            <param name="projectileClone">The new projectile</param>
-        </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.SetDefaults(Terraria.Projectile)">
             <summary>
             Allows you to set the properties of any and every projectile that gets created.
@@ -4979,6 +5111,27 @@
             Allows you to determine how any projectile behaves. This will be called regardless of what PreAI returns.
             </summary>
             <param name="projectile"></param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalProjectile.SendExtraAI(Terraria.Projectile,Terraria.ModLoader.IO.BitWriter,System.IO.BinaryWriter)">
+            <summary>
+            Use this judiciously to avoid straining the network.
+            <br/>Checks and methods such as <see cref="!:AppliesToEntity"/> can reduce how much data must be sent for how many projectiles.
+            <br/>Called whenever <see cref="!:MessageID.SyncProjectile"/> is successfully sent, for example on projectile creation, or whenever Projectile.netUpdate is set to true in the update loop for that tick.
+            <br/>Can be called on both server and client, depending on who owns the projectile.
+            </summary>
+            <param name="projectile">The projectile.</param>
+            <param name="bitWriter">The compressible bit writer. Booleans written via this are compressed across all mods to improve multiplayer performance.</param>
+            <param name="binaryWriter">The writer.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalProjectile.ReceiveExtraAI(Terraria.Projectile,Terraria.ModLoader.IO.BitReader,System.IO.BinaryReader)">
+            <summary>
+            Use this to receive information that was sent in <see cref="M:Terraria.ModLoader.GlobalProjectile.SendExtraAI(Terraria.Projectile,Terraria.ModLoader.IO.BitWriter,System.IO.BinaryWriter)"/>.
+            <br/>Called whenever <see cref="!:MessageID.SyncProjectile"/> is successfully received.
+            <br/>Can be called on both server and client, depending on who owns the projectile.
+            </summary>
+            <param name="projectile">The projectile.</param>
+            <param name="bitReader">The compressible bit reader.</param>
+            <param name="binaryReader">The reader.</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.ShouldUpdatePosition(Terraria.Projectile)">
             <summary>
@@ -5459,7 +5612,19 @@
             Return true if you need to store information (have non-static fields).
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalType`1.AppliesToEntity(`0,System.Boolean)">
+        <member name="P:Terraria.ModLoader.GlobalType`2.IsCloneable">
+            <summary>
+            Whether or not this type is cloneable. Cloning is supported if<br/>
+            all reference typed fields in each sub-class which doesn't override Clone are marked with [CloneByReference]
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.GlobalType`2.CloneNewInstances">
+            <summary>
+            Whether to create new instances of this mod type via <see cref="M:Terraria.ModLoader.GlobalType`2.Clone(`0,`0)"/> or via the default constructor
+            Defaults to false (default constructor).
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)">
             <summary>
             Use this to control whether or not this global should be associated with the provided entity instance.
             </summary>
@@ -5469,6 +5634,21 @@
             <br/> If you're relying on entity values that can be changed by that call, you should likely prefix your return value with the following:
             <code> lateInstantiation &amp;&amp; ... </code>
             </param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalType`2.Clone(`0,`0)">
+            <summary>
+            Create a copy of this instanced global. Called when an entity is cloned.
+            </summary>
+            <param name="from">The entity being cloned</param>
+            <param name="to">The new clone of the entity</param>
+            <returns>A clone of this global</returns>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalType`2.NewInstance(`0)">
+            <summary>
+            Only called if <see cref="P:Terraria.ModLoader.GlobalType.InstancePerEntity"/> and <see cref="M:Terraria.ModLoader.GlobalType`2.AppliesToEntity(`0,System.Boolean)"/>(<paramref name="target"/>, ...) are both true
+            </summary>
+            <param name="target">The entity instance the global is being instantiated for</param>
+            <returns></returns>
         </member>
         <member name="T:Terraria.ModLoader.GlobalWall">
             <summary>
@@ -5741,6 +5921,14 @@
         <member name="M:Terraria.ModLoader.ItemLoader.MeleeEffects(Terraria.Item,Terraria.Player,Microsoft.Xna.Framework.Rectangle)">
             <summary>
             Calls ModItem.MeleeEffects and all GlobalItem.MeleeEffects hooks.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ItemLoader.CanCatchNPC(Terraria.Item,Terraria.NPC,Terraria.Player)">
+            <summary>
+            Gathers the results of all <see cref="M:Terraria.ModLoader.GlobalItem.CanCatchNPC(Terraria.Item,Terraria.NPC,Terraria.Player)"/> hooks, then the <see cref="M:Terraria.ModLoader.ModItem.CanCatchNPC(Terraria.NPC,Terraria.Player)"/> hook if applicable.<br></br>
+            If any of them returns false, this returns false.<br></br>
+            Otherwise, if any of them returns true, then this returns true.<br></br>
+            If all of them return null, this returns null.<br></br>
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ItemLoader.ModifyItemScale(Terraria.Item,Terraria.Player,System.Single@)">
@@ -6101,11 +6289,6 @@
             Whether or not this mod will automatically add images in the Gores folder as gores to the game, along with any ModGore classes that share names with the images. This means you do not need to manually call Mod.AddGore.
             </summary>
         </member>
-        <member name="P:Terraria.ModLoader.Mod.SoundAutoloadingEnabled">
-            <summary>
-            Whether or not this mod will automatically add sounds in the Sounds folder to the game. Place sounds in Sounds/Item to autoload them as item sounds, Sounds/NPCHit to add them as npcHit sounds, and Sounds/NPCKilled to add them as npcKilled sounds. Sounds placed anywhere else in the Sounds folder will be added as custom sounds. Any ModSound classes that share the same name as the sound files will be bound to them. Setting this field to true means that you do not need to manually call AddSound.
-            </summary>
-        </member>
         <member name="P:Terraria.ModLoader.Mod.MusicAutoloadingEnabled">
             <summary>
             Whether or not this mod will automatically add music in the Sounds folder to the game. Place music tracks in Sounds/Music to autoload them.
@@ -6440,11 +6623,11 @@
         <member name="P:Terraria.ModLoader.ModBlockType.Type">
             <summary> The internal ID of this type of tile/wall. </summary>
         </member>
-        <member name="P:Terraria.ModLoader.ModBlockType.SoundType">
-            <summary> The default type of sound made when this tile/wall is hit. Defaults to 0. </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModBlockType.SoundStyle">
-            <summary> The default style of sound made when this tile/wall is hit. Defaults to 1. </summary>
+        <member name="P:Terraria.ModLoader.ModBlockType.HitSound">
+            <summary>
+            The default style of sound made when this tile/wall is hit.<br/>
+            Defaults to SoundID.Dig, which is the sound used for tiles such as dirt and sand.
+            </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModBlockType.DustType">
             <summary> The default type of dust made when this tile/wall is hit. Defaults to 0. </summary>
@@ -7083,16 +7266,15 @@
             The translations for the display name of this tooltip.
             </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModItem.Texture">
+            <summary>
+            The file name of this type's texture file in the mod loader's file space.
+            </summary>
+        </member>
         <member name="P:Terraria.ModLoader.ModItem.SacrificeTotal">
             <summary>
             Easy get/set for an item's Sacrifice Total Count
             </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModItem.Clone(Terraria.Item)">
-            <summary>
-            Create a copy of this ModItem. Called when an item is cloned.
-            </summary>
-            <param name="item">The new item</param>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.SetDefaults">
             <summary>
@@ -7410,16 +7592,28 @@
             <param name="player">The player.</param>
             <param name="hitbox">The hitbox.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModItem.ModifyItemScale(Terraria.Player,System.Single@)">
+        <member name="M:Terraria.ModLoader.ModItem.CanCatchNPC(Terraria.NPC,Terraria.Player)">
             <summary>
-            Allows you to dynamically modify this item's size for the given player, similarly to the effect of the Titan Glove.
+            Allows you to determine whether this item can catch the given NPC.<br></br>
+            Return true or false to say the given NPC can or cannot be caught, respectively, regardless of vanilla rules.<br></br>
+            Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate.<br></br>
+            If this returns false, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is never called.<br></br><br></br>
+            NOTE: this does not classify the given item as an NPC-catching tool, which is necessary for catching NPCs in the first place.<br></br>
+            To do that, you will need to use the "CatchingTool" set in ItemID.Sets.
             </summary>
-            <param name="player">The player wielding this item.</param>
-            <param name="scale">
-            The scale multiplier to be applied to this item.<br></br>
-            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
-            </param>
+            <param name="target">The NPC the player is trying to catch.</param>
+            <param name="player">The player attempting to catch the NPC.</param>
+            <returns></returns>
         </member>
+        <member name="M:Terraria.ModLoader.ModItem.OnCatchNPC(Terraria.NPC,Terraria.Player,System.Boolean)">
+            <summary>
+            Allows you to make things happen when this item attempts to catch the given NPC.
+            </summary>
+            <param name="npc">The NPC which the player attempted to catch.</param>
+            <param name="player">The player attempting to catch the given NPC.</param>
+            <param name="failed">Whether or not the given NPC has been successfully caught.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.ModItem.ModifyItemScale(Terraria.Player,System.Single@)" -->
         <member name="M:Terraria.ModLoader.ModItem.CanHitNPC(Terraria.Player,Terraria.NPC)">
             <summary>
             Allows you to determine whether this melee weapon can hit the given NPC when swung. Return true to allow hitting the target, return false to block this weapon from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -8113,9 +8307,9 @@
             The index of this ModMount in the Mount.mounts array.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModMount.#ctor">
+        <member name="P:Terraria.ModLoader.ModMount.Texture">
             <summary>
-            Constructor
+            The file name of this type's texture file in the mod loader's file space.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModMount.SetStaticDefaults">
@@ -8223,6 +8417,11 @@
         <member name="P:Terraria.ModLoader.ModNPC.DisplayName">
             <summary> The translations for the display name of this NPC. </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModNPC.Texture">
+            <summary>
+            The file name of this type's texture file in the mod loader's file space.
+            </summary>
+        </member>
         <member name="P:Terraria.ModLoader.ModNPC.HeadTexture">
             <summary> The file name of this NPC's head texture file, to be used in autoloading. </summary>
         </member>
@@ -8259,13 +8458,6 @@
         </member>
         <member name="P:Terraria.ModLoader.ModNPC.SpawnModBiomes">
             <summary> The ModBiome Types associated with this NPC spawning, if applicable. Used in Bestiary </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModNPC.Clone(Terraria.NPC)">
-            <summary>
-            Returns a clone of this ModNPC. 
-            Allows you to decide which fields of your ModNPC class are copied over when a new NPC is created. 
-            By default this will return a memberwise clone; you will want to override this if your ModNPC contains object references. 
-            </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModNPC.SetDefaults">
             <summary>
@@ -8405,12 +8597,26 @@
             <br/>Return true to allow this NPC to fall through platforms, false to prevent it. Returns null by default, applying vanilla behaviors (based on aiStyle and type).
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModNPC.OnCatchNPC(Terraria.Player,Terraria.Item)">
+        <member name="M:Terraria.ModLoader.ModNPC.CanBeCaughtBy(Terraria.Item,Terraria.Player)">
             <summary>
-            Allows you to make things happen when this NPC is caught. Ran Serverside
+            Allows you to determine whether the given item can catch this NPC.<br></br>
+            Return true or false to say this NPC can or cannot be caught, respectively, regardless of vanilla rules.<br></br>
+            Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate.<br></br>
+            If this returns false, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is never called.<br></br><br></br>
+            NOTE: this does not classify the given item as an NPC-catching tool, which is necessary for catching NPCs in the first place.<br></br>
+            To do that, you will need to use the "CatchingTool" set in ItemID.Sets.
             </summary>
-            <param name="player">The player catching this NPC</param>
-            <param name="item">The item that will be spawned</param>
+            <param name="item">The item with which the player is trying to catch this NPC.</param>
+            <param name="player">The player attempting to catch this NPC.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModNPC.OnCaughtBy(Terraria.Player,Terraria.Item,System.Boolean)">
+            <summary>
+            Allows you to make things happen when the given item attempts to catch this NPC.
+            </summary>
+            <param name="player">The player attempting to catch this NPC.</param>
+            <param name="item">The item used to catch this NPC.</param>
+            <param name="failed">Whether or not this NPC has been successfully caught.</param>
         </member>
         <member name="M:Terraria.ModLoader.ModNPC.ModifyNPCLoot(Terraria.ModLoader.NPCLoot)">
             <summary>
@@ -8889,16 +9095,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Terraria.ModLoader.ModPalmTree.GetBranchTextures">
-            <summary>
-            Return the texture containing the possible tree branches that can be drawn next to this tree.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModPalmTree.GetOasisBranchTextures">
-            <summary>
-            Return the texture containing the possible tree branches that can be drawn next to this tree.
-            </summary>
-        </member>
         <member name="T:Terraria.ModLoader.ModPlayer">
             <summary>
             A ModPlayer instance represents an extension of a Player instance. You can store fields in the ModPlayer classes, much like how the Player class abuses field usage, to keep track of mod-specific information on the player that a ModPlayer instance represents. It also contains hooks to insert your code into the Player class.
@@ -8907,11 +9103,6 @@
         <member name="P:Terraria.ModLoader.ModPlayer.Player">
             <summary>
             The Player instance that this ModPlayer instance is attached to.
-            </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModPlayer.CloneNewInstances">
-            <summary>
-            Whether each player gets a ModPlayer by cloning the ModPlayer added to the Mod or by creating a new ModPlayer object with the same type as the ModPlayer added to the Mod. The accessor returns true by default. Return false if you want to assign fields through the constructor.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.Initialize">
@@ -9303,16 +9494,27 @@
             <param name="item"></param>
             <param name="hitbox"></param>
         </member>
-        <member name="M:Terraria.ModLoader.ModPlayer.ModifyItemScale(Terraria.Item,System.Single@)">
+        <member name="M:Terraria.ModLoader.ModPlayer.CanCatchNPC(Terraria.NPC,Terraria.Item)">
             <summary>
-            Allows you to dynamically modify the given item's size for this player, similarly to the effect of the Titan Glove.
+            Allows you to determine whether the given item can catch the given NPC.<br></br>
+            Return true or false to say the target can or cannot be caught, respectively, regardless of vanilla rules.<br></br>
+            Returns null by default, which allows vanilla's NPC catching rules to decide the target's fate.<br></br>
+            If this returns false, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is never called.<br></br><br></br>
+            NOTE: this does not classify the given item as a catch tool, which is necessary for catching NPCs in the first place.<br></br>
+            To do that, you will need to use the "CatchingTool" set in ItemID.Sets.
             </summary>
-            <param name="item">The item to modify the scale of.</param>
-            <param name="scale">
-            The scale multiplier to be applied to the given item.<br></br>
-            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
-            </param>
+            <param name="target">The NPC the player is trying to catch.</param>
+            <param name="item">The item with which the player is trying to catch the target NPC.</param>
         </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.OnCatchNPC(Terraria.NPC,Terraria.Item,System.Boolean)">
+            <summary>
+            Allows you to make things happen when the given item attempts to catch the given NPC.
+            </summary>
+            <param name="npc">The NPC which the player attempted to catch.</param>
+            <param name="item">The item used to catch the given NPC.</param>
+            <param name="failed">Whether or not the given NPC has been successfully caught.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.ModPlayer.ModifyItemScale(Terraria.Item,System.Single@)" -->
         <member name="M:Terraria.ModLoader.ModPlayer.OnHitAnything(System.Single,System.Single,Terraria.Entity)">
             <summary>
             This hook is called when a player damages anything, whether it be an NPC or another player, using anything, whether it be a melee weapon or a projectile. The x and y parameters are the coordinates of the victim parameter's center.
@@ -9755,6 +9957,9 @@
         <member name="P:Terraria.ModLoader.ModProjectile.Projectile">
             <summary> The projectile object that this ModProjectile controls. </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModProjectile.Type">
+            <summary>  Shorthand for Projectile.type; </summary>
+        </member>
         <member name="P:Terraria.ModLoader.ModProjectile.DisplayName">
             <summary> The translations for the display name of this projectile. </summary>
         </member>
@@ -9776,18 +9981,13 @@
         <member name="P:Terraria.ModLoader.ModProjectile.DrawHeldProjInFrontOfHeldItemAndArms">
             <summary> If this projectile is held by the player, determines whether it is drawn in front of or behind the player's arms. Defaults to false. </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModProjectile.Texture">
+            <summary>
+            The file name of this type's texture file in the mod loader's file space.
+            </summary>
+        </member>
         <member name="P:Terraria.ModLoader.ModProjectile.GlowTexture">
             <summary> The file name of this projectile's glow texture file in the mod loader's file space. If it does not exist it is ignored. </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModProjectile.Type">
-            <summary>  Shorthand for Projectile.type; </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModProjectile.Clone(Terraria.Projectile)">
-            <summary>
-            Returns a clone of this ModProjectile. 
-            Allows you to decide which fields of your ModProjectile class are copied over when a new Projectile is created. 
-            By default this will return a memberwise clone; you will want to override this if your ModProjectile contains object references. 
-            </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModProjectile.SetDefaults">
             <summary>
@@ -10121,21 +10321,6 @@
         <member name="F:Terraria.ModLoader.ModSide.NoSync">
             <summary>This means that the mod could have effects client-side and could have effects server-side. The client will not download this mod if it connects to a server with this mod, and the client will not disable this mod if it connects to a server without this mod. If a client connects to a server and both have this mod, then IDs will still be synchronized. This is useful if you want optional extra features when both the client and server have this mod.</summary>
         </member>
-        <member name="T:Terraria.ModLoader.ModSound">
-            <summary>
-            This class allows you to customize how a sound you add is played. To use this, pass an instance to Mod.AddSound, or if you are autoloading sounds, give an overriding class the same name as the file with the sound you are adding.
-            </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.ModSound.Sound">
-            <summary>
-            The SoundEffect instance of the sound that this ModSound controls. This is here so you can call CreateInstance on it.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.ModSound.PlaySound(Microsoft.Xna.Framework.Audio.SoundEffectInstance@,System.Single,System.Single)">
-            <summary>
-            Override this hook to customize how this sound is played. If this sound is already currently playing, you have the option to call soundInstance.Stop(). You must eventually assign the result of sound.CreateInstance() to soundInstace. Afterwards, you can modify soundInstance.Volume, soundInstance.Pan, and soundInstance.Pitch to your liking. The default volume and pan have been passed as parameters. Volume measures loudness, pan measures how far to the left or right the sound is, and pitch measures the octave. Finally, call Main.PlaySoundInstance(soundInstance).
-            </summary>
-        </member>
         <member name="T:Terraria.ModLoader.ModSystem">
             <summary>
             ModSystem is an abstract class that your classes can derive from. It contains general-use hooks, and, unlike Mod, can have unlimited amounts of types deriving from it.
@@ -10161,6 +10346,11 @@
             <summary>
             This provides a hook into the mod-loading process immediately after recipes have been added.
             <br/> You can use this to edit recipes added by other mods.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModSystem.PostSetupRecipes">
+            <summary>
+            Override this method to do treatment about recipes once they have been setup. You shouldn't edit any recipe here.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.AddRecipeGroups">
@@ -10960,6 +11150,42 @@
             Allows you to safely unload things you added in <see cref="M:Terraria.ModLoader.ModType.Load"/>.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.ModType.InitTemplateInstance">
+            <summary>
+            Create dummy objects for instanced mod-types
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModType.ValidateType">
+            <summary>
+            Check for the correct overrides of different hook methods and fields and properties
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.ModType`2.IsCloneable">
+            <summary>
+            Whether or not this type is cloneable. Cloning is supported if<br/>
+            all reference typed fields in each sub-class which doesn't override Clone are marked with [CloneByReference]
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.ModType`2.CloneNewInstances">
+            <summary>
+            Whether to create new instances of this mod type via <see cref="M:Terraria.ModLoader.ModType`2.Clone(`0)"/> or via the default constructor
+            Defaults to false (default constructor).
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModType`2.Clone(`0)">
+            <summary>
+            Create a copy of this instanced global. Called when an entity is cloned.
+            </summary>
+            <param name="newEntity">The new clone of the entity</param>
+            <returns>A clone of this mod type</returns>
+        </member>
+        <member name="M:Terraria.ModLoader.ModType`2.NewInstance(`0)">
+            <summary>
+            Create a new instance of this ModType for a specific entity
+            </summary>
+            <param name="entity">The entity instance the mod type is being instantiated for</param>
+            <returns></returns>
+        </member>
         <member name="T:Terraria.ModLoader.ModWall">
             <summary>
             This class represents a type of wall that can be added by a mod. Only one instance of this class will ever exist for each type of wall that is added. Any hooks that are called will be called by the instance corresponding to the wall type.
@@ -11502,6 +11728,11 @@
             Set when tML sets up modded recipes. Used to detect misuse of CreateRecipe
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.RecipeLoader.OrderRecipes">
+            <summary>
+            Orders everything in the recipe according to their Ordering.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.RecipeLoader.RecipeAvailable(Terraria.Recipe)">
             <summary>
             Returns whether or not the conditions are met for this recipe to be available for the player to use.
@@ -11561,44 +11792,6 @@
         </member>
         <member name="F:Terraria.ModLoader.SceneEffectPriority.BossHigh">
             <summary>Will override SceneEffect of Moon Lord</summary>
-        </member>
-        <member name="T:Terraria.ModLoader.SoundLoader">
-            <summary>
-            This class is used to keep track of and support the existence of custom sounds that have been added to the game.
-            </summary>
-        </member>
-        <member name="F:Terraria.ModLoader.SoundLoader.CustomSoundType">
-            <summary>
-            This value should be passed as the first parameter to Main.PlaySound whenever you want to play a custom sound that is not an item, npcHit, or npcKilled sound.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.SoundLoader.AddSound(Terraria.ModLoader.Mod,System.String,Terraria.ModLoader.ModSound)">
-            <summary>
-            Adds the given sound file to the game as the given type of sound and with the given custom sound playing. If no ModSound instance is provided, the custom sound will play in a similar manner as the default vanilla ones.
-            </summary>
-            <param name="mod">The mod.</param>
-            <param name="soundPath">The sound path.</param>
-            <param name="modSound">The mod sound.</param>
-        </member>
-        <member name="M:Terraria.ModLoader.SoundLoader.GetSoundSlot(Terraria.ModLoader.Mod,System.String)">
-            <summary>
-            Returns the style (last parameter passed to Main.PlaySound) of the sound corresponding to the given sound file path. Returns 0 if there is no corresponding style.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.SoundLoader.GetSoundSlot(System.String)">
-            <summary>
-            Returns the style (last parameter passed to Main.PlaySound) of the sound corresponding to the given full sound file path. Returns 0 if there is no corresponding style.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.SoundLoader.GetLegacySoundSlot(Terraria.ModLoader.Mod,System.String)">
-            <summary>
-            Returns a LegacySoundStyle object which encapsulates both a sound type and a sound style (This is the new way to do sounds in 1.3.4) Returns null if there is no corresponding style.
-            </summary>
-        </member>
-        <member name="M:Terraria.ModLoader.SoundLoader.GetLegacySoundSlot(System.String)">
-            <summary>
-            Returns a LegacySoundStyle object which encapsulates both a sound type and a sound style (This is the new way to do sounds in 1.3.4) Returns null if there is no corresponding style.
-            </summary>
         </member>
         <member name="F:Terraria.ModLoader.StatModifier.Base">
             <summary>
@@ -11792,6 +11985,13 @@
             Gets the ModWall instance with the given type. If no ModWall with the given type exists, returns null.
             </summary>
         </member>
+        <member name="F:Terraria.NPC.catchItem">
+            <summary>
+            The numerical ID of the item that this NPC becomes when caught.<br></br>
+            Mainly used for critters that can be caught with bug nets, such as butterflies and worms.<br></br>
+            Bug nets and other catching tools will only work on NPCs with this field set to something greater than 0.
+            </summary>
+        </member>
         <member name="P:Terraria.NPC.Happiness">
             <summary> Provides access to (static) happiness data associated with this NPC's type. </summary>
         </member>
@@ -11835,6 +12035,20 @@
             <summary>
             Helper method for getting the parameters for seating a town NPC. Assumes the tile at <paramref name="anchorTilePosition"/> is a valid tile for sitting
             </summary>
+        </member>
+        <member name="M:Terraria.NPC.CheckCatchNPC(Terraria.NPC,Microsoft.Xna.Framework.Rectangle,Terraria.Item,Terraria.Player,System.Boolean)">
+            <summary>
+            Runs most code related to the process of checking whether or not an NPC can be caught.<br></br>
+            After that, <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/> is run, followed by the code responsible for catching the NPC if applicable.<br></br>
+            You will need to call this manually if you want to make an NPC-catching tool which acts differently from vanilla's, such as one that uses a projectile instead of an item.<br></br>
+            As a note, if calling this manually, you will need to check <c>npc.active &amp;&amp; npc.catchItem &gt; 0</c> yourself.
+            </summary>
+            <param name="npc">The NPC which can potentially be caught.</param>
+            <param name="catchToolRectangle">The hitbox of the tool being used to catch the NPC --- be it an item, a projectile, or something else entirely.</param>
+            <param name="item">The item to be used as a reference for the purposes of <see cref="M:Terraria.ModLoader.CombinedHooks.CanCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item)"/> and <see cref="M:Terraria.ModLoader.CombinedHooks.OnCatchNPC(Terraria.Player,Terraria.NPC,Terraria.Item,System.Boolean)"/>.</param>
+            <param name="player">The player that owns the referenced item.</param>
+            <param name="lavaProofTool">Whether or not the tool is lavaproof for the purposes of catching vanilla's Underworld critters. Defaults to false.</param>
+            <returns>Whether or not the NPC was successfully caught.</returns>
         </member>
         <member name="M:Terraria.Player.AddBuff(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
@@ -12137,6 +12351,11 @@
             The index of the recipe in the Main.recipe array.
             </summary>
         </member>
+        <member name="P:Terraria.Recipe.Disabled">
+            <summary>
+            Any recipe with this flag won't be shown in game.
+            </summary>
+        </member>
         <member name="M:Terraria.Recipe.AddIngredient(System.Int32,System.Int32)">
             <summary>
             Adds an ingredient to this recipe with the given item type and stack size. Ex: <c>recipe.AddIngredient(ItemID.IronAxe)</c>
@@ -12242,6 +12461,31 @@
         <member name="M:Terraria.Recipe.AddConsumeItemCallback(Terraria.Recipe.ConsumeItemCallback)">
             <summary>
             Sets a callback that allows you to determine how many of a certain ingredient is consumed when this recipe is used. Return the number of ingredients that will actually be consumed. By default returns numRequired.
+            </summary>
+        </member>
+        <member name="M:Terraria.Recipe.SetOrdering(Terraria.Recipe,System.Boolean)">
+            <summary>
+            Sets the Ordering of this recipe. This recipe can't already have one.
+            </summary>
+        </member>
+        <member name="M:Terraria.Recipe.SortBeforeFirstRecipesOf(System.Int32)">
+            <summary>
+            Sorts the recipe before the first one creating the item of the ID given as parameter.
+            </summary>
+        </member>
+        <member name="M:Terraria.Recipe.SortBefore(Terraria.Recipe)">
+            <summary>
+            Sorts the recipe before the one given as parameter. Both recipes must already be registered.
+            </summary>
+        </member>
+        <member name="M:Terraria.Recipe.SortAfterFirstRecipesOf(System.Int32)">
+            <summary>
+            Sorts the recipe after the first one creating the item of the ID given as parameter.
+            </summary>
+        </member>
+        <member name="M:Terraria.Recipe.SortAfter(Terraria.Recipe)">
+            <summary>
+            Sorts the recipe after the one given as parameter. Both recipes must already be registered.
             </summary>
         </member>
         <member name="M:Terraria.Recipe.Clone(Terraria.Recipe)">

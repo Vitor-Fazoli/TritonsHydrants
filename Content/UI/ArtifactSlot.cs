@@ -1,17 +1,22 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GearonArsenal.Common;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace GearonArsenal.Content.UI
 {
     public class ArtifactSlot : ModAccessorySlot
     {
+        public override void OnMouseHover(AccessorySlotType context)
+        {
+            Main.hoverItemName = "Artifact";
+        }
         public override bool IsHidden()
         {
             return false;
         }
-
         public override bool DrawVanitySlot => false;
 
         public override bool DrawDyeSlot => false;
@@ -35,7 +40,12 @@ namespace GearonArsenal.Content.UI
         }
         public override bool IsEnabled()
         {
-            return true;
+            CommonPlayer cp = new();
+
+            if (cp.artifactSlotEnable)
+                return true;
+
+            return false;
         }
     }
 }

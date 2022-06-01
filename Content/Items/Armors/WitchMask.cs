@@ -12,8 +12,7 @@ namespace GearonArsenal.Content.Items.Armors
         {
             Tooltip.SetDefault("This mask have a curse, if are using this your life its your mana\n" +
                 "increased life max in 20 \n" +
-                "your life regen is increased \n" +
-                "have a sinergy with many armors");
+                "your life regen is increased");
         }
         public override void SetDefaults()
         {
@@ -23,6 +22,7 @@ namespace GearonArsenal.Content.Items.Armors
             Item.rare = ModContent.RarityType<Artifact>();
             Item.defense = 3;
             Item.accessory = true;
+            Item.scale = 0.7f;
         }
         public override void UpdateEquip(Player player)
         {
