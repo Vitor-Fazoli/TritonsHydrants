@@ -40,10 +40,10 @@ namespace GearonArsenal.Content.Items.Artifacts
                 {
                     Player.statMana -= manaCost;
 
-                    Item.NewItem(new EntitySource_TileBreak(2, 2), new Vector2(Player.Center.X + 20, Player.Center.Y - 10), new Vector2(
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X + 20, Player.Center.Y - 10), new Vector2(
                         0, -5), ModContent.ItemType<SuppliesCrate>(), 1);
 
-                    Item.NewItem(new EntitySource_TileBreak(2, 2), new Vector2(Player.Center.X - 20, Player.Center.Y - 10), new Vector2(
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X - 20, Player.Center.Y - 10), new Vector2(
                         0, -5), ModContent.ItemType<SuppliesCrate>(), 1);
 
                     //Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Player.Center.X, Player.Center.Y - 10), new Vector2(
