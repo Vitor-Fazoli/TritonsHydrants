@@ -25,7 +25,15 @@ namespace GearonArsenal.Content.Projectiles
 
         public override bool OnPickup(Player player)
         {
-            player.statLife += 10;
+            if (player.statLife >= player.statLifeMax2)
+            {
+                player.statLife += 10;
+                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, 10);
+            }
+            
+
+
+            
             Item.active = false;
             return false;
         }

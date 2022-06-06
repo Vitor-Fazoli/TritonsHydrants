@@ -29,25 +29,20 @@ namespace GearonArsenal.Content.Items.Artifacts
     {
         public bool luckyMan = false;
 
-        public int manaCost = 50;
-        public int damage = 20;
-
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (proj.DamageType == DamageClass.Ranged && luckyMan && crit)
             {
-                if (Player.statMana >= manaCost)
+                if (Player.statMana >= (Player.statManaMax / 2))
                 {
-                    Player.statMana -= manaCost;
+                    Player.statMana -= (Player.statManaMax / 2);
 
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X + 20, Player.Center.Y - 10), new Vector2(
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X + 100, Player.Center.Y - 10), new Vector2(
                         0, -5), ModContent.ItemType<SuppliesCrate>(), 1);
 
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X - 20, Player.Center.Y - 10), new Vector2(
-                        0, -5), ModContent.ItemType<SuppliesCrate>(), 1);
 
-                    //Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Player.Center.X, Player.Center.Y - 10), new Vector2(
-                    //    0, -5), ModContent.ProjectileType<SuppliesCrate>(), damage, 5, proj.owner);
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X - 100, Player.Center.Y - 10), new Vector2(
+                        0, -5), ModContent.ItemType<SuppliesCrate>(), 1);
                 }
             }
         }
