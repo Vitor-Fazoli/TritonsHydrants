@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
+using GearonArsenal.Content.Projectiles;
 
 namespace GearonArsenal.Content.Items.Weapons.Ranged
 {
@@ -39,7 +40,7 @@ namespace GearonArsenal.Content.Items.Weapons.Ranged
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            type = ProjectileID.BulletHighVelocity;
+            type = ModContent.ProjectileType<HealProj>();
         }
     }
 }
