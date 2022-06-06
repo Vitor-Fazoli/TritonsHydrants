@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 
 namespace GearonArsenal.Content.Projectiles
 {
-    public class MagicMissile : ModProjectile
+    public class AquaticArrow : ModProjectile
     {
         private bool waterPower = false;
 
