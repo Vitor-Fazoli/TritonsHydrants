@@ -9,6 +9,9 @@ namespace GearonArsenal.Content.UI
 {
     public class ArtifactSlot : ModAccessorySlot
     {
+        
+        public bool enable;
+
         public override void OnMouseHover(AccessorySlotType context)
         {
             Main.hoverItemName = "Artifact";
@@ -40,12 +43,7 @@ namespace GearonArsenal.Content.UI
         }
         public override bool IsEnabled()
         {
-            CommonPlayer cp = new();
-
-            if (cp.artifactSlotEnable)
-                return true;
-
-            return false;
+            return true;
         }
     }
 }

@@ -5211,6 +5211,13 @@
             <param name="projectile"></param>
             <param name="hitbox"></param>
         </member>
+        <member name="M:Terraria.ModLoader.GlobalProjectile.ModifyDamageScaling(Terraria.Projectile,System.Single@)">
+            <summary>
+            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
+            </summary>
+            <param name="projectile"></param>
+            <param name="damageScale">The damage scaling</param>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.CanHitNPC(Terraria.Projectile,Terraria.NPC)">
             <summary>
             Allows you to determine whether a projectile can hit the given NPC. Return true to allow hitting the target, return false to block the projectile from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -7011,7 +7018,7 @@
         <member name="M:Terraria.ModLoader.ModContent.HasAsset(System.String)">
             <summary>
             Returns whether or not a asset with the specified name exists.
-            Includes the mod name prefix like GetAsset
+            Includes the mod name prefix like Request
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModContent.GetModNPC(System.Int32)">
@@ -10096,6 +10103,12 @@
             </summary>
             <param name="hitbox"></param>
         </member>
+        <member name="M:Terraria.ModLoader.ModProjectile.ModifyDamageScaling(System.Single@)">
+            <summary>
+            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
+            </summary>
+            <param name="damageScale">The damage scaling</param>
+        </member>
         <member name="M:Terraria.ModLoader.ModProjectile.CanHitNPC(Terraria.NPC)">
             <summary>
             Allows you to determine whether this projectile can hit the given NPC. Return true to allow hitting the target, return false to block this projectile from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -10329,6 +10342,11 @@
         <member name="M:Terraria.ModLoader.ModSystem.OnModLoad">
             <summary>
             This hook is called right after Mod.Load(), which is guaranteed to be called after all content has been autoloaded.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModSystem.OnModUnload">
+            <summary>
+            This hook is called right before Mod.UnLoad()
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.PostSetupContent">
@@ -11970,7 +11988,7 @@
                 Enqueues a list of mods, if found on the browser (also used for ModPacks)
             </summary>
         </member>
-        <member name="T:Terraria.ModLoader.Utilities.NPCSpawnHelper">
+        <member name="T:Terraria.ModLoader.Utilities.SpawnCondition">
             <summary>
             This server as a central class to help modders spawn their npcs. It's basically the vanilla spawn code if-else chains condensed into objects. See ExampleMod for usages.
             </summary>
