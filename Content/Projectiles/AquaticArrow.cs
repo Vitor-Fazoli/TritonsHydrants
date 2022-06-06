@@ -42,8 +42,6 @@ namespace GearonArsenal.Content.Projectiles
 
             if (waterPower)
             {
-                dust = DustID.Water;
-                color = new Color(100, 100, 100, 255);
 
                 waterPower = true;
                 Projectile.ai[0]++;

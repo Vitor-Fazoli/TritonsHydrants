@@ -6,7 +6,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using System;
 
 namespace GearonArsenal.Content.NPCs.Enemies
@@ -87,11 +86,17 @@ namespace GearonArsenal.Content.NPCs.Enemies
 
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                Main.NewText(NPC.GivenName + "FUCK YOU" + Lang.misc[16],Color.AliceBlue);
+                PopupText text = new PopupText();
+                text.name = ("ARE YOU PREPARED ?");
+                text.color = Color.Red;
+                text.position = NPC.position + new Vector2(0,+50);
             }
             else if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.SendData(25, -1, -1, NetworkText.FromLiteral("Fuck you"));
+                PopupText text = new PopupText();
+                text.name = ("ARE YOU PREPARED ?");
+                text.color = Color.Red;
+                text.position = NPC.position + new Vector2(0, +50);
             }
         }
         public override void BossLoot(ref string name, ref int potionType)
@@ -101,24 +106,14 @@ namespace GearonArsenal.Content.NPCs.Enemies
         public override void AI()
         {
             NPC.TargetClosest(faceTarget: true);
+            PlayerHead();
+            HealFromTheSky();
+
             Player player = Main.player[NPC.target];
-
-            Vector2 distance = player.Center - NPC.Center;
-
-            float random = Main.rand.Next(100);
-
-            if(distance.X >= 300 + random || distance.X <= -300 - random || distance.Y >= 300 + random || distance.Y <= -300 - random)
-            {
-                SpeedDistance(distance.X);
-            }
-            else
-            {
-                PlayerHead();
-            }
+            player.AddBuff(BuffID.CursedInferno, 1);
         }
 
         //combat tatics
-
         private void PlayerHead()
         {
             Player player = Main.player[NPC.target];
@@ -140,30 +135,33 @@ namespace GearonArsenal.Content.NPCs.Enemies
             }
             NPC.velocity = move;
         }
-
-        private void SpeedDistance(float dist)
+        private void HealFromTheSky()
         {
-            Player player = Main.player[NPC.target];
-            Vector2 moveTo = player.Center;
-            if (NPC.ai[0] <= 0f)
+            NPC.ai[1] = 0;
+            NPC.ai[1]++;
+
+            if(NPC.ai[1] == 50)
             {
-                float speed = 20f + (1.01f * dist);
-                Vector2 move = moveTo - NPC.Center;
-                float magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
-                if (magnitude > speed)
-                {
-                    move *= speed / magnitude;
-                }
-                float turnResistance = 10f; //the larger this is, the slower the npc will turn
-                move = (NPC.velocity * turnResistance + move) / (turnResistance + 1f);
-                magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
-                if (magnitude > speed)
-                {
-                    move *= speed / magnitude;
-                }
-                NPC.velocity = move;
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2((NPC.Center.X - 1000) + Main.rand.Next(2000), NPC.Center.Y - 100), new Vector2(0, 10),
+                    ProjectileID.EmpressBlade, NPC.damage, 5, NPC.releaseOwner);
+
+                NPC.ai[1] = 0;
             }
-            NPC.ai[0] -= 1f;
+        }
+        private void Colunm()
+        {
+            //Two colunms for stuck players in specific area
+            
+            for (int i = 0; i < Main.player.Length; i++)
+            {
+                Main.player[i].position = NPC.Center + new Vector2(0, 30);
+            }
+            
+
+            //Right Colunm
+
+            //Left Colunm
+
         }
     }
 }

@@ -2497,6 +2497,37 @@
             <param name="useGulpSound">If true, the gulp sound is set, otherwise the crunch sound is set</param>
             <param name="animationTime"></param>
         </member>
+        <member name="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)"/>
+            <br/><br/>This particular overload uses two Vector2 to determine the actual spawn position.
+            </summary>
+        </member>
+        <member name="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)"/>
+            <br/><br/>This particular overload uses a Vector2 instead of X and Y to determine the actual spawn position.
+            </summary>
+        </member>
+        <member name="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Spawns an item into the game world with the given type and stack size. The X, Y, Width, and Height parameters dictate a rectangle, the item will be spawned centered within that rectangle. Other overloads support passing in a position directly, or just use 0 for Width and Height if the center is passed in a X and Y.
+            This method should not be called on multiplayer clients. If you need to spawn items from client code, use <see cref="M:Terraria.Player.QuickSpawnItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32)"></see> instead, it handles the multiplayer syncing code needed.
+            The source represents the entity causing this item to spawn. The return value is the index of the spawned Item within the <see cref="F:Terraria.Main.item"/> array. 
+            </summary>
+            <param name="source"></param>
+            <param name="X"></param>
+            <param name="Y"></param>
+            <param name="Width"></param>
+            <param name="Height"></param>
+            <param name="Type">Either an <see cref="T:Terraria.ID.ItemID"/> entry or <see cref="M:Terraria.ModLoader.ModContent.ItemType``1"/>, for example <see cref="F:Terraria.ID.ItemID.IronskinPotion"/> or ModContent.ItemType&lt;MyModItem&gt;()</param>
+            <param name="Stack">Item stack</param>
+            <param name="noBroadcast"></param>
+            <param name="pfix"></param>
+            <param name="noGrabDelay"></param>
+            <param name="reverseLookup"></param>
+            <returns></returns>
+        </member>
         <member name="P:Terraria.Item.AllowReforgeForStackableItem">
             <summary>
             Set to true in SetDefaults to allow this item to receive a prefix on reforge even if maxStack is not 1.
@@ -2567,6 +2598,18 @@
         <member name="M:Terraria.Item.IsNotSameTypePrefixAndStack(Terraria.Item)">
             <summary>
             returns false if and only if netID (deprecated, equivalent to type), stack and prefix match
+            </summary>
+        </member>
+        <member name="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)"/>
+            <br/><br/>This particular overload uses a Rectangle instead of X, Y, Width, and Height to determine the actual spawn position.
+            </summary>
+        </member>
+        <member name="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Item.NewItem(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,System.Boolean,System.Boolean)"/>
+            <br/><br/>This particular overload uses a Vector2 instead of X, Y, Width, and Height to determine the actual spawn position.
             </summary>
         </member>
         <member name="M:Terraria.Main.RegisterItemAnimation(System.Int32,Terraria.DataStructures.DrawAnimation)">
@@ -4070,7 +4113,17 @@
             <param name="player">The player attempting to catch the given NPC.</param>
             <param name="failed">Whether or not the given NPC has been successfully caught.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.GlobalItem.ModifyItemScale(Terraria.Item,Terraria.Player,System.Single@)" -->
+        <member name="M:Terraria.ModLoader.GlobalItem.ModifyItemScale(Terraria.Item,Terraria.Player,System.Single@)">
+            <summary>
+            Allows you to dynamically modify the given item's size for the given player, similarly to the effect of the Titan Glove.
+            </summary>
+            <param name="item">The item to modify the scale of.</param>
+            <param name="player">The player wielding the given item.</param>
+            <param name="scale">
+            The scale multiplier to be applied to the given item.<br></br>
+            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
+            </param>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalItem.CanHitNPC(Terraria.Item,Terraria.Player,Terraria.NPC)">
             <summary>
             Allows you to determine whether a melee weapon can hit the given NPC when swung. Return true to allow hitting the target, return false to block the weapon from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -5210,13 +5263,6 @@
             </summary>
             <param name="projectile"></param>
             <param name="hitbox"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalProjectile.ModifyDamageScaling(Terraria.Projectile,System.Single@)">
-            <summary>
-            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
-            </summary>
-            <param name="projectile"></param>
-            <param name="damageScale">The damage scaling</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.CanHitNPC(Terraria.Projectile,Terraria.NPC)">
             <summary>
@@ -7018,7 +7064,7 @@
         <member name="M:Terraria.ModLoader.ModContent.HasAsset(System.String)">
             <summary>
             Returns whether or not a asset with the specified name exists.
-            Includes the mod name prefix like Request
+            Includes the mod name prefix like GetAsset
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModContent.GetModNPC(System.Int32)">
@@ -7620,7 +7666,16 @@
             <param name="player">The player attempting to catch the given NPC.</param>
             <param name="failed">Whether or not the given NPC has been successfully caught.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.ModItem.ModifyItemScale(Terraria.Player,System.Single@)" -->
+        <member name="M:Terraria.ModLoader.ModItem.ModifyItemScale(Terraria.Player,System.Single@)">
+            <summary>
+            Allows you to dynamically modify this item's size for the given player, similarly to the effect of the Titan Glove.
+            </summary>
+            <param name="player">The player wielding this item.</param>
+            <param name="scale">
+            The scale multiplier to be applied to this item.<br></br>
+            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
+            </param>
+        </member>
         <member name="M:Terraria.ModLoader.ModItem.CanHitNPC(Terraria.Player,Terraria.NPC)">
             <summary>
             Allows you to determine whether this melee weapon can hit the given NPC when swung. Return true to allow hitting the target, return false to block this weapon from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -9521,7 +9576,16 @@
             <param name="item">The item used to catch the given NPC.</param>
             <param name="failed">Whether or not the given NPC has been successfully caught.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Terraria.ModLoader.ModPlayer.ModifyItemScale(Terraria.Item,System.Single@)" -->
+        <member name="M:Terraria.ModLoader.ModPlayer.ModifyItemScale(Terraria.Item,System.Single@)">
+            <summary>
+            Allows you to dynamically modify the given item's size for this player, similarly to the effect of the Titan Glove.
+            </summary>
+            <param name="item">The item to modify the scale of.</param>
+            <param name="scale">
+            The scale multiplier to be applied to the given item.<br></br>
+            Will be 1.1 if the Titan Glove is equipped, and 1 otherwise.
+            </param>
+        </member>
         <member name="M:Terraria.ModLoader.ModPlayer.OnHitAnything(System.Single,System.Single,Terraria.Entity)">
             <summary>
             This hook is called when a player damages anything, whether it be an NPC or another player, using anything, whether it be a melee weapon or a projectile. The x and y parameters are the coordinates of the victim parameter's center.
@@ -10103,12 +10167,6 @@
             </summary>
             <param name="hitbox"></param>
         </member>
-        <member name="M:Terraria.ModLoader.ModProjectile.ModifyDamageScaling(System.Single@)">
-            <summary>
-            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
-            </summary>
-            <param name="damageScale">The damage scaling</param>
-        </member>
         <member name="M:Terraria.ModLoader.ModProjectile.CanHitNPC(Terraria.NPC)">
             <summary>
             Allows you to determine whether this projectile can hit the given NPC. Return true to allow hitting the target, return false to block this projectile from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -10344,11 +10402,6 @@
             This hook is called right after Mod.Load(), which is guaranteed to be called after all content has been autoloaded.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModSystem.OnModUnload">
-            <summary>
-            This hook is called right before Mod.UnLoad()
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.ModSystem.PostSetupContent">
             <summary>
             Allows you to load things in your system after the mod's content has been setup (arrays have been resized to fit the content, etc).
@@ -10556,7 +10609,7 @@
             <summary>
             Called after all other time calculations. Can be used to modify the speed at which time should progress per tick in seconds, along with the rate at which the tiles in the world and the events in the world should update with it.
             All fields are measured in in-game minutes per real-life second (min/sec).
-            You may want to consider <see cref="F:Terraria.Main.fastForwardTime"/> and <see cref="!:CreativePowerManager.Instance.GetPower&lt;CreativePowers.FreezeTime&gt;().Enabled"/> here.
+            You may want to consider <see cref="F:Terraria.Main.fastForwardTime"/> and CreativePowerManager.Instance.GetPower&lt;CreativePowers.FreezeTime&gt;().Enabled here.
             </summary>
             <param name="timeRate">The speed at which time flows in min/sec.</param>
             <param name="tileUpdateRate">The speed at which tiles in the world update in min/sec.</param>
@@ -11988,7 +12041,7 @@
                 Enqueues a list of mods, if found on the browser (also used for ModPacks)
             </summary>
         </member>
-        <member name="T:Terraria.ModLoader.Utilities.SpawnCondition">
+        <member name="T:Terraria.ModLoader.Utilities.NPCSpawnHelper">
             <summary>
             This server as a central class to help modders spawn their npcs. It's basically the vanilla spawn code if-else chains condensed into objects. See ExampleMod for usages.
             </summary>
@@ -12009,6 +12062,22 @@
             Mainly used for critters that can be caught with bug nets, such as butterflies and worms.<br></br>
             Bug nets and other catching tools will only work on NPCs with this field set to something greater than 0.
             </summary>
+        </member>
+        <member name="M:Terraria.NPC.NewNPC(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)">
+            <summary>
+            Spawns an NPC into the game world with the given type. This method should not be called on multiplayer clients. The X and Y parameters dictate the centered spawn position. ai0, ai1, ai2, and ai3 will initialize the NPC.ai[] array with the supplied values. This can be used to pass in information to the NPC. The NPC AI code will have to be written to utilize those values. Target can be set to a Player.whoAmI to have the NPC targetting a specific Player immediately on spawn. Start can be used to ensure that an NPC spawns in a slot after an existing NPC. This can be used to ensure that the spawned NPC draws behind an existing NPC. This is useful for bosses that spawn minions. The return value is the index of the spawned NPC within the <see cref="F:Terraria.Main.npc"/> array. 
+            </summary>
+            <param name="source"></param>
+            <param name="X"></param>
+            <param name="Y"></param>
+            <param name="Type">Either an <see cref="T:Terraria.ID.NPCID"/> entry or <see cref="M:Terraria.ModLoader.ModContent.NPCType``1"/>, for example <see cref="F:Terraria.ID.NPCID.BabySlime"/> or ModContent.NPCType&lt;MyModNPC&gt;()</param>
+            <param name="Start"></param>
+            <param name="ai0"></param>
+            <param name="ai1"></param>
+            <param name="ai2"></param>
+            <param name="ai3"></param>
+            <param name="Target"></param>
+            <returns></returns>
         </member>
         <member name="P:Terraria.NPC.Happiness">
             <summary> Provides access to (static) happiness data associated with this NPC's type. </summary>
@@ -12044,10 +12113,18 @@
             <returns> Whether or not the requested instance has been found. </returns>
         </member>
         <member name="M:Terraria.NPC.NewNPCDirect(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)">
-            <summary> A short-hand for <code> Main.npc[Main.NewNPC(...)] </code> </summary>
+            <summary>
+            <inheritdoc cref="M:Terraria.NPC.NewNPC(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>
+            <br/><br/>This particular overload returns the actual NPC instance rather than the index of the spawned NPC within the <see cref="F:Terraria.Main.npc"/> array.
+            <br/> A short-hand for <code> Main.npc[NPC.NewNPC(...)] </code>
+            </summary>
         </member>
         <member name="M:Terraria.NPC.NewNPCDirect(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)">
-            <inheritdoc cref="M:Terraria.NPC.NewNPCDirect(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>
+            <summary>
+            <inheritdoc cref="M:Terraria.NPC.NewNPC(Terraria.DataStructures.IEntitySource,System.Int32,System.Int32,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.Single,System.Int32)"/>
+            <br/><br/>This particular overload returns the actual NPC instance rather than the index of the spawned NPC within the <see cref="F:Terraria.Main.npc"/> array. It also uses a Vector2 for the spawn position instead of X and Y.
+            <br/> A short-hand for <code> Main.npc[NPC.NewNPC(...)] </code>
+            </summary>
         </member>
         <member name="M:Terraria.NPC.SitDown(Microsoft.Xna.Framework.Point,System.Int32@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
@@ -12322,6 +12399,39 @@
         <member name="P:Terraria.Player.ItemUsesThisAnimation">
             <summary>
             The number of times the item has been used/fired this animation (swing)
+            </summary>
+        </member>
+        <member name="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)"/>
+            <br/><br/>This particular overload uses a Vector2 instead of X and Y to determine the actual spawn position and a Vector2 to dictate the initial velocity.
+            </summary>
+        </member>
+        <member name="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            Spawns a projectile into the game world with the given type. The spawn position is given in world coordinates by the X and Y parameters. SpeedX and SpeedY dictate the initial velocity. Damage and KnockBack are self explanitory. Owner is the player who spawned the projectile, almost always Main.myPlayer. ai0 and ai1 will initialize the Projectile.ai[] array with the supplied values. This can be used to pass in information to the Projectile. The Projectile AI code will have to be written to utilize those values. The return value is the index of the spawned Projectile within the <see cref="F:Terraria.Main.projectile"/> array.
+            <br/> Make sure that this method is called only by the client in charge of the source causing this projectile to spawn. Failure to do this will result in the projectile spawning once for each player in the world. For example, if Player code uses this method, make sure to first check <code>if(Main.myPlayer == Player.whoAmI)</code> to ensure that only the local player spawns the projectile.
+            <br/> Projectiles spawning other projectiles should check <code>if(Main.myPlayer == Projectile.owner)</code>
+            <br/> If the source is an NPC or non-player owned projectile, checking <code>if (Main.netMode != NetmodeID.MultiplayerClient)</code> will ensure that clients don't attempt to spawn the projectile.
+            </summary>
+            <param name="spawnSource"></param>
+            <param name="X"></param>
+            <param name="Y"></param>
+            <param name="SpeedX"></param>
+            <param name="SpeedY"></param>
+            <param name="Type">Either an <see cref="T:Terraria.ID.ProjectileID"/> entry or <see cref="M:Terraria.ModLoader.ModContent.ProjectileType``1"/>, for example <see cref="F:Terraria.ID.ProjectileID.FireArrow"/> or ModContent.ProjectileType&lt;MyModProjectile&gt;()</param>
+            <param name="Damage"></param>
+            <param name="KnockBack"></param>
+            <param name="Owner"></param>
+            <param name="ai0"></param>
+            <param name="ai1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Terraria.Projectile.NewProjectileDirect(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)">
+            <summary>
+            <inheritdoc cref="M:Terraria.Projectile.NewProjectile(Terraria.DataStructures.IEntitySource,System.Single,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Single,System.Int32,System.Single,System.Single)"/>
+            <br/><br/>This particular overload uses a Vector2 instead of X and Y to determine the actual spawn position and a Vector2 to dictate the initial velocity. The return value is the actual Projectile instance rather than the index of the spawned Projectile within the <see cref="F:Terraria.Main.projectile"/> array.
+            <br/> A short-hand for <code> Main.projectile[Projectile.NewProjectile(...)] </code>
             </summary>
         </member>
         <member name="P:Terraria.Projectile.DamageType">
