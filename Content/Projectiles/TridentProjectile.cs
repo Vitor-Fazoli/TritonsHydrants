@@ -89,7 +89,7 @@ namespace GearonArsenal.Content.Projectiles
         }
         public override void Kill(int timeLeft)
         {
-            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Projectile.Center.X, Projectile.Center.Y), Projectile.velocity * 1.5f, ModContent.ProjectileType<MagicMissile>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Projectile.Center.X, Projectile.Center.Y), Projectile.velocity * 1.5f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
     }
 }

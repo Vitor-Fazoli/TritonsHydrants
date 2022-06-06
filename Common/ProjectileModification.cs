@@ -16,7 +16,7 @@ namespace GearonArsenal.Common.GlobalItems {
 			projectile.DamageType = DamageClass.Magic;
         }
         public override void Kill(Projectile projectile, int timeLeft) {
-			Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(projectile.Center.X, projectile.Center.Y), projectile.velocity * 1.5f, ModContent.ProjectileType<MagicMissile>(), projectile.damage, projectile.knockBack, projectile.owner);
+			Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(projectile.Center.X, projectile.Center.Y), projectile.velocity * 1.5f, ModContent.ProjectileType<AquaticArrow>(), projectile.damage, projectile.knockBack, projectile.owner);
 		}
 	}
 
@@ -28,7 +28,7 @@ namespace GearonArsenal.Common.GlobalItems {
             projectile.DamageType = DamageClass.Magic;
         }
         public override void Kill(Projectile projectile, int timeLeft) {
-            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(projectile.Center.X, projectile.Center.Y), projectile.velocity * 1.5f, ModContent.ProjectileType<MagicMissile>(), projectile.damage, projectile.knockBack, projectile.owner);
+            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(projectile.Center.X, projectile.Center.Y), projectile.velocity * 1.5f, ModContent.ProjectileType<AquaticArrow>(), projectile.damage, projectile.knockBack, projectile.owner);
         }
     }
 }
