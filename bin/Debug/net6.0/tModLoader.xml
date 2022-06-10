@@ -1445,6 +1445,13 @@
             Whether or not a given NPC can sit on suitable furniture (<see cref="F:Terraria.ID.TileID.Sets.CanBeSatOnForNPCs"/>)
             </summary>
         </member>
+        <member name="F:Terraria.ID.NPCID.Sets.CannotDropSouls">
+            <summary>
+            Whether or not a given NPC is excluded from dropping hardmode souls (Soul of Night/Light)
+            <br/>Contains vanilla NPCs that are easy to spawn in large numbers, preventing easy soul farming
+            <br/>Do not add your NPC to this if it would be excluded automatically (i.e. critter, town NPC, or no coin drops)
+            </summary>
+        </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Arrow">
             <summary>
             Behavior: Includes Bullets and Lasers<br/>
@@ -2528,6 +2535,13 @@
             <param name="reverseLookup"></param>
             <returns></returns>
         </member>
+        <member name="P:Terraria.Item.attackSpeedOnlyAffectsWeaponAnimation">
+            <summary>
+            Dictates whether or not attack speed modifiers on this weapon will actually affect its use time.<br/>
+            Defaults to false, which allows attack speed modifiers to affect use time. Set this to true to prevent this from happening.<br/>
+            Used in vanilla by all melee weapons which shoot a projectile and have <see cref="F:Terraria.Item.noMelee"/> set to false.
+            </summary>
+        </member>
         <member name="P:Terraria.Item.AllowReforgeForStackableItem">
             <summary>
             Set to true in SetDefaults to allow this item to receive a prefix on reforge even if maxStack is not 1.
@@ -3137,6 +3151,11 @@
             <summary>
             Base damage class for all weapons. All vanilla damage classes inherit bonuses applied to this class.
             Accessories which benefit all classes provide bonuses via the Generic class
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.DamageClass.MeleeNoSpeed">
+            <summary>
+            This is a damage class used by various projectile-only vanilla melee weapons. Attack speed has no effect on items with this damage class.
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.DamageClass.SummonMeleeSpeed">
@@ -5264,6 +5283,13 @@
             <param name="projectile"></param>
             <param name="hitbox"></param>
         </member>
+        <member name="M:Terraria.ModLoader.GlobalProjectile.ModifyDamageScaling(Terraria.Projectile,System.Single@)">
+            <summary>
+            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
+            </summary>
+            <param name="projectile"></param>
+            <param name="damageScale">The damage scaling</param>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.CanHitNPC(Terraria.Projectile,Terraria.NPC)">
             <summary>
             Allows you to determine whether a projectile can hit the given NPC. Return true to allow hitting the target, return false to block the projectile from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -7064,7 +7090,7 @@
         <member name="M:Terraria.ModLoader.ModContent.HasAsset(System.String)">
             <summary>
             Returns whether or not a asset with the specified name exists.
-            Includes the mod name prefix like GetAsset
+            Includes the mod name prefix like Request
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModContent.GetModNPC(System.Int32)">
@@ -10167,6 +10193,12 @@
             </summary>
             <param name="hitbox"></param>
         </member>
+        <member name="M:Terraria.ModLoader.ModProjectile.ModifyDamageScaling(System.Single@)">
+            <summary>
+            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
+            </summary>
+            <param name="damageScale">The damage scaling</param>
+        </member>
         <member name="M:Terraria.ModLoader.ModProjectile.CanHitNPC(Terraria.NPC)">
             <summary>
             Allows you to determine whether this projectile can hit the given NPC. Return true to allow hitting the target, return false to block this projectile from hitting the target, and return null to use the vanilla code for whether the target can be hit. Returns null by default.
@@ -10400,6 +10432,11 @@
         <member name="M:Terraria.ModLoader.ModSystem.OnModLoad">
             <summary>
             This hook is called right after Mod.Load(), which is guaranteed to be called after all content has been autoloaded.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModSystem.OnModUnload">
+            <summary>
+            This hook is called right before Mod.UnLoad()
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModSystem.PostSetupContent">
@@ -12041,7 +12078,7 @@
                 Enqueues a list of mods, if found on the browser (also used for ModPacks)
             </summary>
         </member>
-        <member name="T:Terraria.ModLoader.Utilities.NPCSpawnHelper">
+        <member name="T:Terraria.ModLoader.Utilities.SpawnCondition">
             <summary>
             This server as a central class to help modders spawn their npcs. It's basically the vanilla spawn code if-else chains condensed into objects. See ExampleMod for usages.
             </summary>
@@ -12336,6 +12373,9 @@
             </summary>
             <exception cref="T:System.IndexOutOfRangeException"/>
             <exception cref="T:System.NullReferenceException"/>
+        </member>
+        <member name="M:Terraria.Player.InModBiome``1">
+            <inheritdoc cref="M:Terraria.Player.InModBiome(Terraria.ModLoader.ModBiome)"/>
         </member>
         <member name="P:Terraria.Player.ZonePurity">
             <summary>

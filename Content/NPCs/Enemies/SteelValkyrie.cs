@@ -111,6 +111,12 @@ namespace GearonArsenal.Content.NPCs.Enemies
 
             Player player = Main.player[NPC.target];
             player.AddBuff(BuffID.CursedInferno, 1);
+
+            NPC.ai[1] -= 1f;
+            if (NPC.ai[1] <= 0f)
+            {
+                HealFromTheSky();
+            }
         }
 
         //combat tatics
@@ -137,17 +143,17 @@ namespace GearonArsenal.Content.NPCs.Enemies
         }
         private void HealFromTheSky()
         {
-            NPC.ai[1] = 0;
-            NPC.ai[1]++;
 
-            if(NPC.ai[1] == 50)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2((NPC.Center.X - 1000) + Main.rand.Next(2000), NPC.Center.Y - 100), new Vector2(0, 10),
-                    ProjectileID.EmpressBlade, NPC.damage, 5, NPC.releaseOwner);
-
-                NPC.ai[1] = 0;
+                for (int i = 0; i < 40; i++)
+                {
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2,2),new Vector2(NPC.Center.X - 2000 + (i * 100), NPC.Center.Y - 2000), new Vector2(0, 6 - Main.rand.Next(5)), ProjectileID.WoodenArrowHostile, 10, 2, NPC.target);
+                }
+                NPC.ai[1] = 60;
             }
         }
+    
         private void Colunm()
         {
             //Two colunms for stuck players in specific area

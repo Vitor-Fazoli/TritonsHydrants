@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj": {}
+    "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj": {
+    "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj",
         "projectName": "GearonArsenal",
-        "projectPath": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj",
-        "packagesPath": "C:\\Users\\fazol\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\obj\\",
+        "projectPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj",
+        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fazol\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
