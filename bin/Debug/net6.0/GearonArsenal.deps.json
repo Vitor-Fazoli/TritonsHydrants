@@ -21,6 +21,7 @@
           "Microsoft.CodeAnalysis.CSharp": "4.2.0.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.2.0.0",
           "Microsoft.CodeAnalysis": "4.2.0.0",
+          "Microsoft.CodeAnalysis.FlowAnalysis.Utilities": "2.9.5.0",
           "Microsoft.CodeAnalysis.Workspaces": "4.2.0.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.2.0.0",
           "Microsoft.Win32.SystemEvents": "6.0.0.0",
@@ -278,6 +279,14 @@
           },
           "zh-Hant/Microsoft.CodeAnalysis.resources.dll": {
             "locale": "zh-Hant"
+          }
+        }
+      },
+      "Microsoft.CodeAnalysis.FlowAnalysis.Utilities/2.9.5.0": {
+        "runtime": {
+          "Microsoft.CodeAnalysis.FlowAnalysis.Utilities.dll": {
+            "assemblyVersion": "2.9.5.0",
+            "fileVersion": "2.9.519.46601"
           }
         }
       },
@@ -714,6 +723,11 @@
       "sha512": ""
     },
     "Microsoft.CodeAnalysis/4.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeAnalysis.FlowAnalysis.Utilities/2.9.5.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

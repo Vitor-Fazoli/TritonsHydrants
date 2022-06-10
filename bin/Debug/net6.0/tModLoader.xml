@@ -3436,7 +3436,7 @@
         <member name="M:Terraria.ModLoader.EquipLoader.EquipFrameEffects(Terraria.Player)">
             <summary>
             Hook Player.PlayerFrame
-            Calls each of the item's equipment texture's UpdateVanity hook.
+            Calls each of the item's equipment texture's FrameEffects hook.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.EquipTexture">
@@ -3569,13 +3569,14 @@
             This is the superclass for GlobalTile and GlobalWall, combining common code
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalBlockType.KillSound(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Terraria.ModLoader.GlobalBlockType.KillSound(System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Allows you to customize which sound you want to play when the tile/wall at the given coordinates is hit. Return false to stop the game from playing its default sound for the tile/wall. Returns true by default.
             </summary>
             <param name="i"></param>
             <param name="j"></param>
             <param name="type"></param>
+            <param name="fail">If true, the tile/wall is only partially damaged. If false, the tile/wall is fully destroyed.</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.GlobalBlockType.NumDust(System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32@)">
@@ -6744,12 +6745,13 @@
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModBlockType.KillSound(System.Int32,System.Int32)">
+        <member name="M:Terraria.ModLoader.ModBlockType.KillSound(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Allows you to customize which sound you want to play when the tile/wall at the given coordinates is hit. Return false to stop the game from playing its default sound for the tile/wall. Returns true by default.
             </summary>
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
+            <param name="fail">If true, the tile/wall is only partially damaged. If false, the tile/wall is fully destroyed.</param>
         </member>
         <member name="M:Terraria.ModLoader.ModBlockType.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
             <summary>
@@ -11590,10 +11592,11 @@
             <summary>
             The player that this NPC is spawning around.
             For convenience, here are the player zones, which are also useful for determining NPC spawn:
+            (ZoneGranite, ZoneMarble, ZoneHive, ZoneGemCave are not actually proper spawning related checks, they are for visuals only (RGB), determined by the backwall type)
             <list type="bullet">
             <item><description>ZoneDungeon</description></item>
             <item><description>ZoneCorrupt</description></item>
-            <item><description>ZoneHoly</description></item>
+            <item><description>ZoneHallow</description></item>
             <item><description>ZoneMeteor</description></item>
             <item><description>ZoneJungle</description></item>
             <item><description>ZoneSnow</description></item>
@@ -11615,6 +11618,8 @@
             <item><description>ZoneBeach</description></item>
             <item><description>ZoneRain</description></item>
             <item><description>ZoneSandstorm</description></item>
+            <item><description>ZoneOldOneArmy</description></item>
+            <item><description>ZoneGraveyard</description></item>
             </list>
             </summary>
         </member>

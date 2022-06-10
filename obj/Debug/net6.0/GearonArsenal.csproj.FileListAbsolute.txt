@@ -428,3 +428,5 @@ D:\Documentos\My Games\Terraria\tModLoader\ModSources\GearonArsenal\obj\Debug\ne
 D:\Documentos\My Games\Terraria\tModLoader\ModSources\GearonArsenal\obj\Debug\net6.0\refint\GearonArsenal.dll
 D:\Documentos\My Games\Terraria\tModLoader\ModSources\GearonArsenal\obj\Debug\net6.0\GearonArsenal.pdb
 D:\Documentos\My Games\Terraria\tModLoader\ModSources\GearonArsenal\obj\Debug\net6.0\ref\GearonArsenal.dll
+C:\Users\hp\Documents\My Games\Terraria\tModLoader\ModSources\GearonArsenal\bin\Debug\net6.0\Microsoft.CodeAnalysis.FlowAnalysis.Utilities.dll
+C:\Users\hp\Documents\My Games\Terraria\tModLoader\ModSources\GearonArsenal\bin\Debug\net6.0\Microsoft.CodeAnalysis.FlowAnalysis.Utilities.xml
