@@ -78,7 +78,7 @@ namespace GearonArsenal.Content.NPCs.Enemies
             NPC.noGravity = true;
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0.8f;
-            NPC.alpha = 255; // This makes it transparent upon spawning, we have to manually fade it in in AI()
+            NPC.alpha = 255;
             NPC.netAlways = true;
 
             NPC.aiStyle = -1;
@@ -86,13 +86,12 @@ namespace GearonArsenal.Content.NPCs.Enemies
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            // Makes it so whenever you beat the boss associated with it, it will also get unlocked immediately
             int associatedNPCType = BodyType();
             bestiaryEntry.UIInfoProvider = new CommonEnemyUICollectionInfoProvider(ContentSamples.NpcBestiaryCreditIdsByNpcNetIds[associatedNPCType], quickUnlock: true);
 
             bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement> {
-                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(), // Plain black background
-				new FlavorTextBestiaryInfoElement("A minion protecting his boss from taking damage by sacrificing itself. If none are alive, the boss is exposed to damage.")
+                new MoonLordPortraitBackgroundProviderBestiaryInfoElement(),
+				new FlavorTextBestiaryInfoElement("robots defends your guardian always")
             });
         }
 
@@ -100,7 +99,6 @@ namespace GearonArsenal.Content.NPCs.Enemies
         {
             if (NPC.IsABestiaryIconDummy)
             {
-                // This is required because we have NPC.alpha = 255, in the bestiary it would look transparent
                 return NPC.GetBestiaryEntryColor();
             }
             return Color.White * NPC.Opacity;

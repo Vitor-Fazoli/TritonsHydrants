@@ -12,6 +12,9 @@ namespace GearonArsenal.Content.Projectiles
 {
     public class SupplyCrate : ModItem
     {
+        private int percent;
+        private int bonus;
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Supply Crate");
@@ -25,16 +28,16 @@ namespace GearonArsenal.Content.Projectiles
 
         public override bool OnPickup(Player player)
         {
-            int percent = 10 * (player.statLifeMax2 / 100);
+            percent = 10 * (player.statLifeMax2 / 100);
 
-            int bonus = player.statManaMax2 / 2;
+            bonus = player.statManaMax2 / 2;
 
             if (player.statLife <= player.statLifeMax2)
             {
-                player.statLife += (percent + bonus)/4;
-                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, (percent + bonus)/4);
+                player.statLife += (percent + bonus) / 4;
+                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, (percent + bonus) / 4);
             }
-            
+
             Item.active = false;
             return false;
         }
