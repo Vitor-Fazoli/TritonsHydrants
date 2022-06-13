@@ -12,7 +12,7 @@ namespace GearonArsenal.Content.Items.Weapons.Summon
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a purity wisp to fight for you.");
+			Tooltip.SetDefault("Summons Wandering Auralite");
 			ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
 			ItemID.Sets.LockOnIgnoresCollision[Item.type] = true;
 		}
@@ -33,7 +33,7 @@ namespace GearonArsenal.Content.Items.Weapons.Summon
 			Item.rare = ItemRarityID.Cyan;
 			Item.UseSound = SoundID.Item44;
 			Item.shoot = ModContent.ProjectileType<WanderingAuralite>();
-			Item.buffType = ModContent.BuffType<WanderingAuraliteBuff>(); //The buff added to player after used the Item
+			Item.buffType = ModContent.BuffType<WanderingAuraliteBuff>();
 		}
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

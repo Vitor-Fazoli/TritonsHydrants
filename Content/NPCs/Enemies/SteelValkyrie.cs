@@ -16,11 +16,6 @@ namespace GearonArsenal.Content.NPCs.Enemies
     public class SteelValkyrie : ModNPC
     {
         public int dashTimer;
-        int frame = 0;
-        int timer = 0;
-        int shootTimer = 0;
-        bool manaSteal = false;
-        int manaStealTimer;
 
         public override void SetStaticDefaults()
         {

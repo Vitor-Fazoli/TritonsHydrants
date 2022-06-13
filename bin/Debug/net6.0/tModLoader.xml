@@ -1445,13 +1445,6 @@
             Whether or not a given NPC can sit on suitable furniture (<see cref="F:Terraria.ID.TileID.Sets.CanBeSatOnForNPCs"/>)
             </summary>
         </member>
-        <member name="F:Terraria.ID.NPCID.Sets.CannotDropSouls">
-            <summary>
-            Whether or not a given NPC is excluded from dropping hardmode souls (Soul of Night/Light)
-            <br/>Contains vanilla NPCs that are easy to spawn in large numbers, preventing easy soul farming
-            <br/>Do not add your NPC to this if it would be excluded automatically (i.e. critter, town NPC, or no coin drops)
-            </summary>
-        </member>
         <member name="F:Terraria.ID.ProjAIStyleID.Arrow">
             <summary>
             Behavior: Includes Bullets and Lasers<br/>
@@ -3436,7 +3429,7 @@
         <member name="M:Terraria.ModLoader.EquipLoader.EquipFrameEffects(Terraria.Player)">
             <summary>
             Hook Player.PlayerFrame
-            Calls each of the item's equipment texture's FrameEffects hook.
+            Calls each of the item's equipment texture's UpdateVanity hook.
             </summary>
         </member>
         <member name="T:Terraria.ModLoader.EquipTexture">
@@ -3569,14 +3562,13 @@
             This is the superclass for GlobalTile and GlobalWall, combining common code
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.GlobalBlockType.KillSound(System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Terraria.ModLoader.GlobalBlockType.KillSound(System.Int32,System.Int32,System.Int32)">
             <summary>
             Allows you to customize which sound you want to play when the tile/wall at the given coordinates is hit. Return false to stop the game from playing its default sound for the tile/wall. Returns true by default.
             </summary>
             <param name="i"></param>
             <param name="j"></param>
             <param name="type"></param>
-            <param name="fail">If true, the tile/wall is only partially damaged. If false, the tile/wall is fully destroyed.</param>
             <returns></returns>
         </member>
         <member name="M:Terraria.ModLoader.GlobalBlockType.NumDust(System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32@)">
@@ -6745,13 +6737,12 @@
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModBlockType.KillSound(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Terraria.ModLoader.ModBlockType.KillSound(System.Int32,System.Int32)">
             <summary>
             Allows you to customize which sound you want to play when the tile/wall at the given coordinates is hit. Return false to stop the game from playing its default sound for the tile/wall. Returns true by default.
             </summary>
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
-            <param name="fail">If true, the tile/wall is only partially damaged. If false, the tile/wall is fully destroyed.</param>
         </member>
         <member name="M:Terraria.ModLoader.ModBlockType.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
             <summary>
@@ -7092,7 +7083,7 @@
         <member name="M:Terraria.ModLoader.ModContent.HasAsset(System.String)">
             <summary>
             Returns whether or not a asset with the specified name exists.
-            Includes the mod name prefix like Request
+            Includes the mod name prefix like GetAsset
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModContent.GetModNPC(System.Int32)">
@@ -10436,11 +10427,6 @@
             This hook is called right after Mod.Load(), which is guaranteed to be called after all content has been autoloaded.
             </summary>
         </member>
-        <member name="M:Terraria.ModLoader.ModSystem.OnModUnload">
-            <summary>
-            This hook is called right before Mod.UnLoad()
-            </summary>
-        </member>
         <member name="M:Terraria.ModLoader.ModSystem.PostSetupContent">
             <summary>
             Allows you to load things in your system after the mod's content has been setup (arrays have been resized to fit the content, etc).
@@ -11592,11 +11578,10 @@
             <summary>
             The player that this NPC is spawning around.
             For convenience, here are the player zones, which are also useful for determining NPC spawn:
-            (ZoneGranite, ZoneMarble, ZoneHive, ZoneGemCave are not actually proper spawning related checks, they are for visuals only (RGB), determined by the backwall type)
             <list type="bullet">
             <item><description>ZoneDungeon</description></item>
             <item><description>ZoneCorrupt</description></item>
-            <item><description>ZoneHallow</description></item>
+            <item><description>ZoneHoly</description></item>
             <item><description>ZoneMeteor</description></item>
             <item><description>ZoneJungle</description></item>
             <item><description>ZoneSnow</description></item>
@@ -11618,8 +11603,6 @@
             <item><description>ZoneBeach</description></item>
             <item><description>ZoneRain</description></item>
             <item><description>ZoneSandstorm</description></item>
-            <item><description>ZoneOldOneArmy</description></item>
-            <item><description>ZoneGraveyard</description></item>
             </list>
             </summary>
         </member>
@@ -12083,7 +12066,7 @@
                 Enqueues a list of mods, if found on the browser (also used for ModPacks)
             </summary>
         </member>
-        <member name="T:Terraria.ModLoader.Utilities.SpawnCondition">
+        <member name="T:Terraria.ModLoader.Utilities.NPCSpawnHelper">
             <summary>
             This server as a central class to help modders spawn their npcs. It's basically the vanilla spawn code if-else chains condensed into objects. See ExampleMod for usages.
             </summary>
@@ -12378,9 +12361,6 @@
             </summary>
             <exception cref="T:System.IndexOutOfRangeException"/>
             <exception cref="T:System.NullReferenceException"/>
-        </member>
-        <member name="M:Terraria.Player.InModBiome``1">
-            <inheritdoc cref="M:Terraria.Player.InModBiome(Terraria.ModLoader.ModBiome)"/>
         </member>
         <member name="P:Terraria.Player.ZonePurity">
             <summary>
