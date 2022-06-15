@@ -207,47 +207,31 @@ namespace GearonArsenal.Content.NPCs.Enemies
             // Here you'd want to change the potion type that drops when the boss is defeated. Because this boss is early pre-hardmode, we keep it unchanged
             // (Lesser Healing Potion). If you wanted to change it, simply write "potionType = ItemID.HealingPotion;" or any other potion type
         }
-        public void targetPlayer()
+
+        public override void AI()
         {
+            // This should almost always be the first code in AI() as it is responsible for finding the proper player target
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest();
             }
-        }
-        public void playersDeadCondition()
-        {
-            int deadPlayers = 0;
 
-            for (int i = Main.player.Length; i >= 0; i--)
-            {
-                if (Main.player[i].dead)
-                {
-                    deadPlayers++;
-                }
-            }
-
-            if (deadPlayers == Main.player.Length)
-            {
-                NPC.velocity.Y -= 0.04f;
-                NPC.EncourageDespawn(10);
-                return;
-            }
-        }
-        public override void AI()
-        {
             Player player = Main.player[NPC.target];
-
-            targetPlayer();
 
             if (player.dead)
             {
-                playersDeadCondition();
+                // If the targeted player is dead, flee
+                NPC.velocity.Y -= 0.04f;
+                // This method makes it so when the boss is in "despawn range" (outside of the screen), it despawns in 10 ticks
+                NPC.EncourageDespawn(10);
+                return;
             }
 
             SpawnMinions();
 
             CheckSecondStage();
 
+            // Be invulnerable during the first stage
             NPC.dontTakeDamage = !SecondStage;
 
             if (SecondStage)
@@ -264,6 +248,7 @@ namespace GearonArsenal.Content.NPCs.Enemies
         {
             if (SpawnedMinions)
             {
+                // No point executing the code in this method again
                 return;
             }
 

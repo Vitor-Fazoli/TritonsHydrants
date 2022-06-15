@@ -31,22 +31,4 @@ namespace GearonArsenal.Common
             item.mana = 30;
         }
     }
-    internal class coinModification : GlobalItem
-    {
-        public override bool OnPickup(Item item, Player player)
-        {
-            switch (item.netID)
-            {
-                case ItemID.CopperCoin:
-                    break;
-                case ItemID.SilverCoin:
-                    break;
-                case ItemID.GoldCoin:
-                    break;
-                case ItemID.PlatinumCoin:
-                    break;
-            }
-            return true;
-        }
-    }
 }
