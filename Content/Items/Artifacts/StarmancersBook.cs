@@ -6,11 +6,12 @@ using Microsoft.Xna.Framework;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    internal class StarmancersBook : ModItem
+    public class StarmancersBook : ModItem
     {
         public override void SetStaticDefaults()
         {
-            base.SetStaticDefaults();
+            DisplayName.SetDefault("Starmancer's Book");
+            Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {
@@ -19,13 +20,32 @@ namespace GearonArsenal.Content.Items.Artifacts
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.starCloakItem.active = true;
+            ModContent.GetInstance<Starmancer>().StarActive = true;
         }
     }
     public class Starmancer : ModPlayer
     {
-        public override void ModifyWeaponDamage(Item item, ref StatModifier damage)
+        public bool StarActive = false;
+    }
+    public class StarWeapons : GlobalItem
+    {
+        public override bool AllowPrefix(Item item, int pre)
         {
-           // item.DamageType = Terraria.ModLoader.ModContent.GetInstance<>()
+            return ModContent.GetInstance<Starmancer>().StarActive;
+        }
+    }
+    public class Stellar : ModPrefix
+    {
+        public override void Apply(Item item)
+        {
+            item.damage += item.damage / 5; //20%
+            item.crit += 30; //30%
+            item.shootSpeed += 5f;
+            item.rare = ItemRarityID.Red; //custom rare
+        }
+        public override bool CanRoll(Item item)
+        {
+            return ModContent.GetInstance<Starmancer>().StarActive;
         }
     }
 }
