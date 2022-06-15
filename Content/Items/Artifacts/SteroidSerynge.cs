@@ -40,13 +40,12 @@ namespace GearonArsenal.Content.Items.Artifacts
                 {
                     Player.statMana -= Player.statManaMax2;
 
-                    Vector2 pos = new Vector2(Player.Center.X, Player.Center.Y - 10);
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X + 100, Player.Center.Y - 10), new Vector2(
+                        0, -5), ModContent.ItemType<SupplyCrate>(), 1);
 
-                    Item.NewItem(new EntitySource_DropAsItem(default), pos, new 
-                        Vector2(10, -5), ModContent.ItemType<SupplyCrate>(), 1);
 
-                    Item.NewItem(new EntitySource_DropAsItem(default), pos, new 
-                        Vector2(-10, -5), ModContent.ItemType<SupplyCrate>(), 1);
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X - 100, Player.Center.Y - 10), new Vector2(
+                        0, -5), ModContent.ItemType<SupplyCrate>(), 1);
                 }
             }
         }

@@ -2528,13 +2528,6 @@
             <param name="reverseLookup"></param>
             <returns></returns>
         </member>
-        <member name="P:Terraria.Item.attackSpeedOnlyAffectsWeaponAnimation">
-            <summary>
-            Dictates whether or not attack speed modifiers on this weapon will actually affect its use time.<br/>
-            Defaults to false, which allows attack speed modifiers to affect use time. Set this to true to prevent this from happening.<br/>
-            Used in vanilla by all melee weapons which shoot a projectile and have <see cref="F:Terraria.Item.noMelee"/> set to false.
-            </summary>
-        </member>
         <member name="P:Terraria.Item.AllowReforgeForStackableItem">
             <summary>
             Set to true in SetDefaults to allow this item to receive a prefix on reforge even if maxStack is not 1.
@@ -3144,11 +3137,6 @@
             <summary>
             Base damage class for all weapons. All vanilla damage classes inherit bonuses applied to this class.
             Accessories which benefit all classes provide bonuses via the Generic class
-            </summary>
-        </member>
-        <member name="P:Terraria.ModLoader.DamageClass.MeleeNoSpeed">
-            <summary>
-            This is a damage class used by various projectile-only vanilla melee weapons. Attack speed has no effect on items with this damage class.
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.DamageClass.SummonMeleeSpeed">
@@ -5275,13 +5263,6 @@
             </summary>
             <param name="projectile"></param>
             <param name="hitbox"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.GlobalProjectile.ModifyDamageScaling(Terraria.Projectile,System.Single@)">
-            <summary>
-            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
-            </summary>
-            <param name="projectile"></param>
-            <param name="damageScale">The damage scaling</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalProjectile.CanHitNPC(Terraria.Projectile,Terraria.NPC)">
             <summary>
@@ -10185,12 +10166,6 @@
             Allows you to change the hitbox used by this projectile for damaging players and NPCs.
             </summary>
             <param name="hitbox"></param>
-        </member>
-        <member name="M:Terraria.ModLoader.ModProjectile.ModifyDamageScaling(System.Single@)">
-            <summary>
-            Allows you to implement dynamic damage scaling for this projectile. For example, flails do more damage when in flight and Jousting Lance does more damage the faster the player is moving. This hook runs on the owner only.
-            </summary>
-            <param name="damageScale">The damage scaling</param>
         </member>
         <member name="M:Terraria.ModLoader.ModProjectile.CanHitNPC(Terraria.NPC)">
             <summary>

@@ -217,6 +217,7 @@ namespace GearonArsenal.Content.NPCs.Enemies
             }
 
             Player player = Main.player[NPC.target];
+<<<<<<< HEAD
 
             if (player.dead)
             {
@@ -242,6 +243,9 @@ namespace GearonArsenal.Content.NPCs.Enemies
             {
                 DoFirstStage(player);
             }
+=======
+            player.AddBuff(BuffID.CursedInferno, 1);
+>>>>>>> parent of 896ec75 (summons template)
         }
 
         private void SpawnMinions()
@@ -251,6 +255,7 @@ namespace GearonArsenal.Content.NPCs.Enemies
                 // No point executing the code in this method again
                 return;
             }
+<<<<<<< HEAD
 
             SpawnedMinions = true;
 
@@ -288,6 +293,31 @@ namespace GearonArsenal.Content.NPCs.Enemies
         }
 
         private void CheckSecondStage()
+=======
+            float turnResistance = 10f;
+            move = (NPC.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = (float)Math.Sqrt(move.X * move.X + move.Y * move.Y);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+            NPC.velocity = move;
+        }
+        private void HealFromTheSky()
+        {
+            NPC.ai[1] = 0;
+            NPC.ai[1]++;
+
+            if(NPC.ai[1] == 50)
+            {
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2((NPC.Center.X - 1000) + Main.rand.Next(2000), NPC.Center.Y - 100), new Vector2(0, 10),
+                    ProjectileID.EmpressBlade, NPC.damage, 5, NPC.releaseOwner);
+
+                NPC.ai[1] = 0;
+            }
+        }
+        private void Colunm()
+>>>>>>> parent of 896ec75 (summons template)
         {
             if (SecondStage)
             {
