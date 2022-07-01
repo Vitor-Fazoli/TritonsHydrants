@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Utilities;
 
 namespace GearonArsenal.Content.NPCs.Enemies
 {
@@ -26,9 +27,9 @@ namespace GearonArsenal.Content.NPCs.Enemies
             AIType = NPCID.BlueSlime;
             AnimationType = NPCID.BlueSlime;
         }
-        public override void AI()
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            base.AI();
+            return SpawnCondition.SurfaceJungle.Chance * 0.09f;
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {

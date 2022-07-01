@@ -10,6 +10,6 @@ namespace GearonArsenal
     internal class Artifact : ModRarity
     {
         public override string Name => "Artifact";
-        public override Color RarityColor => new(240, 0, Main.DiscoB / 2, Main.DiscoB / 2);
+        public override Color RarityColor => new(255, 255, 255, 0);//new(240, 0, Main.DiscoB / 2, Main.DiscoB / 2);
     }
 }

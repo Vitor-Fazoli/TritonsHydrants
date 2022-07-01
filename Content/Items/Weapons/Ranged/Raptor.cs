@@ -19,10 +19,11 @@ namespace GearonArsenal.Content.Items.Weapons.Ranged
             Item.height = 30;
             Item.rare = ItemRarityID.LightPurple;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 6;
-            Item.useAnimation = 6;
-            Item.autoReuse = true;
-            Item.UseSound = SoundID.Item40;
+            Item.useTime = 7;
+            Item.useAnimation = 21;
+            Item.reuseDelay = 4;
+            Item.autoReuse = false;
+            Item.UseSound = SoundID.Item31;
 
             Item.DamageType = DamageClass.Ranged;
             Item.damage = 3;

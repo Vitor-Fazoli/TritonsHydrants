@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace GearonArsenal.Content.Items.Artifacts
@@ -29,11 +30,21 @@ namespace GearonArsenal.Content.Items.Artifacts
 
             player.GetModPlayer<Witch>().witchMask = true;
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BattlePotion, 10)
+                .AddIngredient(ItemID.WaterCandle, 2)
+                .AddIngredient(ItemID.LifeCrystal, 5)
+                .AddIngredient(ItemID.WizardHat)
+                .AddTile(TileID.LivingLoom)
+                .Register();
+        }
     }
     /// <summary>
     /// This class below make possible a new form to play with a magic, you turn a blood mage and use your vitality
     /// </summary>
-    public class Witch : ModPlayer
+    internal class Witch : ModPlayer
     {
         public bool witchMask = false;
         public override void ModifyManaCost(Item item, ref float reduce, ref float mult)

@@ -1,5 +1,6 @@
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.GameContent.Creative;
 
 namespace GearonArsenal.Content.Items.Materials
 {
@@ -8,6 +9,7 @@ namespace GearonArsenal.Content.Items.Materials
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Auralite Bar");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 30;
         }
         public override void SetDefaults()
         {
@@ -15,6 +17,14 @@ namespace GearonArsenal.Content.Items.Materials
             Item.height = 24;
             Item.material = true;
             Item.rare = ItemRarityID.Green;
+            Item.shopCustomPrice = 1000;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<AuraliteOre>(6)
+                .AddTile(TileID.Furnaces)
+                .Register();
         }
     }
 }
