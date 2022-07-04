@@ -16,7 +16,6 @@ namespace GearonArsenal.Content.Items.Artifacts
         {
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ModContent.RarityType<Artifact>();
-            Item.defense = 10;
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -28,8 +27,9 @@ namespace GearonArsenal.Content.Items.Artifacts
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FruitJuice, 20)
-                .AddIngredient(ItemID.Wood, 100)
+                .AddIngredient(ItemID.DirtBlock, 20)
+                .AddIngredient(ItemID.WaterBucket, 3)
+                .AddIngredient(ItemID.Waterleaf, 20)
                 .AddIngredient(ItemID.BeeWax, 10)
                 .AddTile(TileID.WorkBenches)
                 .Register();

@@ -12,7 +12,7 @@ namespace GearonArsenal.Content.Projectiles
     {
         private bool waterPower = false;
 
-        private short dust = DustID.YellowStarDust;
+        private short dust = DustID.BlueCrystalShard;
         private Color color = new Color(255, 255, 255, 0);
 
         public override void SetDefaults()
@@ -46,12 +46,8 @@ namespace GearonArsenal.Content.Projectiles
                 waterPower = true;
                 Projectile.ai[0]++;
 
-                if (Projectile.ai[0] >= 40 && Projectile.ai[0] <= 60)
-                {
 
-
-                }
-                else if (Projectile.ai[0] >= 60)
+                if (Projectile.ai[0] >= 30)
                 {
 
                     EmpoweredWater();

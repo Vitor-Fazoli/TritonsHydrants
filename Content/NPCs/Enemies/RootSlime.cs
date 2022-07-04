@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
@@ -23,9 +24,10 @@ namespace GearonArsenal.Content.NPCs.Enemies
             NPC.DeathSound = SoundID.NPCDeath2;
             NPC.value = 60f;
             NPC.knockBackResist = 0.5f;
-            NPC.aiStyle = NPCID.BlueSlime;
-            AIType = NPCID.BlueSlime;
+            NPC.aiStyle = NPCID.DungeonSlime;
+            AIType = NPCID.DungeonSlime;
             AnimationType = NPCID.BlueSlime;
+            NPC.friendly = false;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
@@ -36,6 +38,15 @@ namespace GearonArsenal.Content.NPCs.Enemies
             if (crit)
             {
                 target.AddBuff(BuffID.Poisoned, 120);
+            }
+        }
+        public override void OnKill()
+        {
+            for (int i = 0; i < 40; i++)
+            {
+                Vector2 speed = Utils.RandomVector2(Main.rand, -1f, 1f);
+                Dust d = Dust.NewDustPerfect(NPC.Center,DustID.t_Slime, speed * 5,newColor: Color.DarkGreen);
+                d.noGravity = true;
             }
         }
     }
