@@ -18,6 +18,7 @@ namespace GearonArsenal.Content.Items.Materials
             Item.material = true;
             Item.rare = ItemRarityID.Green;
             Item.shopCustomPrice = 1000;
+            Item.maxStack = 999;
         }
         public override void AddRecipes()
         {

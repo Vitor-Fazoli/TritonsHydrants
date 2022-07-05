@@ -4,10 +4,11 @@ using Terraria.DataStructures;
 using GearonArsenal.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using GearonArsenal.Common.Abstract;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    internal class SteroidSyringe : ModItem
+    internal class SteroidSyringe : Artifact
     {
         public override void SetStaticDefaults()
         {
@@ -21,7 +22,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 5);
-            Item.rare = ModContent.RarityType<Artifact>();
+            Item.rare = ModContent.RarityType<ArtifactR>();
             Item.accessory = true;
             Item.defense = 5;
         }

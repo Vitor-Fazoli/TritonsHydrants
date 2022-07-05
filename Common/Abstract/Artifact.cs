@@ -16,6 +16,7 @@ namespace GearonArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
+        protected Color color = Color.White;
         protected string name;
         protected string tooltip;
         public override void SetStaticDefaults()
@@ -25,7 +26,6 @@ namespace GearonArsenal.Common.Abstract
 
             ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
@@ -44,25 +44,7 @@ namespace GearonArsenal.Common.Abstract
         }
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            bool ascend = true;
-
-            if (Item.alpha >= 255)
-            {
-                ascend = false;
-            }
-            if (Item.alpha <= 80)
-            {
-                ascend = true;
-            }
-
-            if (ascend)
-            {
-                Item.alpha++;
-            }
-            else
-            {
-                Item.alpha--;
-            }
+            Item.position = Item.position + Main.rand.NextVector2Circular(0.2f, 0);
         }
     }
     internal class ArtifactR : ModRarity

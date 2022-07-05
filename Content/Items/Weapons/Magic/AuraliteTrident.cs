@@ -28,7 +28,7 @@ namespace GearonArsenal.Content.Items.Weapons.Magic {
 			Item.autoReuse = true; 
 			Item.UseSound = SoundID.Item1;
 			Item.mana = 10;
-			Item.shoot = ModContent.ProjectileType<Projectiles.TridentProjectile>();
+			Item.shoot = ModContent.ProjectileType<Projectiles.AuraliteTridentProj>();
 		}
         public override void AddRecipes()
         {

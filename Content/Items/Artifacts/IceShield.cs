@@ -19,7 +19,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Artifact>();
+            Item.rare = ModContent.RarityType<Common.Abstract.ArtifactR>();
             Item.accessory = true;
         }
         public override void UpdateEquip(Player player)

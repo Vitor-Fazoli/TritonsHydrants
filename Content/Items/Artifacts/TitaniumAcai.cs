@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    public class TitaniumAcai : ModItem
+    public class TitaniumAcai : Artifact
     {
         public override void SetStaticDefaults()
         {

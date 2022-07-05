@@ -7,11 +7,11 @@ using GearonArsenal;
 
 namespace GearonArsenal.Content.Projectiles
 {
-    public class TridentProjectile : ModProjectile
+    public class AuraliteTridentProj : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Gold triune spear");
+            DisplayName.SetDefault("Auralite Trident");
         }
         public override void SetDefaults()
         {

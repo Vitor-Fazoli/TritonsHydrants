@@ -1,10 +1,11 @@
+using GearonArsenal.Common.Abstract;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    public class WitchMask : ModItem
+    public class WitchMask : Artifact
     {
         public override void SetStaticDefaults()
         {
@@ -18,7 +19,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Artifact>();
+            Item.rare = ModContent.RarityType<ArtifactR>();
             Item.defense = 3;
             Item.accessory = true;
             Item.scale = 0.7f;

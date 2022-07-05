@@ -17,8 +17,8 @@ namespace GearonArsenal.Content.Items.Materials
             Item.height = 20;
             Item.material = true;
             Item.rare = ItemRarityID.White;
-            Item.stack = 999;
             Item.createTile = ModContent.TileType<Tiles.AuraliteOre>();
+            Item.maxStack = 999;
         }
     }
 }

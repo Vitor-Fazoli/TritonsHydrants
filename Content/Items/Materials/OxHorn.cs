@@ -16,7 +16,7 @@ namespace GearonArsenal.Content.Items.Materials
             Item.material = true;
             Item.rare = ItemRarityID.Green;
             Item.shopCustomPrice = 1000;
-            Item.stack = 99;
+            Item.maxStack = 99;
         }
     }
 }

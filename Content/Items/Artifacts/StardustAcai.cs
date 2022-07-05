@@ -16,7 +16,7 @@ namespace GearonArsenal.Content.Items.Artifacts
         public override void SetDefaults()
         {
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Artifact>();
+            Item.rare = ModContent.RarityType<Common.Abstract.ArtifactR>();
             Item.defense = 10;
             Item.accessory = true;
         }

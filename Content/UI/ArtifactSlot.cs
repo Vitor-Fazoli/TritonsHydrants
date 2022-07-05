@@ -1,4 +1,5 @@
 ﻿using GearonArsenal.Common;
+using GearonArsenal.Common.Abstract;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Localization;
@@ -28,7 +29,7 @@ namespace GearonArsenal.Content.UI
 
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {
-            if (checkItem.rare == ModContent.RarityType<Artifact>())
+            if (checkItem.rare == ModContent.RarityType<ArtifactR>())
                 return true;
 
             return false;
@@ -36,7 +37,7 @@ namespace GearonArsenal.Content.UI
 
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
         {
-            if (item.rare == ModContent.RarityType<Artifact>())
+            if (item.rare == ModContent.RarityType<ArtifactR>())
                 return true;
 
             return false;

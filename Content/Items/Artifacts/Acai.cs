@@ -1,3 +1,4 @@
+using GearonArsenal.Common.Abstract;
 using GearonArsenal.Content.UI;
 using Terraria;
 using Terraria.ID;
@@ -5,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    public class Acai : ModItem
+    public class Acai : Artifact
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +16,7 @@ namespace GearonArsenal.Content.Items.Artifacts
         public override void SetDefaults()
         {
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Artifact>();
+            Item.rare = ModContent.RarityType<ArtifactR>();
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
