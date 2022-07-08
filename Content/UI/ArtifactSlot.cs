@@ -29,7 +29,7 @@ namespace GearonArsenal.Content.UI
 
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {
-            if (checkItem.rare == ModContent.RarityType<ArtifactR>())
+            if (checkItem.rare == ModContent.RarityType<ArtifactRarity>())
                 return true;
 
             return false;
@@ -37,7 +37,7 @@ namespace GearonArsenal.Content.UI
 
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
         {
-            if (item.rare == ModContent.RarityType<ArtifactR>())
+            if (item.rare == ModContent.RarityType<ArtifactRarity>())
                 return true;
 
             return false;

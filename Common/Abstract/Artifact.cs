@@ -31,7 +31,7 @@ namespace GearonArsenal.Common.Abstract
         public override void SetDefaults()
         {
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<ArtifactR>();
+            Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
         }
         public override void PostUpdate()
@@ -47,7 +47,7 @@ namespace GearonArsenal.Common.Abstract
             Item.position = Item.position + Main.rand.NextVector2Circular(0.2f, 0);
         }
     }
-    internal class ArtifactR : ModRarity
+    internal class ArtifactRarity : ModRarity
     {
         public override string Name => "Artifact";
         public override Color RarityColor => new(255, 255, 255, 0);

@@ -22,7 +22,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 5);
-            Item.rare = ModContent.RarityType<ArtifactR>();
+            Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
             Item.defense = 5;
         }

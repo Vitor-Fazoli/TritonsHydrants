@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GearonArsenal.Common.Abstract;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace GearonArsenal.Content.Items.Artifacts
 {
-    public class IceShield : ModItem
+    public class IceShield : Artifact
     {
         public override void SetStaticDefaults()
         {
@@ -19,7 +20,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Common.Abstract.ArtifactR>();
+            Item.rare = ModContent.RarityType<Common.Abstract.ArtifactRarity>();
             Item.accessory = true;
         }
         public override void UpdateEquip(Player player)
@@ -27,7 +28,7 @@ namespace GearonArsenal.Content.Items.Artifacts
             player.GetDamage(damageClass: DamageClass.Generic) -= 0.40f;
             player.aggro += 10;
             player.statDefense = player.statDefense * 2;
-            player.GetModPlayer<Protector>().protector = true;
+            player.GetModPlayer<IceShieldP>().protector = true;
         }
         public override void AddRecipes()
         {
@@ -41,7 +42,7 @@ namespace GearonArsenal.Content.Items.Artifacts
                 .Register();
         }
     }
-    internal class Protector : ModPlayer
+    internal class IceShieldP : ModPlayer
     {
         public bool protector = false;
         public override void OnRespawn(Player player)
