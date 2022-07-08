@@ -10,5 +10,4 @@ The main change in them was the damage class that is no longer melee and becomes
 
 ## Artifacts
 
-
-
+## Throw Class Reborn
