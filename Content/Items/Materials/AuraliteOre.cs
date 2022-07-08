@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace GearonArsenal.Content.Items.Materials
+namespace VoidArsenal.Content.Items.Materials
 {
     internal class AuraliteOre : ModItem
     {

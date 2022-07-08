@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace GearonArsenal.Content.Projectiles {
+namespace VoidArsenal.Content.Projectiles {
     internal class DaggerSlash : ModProjectile {
         public override void SetStaticDefaults() {
             DisplayName.SetDefault("Dagger Slash");

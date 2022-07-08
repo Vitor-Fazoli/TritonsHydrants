@@ -1,9 +1,9 @@
-using GearonArsenal.Common.Abstract;
+using VoidArsenal.Common.Abstract;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Items.Artifacts
+namespace VoidArsenal.Content.Items.Artifacts
 {
     public class WitchMask : Artifact
     {

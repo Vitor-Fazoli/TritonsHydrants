@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using GearonArsenal;
+using VoidArsenal;
 
-namespace GearonArsenal.Content.Projectiles
+namespace VoidArsenal.Content.Projectiles
 {
     public class AuraliteTridentProj : ModProjectile
     {

@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Tiles {
+namespace VoidArsenal.Content.Tiles {
     public class FungalDirt : ModTile {
 		public override void SetStaticDefaults() {
 			Main.tileSolid[Type] = true;

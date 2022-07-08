@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HrEy3iNRpyro6m1XzQdoM2bRGJpjJiIFzbabfyPdCg9J3dhYAb3kpyx9mIqNP/YSzPGV8jI15XF1Zdzu168mjQ==",
+  "dgSpecHash": "GtnCdzoe5j0v4/IdAEgqaM0pgvHS+TKfHX3YhA9n/rvBOJSVWGOEQv/xZTjOxQ6JhB+Yswf7A2C5Z8Nt0vVnLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\GearonArsenal\\GearonArsenal.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],

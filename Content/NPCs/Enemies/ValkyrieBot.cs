@@ -6,7 +6,7 @@
 //using Terraria.ID;
 //using Terraria.ModLoader;
 
-//namespace GearonArsenal.Content.NPCs.Enemies
+//namespace VoidArsenal.Content.NPCs.Enemies
 //{
 //    internal class ValkyrieBot : ModNPC
 //    {

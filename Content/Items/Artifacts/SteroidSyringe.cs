@@ -1,12 +1,12 @@
 ﻿using Terraria.ModLoader;
 using Terraria;
 using Terraria.DataStructures;
-using GearonArsenal.Content.Projectiles;
+using VoidArsenal.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
-using GearonArsenal.Common.Abstract;
+using VoidArsenal.Common.Abstract;
 
-namespace GearonArsenal.Content.Items.Artifacts
+namespace VoidArsenal.Content.Items.Artifacts
 {
     internal class SteroidSyringe : Artifact
     {

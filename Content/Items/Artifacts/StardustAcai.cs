@@ -1,9 +1,9 @@
-using GearonArsenal.Content.UI;
+using VoidArsenal.Content.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Items.Artifacts
+namespace VoidArsenal.Content.Items.Artifacts
 {
     public class StardustAcai : ModItem
     {

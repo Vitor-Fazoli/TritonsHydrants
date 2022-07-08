@@ -1,7 +1,7 @@
 ﻿//using Terraria.GameContent.Creative;
 //using Terraria.ModLoader;
 
-//namespace GearonArsenal.Content.Items.Placeable.Furniture {
+//namespace VoidArsenal.Content.Items.Placeable.Furniture {
 //    internal class BloodForge : ModItem{
 //		public override void SetStaticDefaults() {
 //			DisplayName.SetDefault("Blood Forge");

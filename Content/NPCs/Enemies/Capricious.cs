@@ -4,7 +4,7 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace GearonArsenal.Content.NPCs.Enemies
+namespace VoidArsenal.Content.NPCs.Enemies
 {
     public class Capricious : ModNPC
     {

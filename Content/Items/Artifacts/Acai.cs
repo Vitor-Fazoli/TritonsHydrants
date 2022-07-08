@@ -1,10 +1,10 @@
-using GearonArsenal.Common.Abstract;
-using GearonArsenal.Content.UI;
+using VoidArsenal.Common.Abstract;
+using VoidArsenal.Content.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Items.Artifacts
+namespace VoidArsenal.Content.Items.Artifacts
 {
     public class Acai : Artifact
     {

@@ -5,7 +5,7 @@
 //using Terraria.ModLoader;
 //using Terraria.ObjectData;
 
-//namespace GearonArsenal.Content.Tiles
+//namespace VoidArsenal.Content.Tiles
 //{
 //    internal class BloodForge : ModTile
 //    {

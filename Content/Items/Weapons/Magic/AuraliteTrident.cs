@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using GearonArsenal;
+using VoidArsenal;
 
-namespace GearonArsenal.Content.Items.Weapons.Magic {
+namespace VoidArsenal.Content.Items.Weapons.Magic {
 	public class AuraliteTrident : ModItem {
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Auralite Trident");

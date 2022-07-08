@@ -1,11 +1,11 @@
-using GearonArsenal.Common;
-using GearonArsenal.Content.Projectiles;
+using VoidArsenal.Common;
+using VoidArsenal.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Items.Weapons.Melee.Greatswords
+namespace VoidArsenal.Content.Items.Weapons.Melee.Greatswords
 {
     public class VictusYon : ModItem
     {

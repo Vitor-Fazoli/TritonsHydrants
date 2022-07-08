@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace GearonArsenal.Common.Abstract
+namespace VoidArsenal.Common.Abstract
 {
     public abstract class Minion : ModProjectile
     {

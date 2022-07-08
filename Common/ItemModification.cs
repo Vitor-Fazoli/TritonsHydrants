@@ -1,11 +1,11 @@
-﻿using GearonArsenal.Content.Projectiles;
+﻿using VoidArsenal.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Common
+namespace VoidArsenal.Common
 {
     internal class TridentItemModification : GlobalItem
     {

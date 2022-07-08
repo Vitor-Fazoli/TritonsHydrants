@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace GearonArsenal.Content.Projectiles
+namespace VoidArsenal.Content.Projectiles
 {
     public class SupplyCrate : ModItem
     {

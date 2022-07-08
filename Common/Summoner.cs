@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace GearonArsenal.Common
+namespace VoidArsenal.Common
 {
 	public class Summoner : ModPlayer
 	{

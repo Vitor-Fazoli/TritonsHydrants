@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 
-namespace GearonArsenal.Content.NPCs.Enemies
+namespace VoidArsenal.Content.NPCs.Enemies
 {
     public class Guaranteed : ModNPC
     {

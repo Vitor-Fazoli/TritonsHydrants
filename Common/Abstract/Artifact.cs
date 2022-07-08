@@ -12,7 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace GearonArsenal.Common.Abstract
+namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
