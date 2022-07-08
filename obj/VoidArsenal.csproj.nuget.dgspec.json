@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj": {}
+    "C:\\Users\\maste\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj": {
+    "C:\\Users\\maste\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+        "projectUniqueName": "C:\\Users\\maste\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
         "projectName": "VoidArsenal",
-        "projectPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\obj\\",
+        "projectPath": "C:\\Users\\maste\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+        "packagesPath": "C:\\Users\\maste\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maste\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maste\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
