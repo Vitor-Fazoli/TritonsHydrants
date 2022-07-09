@@ -79,21 +79,7 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Greatswords
             Projectile.velocity *= 3;
             Projectile.friendly = true;
             Projectile.tileCollide = true;
-        }
-        public override void AI()
-        {
-            #region GravityLate
-            Projectile.ai[0]++;
-
-            if (Projectile.ai[0] >= 100)
-            {
-                Projectile.velocity.Y += 0.1f;
-                Projectile.ai[0] = 120;
-            }
-            #endregion
-
-            Projectile.spriteDirection = Projectile.direction;
-
+            Projectile.aiStyle = ProjectileID.WoodenArrowFriendly;
         }
         public override void Kill(int timeLeft)
         {

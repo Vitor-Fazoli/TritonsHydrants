@@ -23,7 +23,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetDamage(DamageClass.Summon) += 1f;
+            player.GetDamage(DamageClass.Summon) += 2f;
             player.maxMinions = 0;
         }
         
