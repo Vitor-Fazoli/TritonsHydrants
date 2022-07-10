@@ -3,6 +3,8 @@ using Terraria;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System;
+using Terraria.GameContent.ItemDropRules;
+using VoidArsenal.Content.Items.Materials;
 
 namespace VoidArsenal.Content.NPCs.Enemies
 {
@@ -71,12 +73,15 @@ namespace VoidArsenal.Content.NPCs.Enemies
 
             if (NPC.collideX && NPC.collideY || NPC.collideX)
             {
-                RunAway(target);
+                Teleport(target);
             }
 
             //Uso para testes: CombatText.NewText(new Rectangle((int)NPC.position.X, (int)NPC.position.Y, 10, 10), CombatText.HealLife, (int)NPC.velocity.X);
         }
-
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OxHorn>(),Main.rand.Next(2)));
+        }
         private void Moviment(Player target)
         {
 
@@ -135,8 +140,7 @@ namespace VoidArsenal.Content.NPCs.Enemies
             NPC.velocity.Y = NPC.velocity.Y - 0.1f;
             #endregion
         }
-
-        private void RunAway(Player target)
+        private void Teleport(Player target)
         {
             Vector2 moveTo = target.Center;
 

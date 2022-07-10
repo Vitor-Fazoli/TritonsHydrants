@@ -4,6 +4,8 @@ using Terraria.ID;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
+using VoidArsenal.Content.Items.Materials;
 
 namespace VoidArsenal.Content.NPCs.Enemies
 {
@@ -95,6 +97,10 @@ namespace VoidArsenal.Content.NPCs.Enemies
                 Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), bodyGoreType);
                 Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-6, 7), Main.rand.Next(-6, 7)), headGoreType);
             }
+        }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OxHorn>(), Main.rand.Next(2)));
         }
         private void Moviment(Player target)
         {

@@ -8,6 +8,5 @@ namespace VoidArsenal
 {
 	public class VoidArsenal : Mod
 	{
-
     }
 }

@@ -12,7 +12,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         {
             DisplayName.SetDefault("Ice Shield");
             Tooltip.SetDefault("all damage decreased but you spawn with full health\n" +
-                "your defense is doubled" +
+                "your defense is doubled, " +
                 "Significantly higher chance that enemies will target the wearer\n");
         }
         public override void SetDefaults()
@@ -34,7 +34,6 @@ namespace VoidArsenal.Content.Items.Artifacts
         {
             CreateRecipe()
                 .AddIngredient(ItemID.PaladinsShield)
-                .AddIngredient(ItemID.IceBlade)
                 .AddIngredient(ItemID.IceMachine)
                 .AddIngredient(ItemID.IronskinPotion, 10)
                 .AddIngredient(ItemID.CopperBar, 40)
