@@ -29,15 +29,12 @@ namespace VoidArsenal.Content.Items.Artifacts
         public override void UpdateEquip(Player player)
         {
             player.GetModPlayer<BattleMedic>().battleMedic = true;
-            player.manaRegen -= 5;
+            player.manaRegen -= 10;
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.SharkFin, 10)
                 .AddIngredient(ItemID.HealingPotion, 5)
-                .AddRecipeGroup(RecipeGroupID.IronBar, 30)
-                .AddIngredient(ItemID.WizardHat)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

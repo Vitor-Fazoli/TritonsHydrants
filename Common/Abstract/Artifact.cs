@@ -2,21 +2,65 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
+using Terraria.ModLoader.IO;
+using VoidArsenal.Content.Items;
 
 namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
+        protected bool sun;
+        protected int godID;
+        public Color moonColor = new(167, 65, 211);
+        public Color SunColor = new(255, 192, 56);
+        public override void OnCreate(ItemCreationContext context)
+        {
+            sun = Main.rand.NextBool(2);
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            switch (godID)
+            {
+                // Sun God
+                case 0:
+                    break;
+                // Moon God
+                case 1:
+                    break;
+                // Hammer God
+                case 2:
+                    break;
+            }
+            if (sun)
+            {
+                var line = new TooltipLine(Mod, "Face", "Sun God")
+                {
+                    OverrideColor = SunColor
+                };
+                tooltips.Add(line);
+            }
+            else
+            {
+                var line = new TooltipLine(Mod, "Face", "Moon God")
+                {
+                    OverrideColor = moonColor
+                };
+                tooltips.Add(line);
+            }
+
+        }
+        public override bool? CanBurnInLava()
+        {
+            return false;
+        }
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemIconPulse[Item.type] = true;
@@ -35,10 +79,6 @@ namespace VoidArsenal.Common.Abstract
             {
                 return true;
             }
-            return false;
-        }
-        public override bool AllowPrefix(int pre)
-        {
             return false;
         }
         public override void PostUpdate()
@@ -92,6 +132,19 @@ namespace VoidArsenal.Common.Abstract
             }
 
             return true;
+        }
+        //Back-end
+        public override void LoadData(TagCompound tag)
+        {
+            sun = tag.GetBool("sun");
+        }
+        public override void SaveData(TagCompound tag)
+        {
+            tag["sun"] = sun;
+        }
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(sun);
         }
     }
     internal class ArtifactRarity : ModRarity

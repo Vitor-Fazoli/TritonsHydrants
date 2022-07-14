@@ -80,10 +80,6 @@ namespace VoidArsenal.Content.Items.Weapons.Throwing
             Projectile.friendly = true;
             Projectile.tileCollide = true;
             Projectile.aiStyle = ProjectileID.WoodenArrowFriendly;
-<<<<<<< Updated upstream:Content/Items/Weapons/Melee/Greatswords/VictusYon.cs
-=======
- 
->>>>>>> Stashed changes:Content/Items/Weapons/Throwing/VictusYon.cs
         }
         public override void Kill(int timeLeft)
         {

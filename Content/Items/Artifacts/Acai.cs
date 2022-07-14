@@ -29,9 +29,6 @@ namespace VoidArsenal.Content.Items.Artifacts
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DirtBlock, 20)
-                .AddIngredient(ItemID.WaterBucket, 3)
-                .AddIngredient(ItemID.Waterleaf, 20)
-                .AddIngredient(ItemID.BeeWax, 10)
                 .AddTile(TileID.WorkBenches)
                 .Register();
         }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using VoidArsenal.Content.Buffs;
 
 namespace VoidArsenal.Content.Projectiles
 {
@@ -34,7 +35,20 @@ namespace VoidArsenal.Content.Projectiles
                 player.statLife += (percent + bonus)/4;
                 CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, (percent + bonus)/4);
             }
-            
+
+            switch (Main.rand.Next(2))
+            {
+                case 0:
+                    player.AddBuff(ModContent.BuffType<Foward>(), 300);
+                    break;
+                case 1:
+                    player.AddBuff(ModContent.BuffType<Retreat>(), 300);
+                    break;
+                case 2:
+                    player.AddBuff(ModContent.BuffType<Standing>(), 300);
+                    break;
+            }
+
             Item.active = false;
             return false;
         }
