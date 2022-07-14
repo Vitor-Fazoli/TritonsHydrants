@@ -2,10 +2,11 @@ using VoidArsenal.Content.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using VoidArsenal.Common.Abstract;
 
 namespace VoidArsenal.Content.Items.Artifacts
 {
-    public class StardustAcai : ModItem
+    public class StardustAcai : Artifact
     {
         public override void SetStaticDefaults()
         {
