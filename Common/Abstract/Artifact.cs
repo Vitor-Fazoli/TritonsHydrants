@@ -17,45 +17,44 @@ namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
-        protected bool sun;
-        protected int godID;
-        public Color moonColor = new(167, 65, 211);
-        public Color SunColor = new(255, 192, 56);
+        protected int Gem;
+
+        private Color Sapphire = new(15, 82, 186);
+        private Color Ruby = new(224, 17, 95);
+        private Color Emerald = new(80, 200, 120);
         public override void OnCreate(ItemCreationContext context)
         {
-            sun = Main.rand.NextBool(2);
+            Gem = Main.rand.Next(3);
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            switch (godID)
+            var line = new TooltipLine(Mod,"Face","");
+            switch (Gem)
             {
-                // Sun God
+                // Ruby
                 case 0:
+                    line = new TooltipLine(Mod, "Face", "Ruby")
+                    {
+                        OverrideColor = Ruby
+                    };
                     break;
-                // Moon God
+                // Sapphire
                 case 1:
+                    line = new TooltipLine(Mod, "Face", "Sapphire")
+                    {
+                        OverrideColor = Sapphire
+                    };
                     break;
-                // Hammer God
+                // Emerald
                 case 2:
+                    line = new TooltipLine(Mod, "Face", "Emerald")
+                    {
+                        OverrideColor = Emerald
+                    };
                     break;
             }
-            if (sun)
-            {
-                var line = new TooltipLine(Mod, "Face", "Sun God")
-                {
-                    OverrideColor = SunColor
-                };
-                tooltips.Add(line);
-            }
-            else
-            {
-                var line = new TooltipLine(Mod, "Face", "Moon God")
-                {
-                    OverrideColor = moonColor
-                };
-                tooltips.Add(line);
-            }
-
+            tooltips.Add(line);
+            ModifyCreation(tooltips);
         }
         public override bool? CanBurnInLava()
         {
@@ -136,15 +135,19 @@ namespace VoidArsenal.Common.Abstract
         //Back-end
         public override void LoadData(TagCompound tag)
         {
-            sun = tag.GetBool("sun");
+            Gem = tag.GetInt("godID");
         }
         public override void SaveData(TagCompound tag)
         {
-            tag["sun"] = sun;
+            tag["godID"] = Gem;
         }
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(sun);
+            writer.Write(Gem);
+        }
+        protected virtual void ModifyCreation(List<TooltipLine> tooltips)
+        {
+
         }
     }
     internal class ArtifactRarity : ModRarity
