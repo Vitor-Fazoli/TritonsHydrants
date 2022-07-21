@@ -13,7 +13,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         protected override void ModifyCreation(List<TooltipLine> tooltips)
         {
             var line = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
-            switch (Gem)
+            switch (god)
             {
                 case 0:
                     line.Text = "Triple your summon damage but you dont have minion";
@@ -39,7 +39,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            switch (Gem)
+            switch (god)
             {
                 // Ruby
                 case 0:

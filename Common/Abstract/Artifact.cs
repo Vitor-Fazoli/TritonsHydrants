@@ -6,62 +6,29 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.Utilities;
 using VoidArsenal.Content.Items;
 
 namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
-        protected int Gem;
+        protected int god;
+        protected int lvl;
+        protected int lvlMax;
+        public double xp;
+        protected const int xpmax = 300;
 
-        private Color Sapphire = new(15, 82, 186);
-        private Color Ruby = new(224, 17, 95);
-        private Color Emerald = new(80, 200, 120);
-        public override void OnCreate(ItemCreationContext context)
-        {
-            Gem = Main.rand.Next(3);
-        }
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            var line = new TooltipLine(Mod,"Face","");
-            switch (Gem)
-            {
-                // Ruby
-                case 0:
-                    line = new TooltipLine(Mod, "Face", "Ruby")
-                    {
-                        OverrideColor = Ruby
-                    };
-                    break;
-                // Sapphire
-                case 1:
-                    line = new TooltipLine(Mod, "Face", "Sapphire")
-                    {
-                        OverrideColor = Sapphire
-                    };
-                    break;
-                // Emerald
-                case 2:
-                    line = new TooltipLine(Mod, "Face", "Emerald")
-                    {
-                        OverrideColor = Emerald
-                    };
-                    break;
-            }
-            tooltips.Add(line);
-            ModifyCreation(tooltips);
-        }
-        public override bool? CanBurnInLava()
-        {
-            return false;
-        }
         public override void SetStaticDefaults()
         {
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 3));
+            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
             ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -72,6 +39,102 @@ namespace VoidArsenal.Common.Abstract
             Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
         }
+        public override void OnCreate(ItemCreationContext context)
+        {
+            god = Main.rand.Next(3);
+            lvl = 1;
+            xp = 0;
+        }
+        public override bool? PrefixChance(int pre, UnifiedRandom rand)
+        {
+            switch (pre)
+            {
+                case -3:
+                    return false;
+                case -1:
+                    return false;
+            }
+            return true;
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            #region God
+            TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
+            TooltipLine itemName = Find("ItemName");
+
+            var godLine = new TooltipLine(Mod, "Face", "");
+            switch (god)
+            {
+                // Zeus
+                case 0:
+                    itemName.Text = "Zeus " + itemName.Text;
+                    break;
+                // Poseidon
+                case 1:
+                    itemName.Text = "Poseidon " + itemName.Text;
+                    break;
+                // Hades
+                case 2:
+                    itemName.Text = "Hades " + itemName.Text;
+                    break;
+            }
+            #endregion
+
+            #region Level
+            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n {(int)xp} / {xpmax}");
+            tooltips.Add(levelLine);
+            #endregion
+
+            ModifyCreation(tooltips);
+        }
+        public override bool? CanBurnInLava()
+        {
+            return false;
+        }
+        public override void UpdateInventory(Player player)
+        {
+            switch (lvl)
+            {
+                case 25:
+                    Item.color = Color.Violet;
+                    break;
+                case 100:
+                    Item.color = Main.DiscoColor;
+                    break;
+            }
+        }
+        public override void UpdateEquip(Player player)
+        {
+            switch (lvl)
+            {
+                case 25:
+                    Item.color = Color.Violet;
+                    break;
+                case 100:
+                    Item.color = Main.DiscoColor;
+                    break;
+            }
+
+            xp += 0.1; //002
+            if (xp >= xpmax)
+            {
+                xp = 0;
+                if(lvl <= lvlMax)
+                {
+                    lvl++;
+                }
+            }
+
+            if (!Main.hardMode)
+            {
+                lvlMax = 25;
+            }
+            else if(Main.hardMode)
+            {
+                lvlMax = 100;
+            }
+
+        }
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             if (modded)
@@ -80,6 +143,8 @@ namespace VoidArsenal.Common.Abstract
             }
             return false;
         }
+
+        #region Effects in world
         public override void PostUpdate()
         {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
@@ -132,23 +197,30 @@ namespace VoidArsenal.Common.Abstract
 
             return true;
         }
-        //Back-end
+        #endregion
+
+        #region Data Saving
         public override void LoadData(TagCompound tag)
         {
-            Gem = tag.GetInt("godID");
+            god = tag.GetInt("godID");
+            lvl = tag.GetInt("lvlID");
+            xp = tag.GetDouble("xpID");
         }
         public override void SaveData(TagCompound tag)
         {
-            tag["godID"] = Gem;
+            tag["lvlID"] = lvl;
+            tag["godID"] = god;
+            tag["xpID"] = xp;
         }
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(Gem);
+            writer.Write(god);
+            writer.Write(lvl);
+            writer.Write(xp);
         }
-        protected virtual void ModifyCreation(List<TooltipLine> tooltips)
-        {
+        #endregion
 
-        }
+        protected virtual void ModifyCreation(List<TooltipLine> tooltips) { }
     }
     internal class ArtifactRarity : ModRarity
     {
