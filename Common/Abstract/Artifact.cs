@@ -21,7 +21,7 @@ namespace VoidArsenal.Common.Abstract
     {
         protected int god;
         protected int lvl;
-        protected int lvlMax;
+        protected int lvlMax = 500;
         public double xp;
         protected const int xpmax = 300;
 
@@ -93,27 +93,11 @@ namespace VoidArsenal.Common.Abstract
         }
         public override void UpdateInventory(Player player)
         {
-            switch (lvl)
-            {
-                case 25:
-                    Item.color = Color.Violet;
-                    break;
-                case 100:
-                    Item.color = Main.DiscoColor;
-                    break;
-            }
+            ArtifactLevelColor();
         }
         public override void UpdateEquip(Player player)
         {
-            switch (lvl)
-            {
-                case 25:
-                    Item.color = Color.Violet;
-                    break;
-                case 100:
-                    Item.color = Main.DiscoColor;
-                    break;
-            }
+            ArtifactLevelColor();
 
             xp += 0.1; //002
             if (xp >= xpmax)
@@ -129,11 +113,13 @@ namespace VoidArsenal.Common.Abstract
             {
                 lvlMax = 25;
             }
-            else if(Main.hardMode)
+            else if (Main.hardMode)
             {
-                lvlMax = 100;
+                lvlMax = 500;
             }
 
+            player.GetDamage(DamageClass.Generic) += lvl / 2000;
+            player.statDefense += lvl / 100;
         }
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
@@ -148,6 +134,7 @@ namespace VoidArsenal.Common.Abstract
         public override void PostUpdate()
         {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
+            ArtifactLevelColor();
         }
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
@@ -221,6 +208,19 @@ namespace VoidArsenal.Common.Abstract
         #endregion
 
         protected virtual void ModifyCreation(List<TooltipLine> tooltips) { }
+
+        protected void ArtifactLevelColor()
+        {
+            switch (lvl)
+            {
+                case 15:
+                    Item.color = new Color(Main.DiscoR, 255, 255);
+                    break;
+                case 100:
+                    Item.color = new(Main.DiscoR, Main.DiscoG, 255, Main.DiscoB / 2);
+                    break;
+            }
+        }
     }
     internal class ArtifactRarity : ModRarity
     {
