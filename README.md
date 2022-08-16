@@ -1,4 +1,4 @@
-![background](https://drive.google.com/file/d/1_fNEcy96iAdWJQJVtnPfGYvS77ZUAN6y/view?usp=sharing)
+![background](https://i.imgur.com/jp8VACU.png)
 # Void Arsenal
 ![logo](icon.png?raw=true)
 
