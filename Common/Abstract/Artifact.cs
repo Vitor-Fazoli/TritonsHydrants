@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Text;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -13,13 +11,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
-using VoidArsenal.Content.Items;
 
 namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
-        protected int god;
+        public bool godReady;
+        public int god;
         protected int lvl;
         protected int lvlMax = 500;
         public double xp;
@@ -41,7 +39,10 @@ namespace VoidArsenal.Common.Abstract
         }
         public override void OnCreate(ItemCreationContext context)
         {
-            god = Main.rand.Next(3);
+            if (godReady)
+            {
+                god = Main.rand.Next(3);
+            }
             lvl = 1;
             xp = 0;
         }
@@ -59,29 +60,32 @@ namespace VoidArsenal.Common.Abstract
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             #region God
-            TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
-            TooltipLine itemName = Find("ItemName");
-
-            var godLine = new TooltipLine(Mod, "Face", "");
-            switch (god)
+            if (godReady)
             {
-                // Zeus
-                case 0:
-                    itemName.Text = "Zeus " + itemName.Text;
-                    break;
-                // Poseidon
-                case 1:
-                    itemName.Text = "Poseidon " + itemName.Text;
-                    break;
-                // Hades
-                case 2:
-                    itemName.Text = "Hades " + itemName.Text;
-                    break;
+                TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
+                TooltipLine itemName = Find("ItemName");
+
+                var godLine = new TooltipLine(Mod, "Face", "");
+                switch (god)
+                {
+                    // Zeus
+                    case 0:
+                        itemName.Text = itemName.Text + " of Zeus";
+                        break;
+                    // Poseidon
+                    case 1:
+                        itemName.Text = itemName.Text + " of Poseidon";
+                        break;
+                    // Hades
+                    case 2:
+                        itemName.Text = itemName.Text + " of Hades";
+                        break;
+                }
             }
             #endregion
 
             #region Level
-            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n {(int)xp} / {xpmax}");
+            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n | {(int)xp} | {xpmax} |");
             tooltips.Add(levelLine);
             #endregion
 
@@ -93,13 +97,15 @@ namespace VoidArsenal.Common.Abstract
         }
         public override void UpdateInventory(Player player)
         {
+            LevelCap();
             ArtifactLevelColor();
         }
         public override void UpdateEquip(Player player)
         {
+            LevelCap();
             ArtifactLevelColor();
 
-            xp += 0.1; //002
+            xp += 0.002; // Default: 002
             if (xp >= xpmax)
             {
                 xp = 0;
@@ -108,18 +114,11 @@ namespace VoidArsenal.Common.Abstract
                     lvl++;
                 }
             }
-
-            if (!Main.hardMode)
-            {
-                lvlMax = 25;
-            }
-            else if (Main.hardMode)
-            {
-                lvlMax = 500;
-            }
-
-            player.GetDamage(DamageClass.Generic) += lvl / 2000;
-            player.statDefense += lvl / 100;
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            Item.defense += lvl / 10;
+            player.GetDamage(DamageClass.Generic) += (0.0005f * lvl);
         }
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
@@ -219,6 +218,17 @@ namespace VoidArsenal.Common.Abstract
                 case 100:
                     Item.color = new(Main.DiscoR, Main.DiscoG, 255, Main.DiscoB / 2);
                     break;
+            }
+        }
+        private void LevelCap()
+        {
+            if (!Main.hardMode)
+            {
+                lvlMax = 25;
+            }
+            else if (Main.hardMode)
+            {
+                lvlMax = 500;
             }
         }
     }

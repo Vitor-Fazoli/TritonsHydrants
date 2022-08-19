@@ -2,6 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using VoidArsenal;
+using VoidArsenal.Content.Items.Materials;
 
 namespace VoidArsenal.Content.Items.Weapons.Magic {
 	public class AuraliteTrident : ModItem {
@@ -33,7 +34,7 @@ namespace VoidArsenal.Content.Items.Weapons.Magic {
         public override void AddRecipes()
         {
 			CreateRecipe()
-				.AddIngredient<AuraliteTrident>(4)
+				.AddIngredient<AuraliteBar>(4)
 				.AddIngredient(ItemID.DemoniteBar, 5)
 				.AddTile(TileID.Anvils)
 				.Register();

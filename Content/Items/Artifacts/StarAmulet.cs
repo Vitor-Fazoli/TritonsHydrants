@@ -22,11 +22,13 @@ namespace VoidArsenal.Content.Items.Artifacts
             Item.rare = ModContent.RarityType<Common.Abstract.ArtifactRarity>();
             Item.accessory = true;
         }
-        public override void UpdateEquip(Player player)
+        public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<StarAmuletP>().starAmulet = true;
             player.manaRegen = 0;
-            player.manaRegenCount = 0;
+            player.manaRegenCount = 1;
+            player.manaRegenBonus = 0;
+            player.manaRegenDelay = 300;
             player.manaFlower = false;
         }
         public override void AddRecipes()
@@ -49,43 +51,60 @@ namespace VoidArsenal.Content.Items.Artifacts
     internal class StarAmuletP : ModPlayer
     {
         public bool starAmulet = false;
+        public int cooldown = 0;
+        public override void UpdateLifeRegen()
+        {
+            cooldown--;
+        }
+        private void ModificationDmgToMana(int damage)
+        {
+            if (Player.statLife >= Player.statLifeMax2)
+            {
+                //está com a vida cheia
+                if (Player.statMana >= damage && cooldown <= 0)
+                {
+                    //não recebe dano na vida, para receber na mana
+                    Player.immune = true;
+                    Player.statMana -= damage;
+                    CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, 10, 10), Color.BlueViolet, damage);
+                    cooldown = 60;
+                }else if(Player.statMana >= damage && cooldown >= 0)
+                {
+                    Player.immune = true;
+                }
+            }
+        }
+        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        {
+            if (starAmulet)
+            {
+                ModificationDmgToMana(damage);
+            }
+        }
 
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        {
+            if (starAmulet)
+            {
+                ModificationDmgToMana(damage);
+            }
+        }
+
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
             if (starAmulet)
             {
                 if (Player.statMana >= damage)
                 {
-                    int dmgAux = damage;
-                    damage = 0;
-                    Player.statMana -= dmgAux;
-                    CombatText.NewText(new Rectangle((int)Player.position.X, (int)Player.position.Y, 10, 10), Color.BlueViolet, dmgAux);
-                }
-                else if (Player.statMana != 0)
-                {
-                    int dmgResult = Player.statMana - damage;
-                    Player.statMana = 0;
-                    damage = dmgResult;
+                    
                 }
                 return true;
             }
             return false;
         }
-        public override void PostHurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        public override void ResetEffects()
         {
-            if (starAmulet)
-            {
-                if (Player.statMana >= 0)
-                {
-                    for (int i = 0; i < 100; i++)
-                    {
-                        if (Main.combatText[i].text == damage.ToString() && Main.combatText[i].color == CombatText.DamagedFriendly)
-                        {
-                            Main.combatText[i].active = false;
-                        }
-                    }
-                }
-            }
+            starAmulet = false;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace VoidArsenal.Content.UI
 {
     public class ArtifactSlot : ModAccessorySlot
     {
-        
+
         public bool enable;
 
         public override void OnMouseHover(AccessorySlotType context)
@@ -26,25 +26,33 @@ namespace VoidArsenal.Content.UI
         public override bool DrawDyeSlot => false;
 
         public override string FunctionalTexture => (GetType().Namespace + "." + Name).Replace('.', '/');
-
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {
-            if (checkItem.rare == ModContent.RarityType<ArtifactRarity>())
-                return true;
 
+            if (checkItem.rare == ModContent.RarityType<ArtifactRarity>())
+            {
+                return true;
+            }
+            
             return false;
         }
-
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
         {
+
             if (item.rare == ModContent.RarityType<ArtifactRarity>())
+            {
                 return true;
+            }
 
             return false;
         }
         public override bool IsEnabled()
         {
             return true;
+        }
+        public Item whichArtifact()
+        {
+            return FunctionalItem;
         }
     }
 }

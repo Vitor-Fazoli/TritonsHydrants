@@ -5,17 +5,37 @@ using VoidArsenal.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using VoidArsenal.Common.Abstract;
+using System.Collections.Generic;
+using System.Linq;
+using VoidArsenal.Content.Buffs;
 
 namespace VoidArsenal.Content.Items.Artifacts
 {
     internal class SteroidSyringe : Artifact
     {
+        protected override void ModifyCreation(List<TooltipLine> tooltips)
+        {
+            var line = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
+            switch (god)
+            {
+                case 0:
+                    line.Text = "each critical damage with ranged weapons you drop two Supplies for you and allies spend " +
+                        "all of your mana\n each supply heal and increase your defense";
+                    break;
+                case 1:
+                    line.Text = "each critical damage with ranged weapons you receive a buff and heal your life," +
+                        " spend all of your mana";
+                    break;
+                case 2:
+                    line.Text = "if you have full health, spend 10% for received a random buff\n" +
+                        "this effect happen when you crit with ranged weapons";
+                    break;
+            }
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Steroid Serynge");
-            Tooltip.SetDefault("each critical damage you drop two Supplies for you and allies spend all of your mana\n" +
-                "defense increased\n" +
-                "mana regen decreased");
+            Tooltip.SetDefault("");
         }
         public override void SetDefaults()
         {
@@ -24,28 +44,37 @@ namespace VoidArsenal.Content.Items.Artifacts
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
-            Item.defense = 5;
         }
-        public override void UpdateEquip(Player player)
+        public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<BattleMedic>().battleMedic = true;
-            player.manaRegen -= 10;
+            switch (god)
+            {
+                case 0:
+                    player.GetModPlayer<SteroidSyringePlayerZeus>().zeus = true;
+                    break;
+                case 1:
+                    player.GetModPlayer<SteroidSyringePlayerPoseidon>().poseidon = true;
+                    break;
+                case 2:
+                    player.GetModPlayer<SteroidSyringePlayerHades>().hades = true;
+                    break;
+            }
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.HealingPotion, 5)
+                .AddIngredient(ItemID.IllegalGunParts)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
     }
-    internal class BattleMedic : ModPlayer
+    internal class SteroidSyringePlayerZeus : ModPlayer
     {
-        public bool battleMedic = false;
+        public bool zeus;
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (proj.DamageType == DamageClass.Ranged && battleMedic && crit)
+            if (proj.DamageType == DamageClass.Ranged && zeus && crit)
             {
                 if (Player.statMana >= Player.statManaMax2)
                 {
@@ -54,11 +83,65 @@ namespace VoidArsenal.Content.Items.Artifacts
                     Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X + 100, Player.Center.Y - 10), new Vector2(
                         0, -5), ModContent.ItemType<SupplyCrate>(), 1);
 
-
                     Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(Player.Center.X - 100, Player.Center.Y - 10), new Vector2(
                         0, -5), ModContent.ItemType<SupplyCrate>(), 1);
                 }
             }
+        }
+        public override void ResetEffects()
+        {
+            zeus = false;
+        }
+    }
+    internal class SteroidSyringePlayerHades : ModPlayer
+    {
+        public bool hades;
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (proj.DamageType == DamageClass.Ranged && hades && crit)
+            {
+                if (Player.statLife == Player.statLifeMax2)
+                {
+                    Player.statLife -= Player.statLifeMax2 / 10;
+
+                    switch (Main.rand.Next(2))
+                    {
+                        case 0:
+                            Player.AddBuff(ModContent.BuffType<Foward>(), 1800);
+                            break;
+                        case 1:
+                            Player.AddBuff(ModContent.BuffType<Standing>(), 1800);
+                            break;
+                        case 2:
+                            Player.AddBuff(ModContent.BuffType<Retreat>(), 1800);
+                            break;
+                    }
+                }
+            }
+        }
+        public override void ResetEffects()
+        {
+            hades = false;
+        }
+    }
+    internal class SteroidSyringePlayerPoseidon : ModPlayer
+    {
+        public bool poseidon;
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (proj.DamageType == DamageClass.Ranged && poseidon && crit)
+            {
+                if (Player.statMana >= Player.statManaMax2)
+                {
+                    Player.statMana -= Player.statManaMax2;
+                    Player.Heal(50);
+                    Player.AddBuff(ModContent.BuffType<Standing>(), 180);
+                }
+            }
+        }
+        public override void ResetEffects()
+        {
+            poseidon = false;
         }
     }
 }

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace VoidArsenal.Content.Items.Artifacts
 {
-    public class WitchMask : Artifact
+    public class WitchHeart : Artifact
     {
         public override void SetStaticDefaults()
         {
@@ -29,7 +29,7 @@ namespace VoidArsenal.Content.Items.Artifacts
             player.statLifeMax2 += 20;
             player.lifeRegen += 10;
 
-            player.GetModPlayer<Witch>().witchMask = true;
+            player.GetModPlayer<WitchHeartPlayer>().witchHeart = true;
         }
         public override void AddRecipes()
         {
@@ -45,33 +45,37 @@ namespace VoidArsenal.Content.Items.Artifacts
     /// <summary>
     /// This class below make possible a new form to play with a magic, you turn a blood mage and use your vitality
     /// </summary>
-    internal class Witch : ModPlayer
+    internal class WitchHeartPlayer : ModPlayer
     {
-        public bool witchMask = false;
+        public bool witchHeart = false;
         public override void ModifyManaCost(Item item, ref float reduce, ref float mult)
         {
-            if (witchMask)
+            if (witchHeart)
             {
                 reduce -= 0.5f;
             }
         }
         public override void OnConsumeMana(Item item, int manaConsumed)
         {
-            if (witchMask)
+            if (witchHeart)
                 Player.statLife -= manaConsumed;
 
             Player.statMana = Player.statLifeMax2;
+        }
+        public override void ResetEffects()
+        {
+            witchHeart = false;
         }
     }
     /// <summary>
     /// Part of a big change, your items change when you are wearing Witch Mask
     /// </summary>
-    public class WitchSystem : GlobalItem
+    public class WitchHeartSystem : GlobalItem
     {
         public override bool CanUseItem(Item item, Player player)
         {
             //making a player dont kill yourself with a witch mask
-            if (item.DamageType == DamageClass.Magic && player.GetModPlayer<Witch>().witchMask == true)
+            if (item.DamageType == DamageClass.Magic && player.GetModPlayer<WitchHeartPlayer>().witchHeart == true)
             {
                 if (player.statLife <= item.mana)
                 {

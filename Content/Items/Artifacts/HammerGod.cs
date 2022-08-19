@@ -1,18 +1,33 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using VoidArsenal.Common.Abstract;
+using VoidArsenal.Content.Dusts;
 
 namespace VoidArsenal.Content.Items.Artifacts
 {
-    internal class HammerGod : ModItem
+    public class HammerGod : Artifact
     {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Hammer God");
+            Tooltip.SetDefault("when hit a enemy with 10% of life, kill it");
+        }
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+        }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<HammerGodP>().hammerGod = true;
+            player.GetModPlayer<HammerGodPlayer>().hammerGod = true;
         }
     }
 
-    internal class HammerGodP : ModPlayer
+    internal class HammerGodPlayer : ModPlayer
     {
+        Vector2 speed = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
+        readonly int dust = ModContent.DustType<Hammer>();
         public bool hammerGod;
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
@@ -21,6 +36,10 @@ namespace VoidArsenal.Content.Items.Artifacts
                 if (target.life <= target.lifeMax / 10 && !target.boss && item.DamageType == DamageClass.Melee)
                 {
                     target.life = 0;
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Dust.NewDust(target.Center, 1, 1,dust, speed.X,speed.Y);
+                    }
                 }
             }
         }
@@ -31,8 +50,16 @@ namespace VoidArsenal.Content.Items.Artifacts
                 if (target.life <= target.lifeMax / 10 && !target.boss && proj.DamageType == DamageClass.Melee)
                 {
                     target.life = 0;
+                    for(int i =0; i < 5; i++)
+                    {
+                        Dust.NewDust(target.Center, 1, 1,dust,speed.X,speed.Y);
+                    }
                 }
             }
+        }
+        public override void ResetEffects()
+        {
+            hammerGod = false;
         }
     }
 }

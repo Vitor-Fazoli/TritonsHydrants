@@ -23,12 +23,12 @@ namespace VoidArsenal.Content.Items.Artifacts
             Item.rare = ModContent.RarityType<Common.Abstract.ArtifactRarity>();
             Item.accessory = true;
         }
-        public override void UpdateEquip(Player player)
+        public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(damageClass: DamageClass.Generic) -= 0.40f;
             player.aggro += 10;
             player.statDefense = player.statDefense * 2;
-            player.GetModPlayer<IceShieldP>().protector = true;
+            player.GetModPlayer<IceShieldPlayer>().iceShield = true;
         }
         public override void AddRecipes()
         {
@@ -41,12 +41,12 @@ namespace VoidArsenal.Content.Items.Artifacts
                 .Register();
         }
     }
-    internal class IceShieldP : ModPlayer
+    internal class IceShieldPlayer : ModPlayer
     {
-        public bool protector = false;
+        public bool iceShield = false;
         public override void OnRespawn(Player player)
         {
-            if (protector)
+            if (iceShield)
             {
                 player.statLife = player.statLifeMax2;
             }
@@ -57,6 +57,10 @@ namespace VoidArsenal.Content.Items.Artifacts
             {
                 Player.AddBuff(BuffID.Ironskin, 180);
             }
+        }
+        public override void ResetEffects()
+        {
+            iceShield = false;
         }
     }
 }
