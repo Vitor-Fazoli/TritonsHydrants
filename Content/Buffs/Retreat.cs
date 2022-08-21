@@ -12,7 +12,7 @@ namespace VoidArsenal.Content.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.velocity *= 1.05f;
+            player.moveSpeed += 0.10f;
         }
     }
 }

@@ -34,8 +34,7 @@ namespace VoidArsenal.Content.Items.Weapons.Magic {
         public override void AddRecipes()
         {
 			CreateRecipe()
-				.AddIngredient<AuraliteBar>(4)
-				.AddIngredient(ItemID.DemoniteBar, 5)
+				.AddIngredient<AuraliteBar>(10)
 				.AddTile(TileID.Anvils)
 				.Register();
         }
