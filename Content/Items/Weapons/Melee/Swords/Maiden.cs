@@ -17,11 +17,11 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
             Item.DamageType = DamageClass.Melee;
             Item.crit = 14;
             Item.damage = 30;
-            Item.useTime = 25;
-            Item.useAnimation = 25;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
         }
-        //fazer uma evolução dessa arma para ser um acessório que te dá ela como summon
+
     }
 }
