@@ -1,6 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using VoidArsenal.Content.Projectiles;
 
 namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
 {
@@ -22,6 +25,11 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
         }
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        {
+            Vector2 randPosition = player.Center + Utils.RandomVector2(Main.rand, -1f, 1f);
 
+            Projectile.NewProjectile(new EntitySource_OnHit(target,player),randPosition,target.position - randPosition,ModContent.ProjectileType<MaidenProj>(),10,4, player.whoAmI);
+        }
     }
 }

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "R8xVVTz/JHjYASZRp3Rugso6rxBEUzV7p4haMZqtHh3FwJr1gHTrQhtRY+XEb8Ao21p0mV49kB72jx+0nVQ2Fg==",
+  "dgSpecHash": "YWYWCDmdHuXzNLHWka0k0ZB1SdGq+q64RLjVftpkStVG5LZfT+86LN6rk0x3rRvrm/+INbIP241KL2seoPzG/Q==",
   "success": true,
-  "projectFilePath": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\fazol\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\hp\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }
