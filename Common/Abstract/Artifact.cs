@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
@@ -11,22 +12,22 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
+using VoidArsenal.Content.UI;
 
 namespace VoidArsenal.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {
-        public bool godReady;
+        public bool godAscended;
         public int god;
         protected int lvl;
         protected int lvlMax = 500;
         public double xp;
         protected const int xpmax = 300;
+        public bool slotted = false;
 
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 3));
-            ItemID.Sets.AnimatesAsSoul[Item.type] = true;
             ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -39,7 +40,7 @@ namespace VoidArsenal.Common.Abstract
         }
         public override void OnCreate(ItemCreationContext context)
         {
-            if (godReady)
+            if (godAscended)
             {
                 god = Main.rand.Next(3);
             }
@@ -59,8 +60,25 @@ namespace VoidArsenal.Common.Abstract
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            #region God
-            if (godReady)
+
+            SystemGod(tooltips);
+
+            #region Level
+            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n | {(int)xp} | {xpmax} |");
+            tooltips.Add(levelLine);
+            #endregion
+
+            #region Warning
+            var WarningLine = new TooltipLine(Mod, "Face", $"Depois que colocado no slot, não pode ser removido a não ser que seja destruído\n" +
+                $"use o botão direito para isso");
+            tooltips.Add(WarningLine);
+            #endregion
+
+            ModifyCreation(tooltips);
+        }
+        void SystemGod(List<TooltipLine> tooltips)
+        {
+            if (godAscended)
             {
                 TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
                 TooltipLine itemName = Find("ItemName");
@@ -82,14 +100,6 @@ namespace VoidArsenal.Common.Abstract
                         break;
                 }
             }
-            #endregion
-
-            #region Level
-            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n | {(int)xp} | {xpmax} |");
-            tooltips.Add(levelLine);
-            #endregion
-
-            ModifyCreation(tooltips);
         }
         public override bool? CanBurnInLava()
         {
@@ -99,6 +109,7 @@ namespace VoidArsenal.Common.Abstract
         {
             LevelCap();
             ArtifactLevelColor();
+            slotted = false;
         }
         public override void UpdateEquip(Player player)
         {
@@ -119,9 +130,11 @@ namespace VoidArsenal.Common.Abstract
         {
             Item.defense += lvl / 10;
             player.GetDamage(DamageClass.Generic) += (0.0005f * lvl);
+            slotted = true;
         }
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
+
             if (modded)
             {
                 return true;
@@ -134,6 +147,7 @@ namespace VoidArsenal.Common.Abstract
         {
             Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
             ArtifactLevelColor();
+            slotted = false;
         }
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {

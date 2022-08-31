@@ -25,7 +25,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetModPlayer<StarAmuletP>().starAmulet = true;
-            player.manaRegen = 0;
+            player.manaRegen -= 20;
             player.manaRegenCount = 1;
             player.manaRegenBonus = 0;
             player.manaRegenDelay = 300;

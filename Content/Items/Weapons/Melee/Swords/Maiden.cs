@@ -27,9 +27,10 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            Vector2 randPosition = player.Center + Utils.RandomVector2(Main.rand, -1f, 1f);
+            Vector2 Sky = new(target.Center.X, target.Center.Y - 1000);
+            float speed = 0.4f;
 
-            Projectile.NewProjectile(new EntitySource_OnHit(target,player),randPosition,target.position - randPosition,ModContent.ProjectileType<MaidenProj>(),10,4, player.whoAmI);
+            Projectile.NewProjectile(new EntitySource_OnHit(target,player),Sky,(target.position - Sky) * speed,ModContent.ProjectileType<MaidenProj>(),10,4, player.whoAmI);
         }
     }
 }

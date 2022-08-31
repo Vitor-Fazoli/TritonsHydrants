@@ -42,9 +42,6 @@ namespace VoidArsenal.Content.Items.Artifacts
                 .Register();
         }
     }
-    /// <summary>
-    /// This class below make possible a new form to play with a magic, you turn a blood mage and use your vitality
-    /// </summary>
     internal class WitchHeartPlayer : ModPlayer
     {
         public bool witchHeart = false;
@@ -67,14 +64,10 @@ namespace VoidArsenal.Content.Items.Artifacts
             witchHeart = false;
         }
     }
-    /// <summary>
-    /// Part of a big change, your items change when you are wearing Witch Mask
-    /// </summary>
     public class WitchHeartSystem : GlobalItem
     {
         public override bool CanUseItem(Item item, Player player)
         {
-            //making a player dont kill yourself with a witch mask
             if (item.DamageType == DamageClass.Magic && player.GetModPlayer<WitchHeartPlayer>().witchHeart == true)
             {
                 if (player.statLife <= item.mana)

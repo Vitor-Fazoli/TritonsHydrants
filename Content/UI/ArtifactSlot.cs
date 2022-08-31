@@ -11,8 +11,6 @@ namespace VoidArsenal.Content.UI
     public class ArtifactSlot : ModAccessorySlot
     {
 
-        public bool enable;
-
         public override void OnMouseHover(AccessorySlotType context)
         {
             Main.hoverItemName = "Artifact";
@@ -38,21 +36,15 @@ namespace VoidArsenal.Content.UI
         }
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
         {
-
             if (item.rare == ModContent.RarityType<ArtifactRarity>())
             {
                 return true;
             }
-
             return false;
         }
         public override bool IsEnabled()
         {
             return true;
-        }
-        public Item whichArtifact()
-        {
-            return FunctionalItem;
         }
     }
 }

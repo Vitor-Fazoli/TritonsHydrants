@@ -1,6 +1,9 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using VoidArsenal.Content.Items.Materials;
 
 namespace VoidArsenal.Content.NPCs.Enemies
 {
@@ -12,19 +15,44 @@ namespace VoidArsenal.Content.NPCs.Enemies
         }
         public override void SetDefaults()
         {
-            NPC.width = 80;
+            NPC.width = 60;
             NPC.height = 86;
-            NPC.lifeMax = 2100;
+            NPC.lifeMax = 450;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.defense = 10;
-            NPC.knockBackResist = 0.1f;
+            NPC.knockBackResist = 0.5f;
             NPC.netAlways = true;
             NPC.lavaImmune = true;
             NPC.npcSlots = 5f;
             NPC.damage = 40;
             NPC.noGravity = false;
             NPC.noTileCollide = false;
+            NPC.velocity *= 1.75f;
+            NPC.aiStyle = NPCAIStyleID.FlyingFish;
+        }
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            if (NPC.life <= 0)
+            {
+                int armGoreType = Mod.Find<ModGore>("Flyer_Arm").Type;
+                int headGoreType = Mod.Find<ModGore>("Flyer_Head").Type;
+
+                var entitySource = NPC.GetSource_Death();
+
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), armGoreType);  
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), armGoreType);  
+                Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), headGoreType);  
+            }
+        }
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SmoothScales>(), 70, 2, 5));
         }
         public override void FindFrame(int frameHeight)
         {

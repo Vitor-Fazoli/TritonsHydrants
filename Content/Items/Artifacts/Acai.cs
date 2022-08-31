@@ -12,7 +12,7 @@ namespace VoidArsenal.Content.Items.Artifacts
     {
         protected override void ModifyCreation(List<TooltipLine> tooltips)
         {
-            if (godReady)
+            if (godAscended)
             {
                 var line = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
                 switch (god)
@@ -38,27 +38,27 @@ namespace VoidArsenal.Content.Items.Artifacts
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
-            godReady = true;
+            godAscended = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if(godReady)
+            if(godAscended)
             {
                 switch (god)
                 {
-                    // Ruby
+                    // Zeus
                     case 0:
                         player.GetDamage(DamageClass.Summon) *= 3f;
                         player.maxMinions = 0;
                         break;
-                    // Sapphire
+                    // Poseidon
                     case 1:
                         player.GetDamage(DamageClass.Summon) += 0.5f;
                         player.manaRegen = 0;
                         player.manaRegenBonus = 0;
                         player.manaRegenCount = 0;
                         break;
-                    // Emerald
+                    // Hades
                     case 2:
                         player.GetDamage(DamageClass.Summon) -= 0.45f;
                         player.maxMinions *= 2;

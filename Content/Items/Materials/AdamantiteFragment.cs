@@ -11,8 +11,8 @@ namespace VoidArsenal.Content.Items.Materials
         }
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 10;
+            Item.width = 16;
+            Item.height = 16;
             Item.material = true;
         }
     }

@@ -12,7 +12,7 @@ namespace VoidArsenal.Content.Items.Artifacts
         {
             DisplayName.SetDefault("Ice Shield");
             Tooltip.SetDefault("all damage decreased but you spawn with full health\n" +
-                "your defense is doubled, " +
+                "your defense is doubled, knockback immunity" +
                 "Significantly higher chance that enemies will target the wearer\n");
         }
         public override void SetDefaults()
@@ -29,6 +29,7 @@ namespace VoidArsenal.Content.Items.Artifacts
             player.aggro += 10;
             player.statDefense = player.statDefense * 2;
             player.GetModPlayer<IceShieldPlayer>().iceShield = true;
+            player.noKnockback = true;
         }
         public override void AddRecipes()
         {
