@@ -14,37 +14,27 @@ namespace VoidArsenal.Content.UI
         public override void OnMouseHover(AccessorySlotType context)
         {
             Main.hoverItemName = "Artifact";
+
+            bool flag = Main.mouseLeft && Main.mouseLeftRelease;
+
+            if (flag)
+            {
+                Main.blockMouse = true;
+            }
         }
         public override bool IsHidden()
         {
             return false;
         }
-        public override bool DrawVanitySlot => false;
 
+        #region without more slots
+        public override bool DrawVanitySlot => false;
         public override bool DrawDyeSlot => false;
+        #endregion
 
         public override string FunctionalTexture => (GetType().Namespace + "." + Name).Replace('.', '/');
-        public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
-        {
-
-            if (checkItem.rare == ModContent.RarityType<ArtifactRarity>())
-            {
-                return true;
-            }
-            
-            return false;
-        }
-        public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo)
-        {
-            if (item.rare == ModContent.RarityType<ArtifactRarity>())
-            {
-                return true;
-            }
-            return false;
-        }
-        public override bool IsEnabled()
-        {
-            return true;
-        }
+        public override bool CanAcceptItem(Item checkItem, AccessorySlotType context) => checkItem.rare == ModContent.RarityType<ArtifactRarity>();
+        public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo) => item.rare == ModContent.RarityType<ArtifactRarity>();
+        public override bool IsEnabled() => true;
     }
 }

@@ -1,16 +1,15 @@
 using VoidArsenal.Common.Abstract;
-using VoidArsenal.Content.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Collections.Generic;
 using System.Linq;
+using Terraria.GameContent.Creative;
 
 namespace VoidArsenal.Content.Items.Artifacts
 {
     public class Acai : Artifact
     {
-        protected override void ModifyCreation(List<TooltipLine> tooltips)
+        protected override void ModifyTooltipsAgain(System.Collections.Generic.List<Terraria.ModLoader.TooltipLine> tooltips)
         {
             if (godAscended)
             {
@@ -31,7 +30,11 @@ namespace VoidArsenal.Content.Items.Artifacts
         }
         public override void SetStaticDefaults()
         {
+            
             DisplayName.SetDefault("Acai Berry");
+            ItemID.Sets.ItemIconPulse[Item.type] = true;
+            ItemID.Sets.CanGetPrefixes[Item.type] = false;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {

@@ -11,6 +11,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 using Terraria.Utilities;
 using VoidArsenal.Content.UI;
 
@@ -20,53 +21,27 @@ namespace VoidArsenal.Common.Abstract
     {
         public bool godAscended;
         public int god;
-        protected int lvl;
-        protected int lvlMax = 500;
-        public double xp;
-        protected const int xpmax = 300;
-        public bool slotted = false;
 
-        public override void SetStaticDefaults()
-        {
-            ItemID.Sets.ItemIconPulse[Item.type] = true;
-            ItemID.Sets.CanGetPrefixes[Item.type] = false;
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
-        }
-        public override void SetDefaults()
-        {
-            Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<ArtifactRarity>();
-            Item.accessory = true;
-        }
         public override void OnCreate(ItemCreationContext context)
         {
             if (godAscended)
             {
                 god = Main.rand.Next(3);
             }
-            lvl = 1;
-            xp = 0;
         }
         public override bool? PrefixChance(int pre, UnifiedRandom rand)
         {
-            switch (pre)
+            return pre switch
             {
-                case -3:
-                    return false;
-                case -1:
-                    return false;
-            }
-            return true;
+                -3 => false,
+                -1 => false,
+                _ => (bool?)true,
+            };
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
 
-            SystemGod(tooltips);
-
-            #region Level
-            var levelLine = new TooltipLine(Mod, "Face", $"Level: {lvl}\n | {(int)xp} | {xpmax} |");
-            tooltips.Add(levelLine);
-            #endregion
+            SystemGod(tooltips, Mod);
 
             #region Warning
             var WarningLine = new TooltipLine(Mod, "Face", $"Depois que colocado no slot, não pode ser removido a não ser que seja destruído\n" +
@@ -74,67 +49,23 @@ namespace VoidArsenal.Common.Abstract
             tooltips.Add(WarningLine);
             #endregion
 
-            ModifyCreation(tooltips);
+            ModifyTooltipsAgain(tooltips);
         }
-        void SystemGod(List<TooltipLine> tooltips)
-        {
-            if (godAscended)
-            {
-                TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
-                TooltipLine itemName = Find("ItemName");
 
-                var godLine = new TooltipLine(Mod, "Face", "");
-                switch (god)
-                {
-                    // Zeus
-                    case 0:
-                        itemName.Text = itemName.Text + " of Zeus";
-                        break;
-                    // Poseidon
-                    case 1:
-                        itemName.Text = itemName.Text + " of Poseidon";
-                        break;
-                    // Hades
-                    case 2:
-                        itemName.Text = itemName.Text + " of Hades";
-                        break;
-                }
-            }
-        }
         public override bool? CanBurnInLava()
         {
             return false;
         }
-        public override void UpdateInventory(Player player)
-        {
-            LevelCap();
-            ArtifactLevelColor();
-            slotted = false;
-        }
-        public override void UpdateEquip(Player player)
-        {
-            LevelCap();
-            ArtifactLevelColor();
-
-            xp += 0.002; // Default: 002
-            if (xp >= xpmax)
-            {
-                xp = 0;
-                if(lvl <= lvlMax)
-                {
-                    lvl++;
-                }
-            }
-        }
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            Item.defense += lvl / 10;
-            player.GetDamage(DamageClass.Generic) += (0.0005f * lvl);
-            slotted = true;
-        }
+        //public override bool AltFunctionUse(Player player)
+        //{
+        //    if (slotted)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
-
             if (modded)
             {
                 return true;
@@ -143,21 +74,19 @@ namespace VoidArsenal.Common.Abstract
         }
 
         #region Effects in world
-        public override void PostUpdate()
+        public void PostUpdate(Item item)
         {
-            Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
-            ArtifactLevelColor();
-            slotted = false;
+            Lighting.AddLight(item.Center, Color.White.ToVector3() * 0.4f);
         }
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            Texture2D texture = TextureAssets.Item[Item.type].Value;
+            Texture2D texture = TextureAssets.Item[item.type].Value;
 
             Rectangle frame;
 
-            if (Main.itemAnimations[Item.type] != null)
+            if (Main.itemAnimations[item.type] != null)
             {
-                frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+                frame = Main.itemAnimations[item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
             }
             else
             {
@@ -165,11 +94,11 @@ namespace VoidArsenal.Common.Abstract
             }
 
             Vector2 frameOrigin = frame.Size() / 2f;
-            Vector2 offset = new(Item.width / 2 - frameOrigin.X, Item.height - frame.Height);
-            Vector2 drawPos = Item.position - Main.screenPosition + frameOrigin + offset;
+            Vector2 offset = new(item.width / 2 - frameOrigin.X, item.height - frame.Height);
+            Vector2 drawPos = item.position - Main.screenPosition + frameOrigin + offset;
 
             float time = Main.GlobalTimeWrappedHourly;
-            float timer = Item.timeSinceItemSpawned / 240f + time * 0.04f;
+            float timer = item.timeSinceItemSpawned / 240f + time * 0.04f;
 
             time %= 4f;
             time /= 2f;
@@ -203,48 +132,42 @@ namespace VoidArsenal.Common.Abstract
         public override void LoadData(TagCompound tag)
         {
             god = tag.GetInt("godID");
-            lvl = tag.GetInt("lvlID");
-            xp = tag.GetDouble("xpID");
         }
         public override void SaveData(TagCompound tag)
         {
-            tag["lvlID"] = lvl;
             tag["godID"] = god;
-            tag["xpID"] = xp;
         }
         public override void NetSend(BinaryWriter writer)
         {
             writer.Write(god);
-            writer.Write(lvl);
-            writer.Write(xp);
         }
         #endregion
-
-        protected virtual void ModifyCreation(List<TooltipLine> tooltips) { }
-
-        protected void ArtifactLevelColor()
+        private void SystemGod(List<TooltipLine> tooltips, Mod mod)
         {
-            switch (lvl)
+            if (godAscended)
             {
-                case 15:
-                    Item.color = new Color(Main.DiscoR, 255, 255);
-                    break;
-                case 100:
-                    Item.color = new(Main.DiscoR, Main.DiscoG, 255, Main.DiscoB / 2);
-                    break;
+                TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
+                TooltipLine itemName = Find("ItemName");
+
+                var godLine = new TooltipLine(mod, "Face", "");
+                switch (god)
+                {
+                    // Zeus
+                    case 0:
+                        itemName.Text = itemName.Text + " of Zeus";
+                        break;
+                    // Poseidon
+                    case 1:
+                        itemName.Text = itemName.Text + " of Poseidon";
+                        break;
+                    // Hades
+                    case 2:
+                        itemName.Text = itemName.Text + " of Hades";
+                        break;
+                }
             }
         }
-        private void LevelCap()
-        {
-            if (!Main.hardMode)
-            {
-                lvlMax = 25;
-            }
-            else if (Main.hardMode)
-            {
-                lvlMax = 500;
-            }
-        }
+        protected virtual void ModifyTooltipsAgain(List<TooltipLine> tooltips) { }
     }
     internal class ArtifactRarity : ModRarity
     {

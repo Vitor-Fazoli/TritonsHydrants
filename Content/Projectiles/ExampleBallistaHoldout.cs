@@ -5,13 +5,12 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
-using VoidArsenal.Content.Items.Weapons.Ranged.Ballistica;
+using VoidArsenal.Content.Items.Weapons.Ranged.Ballista;
 
 namespace VoidArsenal.Content.Projectiles
 {
-	public class ExampleLastBallisticaHoldout : ModProjectile
+	public class ExampleBallistaHoldout : ModProjectile
 	{
-		public override string Texture => "Terraria/Projectile_" + ProjectileID.LastPrism;
 
 		// The vanilla Last Prism is an animated item with 5 frames of animation. We copy that here.
 		private const int NumAnimationFrames = 5;
@@ -27,7 +26,7 @@ namespace VoidArsenal.Content.Projectiles
 
 		// This value controls how sluggish the Prism turns while being used. Vanilla Last Prism is 0.08f.
 		// Higher values make the Prism turn faster.
-		private const float AimResponsiveness = 0.08f;
+		private const float AimResponsiveness = 0.05f;
 
 		// This value controls how frequently the Prism emits sound once it's firing.
 		private const int SoundInterval = 20;
@@ -76,7 +75,6 @@ namespace VoidArsenal.Content.Projectiles
 			// Use CloneDefaults to clone all basic Projectile statistics from the vanilla Last Prism.
 			Projectile.CloneDefaults(ProjectileID.LastPrism);
 		}
-
 		public override void AI()
 		{
 			Player player = Main.player[Projectile.owner];
@@ -228,40 +226,22 @@ namespace VoidArsenal.Content.Projectiles
 
 		private void FireBeams()
 		{
-			// If for some reason the beam velocity can't be correctly normalized, set it to a default value.
 			Vector2 beamVelocity = Vector2.Normalize(Projectile.velocity);
 			if (beamVelocity.HasNaNs())
 			{
 				beamVelocity = -Vector2.UnitY;
 			}
 
-			// This UUID will be the same between all players in multiplayer, ensuring that the beams are properly anchored on the Prism on everyone's screen.
 			int uuid = Projectile.GetByUUID(Projectile.owner, Projectile.whoAmI);
 
 			int damage = Projectile.damage;
 			float knockback = Projectile.knockBack;
 			for (int b = 0; b < NumBeams; ++b)
 			{
-				Projectile.NewProjectile(new EntitySource_TileBreak(2,2),Projectile.Center, beamVelocity, ModContent.ProjectileType<ExampleLastPrismBeam>(), damage, knockback, Projectile.owner, b, uuid);
+				Projectile.NewProjectile(new EntitySource_TileBreak(2,2),Projectile.Center, beamVelocity, ProjectileID.WoodenArrowFriendly, damage, knockback, Projectile.owner, b, uuid);
 			}
 
-			// After creating the beams, mark the Prism as having an important network event. This will make Terraria sync its data to other players ASAP.
 			Projectile.netUpdate = true;
-		}
-        // Because the Prism is a holdout Projectile and stays glued to its user, it needs custom drawcode.
-        public bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
-		{
-			SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-			Texture2D texture = 
-			int frameHeight = texture.Height / Main.projFrames[Projectile.type];
-			int spriteSheetOffset = frameHeight * Projectile.frame;
-			Vector2 sheetInsertPosition = (Projectile.Center + Vector2.UnitY * Projectile.gfxOffY - Main.screenPosition).Floor();
-
-			// The Prism is always at full brightness, regardless of the surrounding light. This is equivalent to it being its own glowmask.
-			// It is drawn in a non-white color to distinguish it from the vanilla Last Prism.
-			Color drawColor = ExampleBallista.OverrideColor;
-			spriteBatch.Draw(texture, sheetInsertPosition, new Rectangle?(new Rectangle(0, spriteSheetOffset, texture.Width, frameHeight)), drawColor, Projectile.rotation, new Vector2(texture.Width / 2f, frameHeight / 2f), Projectile.scale, effects, 0f);
-			return false;
 		}
 	}
 }

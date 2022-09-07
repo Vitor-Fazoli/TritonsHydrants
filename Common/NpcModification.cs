@@ -6,7 +6,7 @@ using VoidArsenal.Content.Items.Materials;
 
 namespace VoidArsenal.Common
 {
-    public class NpcModification : GlobalNPC
+    public class NPCLootModification : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {

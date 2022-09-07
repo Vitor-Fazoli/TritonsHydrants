@@ -13,7 +13,7 @@ namespace VoidArsenal.Content.Items.Artifacts
 {
     internal class SteroidSyringe : Artifact
     {
-        protected override void ModifyCreation(List<TooltipLine> tooltips)
+        protected override void ModifyTooltipsAgain(List<TooltipLine> tooltips)
         {
             var line = tooltips.FirstOrDefault(x => x.Name == "Tooltip0" && x.Mod == "Terraria");
             switch (god)

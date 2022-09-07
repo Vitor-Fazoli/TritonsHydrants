@@ -2,14 +2,12 @@
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
+using VoidArsenal.Content.Projectiles;
 
-namespace VoidArsenal.Content.Items.Weapons.Ranged.Ballistica
+namespace VoidArsenal.Content.Items.Weapons.Ranged.Ballista
 {
 	public class ExampleBallista : ModItem
 	{
-		// You can use a vanilla texture for your Item by using the format: "Terraria/Item_<Item ID>".
-		public override string Texture => "Terraria/Item_" + ItemID.LastPrism;
-		public static Color OverrideColor = new Color(122, 173, 255);
 
 		public override void SetStaticDefaults()
 		{
@@ -28,8 +26,6 @@ Ignores NPC immunity frames and fires 10 beams at once instead of 6.");
 			Item.shoot = ModContent.ProjectileType<ExampleBallistaHoldout>();
 			Item.shootSpeed = 30f;
 
-			// Change the Item's draw color so that it is visually distinct from the vanilla Last Prism.
-			Item.color = OverrideColor;
 		}
 
 		// Because this weapon fires a holdout projectile, it needs to block usage if its projectile already exists.
