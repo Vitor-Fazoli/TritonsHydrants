@@ -1,10 +1,7 @@
-﻿using VoidArsenal.Common;
-using VoidArsenal.Common.Abstract;
+﻿using VoidArsenal.Common.Abstract;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace VoidArsenal.Content.UI
 {
@@ -25,7 +22,6 @@ namespace VoidArsenal.Content.UI
         {
             return false;
         }
-
         #region without more slots
         public override bool DrawVanitySlot => false;
         public override bool DrawDyeSlot => false;

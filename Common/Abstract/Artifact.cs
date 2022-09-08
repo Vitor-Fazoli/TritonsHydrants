@@ -1,19 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.UI;
 using Terraria.Utilities;
-using VoidArsenal.Content.UI;
 
 namespace VoidArsenal.Common.Abstract
 {
@@ -43,12 +36,6 @@ namespace VoidArsenal.Common.Abstract
 
             SystemGod(tooltips, Mod);
 
-            #region Warning
-            var WarningLine = new TooltipLine(Mod, "Face", $"Depois que colocado no slot, não pode ser removido a não ser que seja destruído\n" +
-                $"use o botão direito para isso");
-            tooltips.Add(WarningLine);
-            #endregion
-
             ModifyTooltipsAgain(tooltips);
         }
 
@@ -56,14 +43,6 @@ namespace VoidArsenal.Common.Abstract
         {
             return false;
         }
-        //public override bool AltFunctionUse(Player player)
-        //{
-        //    if (slotted)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
         public override bool CanEquipAccessory(Player player, int slot, bool modded)
         {
             if (modded)
