@@ -12,8 +12,8 @@ namespace VoidArsenal.Content.Projectiles
     {
         private bool waterPower = false;
 
-        private short dust = DustID.BlueCrystalShard;
-        private Color color = new Color(255, 255, 255, 0);
+        private readonly short dust = DustID.BlueCrystalShard;
+        private Color color = new(255, 255, 255, 0);
 
         public override void SetDefaults()
         {
@@ -46,17 +46,17 @@ namespace VoidArsenal.Content.Projectiles
                 waterPower = true;
                 Projectile.ai[0]++;
 
-
                 if (Projectile.ai[0] >= 30)
                 {
 
-                    EmpoweredWater();
+                    EmpowerProjectileOnWater();
 
                     if (Projectile.velocity == Vector2.Zero)
                     {
                         Projectile.Kill();
                     }
                 }
+
                 if (Projectile.ai[0] <= 1)
                 {
                     for (int i = 0; i < 40; i++)
@@ -79,18 +79,18 @@ namespace VoidArsenal.Content.Projectiles
         {
             for (int i = 0; i < 40; i++)
             {
-                Vector2 speed = Main.rand.NextVector2CircularEdge(1.5f, 1.5f);
+                Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
                 Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.BubbleBurst_Blue, speed * 5);
                 d.noGravity = true;
             }
         }
-        private void EmpoweredWater()
+        private void EmpowerProjectileOnWater()
         {
             Vector2 move = Vector2.Zero;
             float distance = 400f;
             bool isTarget = false;
 
-            for (int k = 0; k < 200; k++)
+            for (int k = 0; k < 100; k++)
             {
                 if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
                 {
@@ -104,6 +104,7 @@ namespace VoidArsenal.Content.Projectiles
                     }
                 }
             }
+
             if (isTarget)
             {
                 AdjustMagnitude(ref move);
