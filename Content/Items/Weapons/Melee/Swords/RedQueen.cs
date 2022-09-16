@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using VoidArsenal.Content.Buffs;
 
 namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
 {
@@ -22,9 +23,9 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
         }
-        public override void HoldItem(Player player)
+        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            
+            player.AddBuff(ModContent.BuffType<QueensBlessing>(), 180);
         }
     }
 }

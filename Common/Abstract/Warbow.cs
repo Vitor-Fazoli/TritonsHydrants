@@ -17,11 +17,6 @@ namespace VoidArsenal.Content.Projectiles
         protected int SpecialArrow = ProjectileID.JestersArrow;
         protected int SpecialMultiplier = 3;
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Red King");
-            Main.projFrames[Projectile.type] = 3;
-        }
         public override void SetDefaults()
         {
             Projectile.width = 40;
@@ -59,7 +54,7 @@ namespace VoidArsenal.Content.Projectiles
             player.itemRotation = (float)Math.Atan2((double)(Projectile.velocity.Y * Projectile.direction), (double)(Projectile.velocity.X * Projectile.direction));
             return false;
         }
-        private void HoldingWeapon()
+        protected virtual void HoldingWeapon()
         {
             Player player = Main.player[Projectile.owner];
             Vector2 rotationPoint = player.RotatedRelativePoint(player.MountedCenter, true);
@@ -94,7 +89,7 @@ namespace VoidArsenal.Content.Projectiles
                 Projectile.Kill();
             }
         }
-        private void Channeling()
+        protected virtual void Channeling()
         {
             Player player = Main.player[Projectile.owner];
             Vector2 rotationPoint = player.RotatedRelativePoint(player.MountedCenter, true);
@@ -128,7 +123,7 @@ namespace VoidArsenal.Content.Projectiles
                 dust.fadeIn = 0;
             }
         }
-        private void Shoot()
+        protected virtual void Shoot()
         {
             Player player = Main.player[Projectile.owner];
             Vector2 rotationPoint = player.RotatedRelativePoint(player.MountedCenter, true);

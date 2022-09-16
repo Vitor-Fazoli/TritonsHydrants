@@ -32,7 +32,6 @@ namespace VoidArsenal.Content.Items.Artifacts
         {
             
             DisplayName.SetDefault("Acai Berry");
-            ItemID.Sets.ItemIconPulse[Item.type] = true;
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

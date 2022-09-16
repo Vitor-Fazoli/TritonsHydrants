@@ -81,13 +81,17 @@ namespace VoidArsenal.Content.Items.Weapons.Throwing
             Projectile.tileCollide = true;
             Projectile.aiStyle = ProjectileID.WoodenArrowFriendly;
         }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Player p = Main.player[Projectile.owner];
+            
+        }
         public override void Kill(int timeLeft)
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 20; i++)
             {
-                Vector2 speed = Main.rand.NextVector2CircularEdge(0.5f, 0.5f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Gold, speed * 5);
-                d.noGravity = true;
+                Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Gold, speed * 2);
             }
         }
     }

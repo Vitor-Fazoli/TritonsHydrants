@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using VoidArsenal.Content.Projectiles;
 using System.Collections.Generic;
+using VoidArsenal.Content.Buffs;
 
 namespace VoidArsenal.Content.Items.Weapons.Ranged.Warbow
 {
