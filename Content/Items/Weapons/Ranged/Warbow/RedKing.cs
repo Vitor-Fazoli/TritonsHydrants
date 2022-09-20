@@ -18,21 +18,34 @@ namespace VoidArsenal.Content.Items.Weapons.Ranged.Warbow
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine synergy = new TooltipLine(Mod,"Synergy: ","every time you hit an enemy with the Red Queen, your next shot deals more damage to that target") { OverrideColor = Color.Red };
+            TooltipLine synergy = new TooltipLine(Mod,"Synergy: ","every time you hit an enemy with the Red Queen, your next shot deals more damage to that target") { OverrideColor = Color.IndianRed };
             tooltips.Add(synergy);
         }
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.LastPrism);
-            Item.damage = 42;
-            Item.shoot = ModContent.ProjectileType<Projectiles.RedKing>();
-            Item.shootSpeed = 30f;
+            Item.damage = 40;
             Item.DamageType = DamageClass.Ranged;
-            Item.mana = 0;
-            Item.consumeAmmoOnLastShotOnly = true;
-            Item.ammo = AmmoID.Arrow;
+            Item.width = 40;
+            Item.height = 80;
+            Item.noMelee = true;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.reuseDelay = 5;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.knockBack = 10;
+            Item.value = 10000000;
+            Item.rare = ItemRarityID.Purple;
+            Item.UseSound = SoundID.Item7;
+            Item.autoReuse = true;
+            Item.channel = true;
+            Item.shoot = ModContent.ProjectileType<Projectiles.RedKing>();
+            Item.shootSpeed = 16f;
         }
-        public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.RedKing>()] <= 0 && player.HasItem(ItemID.WoodenArrow);
+        //public override Vector2? HoldoutOffset()
+        //{
+        //    return new(+5 * Item.direction,0);
+        //}
+        public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.RedKing>()] <= 0;
     }
 }

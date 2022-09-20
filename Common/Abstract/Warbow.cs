@@ -44,7 +44,7 @@ namespace VoidArsenal.Content.Projectiles
 
             Vector2 dir = Projectile.velocity;
             dir.Normalize();
-            Projectile.position = player.RotatedRelativePoint(player.MountedCenter, true) - Projectile.Size / 2f + dir * -30;
+            Projectile.position = player.RotatedRelativePoint(player.MountedCenter, true) - Projectile.Size / 2 + dir * -30;
             Projectile.rotation = dir.ToRotation() + (Projectile.direction < 0 ? 3.14f : 0);
             Projectile.spriteDirection = Projectile.direction;
             player.ChangeDir(Projectile.direction);

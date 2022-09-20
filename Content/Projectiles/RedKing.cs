@@ -27,7 +27,7 @@ namespace VoidArsenal.Content.Projectiles
             }
             else if (!player.channel && Projectile.timeLeft == 10 && Projectile.ai[0] > 1f)
             {
-                player.AddBuff(ModContent.BuffType<KingsBlessing>(), 180);
+                player.AddBuff(ModContent.BuffType<RedKingHeart>(), 180);
                 Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity * SpecialMultiplier, SpecialArrow, (int)(Projectile.damage * 2), Projectile.knockBack * Projectile.ai[0], Projectile.owner);
                 SoundEngine.PlaySound(SoundID.DD2_BallistaTowerShot, Projectile.Center);
             }

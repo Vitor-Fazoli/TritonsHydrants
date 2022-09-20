@@ -22,10 +22,11 @@ namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            player.AddBuff(ModContent.BuffType<QueensBlessing>(), 180);
+            player.AddBuff(ModContent.BuffType<RedQueenHeart>(), 300);
         }
     }
 }

@@ -1,23 +1,22 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-
 namespace VoidArsenal.Content.Buffs
 {
-    public class KingsBlessing : ModBuff
+    public class RedQueenHeart : ModBuff
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Kings's Blessing");
-            Description.SetDefault("Melee Damage increased \ngains defense if Queen's blessing active");
+            DisplayName.SetDefault("Queen's Blessing");
+            Description.SetDefault("Ranged Damage increased \ngains movement speed if King's blessing active");
         }
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetDamage(DamageClass.Ranged) += 0.1f;
 
-            if (player.HasBuff(ModContent.BuffType<QueensBlessing>()))
+            if (player.HasBuff(ModContent.BuffType<RedKingHeart>()))
             {
-                player.statDefense += 10;
+                player.moveSpeed += 0.2f;
             }
         }
     }
