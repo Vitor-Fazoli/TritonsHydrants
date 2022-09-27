@@ -28,8 +28,7 @@ namespace VoidArsenal.Content.Buffs
                 {
                     buffIndex = player.buffType.Length - 1;
                     player.ClearBuff(queen);
-                    player.AddBuff(queen, 180);
-
+                    player.AddBuff(queen, Readability.toSeconds(60));
                 }
             }
 

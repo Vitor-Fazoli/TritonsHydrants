@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Graphics.Effects;
+
 
 namespace VoidArsenal.Content.Projectiles
 {
@@ -17,10 +19,15 @@ namespace VoidArsenal.Content.Projectiles
         protected int SpecialArrow = ProjectileID.JestersArrow;
         protected int SpecialMultiplier = 3;
 
+        private int rippleCount = 3;
+        private int rippleSize = 5;
+        private int rippleSpeed = 15;
+        private float distortStrength = 100f;
+
         public override void SetDefaults()
         {
-            Projectile.width = 40;
-            Projectile.height = 108;
+            Projectile.width = 34;
+            Projectile.height = 96;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
@@ -53,6 +60,13 @@ namespace VoidArsenal.Content.Projectiles
             player.itemAnimation = 10;
             player.itemRotation = (float)Math.Atan2((double)(Projectile.velocity.Y * Projectile.direction), (double)(Projectile.velocity.X * Projectile.direction));
             return false;
+        }
+
+
+
+        public override void AI()
+        {
+
         }
         protected virtual void HoldingWeapon()
         {
@@ -109,24 +123,42 @@ namespace VoidArsenal.Content.Projectiles
 
             if (Projectile.ai[0] < 0.5f || Projectile.timeLeft < 10)
             {
-                Projectile.frame = 0;
+                var dust = Dust.NewDustPerfect(rotationPoint, 6, Projectile.velocity / 2, newColor: Color.Yellow, Scale: 1f);
+                dust.noGravity = true;
+                dust.fadeIn = 0;
             }
             else if (Projectile.ai[0] < 1f)
             {
-                Projectile.frame = 1;
+                var dust = Dust.NewDustPerfect(rotationPoint, 6, Projectile.velocity, newColor: Color.Orange, Scale: 1.5f);
+                dust.noGravity = true;
+                dust.fadeIn = 0;
             }
             else
             {
-                Projectile.frame = 2;
-                var dust = Dust.NewDustPerfect(rotationPoint, 6, Projectile.velocity, Scale: 1.5f);
+                var dust = Dust.NewDustPerfect(rotationPoint, 6, Projectile.velocity * 2, newColor: Color.Red, Scale: 1.5f);
                 dust.noGravity = true;
                 dust.fadeIn = 0;
             }
         }
         protected virtual void Shoot()
         {
+            Projectile.ai[0] = 1; // Set state to exploded
+            Projectile.alpha = 255; // Make the Projectile invisible.
+            Projectile.friendly = false; // Stop the bomb from hurting enemies.
+
+            if (Main.netMode != NetmodeID.Server && !Filters.Scene["Shockwave"].IsActive())
+            {
+                Filters.Scene.Activate("Shockwave", Projectile.Center).GetShader().UseColor(rippleCount, rippleSize, rippleSpeed).UseTargetPosition(Projectile.Center);
+            }
+
+
+            if (Main.netMode != NetmodeID.Server && Filters.Scene["Shockwave"].IsActive())
+            {
+                float progress = (180f - Projectile.timeLeft) / 60f;
+                Filters.Scene["Shockwave"].GetShader().UseProgress(progress).UseOpacity(distortStrength * (1 - progress / 3f));
+            }
+
             Player player = Main.player[Projectile.owner];
-            Vector2 rotationPoint = player.RotatedRelativePoint(player.MountedCenter, true);
 
             if (!player.channel && Projectile.timeLeft == 10 && Projectile.ai[0] < 1f)
             {

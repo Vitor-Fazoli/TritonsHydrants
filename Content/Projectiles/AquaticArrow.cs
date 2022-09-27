@@ -112,7 +112,7 @@ namespace VoidArsenal.Content.Projectiles
                 AdjustMagnitude(ref Projectile.velocity);
             }
         }
-        private void AdjustMagnitude(ref Vector2 vector)
+        private static void AdjustMagnitude(ref Vector2 vector)
         {
             float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
             if (magnitude > 6f)

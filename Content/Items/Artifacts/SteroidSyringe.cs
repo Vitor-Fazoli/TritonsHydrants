@@ -44,6 +44,7 @@ namespace VoidArsenal.Content.Items.Artifacts
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
+            godAscended = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
@@ -107,13 +108,13 @@ namespace VoidArsenal.Content.Items.Artifacts
                     switch (Main.rand.Next(2))
                     {
                         case 0:
-                            Player.AddBuff(ModContent.BuffType<Foward>(), 1800);
+                            Player.AddBuff(ModContent.BuffType<Foward>(), Readability.toSeconds(3));
                             break;
                         case 1:
-                            Player.AddBuff(ModContent.BuffType<Standing>(), 1800);
+                            Player.AddBuff(ModContent.BuffType<Standing>(), Readability.toSeconds(3));
                             break;
                         case 2:
-                            Player.AddBuff(ModContent.BuffType<Retreat>(), 1800);
+                            Player.AddBuff(ModContent.BuffType<Retreat>(), Readability.toSeconds(3));
                             break;
                     }
                 }

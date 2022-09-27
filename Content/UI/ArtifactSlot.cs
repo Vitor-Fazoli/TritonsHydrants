@@ -7,8 +7,12 @@ namespace VoidArsenal.Content.UI
 {
     public class ArtifactSlot : ModAccessorySlot
     {
-        int time = 0;
-
+        private int time;
+        private readonly int cooldown = 10;
+        public override void Load()
+        {
+            time = Readability.toSeconds(cooldown);
+        }
         public override void OnMouseHover(AccessorySlotType context)
         {
             Main.hoverItemName = "Artifact";
@@ -28,7 +32,8 @@ namespace VoidArsenal.Content.UI
         #endregion
         public override void PostDraw(AccessorySlotType context, Item item, Vector2 position, bool isHovered)
         {
-            if(time <= 0)
+            #region Time System
+            if (time <= 0)
             {
                 time = 0;
             }
@@ -40,10 +45,10 @@ namespace VoidArsenal.Content.UI
 
             if (!IsEmpty)
             {
-                time = 1800;
+                time = Readability.toSeconds(cooldown);
             }
+            #endregion
         }
-        
         public override string FunctionalBackgroundTexture => "Terraria/Images/Inventory_Back7";
         public override string FunctionalTexture => (GetType().Namespace + "." + Name).Replace('.', '/');
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
@@ -51,7 +56,7 @@ namespace VoidArsenal.Content.UI
             return checkItem.rare == ModContent.RarityType<ArtifactRarity>() && IsEmpty;
         }
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo) => item.rare == ModContent.RarityType<ArtifactRarity>() && IsEmpty;
-        public override bool IsEnabled() => time == 0;
+        public override bool IsEnabled() => (time == 0  && IsEmpty) || IsEmpty == false;
         public override bool IsVisibleWhenNotEnabled() => true;
     }
 }

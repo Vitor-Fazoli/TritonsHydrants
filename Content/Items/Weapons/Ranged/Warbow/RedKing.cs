@@ -5,12 +5,13 @@ using Terraria.ModLoader;
 using VoidArsenal.Content.Projectiles;
 using System.Collections.Generic;
 using VoidArsenal.Content.Buffs;
+using Terraria.DataStructures;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace VoidArsenal.Content.Items.Weapons.Ranged.Warbow
 {
     public class RedKing : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Red King");
@@ -42,10 +43,10 @@ namespace VoidArsenal.Content.Items.Weapons.Ranged.Warbow
             Item.shoot = ModContent.ProjectileType<Projectiles.RedKing>();
             Item.shootSpeed = 16f;
         }
-        //public override Vector2? HoldoutOffset()
-        //{
-        //    return new(+5 * Item.direction,0);
-        //}
+        public override Vector2? HoldoutOffset()
+        {
+            return new(-12 * Item.direction, 0);
+        }
         public override bool CanUseItem(Player player) => player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.RedKing>()] <= 0;
     }
 }

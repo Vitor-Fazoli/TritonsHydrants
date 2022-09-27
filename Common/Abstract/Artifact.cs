@@ -57,7 +57,7 @@ namespace VoidArsenal.Common.Abstract
         {
             Lighting.AddLight(item.Center, Color.White.ToVector3() * 0.4f);
         }
-        public bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public static bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             Texture2D texture = TextureAssets.Item[item.type].Value;
 
