@@ -33,6 +33,7 @@ namespace DevilsWarehouse.Common.Abstract
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            ArtifactName(tooltips);
 
             SystemGod(tooltips, Mod);
 
@@ -121,6 +122,11 @@ namespace DevilsWarehouse.Common.Abstract
             writer.Write(god);
         }
         #endregion
+        private void ArtifactName(List<TooltipLine> tooltips)
+        {
+            TooltipLine tooltip = new(Mod, "Favorite", $"Artifact") { OverrideColor = new(Main.DiscoR, Main.DiscoG, 150, 255) };
+            tooltips.Add(tooltip);
+        }
         private void SystemGod(List<TooltipLine> tooltips, Mod mod)
         {
             if (godAscended)
@@ -151,6 +157,6 @@ namespace DevilsWarehouse.Common.Abstract
     internal class ArtifactRarity : ModRarity
     {
         public override string Name => "Artifact";
-        public override Color RarityColor => new(255, 255, 255, 0);
+        public override Color RarityColor => new(Main.DiscoR, Main.DiscoG, 150, 255);
     }
 }

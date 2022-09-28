@@ -54,8 +54,10 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void OnConsumeMana(Item item, int manaConsumed)
         {
-            if (witchHeart)
+            if (witchHeart && Player.statLife > manaConsumed)
+            {
                 Player.statLife -= manaConsumed;
+            }
 
             Player.statMana = Player.statLifeMax2;
         }
@@ -73,6 +75,14 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                 if (player.statLife <= item.mana)
                 {
                     return false;
+                }
+            }
+
+            if (item.Equals(ItemID.LastPrism))
+            {
+                if (player.statLife <= item.mana)
+                {
+                    item.TurnToAir();
                 }
             }
             return base.CanUseItem(item, player);
