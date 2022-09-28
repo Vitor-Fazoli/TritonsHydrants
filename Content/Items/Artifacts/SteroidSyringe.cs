@@ -35,13 +35,13 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Steroid Serynge");
-            Tooltip.SetDefault("");
+            Tooltip.SetDefault("only for strong man");
         }
         public override void SetDefaults()
         {
             Item.width = 18;
             Item.height = 18;
-            Item.value = Item.sellPrice(gold: 5);
+            Item.value = Item.buyPrice(platinum: 1);
             Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
             godAscended = true;

@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
@@ -19,6 +20,7 @@ namespace DevilsWarehouse.Content.Items.Materials
             Item.rare = ItemRarityID.White;
             Item.createTile = ModContent.TileType<Tiles.AuraliteOre>();
             Item.maxStack = 999;
+            Item.value = Item.sellPrice(silver: 1);
         }
     }
 }

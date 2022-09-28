@@ -254,7 +254,7 @@ namespace DevilsWarehouse.Content.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Acai>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SteroidSyringe>());
             // shop.item[nextSlot].SetDefaults(ItemType<EquipMaterial>());
             // nextSlot++;
             // shop.item[nextSlot].SetDefaults(ItemType<BossItem>());
@@ -375,11 +375,11 @@ namespace DevilsWarehouse.Content.NPCs
         public Asset<Texture2D> GetTextureNPCShouldUse(NPC NPC)
         {
             if (NPC.IsABestiaryIconDummy && !NPC.ForcePartyHatOn)
-                return ModContent.Request<Texture2D>("VoidArsenal/Content/NPCs/Ratman");
+                return ModContent.Request<Texture2D>("DevilsWarehouse/Content/NPCs/Ratman");
 
-            return ModContent.Request<Texture2D>("VoidArsenal/Content/NPCs/Ratman");
+            return ModContent.Request<Texture2D>("DevilsWarehouse/Content/NPCs/Ratman");
         }
 
-        public int GetHeadTextureIndex(NPC NPC) => ModContent.GetModHeadSlot("VoidArsenal/Content/NPCs/Ratman_Head");
+        public int GetHeadTextureIndex(NPC NPC) => ModContent.GetModHeadSlot("DevilsWarehouse/Content/NPCs/Ratman_Head");
     }
 }

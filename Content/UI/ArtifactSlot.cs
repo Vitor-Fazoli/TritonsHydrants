@@ -49,7 +49,7 @@ namespace DevilsWarehouse.Content.UI
             }
             #endregion
         }
-        public override string FunctionalBackgroundTexture => "Terraria/Images/Inventory_Back7";
+        public override string FunctionalBackgroundTexture => "DevilsWarehouse/Content/UI/ArtifactBackground.";
         public override string FunctionalTexture => (GetType().Namespace + "." + Name).Replace('.', '/');
         public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
         {
