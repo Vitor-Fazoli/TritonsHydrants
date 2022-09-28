@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Content.Items.Materials;
+using DevilsWarehouse.Content.Items.Materials;
 
-namespace VoidArsenal.Content.NPCs.Enemies
+namespace DevilsWarehouse.Content.NPCs.Enemies
 {
     public class Flyer : ModNPC
     {

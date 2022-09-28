@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 
 
-namespace VoidArsenal.Content.Projectiles
+namespace DevilsWarehouse.Content.Projectiles
 {
     public abstract class Warbow : ModProjectile
     {

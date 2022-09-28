@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace VoidArsenal.Content.Items.Materials
+namespace DevilsWarehouse.Content.Items.Materials
 {
     public class DemonHoneyIngot : ModItem
     {

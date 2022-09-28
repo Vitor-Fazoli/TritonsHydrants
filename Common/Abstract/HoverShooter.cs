@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 
-namespace VoidArsenal.Common.Abstract
+namespace DevilsWarehouse.Common.Abstract
 {
     public abstract class HoverShooter : Minion
     {

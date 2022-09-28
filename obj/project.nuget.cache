@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fdjp0PLkbWHlmWJQee3DZDPQXhU77FDrcHS9HU8VeJIWhTZrNb9uElEDqh1Jx3DqHCcrIuNvy/SBswdxF6Le9w==",
+  "dgSpecHash": "/ZQqyMqUAYh94WCv7t0A3VnQomcw2CGv6h7TPzXjcnLi+BgqaCyy5TWGZG/v28kvkHAGUDL3emnIv9i64lTKhQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],

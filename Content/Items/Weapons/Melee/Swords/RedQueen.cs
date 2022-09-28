@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
-using VoidArsenal.Content.Buffs;
+using DevilsWarehouse.Content.Buffs;
 
-namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
+namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {
     public class RedQueen : ModItem
     {

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
-namespace VoidArsenal.Common.Abstract
+namespace DevilsWarehouse.Common.Abstract
 {
     public abstract class Artifact : ModItem
     {

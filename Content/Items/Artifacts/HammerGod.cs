@@ -2,10 +2,10 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Common.Abstract;
-using VoidArsenal.Content.Dusts;
+using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Dusts;
 
-namespace VoidArsenal.Content.Items.Artifacts
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class HammerGod : Artifact
     {

@@ -1,9 +1,9 @@
-﻿using VoidArsenal.Common.Abstract;
+﻿using DevilsWarehouse.Common.Abstract;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.UI
+namespace DevilsWarehouse.Content.UI
 {
     public class ArtifactSlot : ModAccessorySlot
     {

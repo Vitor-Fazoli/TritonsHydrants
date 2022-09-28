@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Materials
+namespace DevilsWarehouse.Content.Items.Materials
 {
     internal class OxHorn : ModItem
     {

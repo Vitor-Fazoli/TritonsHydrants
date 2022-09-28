@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
-namespace VoidArsenal.Content.Projectiles
+namespace DevilsWarehouse.Content.Projectiles
 {
     public class BeeDart : ModProjectile
     {

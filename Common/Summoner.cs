@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace VoidArsenal.Common
+namespace DevilsWarehouse.Common
 {
 	public class Summoner : ModPlayer
 	{

@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
-using VoidArsenal.Content.Items.Materials;
+using DevilsWarehouse.Content.Items.Materials;
 
-namespace VoidArsenal.Content.NPCs.Enemies
+namespace DevilsWarehouse.Content.NPCs.Enemies
 {
     public class Guaranteed : ModNPC
     {

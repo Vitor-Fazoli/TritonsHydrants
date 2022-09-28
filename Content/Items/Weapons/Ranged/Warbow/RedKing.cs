@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Content.Projectiles;
+using DevilsWarehouse.Content.Projectiles;
 using System.Collections.Generic;
-using VoidArsenal.Content.Buffs;
+using DevilsWarehouse.Content.Buffs;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace VoidArsenal.Content.Items.Weapons.Ranged.Warbow
+namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Warbow
 {
     public class RedKing : ModItem
     {

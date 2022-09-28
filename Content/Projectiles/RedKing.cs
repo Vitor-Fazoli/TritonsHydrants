@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using VoidArsenal.Content.Buffs;
+using DevilsWarehouse.Content.Buffs;
 using Terraria.Graphics.Effects;
 
-namespace VoidArsenal.Content.Projectiles
+namespace DevilsWarehouse.Content.Projectiles
 {
     public class RedKing : Warbow
     {

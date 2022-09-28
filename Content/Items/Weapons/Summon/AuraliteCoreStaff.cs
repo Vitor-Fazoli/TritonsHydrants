@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Weapons.Summon
+namespace DevilsWarehouse.Content.Items.Weapons.Summon
 {
 	public class WanderingAuraliteBuff : ModBuff
 	{

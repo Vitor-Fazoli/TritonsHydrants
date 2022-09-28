@@ -6,7 +6,7 @@ using Terraria.WorldBuilding;
 using System.Collections.Generic;
 using Terraria.IO;
 
-namespace VoidArsenal.Content.Tiles
+namespace DevilsWarehouse.Content.Tiles
 {
 	public class AuraliteOre : ModTile
 	{

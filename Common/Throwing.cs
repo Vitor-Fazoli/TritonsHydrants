@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Common
+namespace DevilsWarehouse.Common
 {
     #region Weapons
 

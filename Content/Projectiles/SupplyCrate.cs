@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Content.Buffs;
+using DevilsWarehouse.Content.Buffs;
 
-namespace VoidArsenal.Content.Projectiles
+namespace DevilsWarehouse.Content.Projectiles
 {
     public class SupplyCrate : ModItem
     {

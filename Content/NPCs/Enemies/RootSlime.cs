@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace VoidArsenal.Content.NPCs.Enemies
+namespace DevilsWarehouse.Content.NPCs.Enemies
 {
     internal class RootSlime : ModNPC
     {

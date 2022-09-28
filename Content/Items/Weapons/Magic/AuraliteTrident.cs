@@ -1,10 +1,10 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal;
-using VoidArsenal.Content.Items.Materials;
+using DevilsWarehouse;
+using DevilsWarehouse.Content.Items.Materials;
 
-namespace VoidArsenal.Content.Items.Weapons.Magic {
+namespace DevilsWarehouse.Content.Items.Weapons.Magic {
 	public class AuraliteTrident : ModItem {
 		public override void SetStaticDefaults() {
 			DisplayName.SetDefault("Auralite Trident");

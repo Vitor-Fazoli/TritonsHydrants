@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using VoidArsenal.Content.Projectiles;
+using DevilsWarehouse.Content.Projectiles;
 
-namespace VoidArsenal.Common
+namespace DevilsWarehouse.Common
 {
     public class TitaniumTridentProjectile : GlobalProjectile
     {

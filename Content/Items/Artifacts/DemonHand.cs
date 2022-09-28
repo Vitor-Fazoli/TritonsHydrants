@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 using Terraria;
-using VoidArsenal.Common.Abstract;
+using DevilsWarehouse.Common.Abstract;
 using System.Collections.Generic;
 using System;
 using Terraria.ID;
@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace VoidArsenal.Content.Items.Artifacts
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class DemonHand : Artifact
     {

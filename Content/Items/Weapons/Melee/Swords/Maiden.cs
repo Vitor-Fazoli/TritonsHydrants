@@ -3,10 +3,10 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
-using VoidArsenal.Content.Projectiles;
+using DevilsWarehouse.Content.Projectiles;
 using System;
 
-namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
+namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {
     public class Maiden : ModItem
     {

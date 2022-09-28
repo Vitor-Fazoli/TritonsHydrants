@@ -1,11 +1,11 @@
-﻿using VoidArsenal.Common.Abstract;
+﻿using DevilsWarehouse.Common.Abstract;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Artifacts
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class StarAmulet : Artifact
     {

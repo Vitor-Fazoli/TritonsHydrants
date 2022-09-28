@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Buffs
+namespace DevilsWarehouse.Content.Buffs
 {
     internal class Foward : ModBuff
     {

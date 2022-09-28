@@ -1,12 +1,12 @@
-using VoidArsenal.Common;
-using VoidArsenal.Content.Projectiles;
+using DevilsWarehouse.Common;
+using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
-namespace VoidArsenal.Content.Items.Weapons.Throwing
+namespace DevilsWarehouse.Content.Items.Weapons.Throwing
 {
     public class VictusYon : ModItem
     {

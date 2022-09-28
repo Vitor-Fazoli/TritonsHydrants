@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace VoidArsenal.Content.Projectiles
+namespace DevilsWarehouse.Content.Projectiles
 {
     public class MaidenProj : ModProjectile
     {

@@ -4,18 +4,14 @@ using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
-using static Terraria.ModLoader.Core.TmodFile;
-using System.Reflection;
-using Terraria.ModLoader.Core;
-using System.Linq;
 
-namespace VoidArsenal
+namespace DevilsWarehouse
 {
-	public class VoidArsenal : Mod
+	public class DevilsWarehouse : Mod
 	{
-        public static VoidArsenal Instance { get; set; }
+        public static DevilsWarehouse Instance { get; set; }
 
-        public VoidArsenal()
+        public DevilsWarehouse()
         {
             Instance = this;
         }

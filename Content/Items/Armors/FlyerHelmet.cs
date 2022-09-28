@@ -3,7 +3,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Armors
+namespace DevilsWarehouse.Content.Items.Armors
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class FlyerHelmet : ModItem

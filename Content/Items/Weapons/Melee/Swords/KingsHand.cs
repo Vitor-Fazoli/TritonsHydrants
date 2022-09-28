@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace VoidArsenal.Content.Items.Weapons.Melee.Swords
+namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {
     public class KingsHand : ModItem
     {

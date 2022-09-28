@@ -2,9 +2,9 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Content.Items.Materials;
+using DevilsWarehouse.Content.Items.Materials;
 
-namespace VoidArsenal.Common
+namespace DevilsWarehouse.Common
 {
     public class NPCLootModification : GlobalNPC
     {

@@ -2,7 +2,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.GameContent.Creative;
 
-namespace VoidArsenal.Content.Items.Materials
+namespace DevilsWarehouse.Content.Items.Materials
 {
     internal class AuraliteBar : ModItem
     {

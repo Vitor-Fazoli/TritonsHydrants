@@ -1,9 +1,9 @@
-using VoidArsenal.Common.Abstract;
+using DevilsWarehouse.Common.Abstract;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Artifacts
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class WitchHeart : Artifact
     {

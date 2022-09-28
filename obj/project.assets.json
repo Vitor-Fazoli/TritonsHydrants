@@ -36,11 +36,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+      "projectUniqueName": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
       "projectName": "VoidArsenal",
-      "projectPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\VoidArsenal.csproj",
+      "projectPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\VoidArsenal\\obj\\",
+      "outputPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",

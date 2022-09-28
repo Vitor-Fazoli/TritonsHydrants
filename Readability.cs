@@ -1,4 +1,4 @@
-﻿namespace VoidArsenal
+﻿namespace DevilsWarehouse
 {
     public static class Readability
     {

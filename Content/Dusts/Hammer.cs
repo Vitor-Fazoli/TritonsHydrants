@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Dusts
+namespace DevilsWarehouse.Content.Dusts
 {
     public class Hammer : ModDust
     {

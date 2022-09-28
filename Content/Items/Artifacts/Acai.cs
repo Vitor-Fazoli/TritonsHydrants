@@ -1,11 +1,11 @@
-using VoidArsenal.Common.Abstract;
+using DevilsWarehouse.Common.Abstract;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Linq;
 using Terraria.GameContent.Creative;
 
-namespace VoidArsenal.Content.Items.Artifacts
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class Acai : Artifact
     {

@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using VoidArsenal.Content.Items.Materials;
-using VoidArsenal.Content.Projectiles;
+using DevilsWarehouse.Content.Items.Materials;
+using DevilsWarehouse.Content.Projectiles;
 
-namespace VoidArsenal.Content.Items.Weapons.Ranged.Gun
+namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Gun
 {
     public class Mbee5 : ModItem
     {

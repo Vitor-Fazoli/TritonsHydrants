@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace VoidArsenal.Content.Items.Materials
+namespace DevilsWarehouse.Content.Items.Materials
 {
     public class AdamantiteFragment : ModItem
     {

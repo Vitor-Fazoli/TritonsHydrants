@@ -8,21 +8,18 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.Personalities;
-using Terraria.DataStructures;
 using System.Collections.Generic;
 using ReLogic.Content;
 using Terraria.ModLoader.IO;
-using VoidArsenal.Common.Abstract;
-using VoidArsenal.Content.Items.Weapons.Melee.Swords;
-using VoidArsenal.Content.Items.Artifacts;
+using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Items.Weapons.Melee.Swords;
+using DevilsWarehouse.Content.Items.Artifacts;
 
-namespace VoidArsenal.Content.NPCs
+namespace DevilsWarehouse.Content.NPCs
 {
-    // [AutoloadHead] and NPC.townNPC are extremely important and absolutely both necessary for any Town NPC to work at all.
     [AutoloadHead]
     public class Ratman : ModNPC
     {

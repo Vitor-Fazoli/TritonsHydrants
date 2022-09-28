@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 
-namespace VoidArsenal.Content.Items.Weapons.Ranged.Gun
+namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Gun
 {
     public class Raptor : ModItem
     {

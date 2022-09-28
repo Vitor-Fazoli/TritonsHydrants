@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 
 
-namespace VoidArsenal.Content.Buffs
+namespace DevilsWarehouse.Content.Buffs
 {
     public class RedKingHeart : ModBuff
     {
