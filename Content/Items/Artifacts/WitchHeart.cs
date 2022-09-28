@@ -1,4 +1,5 @@
 using DevilsWarehouse.Common.Abstract;
+using IL.Terraria.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -68,6 +69,18 @@ namespace DevilsWarehouse.Content.Items.Artifacts
     }
     public class WitchHeartSystem : GlobalItem
     {
+        public override void HoldItem(Item item, Player player)
+        {
+
+            if (item.type == ItemID.LastPrism)
+            {
+                if (player.statLife <= item.mana)
+                {
+                    Main.mouseRight = false;
+                    Main.mouseLeft = false;
+                }
+            }
+        }
         public override bool CanUseItem(Item item, Player player)
         {
             if (item.DamageType == DamageClass.Magic && player.GetModPlayer<WitchHeartPlayer>().witchHeart == true)
@@ -78,13 +91,6 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                 }
             }
 
-            if (item.Equals(ItemID.LastPrism))
-            {
-                if (player.statLife <= item.mana)
-                {
-                    item.TurnToAir();
-                }
-            }
             return base.CanUseItem(item, player);
         }
     }
