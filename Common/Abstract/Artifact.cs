@@ -122,10 +122,12 @@ namespace DevilsWarehouse.Common.Abstract
             writer.Write(god);
         }
         #endregion
-        private void ArtifactName(List<TooltipLine> tooltips)
-        {
-            TooltipLine tooltip = new(Mod, "Favorite", $"Artifact") { OverrideColor = new(Main.DiscoR, Main.DiscoG, 150, 255) };
-            tooltips.Add(tooltip);
+        private void ArtifactName(List<TooltipLine> tooltips) {
+
+            TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
+            TooltipLine favorite = Find("Favorite");
+
+            favorite.Text = "Artifact" + "\n" + favorite.Text;
         }
         private void SystemGod(List<TooltipLine> tooltips, Mod mod)
         {

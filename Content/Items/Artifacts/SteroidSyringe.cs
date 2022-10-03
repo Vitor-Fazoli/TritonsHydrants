@@ -108,13 +108,13 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                     switch (Main.rand.Next(2))
                     {
                         case 0:
-                            Player.AddBuff(ModContent.BuffType<Foward>(), Readability.toSeconds(3));
+                            Player.AddBuff(ModContent.BuffType<Foward>(), Readability.toTicks(3));
                             break;
                         case 1:
-                            Player.AddBuff(ModContent.BuffType<Standing>(), Readability.toSeconds(3));
+                            Player.AddBuff(ModContent.BuffType<Standing>(), Readability.toTicks(3));
                             break;
                         case 2:
-                            Player.AddBuff(ModContent.BuffType<Retreat>(), Readability.toSeconds(3));
+                            Player.AddBuff(ModContent.BuffType<Retreat>(), Readability.toTicks(3));
                             break;
                     }
                 }

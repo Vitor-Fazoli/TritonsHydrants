@@ -28,7 +28,7 @@ namespace DevilsWarehouse.Content.Buffs
                 {
                     buffIndex = player.buffType.Length - 1;
                     player.ClearBuff(queen);
-                    player.AddBuff(queen, Readability.toSeconds(60));
+                    player.AddBuff(queen, Readability.toTicks(60));
                 }
             }
 

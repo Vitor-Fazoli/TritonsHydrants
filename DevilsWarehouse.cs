@@ -7,8 +7,8 @@ using Terraria.Graphics.Shaders;
 
 namespace DevilsWarehouse
 {
-	public class DevilsWarehouse : Mod
-	{
+    public class DevilsWarehouse : Mod
+    {
         public static DevilsWarehouse Instance { get; set; }
 
         public DevilsWarehouse()
@@ -16,7 +16,7 @@ namespace DevilsWarehouse
             Instance = this;
         }
         public override void Load()
-		{
+        {
             if (Main.netMode != NetmodeID.Server)
             {
                 Ref<Effect> screenRef = new(Instance.Assets.Request<Effect>("Effects/Shockwave", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value); // The path to the compiled shader file.

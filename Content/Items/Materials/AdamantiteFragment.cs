@@ -25,7 +25,7 @@ namespace DevilsWarehouse.Content.Items.Materials
         }
         public override bool OnPickup(Player player)
         {
-            player.AddBuff(BuffID.Lucky, Readability.toSeconds(5));
+            player.AddBuff(BuffID.Lucky, Readability.toTicks(5));
             return true;
         }
         public override bool? CanBurnInLava() => false;

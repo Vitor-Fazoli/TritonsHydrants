@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria.GameContent.ItemDropRules;
 using DevilsWarehouse.Content.Items.Materials;
+using Terraria.ModLoader.Utilities;
 
 namespace DevilsWarehouse.Content.NPCs.Enemies
 {
@@ -81,6 +82,12 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<OxHorn>(),Main.rand.Next(2)));
+            npcLoot.Add(ItemDropRule.Common(ItemID.Leather, 1 + Main.rand.Next(2)));
+            npcLoot.Add(ItemDropRule.Coins(Main.rand.Next(300), true));
+        }
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            return SpawnCondition.Crimson.Chance * 0.05f;
         }
         private void Moviment(Player target)
         {

@@ -10,10 +10,14 @@ namespace DevilsWarehouse.Common
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if(npc.type == NPCID.RedSlime)
+            #region AdamantiteFragment
+            if (npc.type == NPCID.RedSlime)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AdamantiteFragment>(), 10,1,3));
             }
+            #endregion
+
+
         }
     }
 }
