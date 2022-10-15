@@ -27,16 +27,14 @@ namespace DevilsWarehouse.Content.NPCs
 
         public override void SetStaticDefaults()
         {
-            // DisplayName automatically assigned from localization files, but the commented line below is the normal approach.
             DisplayName.SetDefault("Ratman");
-            Main.npcFrameCount[Type] = 10; // The amount of frames the NPC has
-            NPCID.Sets.ExtraFramesCount[Type] = 7;
+            Main.npcFrameCount[Type] = 10;
 
 
             NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Velocity = 1f,
-                Direction = 1
+                Direction = -1
             };
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
@@ -56,8 +54,8 @@ namespace DevilsWarehouse.Content.NPCs
         {
             NPC.townNPC = true; // Sets NPC to be a Town NPC
             NPC.friendly = true; // NPC Will not attack player
-            NPC.width = 36;
-            NPC.height = 58;
+            NPC.width = 18;
+            NPC.height = 48;
             NPC.aiStyle = 7;
             NPC.damage = 10;
             NPC.defense = 15;

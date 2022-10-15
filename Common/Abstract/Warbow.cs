@@ -6,7 +6,7 @@ using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
-
+using DevilsWarehouse.Content.Dusts;
 
 namespace DevilsWarehouse.Content.Projectiles
 {

@@ -33,8 +33,6 @@ namespace DevilsWarehouse.Common.Abstract
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            ArtifactName(tooltips);
-
             SystemGod(tooltips, Mod);
 
             ModifyTooltipsAgain(tooltips);
@@ -122,13 +120,6 @@ namespace DevilsWarehouse.Common.Abstract
             writer.Write(god);
         }
         #endregion
-        private void ArtifactName(List<TooltipLine> tooltips) {
-
-            TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
-            TooltipLine favorite = Find("Favorite");
-
-            favorite.Text = "Artifact" + "\n" + favorite.Text;
-        }
         private void SystemGod(List<TooltipLine> tooltips, Mod mod)
         {
             if (godAscended)

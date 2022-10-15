@@ -86,10 +86,11 @@ namespace DevilsWarehouse.Content.Projectiles
                 dust.velocity += Projectile.velocity * 0.5f;
                 dust.velocity *= 0.5f;
             }
-        }
-        public override void Kill(int timeLeft)
-        {
-            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Projectile.Center.X, Projectile.Center.Y), Projectile.velocity * 1.5f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+
+            if (Projectile.timeLeft <= Projectile.timeLeft / 3)
+            {
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), new Vector2(Projectile.Center.X, Projectile.Center.Y), Projectile.velocity * 1.5f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            }
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Buffs;
+using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +11,13 @@ namespace DevilsWarehouse.Content.Items.Artifacts
 {
     public class IceShield : Artifact
     {
+        private int quantity;
+        private int distance;
+        public override void Load()
+        {
+            distance = 60;
+            quantity = 0;
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Shield");
@@ -30,6 +40,16 @@ namespace DevilsWarehouse.Content.Items.Artifacts
             player.statDefense = player.statDefense * 2;
             player.GetModPlayer<IceShieldPlayer>().iceShield = true;
             player.noKnockback = true;
+
+            if (distance <= 0 && quantity < 3)
+            {
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.Center, Vector2.Zero, ModContent.ProjectileType<IceOrb>(), 5 + player.statDefense, 20, player.whoAmI);
+                player.AddBuff(ModContent.BuffType<IceOrbBuff>(), 2);
+                distance = 120;
+                quantity++;
+            }
+
+            distance--;
         }
         public override void AddRecipes()
         {
@@ -52,11 +72,11 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                 player.statLife = player.statLifeMax2;
             }
         }
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        public override void UpdateEquips()
         {
-            if (Main.rand.NextBool(10))
+            if (!iceShield)
             {
-                Player.AddBuff(BuffID.Ironskin, 180);
+                Player.ClearBuff(ModContent.BuffType<IceOrbBuff>());
             }
         }
         public override void ResetEffects()

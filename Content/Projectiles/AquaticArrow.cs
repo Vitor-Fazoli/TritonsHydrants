@@ -34,10 +34,8 @@ namespace DevilsWarehouse.Content.Projectiles
 
             if (Projectile.wet)
             {
-
                 waterPower = true;
                 Projectile.velocity *= 1.01f;
-
             }
 
             if (waterPower)

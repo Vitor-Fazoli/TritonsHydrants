@@ -26,14 +26,14 @@ namespace DevilsWarehouse.Content.Items.Artifacts
 
     internal class HammerGodPlayer : ModPlayer
     {
-        Vector2 speed = new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
+        Vector2 speed = new(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
         readonly int dust = ModContent.DustType<Hammer>();
         public bool hammerGod;
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
             if (hammerGod)
             {
-                if (target.life <= target.lifeMax / 10 && !target.boss && item.DamageType == DamageClass.Melee)
+                if (target.life <= target.lifeMax / 20 && !target.boss && item.DamageType == DamageClass.Melee)
                 {
                     target.life = 0;
                     for (int i = 0; i < 5; i++)

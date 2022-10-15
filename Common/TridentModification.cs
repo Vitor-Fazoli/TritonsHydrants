@@ -14,10 +14,6 @@ namespace DevilsWarehouse.Common.GlobalItems
         {
             projectile.DamageType = DamageClass.Magic;
         }
-        public override void OnSpawn(Projectile projectile, IEntitySource source)
-        {
-
-        }
         public override void AI(Projectile projectile)
         {
             if (projectile.timeLeft <= projectile.timeLeft / 3)
