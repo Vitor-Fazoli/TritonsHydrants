@@ -11,7 +11,7 @@ namespace DevilsWarehouse.Content.UI
         private readonly int cooldown = 10;
         public override void Load()
         {
-            time = Readability.toTicks(cooldown);
+            time = Readability.ToTicks(cooldown);
         }
         public override void OnMouseHover(AccessorySlotType context)
         {
@@ -45,7 +45,7 @@ namespace DevilsWarehouse.Content.UI
 
             if (!IsEmpty)
             {
-                time = Readability.toTicks(cooldown);
+                time = Readability.ToTicks(cooldown);
             }
             #endregion
         }
@@ -56,7 +56,7 @@ namespace DevilsWarehouse.Content.UI
             return checkItem.rare == ModContent.RarityType<ArtifactRarity>() && IsEmpty;
         }
         public override bool ModifyDefaultSwapSlot(Item item, int accSlotToSwapTo) => item.rare == ModContent.RarityType<ArtifactRarity>() && IsEmpty;
-        public override bool IsEnabled() => (time == 0  && IsEmpty) || IsEmpty == false;
+        public override bool IsEnabled() => (time == 0 && IsEmpty) || IsEmpty == false;
         public override bool IsVisibleWhenNotEnabled() => true;
     }
 }

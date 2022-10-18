@@ -1,11 +1,10 @@
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
+using DevilsWarehouse.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria.Audio;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using DevilsWarehouse.Content.Items.Materials;
+using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
 namespace DevilsWarehouse.Content.NPCs.Enemies
@@ -107,7 +106,7 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return SpawnCondition.Corruption.Chance * 0.05f;
+            return SpawnCondition.Crimson.Chance * 0.01f;
         }
         private void Moviment(Player target)
         {

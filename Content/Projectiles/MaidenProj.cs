@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 
@@ -20,8 +17,8 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         public override void AI()
         {
-            Projectile.spriteDirection = (int)Projectile.position.AngleTo(Projectile.velocity);
-            Projectile.direction = Projectile.spriteDirection;
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            Projectile.velocity.Y = Projectile.velocity.Y + 0.5f;
         }
     }
 }

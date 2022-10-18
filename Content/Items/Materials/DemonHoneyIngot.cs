@@ -1,8 +1,7 @@
-﻿using System;
-using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Materials
 {

@@ -1,6 +1,6 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {
@@ -24,7 +24,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
         }
         public override void HoldItem(Player player)
         {
-            
+
         }
     }
 }

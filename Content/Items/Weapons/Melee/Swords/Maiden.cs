@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Terraria.DataStructures;
+﻿using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
-using DevilsWarehouse.Content.Projectiles;
 using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {
@@ -32,7 +32,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
             int numberProjectiles = 6; // shoots 6 projectiles
             for (int index = 0; index < numberProjectiles; ++index)
             {
-                Vector2 vector2_1 = new((float)(player.position.X + player.width * 0.5 + (Main.rand.Next(201) * -player.direction) + (Main.mouseX + Main.screenPosition.X - player.position.X)), 
+                Vector2 vector2_1 = new((float)(player.position.X + player.width * 0.5 + (Main.rand.Next(201) * -player.direction) + (Main.mouseX + Main.screenPosition.X - player.position.X)),
                     (float)(player.position.Y + player.height * 0.5 - 600.0));
                 vector2_1.X = (float)((vector2_1.X + player.Center.X) / 2.0) + Main.rand.Next(-200, 201);
                 vector2_1.Y -= (100 * index);
@@ -46,7 +46,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
                 float num17 = num13 * num15;
                 float SpeedX = num16 + Main.rand.Next(-40, 41) * 0.02f;
                 float SpeedY = num17 + Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), vector2_1.X, vector2_1.Y, SpeedX, SpeedY, ModContent.ProjectileType<MaidenProj>(), damage, knockback, Main.myPlayer, 0, Main.rand.Next(5)); ;
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), vector2_1.X, vector2_1.Y, SpeedX, SpeedY * 3, ModContent.ProjectileType<MaidenProj>(), damage, knockback, Main.myPlayer, 0, Main.rand.Next(5)); ;
             }
             return false;
         }

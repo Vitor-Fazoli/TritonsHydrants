@@ -1,7 +1,6 @@
 ﻿using DevilsWarehouse.Content.Items.Materials;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 namespace DevilsWarehouse.Common
 {

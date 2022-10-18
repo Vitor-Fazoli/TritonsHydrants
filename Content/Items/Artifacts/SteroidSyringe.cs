@@ -1,13 +1,13 @@
-﻿using Terraria.ModLoader;
-using Terraria;
-using Terraria.DataStructures;
+﻿using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Buffs;
 using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
-using Terraria.ID;
-using DevilsWarehouse.Common.Abstract;
 using System.Collections.Generic;
 using System.Linq;
-using DevilsWarehouse.Content.Buffs;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Artifacts
 {
@@ -108,13 +108,13 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                     switch (Main.rand.Next(2))
                     {
                         case 0:
-                            Player.AddBuff(ModContent.BuffType<Foward>(), Readability.toTicks(3));
+                            Player.AddBuff(ModContent.BuffType<Foward>(), Readability.ToTicks(3));
                             break;
                         case 1:
-                            Player.AddBuff(ModContent.BuffType<Standing>(), Readability.toTicks(3));
+                            Player.AddBuff(ModContent.BuffType<Standing>(), Readability.ToTicks(3));
                             break;
                         case 2:
-                            Player.AddBuff(ModContent.BuffType<Retreat>(), Readability.toTicks(3));
+                            Player.AddBuff(ModContent.BuffType<Retreat>(), Readability.ToTicks(3));
                             break;
                     }
                 }

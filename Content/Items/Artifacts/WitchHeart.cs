@@ -1,5 +1,4 @@
 using DevilsWarehouse.Common.Abstract;
-using IL.Terraria.DataStructures;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

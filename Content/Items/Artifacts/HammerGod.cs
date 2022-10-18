@@ -1,9 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using DevilsWarehouse.Common.Abstract;
+﻿using DevilsWarehouse.Common.Abstract;
 using DevilsWarehouse.Content.Dusts;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Artifacts
 {
@@ -38,7 +37,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                     target.life = 0;
                     for (int i = 0; i < 5; i++)
                     {
-                        Dust.NewDust(target.Center, 1, 1,dust, speed.X,speed.Y);
+                        Dust.NewDust(target.Center, 1, 1, dust, speed.X, speed.Y);
                     }
                 }
             }
@@ -50,9 +49,9 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                 if (target.life <= target.lifeMax / 10 && !target.boss && proj.DamageType == DamageClass.Melee)
                 {
                     target.life = 0;
-                    for(int i =0; i < 5; i++)
+                    for (int i = 0; i < 5; i++)
                     {
-                        Dust.NewDust(target.Center, 1, 1,dust,speed.X,speed.Y);
+                        Dust.NewDust(target.Center, 1, 1, dust, speed.X, speed.Y);
                     }
                 }
             }

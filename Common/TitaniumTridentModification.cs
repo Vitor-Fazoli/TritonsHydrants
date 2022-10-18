@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using DevilsWarehouse.Content.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using DevilsWarehouse.Content.Projectiles;
 
 namespace DevilsWarehouse.Common
 {

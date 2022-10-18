@@ -1,10 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DevilsWarehouse.Content.Items.Materials;
+using DevilsWarehouse.Content.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using DevilsWarehouse.Content.Items.Materials;
-using DevilsWarehouse.Content.Projectiles;
 
 namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Gun
 {

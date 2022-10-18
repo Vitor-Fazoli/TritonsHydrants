@@ -1,13 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevilsWarehouse.Content.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using DevilsWarehouse.Content.Buffs;
 
 namespace DevilsWarehouse.Content.Projectiles
 {
@@ -32,8 +26,8 @@ namespace DevilsWarehouse.Content.Projectiles
 
             if (player.statLife <= player.statLifeMax2)
             {
-                player.statLife += (percent + bonus)/4;
-                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, (percent + bonus)/4);
+                player.statLife += (percent + bonus) / 4;
+                CombatText.NewText(new Rectangle((int)player.position.X, (int)player.position.Y, 10, 10), CombatText.HealLife, (percent + bonus) / 4);
             }
 
             switch (Main.rand.Next(2))

@@ -1,11 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DevilsWarehouse.Content.Items.Materials;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using DevilsWarehouse.Content.Items.Materials;
-using Terraria.ModLoader.Utilities;
-using System.Linq;
 
 namespace DevilsWarehouse.Content.NPCs.Enemies
 {
@@ -53,11 +51,11 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
                 int wingGoreType = Mod.Find<ModGore>("Desthroner_Wings").Type;
 
                 var entitySource = NPC.GetSource_Death();
- 
-                for(int i = 0; i < 2; i++)
+
+                for (int i = 0; i < 2; i++)
                 {
                     Gore.NewGore(entitySource, NPC.position, new Vector2(Main.rand.Next(-3, 4), Main.rand.Next(-3, 4)), wingGoreType);
-                }    
+                }
             }
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -72,17 +70,17 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
 
             NPC.spriteDirection = NPC.direction;
 
-                NPC.frameCounter += 0.5f;
-                if (NPC.frameCounter > frameSpeed)
-                {
-                    NPC.frameCounter = 0;
-                    NPC.frame.Y += frameHeight;
+            NPC.frameCounter += 0.5f;
+            if (NPC.frameCounter > frameSpeed)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y += frameHeight;
 
-                    if (NPC.frame.Y > finalFrame * frameHeight)
-                    {
-                        NPC.frame.Y = startFrame * frameHeight;
-                    }
+                if (NPC.frame.Y > finalFrame * frameHeight)
+                {
+                    NPC.frame.Y = startFrame * frameHeight;
                 }
+            }
         }
     }
 }

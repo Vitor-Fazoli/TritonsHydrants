@@ -1,12 +1,11 @@
-﻿using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
-using DevilsWarehouse.Content.Dusts;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Projectiles
 {

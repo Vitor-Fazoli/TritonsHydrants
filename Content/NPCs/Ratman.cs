@@ -1,22 +1,22 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Items.Artifacts;
+using DevilsWarehouse.Content.Items.Weapons.Melee.Swords;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using Terraria.GameContent.Bestiary;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
-using Terraria.GameContent.Personalities;
-using System.Collections.Generic;
-using ReLogic.Content;
 using Terraria.ModLoader.IO;
-using DevilsWarehouse.Common.Abstract;
-using DevilsWarehouse.Content.Items.Weapons.Melee.Swords;
-using DevilsWarehouse.Content.Items.Artifacts;
+using Terraria.Utilities;
 
 namespace DevilsWarehouse.Content.NPCs
 {
@@ -68,9 +68,9 @@ namespace DevilsWarehouse.Content.NPCs
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
-				BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
 
-				new FlavorTextBestiaryInfoElement("came from deep lands, he became a thinking being after touching where he shouldn't have"),
+                new FlavorTextBestiaryInfoElement("came from deep lands, he became a thinking being after touching where he shouldn't have"),
             });
         }
 

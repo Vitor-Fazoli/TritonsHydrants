@@ -1,6 +1,4 @@
-﻿using DevilsWarehouse.Content.Dusts;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +25,7 @@ namespace DevilsWarehouse.Content.Items.Armors
         }
         public override void UpdateEquip(Player player)
         {
-           // Dust.NewDust(player.Center + new Vector2(0, player.height / 2), 5, 5, ModContent.DustType<ArcanePowder>(), -player.velocity.X / 4, 0);
+            // Dust.NewDust(player.Center + new Vector2(0, player.height / 2), 5, 5, ModContent.DustType<ArcanePowder>(), -player.velocity.X / 4, 0);
         }
         public override void UpdateArmorSet(Player player)
         {

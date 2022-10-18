@@ -51,7 +51,7 @@ namespace DevilsWarehouse.Content.Projectiles
             Projectile.ai[1] += 2f;
             #endregion
 
-            Lighting.AddLight(Projectile.Center, new Color(63,206,218).ToVector3() * 0.90f);
+            Lighting.AddLight(Projectile.Center, new Color(63, 206, 218).ToVector3() * 0.90f);
         }
     }
 }

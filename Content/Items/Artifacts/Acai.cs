@@ -1,9 +1,9 @@
 using DevilsWarehouse.Common.Abstract;
+using System.Linq;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Linq;
-using Terraria.GameContent.Creative;
 
 namespace DevilsWarehouse.Content.Items.Artifacts
 {
@@ -30,7 +30,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void SetStaticDefaults()
         {
-            
+
             DisplayName.SetDefault("Acai Berry");
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -44,7 +44,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if(godAscended)
+            if (godAscended)
             {
                 switch (god)
                 {

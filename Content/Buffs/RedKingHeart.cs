@@ -19,7 +19,7 @@ namespace DevilsWarehouse.Content.Buffs
 
             if (player.HasBuff(ModContent.BuffType<RedQueenHeart>()))
             {
-               
+
                 player.statDefense += 10;
 
                 int locationRedQueen = player.FindBuffIndex(queen);
@@ -28,11 +28,11 @@ namespace DevilsWarehouse.Content.Buffs
                 {
                     buffIndex = player.buffType.Length - 1;
                     player.ClearBuff(queen);
-                    player.AddBuff(queen, Readability.toTicks(60));
+                    player.AddBuff(queen, Readability.ToTicks(60));
                 }
             }
 
-            
+
         }
     }
 }

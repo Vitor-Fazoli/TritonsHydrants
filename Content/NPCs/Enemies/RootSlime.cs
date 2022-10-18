@@ -45,7 +45,7 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Utils.RandomVector2(Main.rand, -1f, 1f);
-                Dust d = Dust.NewDustPerfect(NPC.Center,DustID.t_Slime, speed * 5,newColor: Color.DarkGreen);
+                Dust d = Dust.NewDustPerfect(NPC.Center, DustID.t_Slime, speed * 5, newColor: Color.DarkGreen);
                 d.noGravity = true;
             }
         }

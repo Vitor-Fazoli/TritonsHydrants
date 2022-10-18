@@ -1,7 +1,7 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using DevilsWarehouse.Content.Buffs;
+using Terraria;
 using Terraria.ID;
-using DevilsWarehouse.Content.Buffs;
+using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
 {

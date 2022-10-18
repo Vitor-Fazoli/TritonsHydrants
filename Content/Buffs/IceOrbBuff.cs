@@ -1,5 +1,4 @@
-﻿using DevilsWarehouse.Content.Items.Weapons.Summon;
-using DevilsWarehouse.Content.Projectiles;
+﻿using DevilsWarehouse.Content.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
 

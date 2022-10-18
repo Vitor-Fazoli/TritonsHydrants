@@ -1,12 +1,8 @@
-﻿using Terraria;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using DevilsWarehouse.Content.Projectiles;
-using System.Collections.Generic;
-using DevilsWarehouse.Content.Buffs;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Warbow
 {
@@ -19,7 +15,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Warbow
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            TooltipLine synergy = new TooltipLine(Mod,"Synergy: ","every time you hit an enemy with the Red Queen, your next shot deals more damage to that target") { OverrideColor = Color.IndianRed };
+            TooltipLine synergy = new TooltipLine(Mod, "Synergy: ", "every time you hit an enemy with the Red Queen, your next shot deals more damage to that target") { OverrideColor = Color.IndianRed };
             tooltips.Add(synergy);
         }
 
@@ -42,6 +38,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Warbow
             Item.channel = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.RedKing>();
             Item.shootSpeed = 16f;
+            Item.useAmmo = AmmoID.Arrow;
         }
         public override Vector2? HoldoutOffset()
         {
