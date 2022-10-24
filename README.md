@@ -6,7 +6,7 @@
 <p align="center" ><img  src="https://i.imgur.com/WOv6nK6.png"/></p>
 <p align="center" >
   <img  src="Content/Items/Artifacts/Acai.png"/>
-  <img  src="Content/Items/Artifacts/IceShield.png"/>
+  <img  src="Content/Items/Artifacts/SteroidSerynge.png"/>
   <img  src="Content/Items/Artifacts/StarAmulet.png"/>
 </p>
 <p align="center" >Artifacts are the foundation of the mod, all of them were designed to bring a different experience from vanilla terraria, some like Açai Berry only change the Summoner class, but there are several types that use two classes creating a hybrid idea and even some that change all classes at the same time</p>
