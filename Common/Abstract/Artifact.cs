@@ -52,19 +52,19 @@ namespace DevilsWarehouse.Common.Abstract
         }
 
         #region Effects in world
-        public void PostUpdate(Item item)
+        public override void PostUpdate()
         {
-            Lighting.AddLight(item.Center, Color.White.ToVector3() * 0.4f);
+            Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
         }
-        public static bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
-            Texture2D texture = TextureAssets.Item[item.type].Value;
+            Texture2D texture = TextureAssets.Item[Item.type].Value;
 
             Rectangle frame;
 
-            if (Main.itemAnimations[item.type] != null)
+            if (Main.itemAnimations[Item.type] != null)
             {
-                frame = Main.itemAnimations[item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
+                frame = Main.itemAnimations[Item.type].GetFrame(texture, Main.itemFrameCounter[whoAmI]);
             }
             else
             {
@@ -72,11 +72,11 @@ namespace DevilsWarehouse.Common.Abstract
             }
 
             Vector2 frameOrigin = frame.Size() / 2f;
-            Vector2 offset = new(item.width / 2 - frameOrigin.X, item.height - frame.Height);
-            Vector2 drawPos = item.position - Main.screenPosition + frameOrigin + offset;
+            Vector2 offset = new(Item.width / 2 - frameOrigin.X, Item.height - frame.Height);
+            Vector2 drawPos = Item.position - Main.screenPosition + frameOrigin + offset;
 
             float time = Main.GlobalTimeWrappedHourly;
-            float timer = item.timeSinceItemSpawned / 240f + time * 0.04f;
+            float timer = Item.timeSinceItemSpawned / 240f + time * 0.04f;
 
             time %= 4f;
             time /= 2f;
@@ -125,22 +125,22 @@ namespace DevilsWarehouse.Common.Abstract
             if (godAscended)
             {
                 TooltipLine Find(string name) => tooltips.Find(l => l.Name == name);
-                TooltipLine itemName = Find("ItemName");
+                TooltipLine ItemName = Find("ItemName");
 
                 var godLine = new TooltipLine(mod, "Face", "");
                 switch (god)
                 {
                     // Zeus
                     case 0:
-                        itemName.Text = itemName.Text + " of Zeus";
+                        ItemName.Text += " of Zeus";
                         break;
                     // Poseidon
                     case 1:
-                        itemName.Text = itemName.Text + " of Poseidon";
+                        ItemName.Text += " of Poseidon";
                         break;
                     // Hades
                     case 2:
-                        itemName.Text = itemName.Text + " of Hades";
+                        ItemName.Text += " of Hades";
                         break;
                 }
             }

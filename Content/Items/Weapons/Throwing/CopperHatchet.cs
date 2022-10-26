@@ -56,6 +56,10 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing
             {
                 Projectile.velocity.Y = Projectile.velocity.Y + 0.4f;
             }
+            else if (Projectile.velocity.Y >= 16)
+            {
+                Projectile.velocity.Y = Projectile.velocity.Y + 0.4f;
+            }
 
         }
         public override void Kill(int timeLeft)
