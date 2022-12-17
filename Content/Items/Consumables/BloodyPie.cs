@@ -43,15 +43,19 @@ namespace DevilsWarehouse.Content.Items.Consumables
             player.GetModPlayer<Vampire>().vampire = true;
         }
     }
-
-    internal class Vampire : ModPlayer
+    public class Vampire : ModPlayer
     {
         public bool vampire = false;
+        public int blood = 0;
+        public int bloodMax = 100;
 
         public override void PostUpdate()
         {
             if (vampire)
             {
+                Player.eyeColor = new Color(255, 0, 0);
+
+                Player.AddBuff(ModContent.BuffType<Vampirism>(), 2);
                  bool ZoneSunHeight = (Player.ZoneOverworldHeight || Player.ZoneSkyHeight);
 
                 //Day and Night buffs
@@ -59,19 +63,51 @@ namespace DevilsWarehouse.Content.Items.Consumables
                 {
                     if (Player.behindBackWall || !ZoneSunHeight)
                     {
-                        //Player.AddBuff(Modcontent.BuffType<>(), 2); gift of shadows
+                        Player.AddBuff(ModContent.BuffType<Night>(), 2);
                     }
                     else
                     {
-                        Player.AddBuff(BuffID.OnFire, 2);
+                        Player.AddBuff(ModContent.BuffType<Day>(), 2);
                     }
                 }
                 else
                 {
-                    //Player.AddBuff(Modcontent.BuffType<>(), 2); gift of powerful shadows
+                    Player.AddBuff(ModContent.BuffType<Night>(), 2);
                 }
                 //Bat Form
             }
         }
+        #region data saving
+        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write((byte)Player.whoAmI);
+            packet.Write(vampire);
+            packet.Send(toWho, fromWho);
+        }
+        public override void clientClone(ModPlayer clientClone)
+        {
+            Vampire clone = clientClone as Vampire;
+            clone.vampire  = vampire;
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            Vampire clone = clientPlayer as Vampire;
+                
+            if (vampire != clone.vampire)
+                SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag["vampire"] = vampire;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            vampire = tag.GetBool("vampire");
+        }
+        #endregion
     }
 }

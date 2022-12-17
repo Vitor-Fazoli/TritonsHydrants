@@ -1,5 +1,6 @@
 ﻿using DevilsWarehouse.Common;
 using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Content.Items.Consumables;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -41,9 +42,9 @@ namespace DevilsWarehouse.Content.UI
         }
 		protected override void DrawSelf(SpriteBatch spriteBatch)
 		{
-			var modPlayer = Main.LocalPlayer.GetModPlayer<GreatswordPlayer>();
+			var player = Main.LocalPlayer.GetModPlayer<Vampire>();
 
-			float quotient = (float)modPlayer.slayerPower / modPlayer.slayerMax;
+			float quotient = (float)player.blood / player.bloodMax;
 			quotient = Utils.Clamp(quotient, 0f, 1f);
 
 			Rectangle hitbox = barFrame.GetInnerDimensions().ToRectangle();
@@ -64,9 +65,9 @@ namespace DevilsWarehouse.Content.UI
 		}
 		public override void Update(GameTime gameTime)
 		{
-			var modPlayer = Main.LocalPlayer.GetModPlayer<GreatswordPlayer>();
+			var player = Main.LocalPlayer.GetModPlayer<Vampire>();
 
-			if (!(Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword))
+			if (!player.vampire)
 				return;
 
             if (Main.playerInventory == false)
@@ -80,11 +81,10 @@ namespace DevilsWarehouse.Content.UI
 				area.Top.Set(40, Precent);
 			}
 
-			if(modPlayer.slayerPower < modPlayer.slayerMax)
+			if(player.blood < player.bloodMax)
 			{
-
 				if (area.IsMouseHovering)
-					Main.instance.MouseText(modPlayer.slayerPower + "/" + modPlayer.slayerMax, 0, 0);
+					Main.instance.MouseText(player.blood + "/" + player.bloodMax, 0, 0);
 
 				barFrame.SetImage(ModContent.Request<Texture2D>("DevilsWarehouse/Assets/Textures/BerserkerUIEmpty"));
 			}
