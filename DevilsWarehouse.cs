@@ -19,15 +19,6 @@ namespace DevilsWarehouse
         {
             Instance = this;
         }
-        public override void Load()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                Ref<Effect> screenRef = new(Instance.Assets.Request<Effect>("Effects/Shockwave", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value); // The path to the compiled shader file.
-                Filters.Scene["Shockwave"] = new Filter(new ScreenShaderData(screenRef, "Shockwave"), EffectPriority.VeryHigh);
-                Filters.Scene["Shockwave"].Load();
-            }
-        }
         public override void Unload()
         {
             if (!Main.dedServ)

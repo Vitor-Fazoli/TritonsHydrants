@@ -1,0 +1,10 @@
+﻿Primeiramente a ideia geral das linhas de código é seguir o padrão C# com os colchetes logo abaixo da função ou classe
+
+as Variaveis necessitam estar dessa forma:
+
+constante => VARIABLE_CONST
+comum => variableCommon
+
+Todas as classes necessitam estar separadas, ao menos que seja componentes de um mesmo item, como uma arma e seu projétil
+
+todos os projéteis precisam estar na pasta assets, melhora a vizualização

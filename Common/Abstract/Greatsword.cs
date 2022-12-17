@@ -1,5 +1,7 @@
 using DevilsWarehouse.Content.Buffs;
+using DevilsWarehouse.Content.Items.Weapons.Melee.Greatswords;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -36,13 +38,15 @@ namespace DevilsWarehouse.Common.Abstract
             Projectile.DamageType = DamageClass.Melee;
         }
 
-        public override void Load(){
+        public override void Load()
+        {
 
             Player player = Main.player[Projectile.owner];
 
             Projectile.position.Y = player.position.Y - 62;
         }
-        public override void AI(){
+        public override void AI()
+        {
 
             #region Basic Attributes
             Player player = Main.player[Projectile.owner];
@@ -54,11 +58,6 @@ namespace DevilsWarehouse.Common.Abstract
             #region Projectile Position
 
             //Direction
-            if (player.HasBuff(BuffID.Gravitation))
-            {
-                player.ClearBuff(BuffID.Gravitation);
-            }
-
             if (Main.MouseScreen.X > Main.screenWidth / 2)
             {
                 Projectile.spriteDirection = -1;
@@ -73,7 +72,14 @@ namespace DevilsWarehouse.Common.Abstract
             //Velocity
             Vector2 moveTo;
 
-            moveTo.Y = player.position.Y - 62;
+            if (player.gravity > 0)
+            {
+                moveTo.Y = player.position.Y + 100;
+            }
+            else
+            {
+                moveTo.Y = player.position.Y - 62;
+            }
 
             if (player.direction > 0)
             {
@@ -153,7 +159,7 @@ namespace DevilsWarehouse.Common.Abstract
             #region End of Channeling / Projectile Kill
             if (!channeling)
             {
-                
+
                 if (Projectile.ai[0] <= (int)(cooldown * player.GetAttackSpeed(DamageClass.Melee)))
                 {
                     modPlayer.slayerPower = 0;
@@ -202,7 +208,7 @@ namespace DevilsWarehouse.Common.Abstract
             Main.dust[num2].noGravity = true;
         }
         #endregion
-        
+
         public int GetDmg()
         {
             return gDamage;

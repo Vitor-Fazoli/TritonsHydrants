@@ -14,8 +14,8 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = 18;
-            Projectile.height = 18;
+            Projectile.width = 110;
+            Projectile.height = 110;
             Projectile.aiStyle = 19;
             Projectile.penetrate = -1;
             Projectile.scale = 1.3f;

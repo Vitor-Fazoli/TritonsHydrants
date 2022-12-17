@@ -18,7 +18,7 @@ namespace DevilsWarehouse.Content.Items.Materials
             Item.height = 20;
             Item.material = true;
             Item.rare = ItemRarityID.White;
-            Item.createTile = ModContent.TileType<Tiles.AuraliteOre>();
+            Item.createTile = ModContent.TileType<Content.Tiles.Ores.AuraliteOre>();
             Item.maxStack = 999;
             Item.value = Item.sellPrice(silver: 1);
         }
