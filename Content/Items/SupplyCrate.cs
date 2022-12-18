@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Projectiles
+namespace DevilsWarehouse.Content.Items
 {
     public class SupplyCrate : ModItem
     {

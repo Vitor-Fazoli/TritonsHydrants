@@ -30,14 +30,14 @@ namespace DevilsWarehouse
     internal class BerserkerSystem : ModSystem
     {
 
-        internal BerserkerUI barActive;
+        internal VampireUI barActive;
 
         private UserInterface _barActive;
 
         public override void Load()
         {
 
-            barActive = new BerserkerUI();
+            barActive = new VampireUI();
             barActive.Activate();
             _barActive = new UserInterface();
             _barActive.SetState(barActive);

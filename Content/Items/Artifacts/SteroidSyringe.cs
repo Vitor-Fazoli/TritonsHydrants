@@ -1,6 +1,5 @@
 ﻿using DevilsWarehouse.Common.Abstract;
 using DevilsWarehouse.Content.Buffs;
-using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;

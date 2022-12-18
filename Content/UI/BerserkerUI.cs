@@ -11,7 +11,7 @@ using Terraria.UI;
 
 namespace DevilsWarehouse.Content.UI
 {
-    class BerserkerUI : UIState
+    class VampireUI : UIState
     {
         private const float Precent = 0f;
         private UIElement area;
@@ -35,7 +35,8 @@ namespace DevilsWarehouse.Content.UI
 		}
 		public override void Draw(SpriteBatch spriteBatch)
         {
-			if (!(Main.LocalPlayer.HeldItem.ModItem is ItemGreatsword))
+            var player = Main.LocalPlayer.GetModPlayer<Vampire>();
+            if (!player.vampire)
                 return;
 
             base.Draw(spriteBatch);

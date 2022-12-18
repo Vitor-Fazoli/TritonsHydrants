@@ -77,6 +77,29 @@ namespace DevilsWarehouse.Content.Items.Consumables
                 //Bat Form
             }
         }
+
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (vampire)
+            {
+                if(target.life >= 0)
+                {
+                    target.DropItemInstanced(target.position, target.position, ModContent.ItemType<Blood>(), 1);
+                }
+            }
+        }
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            if (vampire)
+            {
+                if (npc.life >= 0)
+                {
+
+                }
+            }
+        }
+
         #region data saving
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {
