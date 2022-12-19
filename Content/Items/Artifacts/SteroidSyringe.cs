@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Common.Abstract;
+﻿using DevilsWarehouse.Common.Systems;
 using DevilsWarehouse.Content.Buffs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

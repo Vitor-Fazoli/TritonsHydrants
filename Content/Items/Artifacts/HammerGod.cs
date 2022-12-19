@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Common.Abstract;
+﻿using DevilsWarehouse.Common.Systems;
 using DevilsWarehouse.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;

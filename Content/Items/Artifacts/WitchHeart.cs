@@ -1,4 +1,4 @@
-using DevilsWarehouse.Common.Abstract;
+using DevilsWarehouse.Common.Systems;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

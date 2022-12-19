@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Common.Abstract;
+﻿using DevilsWarehouse.Common.Systems;
 using DevilsWarehouse.Content.Buffs;
 using DevilsWarehouse.Content.Projectiles;
 using Microsoft.Xna.Framework;
@@ -30,7 +30,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
             Item.width = 18;
             Item.height = 18;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ModContent.RarityType<Common.Abstract.ArtifactRarity>();
+            Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

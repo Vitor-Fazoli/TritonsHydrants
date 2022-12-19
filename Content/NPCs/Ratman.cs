@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Common.Abstract;
+﻿using DevilsWarehouse.Common.Systems;
 using DevilsWarehouse.Content.Items.Artifacts;
 using DevilsWarehouse.Content.Items.Weapons.Melee.Swords;
 using Microsoft.Xna.Framework;
