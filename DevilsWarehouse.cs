@@ -1,4 +1,4 @@
-using DevilsWarehouse.Content.UI;
+using DevilsWarehouse.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

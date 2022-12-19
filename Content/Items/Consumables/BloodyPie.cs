@@ -1,16 +1,11 @@
-using DevilsWarehouse.Common.Systems.Vampire;
+using DevilsWarehouse.Common.Systems.VampireSystem;
 using DevilsWarehouse.Content.Buffs;
-using DevilsWarehouse.Content.Items.Artifacts;
-using DevilsWarehouse.Content.Items.Materials;
 using Microsoft.Xna.Framework;
-using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace DevilsWarehouse.Content.Items.Consumables
 {

@@ -7,40 +7,48 @@ using DevilsWarehouse.Content.Items;
 using Terraria.DataStructures;
 using Terraria.ID;
 
-namespace DevilsWarehouse.Common.Systems.Vampire
+namespace DevilsWarehouse.Common.Systems.VampireSystem
 {
+    public class AbilitySlot
+    {
+        int id;
+    }
+
     public class Vampire : ModPlayer
     {
         public bool vampire = false;
         public int blood = 0;
         public int bloodMax = 100;
 
-
         #region getting blood
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(2) && target.type != NPCID.TargetDummy)
+            if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
             {
-                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 5 + Main.rand.Next(5)), new Vector2(
-                   0, -5), ModContent.ItemType<LifeEssence>(), 1);
+                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
+                   0, -2), ModContent.ItemType<LifeEssence>(), 1);
             }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.life >= target.lifeMax / 2)
+            if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
             {
-                if (Main.rand.NextBool(2) && target.type != NPCID.TargetDummy)
-                {
-                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 5 + Main.rand.Next(5)), new Vector2(
-                       0, -5), ModContent.ItemType<LifeEssence>(), 1);
-                }
+                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
+                   0, -2), ModContent.ItemType<LifeEssence>(), 1);
             }
         }
         #endregion
+
         public override void PostUpdate()
         {
             if (vampire)
             {
+
+                if(blood >= bloodMax)
+                {
+                    blood = bloodMax;
+                }
+
                 Player.eyeColor = new Color(255, 0, 0);
 
                 Player.AddBuff(ModContent.BuffType<Vampirism>(), 2);

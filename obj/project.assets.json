@@ -31,19 +31,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hp\\.nuget\\packages\\": {}
+    "C:\\Users\\fazol\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+      "projectUniqueName": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
       "projectName": "VoidArsenal",
-      "projectPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
-      "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\obj\\",
+      "projectPath": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+      "packagesPath": "C:\\Users\\fazol\\.nuget\\packages\\",
+      "outputPath": "D:\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\fazol\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
