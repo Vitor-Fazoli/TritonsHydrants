@@ -41,18 +41,11 @@ namespace DevilsWarehouse.Common.UI
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            var player = Main.LocalPlayer.GetModPlayer<Vampire>();
-
-            float quotient = (float)player.blood / player.bloodMax;
-            quotient = Utils.Clamp(quotient, 0f, 1f);
-
             Rectangle hitbox = frame.GetInnerDimensions().ToRectangle();
             hitbox.X += 12;
             hitbox.Width -= 24;
             hitbox.Y += 30;
             hitbox.Height -= 40;
-
-
         }
         public override void Update(GameTime gameTime)
         {
