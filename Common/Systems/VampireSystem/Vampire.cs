@@ -1,19 +1,14 @@
-﻿using DevilsWarehouse.Content.Buffs;
-using Terraria.ModLoader.IO;
+﻿using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Terraria;
 using DevilsWarehouse.Content.Items;
 using Terraria.DataStructures;
 using Terraria.ID;
+using DevilsWarehouse.Content.Buffs.Vampire;
 
 namespace DevilsWarehouse.Common.Systems.VampireSystem
 {
-    public class AbilitySlot
-    {
-        int id;
-    }
-
     public class Vampire : ModPlayer
     {
         public bool vampire = false;
@@ -43,8 +38,7 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
         {
             if (vampire)
             {
-
-                if(blood >= bloodMax)
+                if (blood >= bloodMax)
                 {
                     blood = bloodMax;
                 }
@@ -70,7 +64,11 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                 {
                     Player.AddBuff(ModContent.BuffType<Night>(), 2);
                 }
-                //Bat Form
+                //Silver debuffs
+                if (CursedSilver())
+                {
+                    Player.AddBuff(ModContent.BuffType<Silver>(), 2);
+                }
             }
         }
         #region data saving
@@ -105,5 +103,51 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
             vampire = tag.GetBool("vampire");
         }
         #endregion
+
+        public bool CursedSilver()
+        {
+            for (int i = 0; i < Player.inventory.Length; i++)
+            {
+                switch (Player.inventory[i].type)
+                {
+                    case ItemID.SilverAxe:
+                        return true;
+                    case ItemID.SilverBar:
+                        return true;
+                    case ItemID.SilverBow:
+                        return true;
+                    case ItemID.SilverOre:
+                        return true;
+                    case ItemID.SilverGreaves:
+                        return true;
+                    case ItemID.SilverHelmet:
+                        return true;
+                    case ItemID.SilverPickaxe:
+                        return true;
+                    case ItemID.SilverShortsword:
+                        return true;
+                    case ItemID.SilverWatch:
+                        return true;
+                    case ItemID.SilverBrick:
+                        return true;
+                    case ItemID.SilverBrickWall:
+                        return true;
+                    case ItemID.SilverBullet:
+                        return true;
+                    case ItemID.SilverChainmail:
+                        return true;
+                    case ItemID.SilverChandelier:
+                        return true;
+                    case ItemID.SilverCoin:
+                        return true;
+                    case ItemID.SilverHammer:
+                        return true;
+                    case ItemID.GolfTrophySilver:
+                        return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

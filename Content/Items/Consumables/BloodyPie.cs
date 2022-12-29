@@ -1,5 +1,5 @@
 using DevilsWarehouse.Common.Systems.VampireSystem;
-using DevilsWarehouse.Content.Buffs;
+using DevilsWarehouse.Content.Buffs.Vampire;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DevilsWarehouse.Content.Dusts;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -11,24 +12,26 @@ namespace DevilsWarehouse.Content.Projectiles
     {
         private bool waterPower = false;
 
-        private readonly short dust = DustID.BlueCrystalShard;
-        private Color color = new(255, 255, 255, 0);
-
         public override void SetDefaults()
         {
-            Projectile.width = 20;
-            Projectile.height = 14;
+            Projectile.width = 4;
+            Projectile.height = 4;
             Projectile.friendly = true;
-            Projectile.light = 0.8f;
+            Projectile.light = 1f;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
             Projectile.timeLeft = 600;
         }
-        public override Color? GetAlpha(Color lightColor) => color;
+        public override Color? GetAlpha(Color lightColor) => Color.White;
 
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void AI()
         {
+            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterPower>(), Vector2.Zero);
+
+            Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
+
+            #region WaterEffects
             Projectile.rotation = Projectile.velocity.ToRotation();
 
             if (Projectile.wet)
@@ -59,7 +62,7 @@ namespace DevilsWarehouse.Content.Projectiles
                     for (int i = 0; i < 40; i++)
                     {
                         Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
-                        Dust d = Dust.NewDustPerfect(Projectile.Center, dust, speed * 5);
+                        Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
                         d.noGravity = true;
                     }
                 }
@@ -70,6 +73,7 @@ namespace DevilsWarehouse.Content.Projectiles
                 Projectile.soundDelay = 10;
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
+            #endregion
 
         }
         public override void Kill(int timeLeft)
@@ -77,8 +81,10 @@ namespace DevilsWarehouse.Content.Projectiles
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.BubbleBurst_Blue, speed * 5);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
                 d.noGravity = true;
+
+                Lighting.AddLight(Projectile.position, d.color.R / 255, d.color.G / 255, d.color.B / 255);
             }
         }
         private void EmpowerProjectileOnWater()

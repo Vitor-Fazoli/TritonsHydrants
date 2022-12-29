@@ -14,8 +14,8 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
         }
         public override void SetDefaults()
         {
-            Item.width = 36;
-            Item.height = 30;
+            Item.width = 24;
+            Item.height = 20;
             Item.useTime = 16;
             Item.useAnimation = 16;
             Item.damage = 6;
@@ -52,7 +52,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
             Projectile.rotation += 0.4f * Projectile.direction;
             Projectile.spriteDirection = Projectile.direction;
 
-            if (Projectile.ai[0] >= Readability.ToTicks(0.4f))
+            if (Projectile.ai[0] >= Readability.ToTicks(0.3f))
             {
                 Projectile.velocity.Y = Projectile.velocity.Y + 0.4f;
             }
@@ -60,7 +60,6 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
             {
                 Projectile.velocity.Y = Projectile.velocity.Y + 0.8f;
             }
-
         }
         public override void Kill(int timeLeft)
         {
