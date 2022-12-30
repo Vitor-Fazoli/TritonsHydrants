@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Common.Systems.JutsuSystem;
+﻿using DevilsWarehouse.Content.Items.Accessories;
 using DevilsWarehouse.Content.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,15 +14,9 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ninja Scroll");
-            // Sets the amount of frames this minion has on its spritesheet
             Main.projFrames[Projectile.type] = 4;
-            // This is necessary for right-click targeting
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
-
-            // These below are needed for a minion
-            // Denotes that this Projectile is a pet or minion
             Main.projPet[Projectile.type] = true;
-            // This is needed so your minion can properly spawn when summoned and replaced when other minions are summoned
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
         }
 
@@ -104,7 +98,7 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
 
             #region Find target
             // Starting search distance
-            float distanceFromTarget = 700f;
+            float distanceFromTarget = 900f;
             Vector2 targetCenter = Projectile.position;
             bool foundTarget = false;
 
@@ -156,13 +150,13 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
             if (distanceToIdlePosition > 600f)
             {
                 // Speed up the minion if it's away from the player
-                speed = 12f;
+                speed = 18f;
                 inertia = 60f;
             }
             else
             {
                 // Slow down the minion if closer to the player
-                speed = 4f;
+                speed = 6f;
                 inertia = 80f;
             }
             if (distanceToIdlePosition > 20f)
@@ -201,6 +195,16 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
 
             // Some visuals here
             Lighting.AddLight(Projectile.Center, Color.White.ToVector3() * 0.78f);
+            #endregion
+
+            #region Attack
+             var mPlayer = Main.LocalPlayer.GetModPlayer<AncientScrollPlayer>();
+
+            if (mPlayer.critical)
+            {
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.position, Vector2.Zero, ModContent.ProjectileType<Harmony>(), 10, 5, Projectile.whoAmI);
+                mPlayer.critical = false;
+            }
             #endregion
         }
     }

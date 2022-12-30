@@ -6,6 +6,7 @@ using DevilsWarehouse.Content.Items;
 using Terraria.DataStructures;
 using Terraria.ID;
 using DevilsWarehouse.Content.Buffs.Vampire;
+using System.Reflection.Metadata.Ecma335;
 
 namespace DevilsWarehouse.Common.Systems.VampireSystem
 {
@@ -14,6 +15,10 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
         public bool vampire = false;
         public int blood = 0;
         public int bloodMax = 100;
+        public int regen = 1;
+        public int regenRate = 100;
+
+        private int timer = 0;
 
         #region getting blood
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -63,6 +68,14 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                 else
                 {
                     Player.AddBuff(ModContent.BuffType<Night>(), 2);
+
+                    timer++;
+
+                    if (timer >= regenRate)
+                    {
+                        blood += regen;
+                        timer = 0;
+                    }
                 }
                 //Silver debuffs
                 if (CursedSilver())
@@ -71,6 +84,7 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                 }
             }
         }
+
         #region data saving
         public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
         {

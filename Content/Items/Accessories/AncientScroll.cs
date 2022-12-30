@@ -1,10 +1,7 @@
-﻿using DevilsWarehouse.Common.Systems.JutsuSystem;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DevilsWarehouse.Content.Projectiles.Minions;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +13,10 @@ namespace DevilsWarehouse.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("With great scrolls comes great responsibility");
+            Tooltip.SetDefault("With great scrolls comes great responsibility\n" +
+                "when you crit, a scroll uses your power\n" +
+                "increase throwing damage\n" +
+                "increase critical strike chance");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -25,15 +25,48 @@ namespace DevilsWarehouse.Content.Items.Accessories
             Item.width = 22;
             Item.height = 20;
             Item.value = 10000;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var p = player.GetModPlayer<JutsuPlayer>();
+            player.GetCritChance(DamageClass.Generic) += 5;
+            player.GetDamage(DamageClass.Throwing) += 0.1f;
 
-            player.moveSpeed += 0.15f;
-            p.chakraMax2 += 120;
+
+            player.GetModPlayer<AncientScrollPlayer>().ancientScroll = true;
+            player.AddBuff(ModContent.BuffType<NinjaScrollBuff>(), 2);
+
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<NinjaScroll>()] <= 0)
+            {
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.position, Vector2.Zero, ModContent.ProjectileType<NinjaScroll>(), 10, 5, player.whoAmI);
+            }
+        }
+    }
+    public class AncientScrollPlayer : ModPlayer
+    {
+        public bool ancientScroll = false;
+        public bool critical;
+
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (ancientScroll)
+            {
+                if (crit)
+                {
+                    critical = true;
+                }
+            }
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (ancientScroll)
+            {
+                if (crit)
+                {
+                    critical = true;
+                }
+            }
         }
     }
 }
