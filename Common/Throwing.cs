@@ -6,6 +6,19 @@ namespace DevilsWarehouse.Common
 {
     #region Weapons
 
+    internal class BoneKnife : GlobalItem
+    {
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            return entity.type == ItemID.BoneDagger;
+        }
+
+        public override void SetDefaults(Item item)
+        {
+            item.DamageType = DamageClass.Throwing;
+        }
+    }
+
     internal class PaladinsHammer : GlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)

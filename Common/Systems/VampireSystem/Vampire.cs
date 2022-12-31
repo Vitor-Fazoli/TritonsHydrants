@@ -6,7 +6,6 @@ using DevilsWarehouse.Content.Items;
 using Terraria.DataStructures;
 using Terraria.ID;
 using DevilsWarehouse.Content.Buffs.Vampire;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DevilsWarehouse.Common.Systems.VampireSystem
 {
