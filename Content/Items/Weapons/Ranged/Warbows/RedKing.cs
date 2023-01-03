@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using DevilsWarehouse.Content.Buffs;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -39,6 +40,10 @@ namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Warbows
             Item.shoot = ModContent.ProjectileType<Projectiles.RedKing>();
             Item.shootSpeed = 16f;
             Item.useAmmo = AmmoID.Arrow;
+        }
+        public override void OnConsumeAmmo(Item ammo, Player player)
+        {
+            player.AddBuff(ModContent.BuffType<RedKingHeart>(), 180);
         }
         public override Vector2? HoldoutOffset()
         {
