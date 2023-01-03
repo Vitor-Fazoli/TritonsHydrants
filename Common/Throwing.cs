@@ -5,172 +5,80 @@ using Terraria.ModLoader;
 namespace DevilsWarehouse.Common
 {
     #region Weapons
+    internal class ThrowingItems : GlobalItem
+    {
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            return entity.type switch
+            {
+                ItemID.BoneDagger => true,
+                ItemID.PaladinsHammer => true,
+                ItemID.BoneGlove => true,
+                ItemID.Shuriken => true,
+                ItemID.ThrowingKnife => true,
+                ItemID.AleThrowingGlove => true,
+                ItemID.Snowball => true,
+                ItemID.RottenEgg => true,
+                ItemID.PoisonedKnife => true,
+                ItemID.Beenade => true,
+                ItemID.StarAnise => true,
+                ItemID.SpikyBall => true,
+                ItemID.Javelin => true,
+                ItemID.FrostDaggerfish => true,
+                ItemID.MolotovCocktail => true,
+                ItemID.BoneJavelin => true,
+                ItemID.Grenade => true,
+                ItemID.BouncyGrenade => true,
+                ItemID.PartyGirlGrenade => true,
+                ItemID.StickyGrenade => true,
+                _ => false,
+            };
+        }
 
-    internal class BoneKnife : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        public override void SetDefaults(Item item)
         {
-            return entity.type == ItemID.BoneDagger;
+            item.DamageType = DamageClass.Throwing;
+        }
+    }
+    internal class ThrowingProjectiles : GlobalProjectile
+    {
+        public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+        {
+            return entity.type switch
+            {
+                ProjectileID.BoneDagger => true,
+                ProjectileID.PaladinsHammerFriendly => true,
+                ProjectileID.BoneGloveProj => true,
+                ProjectileID.Shuriken => true,
+                ProjectileID.ThrowingKnife => true,
+                ProjectileID.Ale => true,
+                ProjectileID.SnowBallFriendly => true,
+                ProjectileID.RottenEgg => true,
+                ProjectileID.PoisonedKnife => true,
+                ProjectileID.Beenade => true,
+                ProjectileID.StarAnise => true,
+                ProjectileID.SpikyBall => true,
+                ProjectileID.JavelinFriendly => true,
+                ProjectileID.FrostDaggerfish => true,
+                ProjectileID.MolotovCocktail => true,
+                ProjectileID.BoneJavelin => true,
+                ProjectileID.Grenade => true,
+                ProjectileID.BouncyGrenade => true,
+                ProjectileID.PartyGirlGrenade => true,
+                ProjectileID.StickyGrenade => true,
+                _ => false,
+            };
         }
 
-        public override void SetDefaults(Item item)
+        public override void SetDefaults(Projectile projectile)
         {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class PaladinsHammer : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.PaladinsHammer;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class BoneGlove : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.BoneGlove;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class Shuriken : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.Shuriken;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class Beenade : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.Beenade;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class BouncyGrenade : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.BouncyGrenade;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class StickGrenade : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.StickyGrenade;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class Daybreak : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.DayBreak;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class PossessedHatchet : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.PossessedHatchet;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class PartyGirlGrenade : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.PartyGirlGrenade;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-    internal class Grenade : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.Grenade;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class Javelin : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.Javelin;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class FrostDaggerFish : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.FrostDaggerfish;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
-        }
-    }
-
-    internal class BoneDagger : GlobalItem
-    {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
-        {
-            return entity.type == ItemID.BoneDagger;
-        }
-        public override void SetDefaults(Item item)
-        {
-            item.DamageType = DamageClass.Throwing;
+            projectile.DamageType = DamageClass.Throwing;
         }
     }
     #endregion
 
     #region Armors
-    internal class NinjaShirt : GlobalItem
+    public class NinjaShirt : GlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
@@ -182,42 +90,43 @@ namespace DevilsWarehouse.Common
         }
         public override void SetDefaults(Item item)
         {
-            item.material = true;
-            item.defense = 3;
+            item.defense = 4;
+        }
+        public override void UpdateEquip(Item item, Player player)
+        {
+            player.GetDamage(DamageClass.Throwing) += 0.1f;
         }
     }
-    internal class NinjaHood : GlobalItem
+    public class NinjaHood : GlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
             return entity.type == ItemID.NinjaHood;
         }
-        public override void UpdateArmorSet(Player player, string set)
-        {
-            player.GetDamage(DamageClass.Throwing) += 0.05f;
-        }
         public override void SetDefaults(Item item)
         {
-            item.material = true;
-            item.defense = 3;
+            item.defense = 2;
+        }
+        public override void UpdateEquip(Item item, Player player)
+        {
+            player.GetAttackSpeed(DamageClass.Throwing) += 0.15f;
         }
     }
-    internal class NinjaPants : GlobalItem
+    public class NinjaPants : GlobalItem
     {
         public override bool AppliesToEntity(Item entity, bool lateInstantiation)
         {
             return entity.type == ItemID.NinjaPants;
         }
-        public override void UpdateArmorSet(Player player, string set)
-        {
-            player.GetDamage(DamageClass.Throwing) += 0.05f;
-        }
         public override void SetDefaults(Item item)
         {
-            item.material = true;
             item.defense = 3;
+        }
+        public override void UpdateEquip(Item item, Player player)
+        {
+            player.GetCritChance(DamageClass.Throwing) += 0.1f;
+            Mod.Logger.Warn("chegou aqui");
         }
     }
     #endregion
-
 }

@@ -10,27 +10,22 @@ namespace DevilsWarehouse.Content.Items.Armors
     {
         public override void SetStaticDefaults()
         {
-            base.SetStaticDefaults();
             DisplayName.SetDefault("Desthroner Breastplate");
-            Tooltip.SetDefault("This is a modded body armor."
-                + "\nImmunity to 'On Fire!'"
-                + "\n+20 max mana and +1 max minions");
+            Tooltip.SetDefault("Increase throwing attack speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()
         {
-            Item.width = 18; // Width of the item
-            Item.height = 18; // Height of the item
-            Item.value = Item.sellPrice(gold: 1); // How many coins the item is worth
-            Item.rare = ItemRarityID.Green; // The rarity of the item
-            Item.defense = 6; // The amount of defense the item will give when equipped
+            Item.width = 18;
+            Item.height = 18;
+            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = ItemRarityID.Green;
+            Item.defense = 6;
         }
         public override void UpdateEquip(Player player)
         {
-            player.buffImmune[BuffID.OnFire] = true; // Make the player immune to Fire
-            player.statManaMax2 += 20; // Increase how many mana points the player can have by 20
-            player.maxMinions++; // Increase how many minions the player can have by one
+            player.GetAttackSpeed(DamageClass.Throwing) += 0.20f;
         }
     }
 }

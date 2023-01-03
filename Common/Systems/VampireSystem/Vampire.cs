@@ -22,18 +22,24 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
         #region getting blood
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
+            if (vampire)
             {
-                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
-                   0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
+                {
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
+                       0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                }
             }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
+            if (vampire)
             {
-                Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
-                   0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                if (Main.rand.NextBool(3) && target.type != NPCID.TargetDummy)
+                {
+                    Item.NewItem(new EntitySource_DropAsItem(default), new Vector2(target.Center.X - 25 + Main.rand.Next(25), target.Center.Y - 2 + Main.rand.Next(2)), new Vector2(
+                       0, -2), ModContent.ItemType<LifeEssence>(), 1);
+                }
             }
         }
         #endregion
@@ -159,7 +165,6 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                         return true;
                 }
             }
-
             return false;
         }
     }

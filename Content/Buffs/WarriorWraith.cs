@@ -16,10 +16,9 @@ namespace DevilsWarehouse.Content.Buffs
                 "Increase defense");
         }
         public override void Update(Player player, ref int buffIndex){
-            GreatswordPlayer modPlayer = player.GetModPlayer<GreatswordPlayer>();
 
-            player.thorns += 0.1f + (0.2f * 1 / modPlayer.slayerMax);
-            player.statDefense += 10 + (40 * 1 / modPlayer.slayerMax);
+            player.thorns += 0.1f;
+            player.statDefense += 10 ;
             Effect(player);
         }
         public static void Effect(Entity target){

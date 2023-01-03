@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Projectiles
 {
-    public class Bite : ModProjectile
+    public abstract class Bite : ModProjectile
     {
 
     }
