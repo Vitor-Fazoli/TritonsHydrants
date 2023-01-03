@@ -23,6 +23,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
         {
             NPC.width = 56;
             NPC.height = 78;
+            NPC.life = 5000;
             NPC.lifeMax = 5000;
             NPC.boss = true;
             NPC.ai[0] = 0f;
@@ -68,7 +69,6 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
         public override void OnSpawn(IEntitySource source)
         {
             counter = 0;
-            NPC.lifeMax = 5000;
             NPC.NewNPC(source, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<VictimiaHead>());
         }
         public override void AI()
@@ -100,17 +100,14 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
             {
                 double deg = (double)NPC.ai[1];
                 double rad = deg * (Math.PI / 180);
-                double dist = 250;
-
-                //NPC.position.X = player.Center.X - (int)(Math.Cos(rad) * dist) - NPC.width / 2;
-                //NPC.position.Y = player.Center.Y - (int)(Math.Sin(rad) * dist) - NPC.height / 2;
+                double dist = 200;
 
                 Movement(new Vector2(player.Center.X - (int)(Math.Cos(rad) * dist) - NPC.width / 2,
                                      player.Center.Y - (int)(Math.Sin(rad) * dist) - NPC.height / 2), 9, 8);
 
                 if (player.statLife >= player.statLifeMax2 / 2)
                 {
-                    NPC.ai[1]++;
+                    NPC.ai[1]+=2;
                     if (NPC.ai[2] >= 20)
                     {
                         Projectile.NewProjectile(
@@ -130,7 +127,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                 {
                     if (player.wingTimeMax > 0)
                     {
-                        NPC.ai[1]++;
+                        NPC.ai[1] += 2;
                         if (NPC.ai[2] >= 20)
                         {
                             Projectile.NewProjectile(
@@ -148,7 +145,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                     }
                     else
                     {
-                        NPC.ai[1]--;
+                        NPC.ai[1] += 2;
                         if (NPC.ai[2] >= 20)
                         {
                             Projectile.NewProjectile(
@@ -191,7 +188,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                     }
                     else
                     {
-
+                        NPC.immortal = true;
                         Vector2 offset = new(-300, 0);
 
                         Movement(player.Center - offset, 15, 12);
@@ -242,7 +239,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
             }
             else if (NPC.ai[0] > (actionTimer * 2) && NPC.ai[0] <= (actionTimer * 3)) //Tiro pra cima
             {
-                Vector2 offset = new(0, 200);
+                Vector2 offset = new(0, 100);
 
                 Movement(player.Center - offset, 8, 10);
                 if (chooseAttacks <= 0 && player.HasItem(ItemID.IronskinPotion))
