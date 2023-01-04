@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Mono.Cecil;
+using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics.Metrics;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.PlayerDrawLayer;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace DevilsWarehouse.Content.NPCs.Bosses
 {
@@ -69,11 +69,9 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
         public override void OnSpawn(IEntitySource source)
         {
             counter = 0;
-            NPC.NewNPC(source, (int)NPC.position.X, (int)NPC.position.Y, ModContent.NPCType<VictimiaHead>());
         }
         public override void AI()
         {
-
             int actionTimer = ActionTimerDifficult();
             int damage = 10;
             Player player = Main.player[NPC.target];
@@ -83,6 +81,8 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
 
             Vector2 moveTo = player.Center;
             Vector2 move = moveTo - NPC.Center;
+
+            NPC.rotation = NPC.velocity.X * 0.03f;
 
             NPC.TargetClosest();
 
@@ -96,14 +96,14 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                 chooseAttacks = Main.rand.Next(5);
             }
 
-            if (NPC.ai[0] <= actionTimer) //BayBlade
+            if (NPC.ai[0] <= actionTimer)
             {
                 double deg = (double)NPC.ai[1];
                 double rad = deg * (Math.PI / 180);
                 double dist = 200;
 
                 Movement(new Vector2(player.Center.X - (int)(Math.Cos(rad) * dist) - NPC.width / 2,
-                                     player.Center.Y - (int)(Math.Sin(rad) * dist) - NPC.height / 2), 9, 8);
+                                     player.Center.Y - (int)(Math.Sin(rad) * dist) - NPC.height / 2), 30, 5);
 
                 if (player.statLife >= player.statLifeMax2 / 2)
                 {
@@ -164,7 +164,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
 
                 }
             }
-            else if (NPC.ai[0] > actionTimer && NPC.ai[0] <= (actionTimer * 2)) //Tiros pela lateral
+            else if (NPC.ai[0] > actionTimer && NPC.ai[0] <= (actionTimer * 2)) 
             {
                 if (player.statDefense > NPC.defense && NPC.life <= NPC.lifeMax / 2)
                 {
@@ -237,12 +237,12 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                     NPC.ai[2]++;
                 }
             }
-            else if (NPC.ai[0] > (actionTimer * 2) && NPC.ai[0] <= (actionTimer * 3)) //Tiro pra cima
+            else if (NPC.ai[0] > (actionTimer * 2) && NPC.ai[0] <= (actionTimer * 3))
             {
                 Vector2 offset = new(0, 100);
 
                 Movement(player.Center - offset, 8, 10);
-                if (chooseAttacks <= 0 && player.HasItem(ItemID.IronskinPotion))
+                if (chooseAttacks <= 1 && player.HasItem(ItemID.IronskinPotion))
                 {
                     if (counter == 0)
                     {

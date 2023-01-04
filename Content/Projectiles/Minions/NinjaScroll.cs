@@ -14,7 +14,7 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ninja Scroll");
-            Main.projFrames[Projectile.type] = 4;
+            Main.projFrames[Projectile.type] = 1;
             ProjectileID.Sets.MinionTargettingFeature[Projectile.type] = true;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
@@ -46,12 +46,11 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
             Player player = Main.player[Projectile.owner];
 
             #region Active check
-            // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
             if (player.dead || !player.active)
             {
-                player.ClearBuff(ModContent.BuffType<WanderingAuraliteBuff>());
+                player.ClearBuff(ModContent.BuffType<NinjaScrollBuff>());
             }
-            if (player.HasBuff(ModContent.BuffType<WanderingAuraliteBuff>()))
+            if (player.HasBuff(ModContent.BuffType<NinjaScrollBuff>()))
             {
                 Projectile.timeLeft = 2;
             }
@@ -144,8 +143,8 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
             #endregion
 
             #region Movement
-            float speed = 8f;
-            float inertia = 20f;
+            float speed;
+            float inertia;
 
             if (distanceToIdlePosition > 600f)
             {
@@ -177,20 +176,28 @@ namespace DevilsWarehouse.Content.Projectiles.Minions
             #endregion
 
             #region Animation and visuals
-            // So it will lean slightly towards the direction it's moving
             Projectile.rotation = Projectile.velocity.X * 0.05f;
 
             // This is a simple "loop through all frames from top to bottom" animation
-            int frameSpeed = 5;
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter >= frameSpeed)
+            //int frameSpeed = 5;
+            //Projectile.frameCounter++;
+            //if (Projectile.frameCounter >= frameSpeed)
+            //{
+            //    Projectile.frameCounter = 0;
+            //    Projectile.frame++;
+            //    if (Projectile.frame >= Main.projFrames[Projectile.type])
+            //    {
+            //        Projectile.frame = 0;
+            //    }
+            //}
+
+            if (Projectile.velocity.X >= 0)
             {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-                if (Projectile.frame >= Main.projFrames[Projectile.type])
-                {
-                    Projectile.frame = 0;
-                }
+                Projectile.spriteDirection = 1;
+            }
+            else
+            {
+                Projectile.spriteDirection = -1;
             }
 
             // Some visuals here

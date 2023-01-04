@@ -68,5 +68,10 @@ namespace DevilsWarehouse.Content.Items.Accessories
                 }
             }
         }
+        public override void ResetEffects()
+        {
+            ancientScroll = false;
+            Player.ClearBuff(ModContent.BuffType<NinjaScrollBuff>());
+        }
     }
 }
