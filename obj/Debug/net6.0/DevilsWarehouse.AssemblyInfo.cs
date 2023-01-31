@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("VoidArsenal")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("DevilsWarehouse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("VoidArsenal")]
-[assembly: System.Reflection.AssemblyTitleAttribute("VoidArsenal")]
+[assembly: System.Reflection.AssemblyProductAttribute("DevilsWarehouse")]
+[assembly: System.Reflection.AssemblyTitleAttribute("DevilsWarehouse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Gerado pela classe WriteCodeFragment do MSBuild.

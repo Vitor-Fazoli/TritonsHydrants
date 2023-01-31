@@ -43,7 +43,7 @@ namespace DevilsWarehouse.Content.Mounts
             MountData.fallDamage = 0.5f; // Fall damage multiplier.
             MountData.runSpeed = 11f; // The speed of the mount
             MountData.dashSpeed = 8f; // The speed the mount moves when in the state of dashing.
-            MountData.flightTimeMax = Readability.ToTicks(30); // The amount of time in frames a mount can be in the state of flying.
+            MountData.flightTimeMax = Helper.Ticks(30); // The amount of time in frames a mount can be in the state of flying.
             // Misc
             MountData.fatigueMax = 0;
             MountData.buff = ModContent.BuffType<BatFormBuff>();

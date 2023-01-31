@@ -249,7 +249,7 @@ namespace DevilsWarehouse.Content.NPCs.Bosses
                         CombatText.NewText(new Rectangle((int)NPC.Center.X, (int)NPC.Center.Y - 50, 10, 10), Color.Yellow, "YOU'RE IRON SKIN IS MINE");
 
                         player.ConsumeItem(ItemID.IronskinPotion, true);
-                        NPC.AddBuff(BuffID.Ironskin, Readability.ToTicks(60));
+                        NPC.AddBuff(BuffID.Ironskin, Helper.Ticks(60));
                         counter++;
                         NPC.ai[0] += 200;
                     }

@@ -9,10 +9,6 @@ namespace DevilsWarehouse.Content.Projectiles
 {
     public class RedKing : Warbow
     {
-        private int rippleCount = 3;
-        private int rippleSize = 5;
-        private int rippleSpeed = 15;
-        private float distortStrength = 100f;
 
         public override void SetStaticDefaults()
         {
@@ -40,7 +36,7 @@ namespace DevilsWarehouse.Content.Projectiles
             }
             else if (!player.channel && Projectile.timeLeft == 10 && Projectile.ai[0] > 1f)
             {
-                player.AddBuff(ModContent.BuffType<RedKingHeart>(), Readability.ToTicks(20));
+                player.AddBuff(ModContent.BuffType<RedKingHeart>(), Helper.Ticks(20));
                 Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity * SpecialMultiplier, SpecialArrow, (int)(Projectile.damage * 2), Projectile.knockBack * Projectile.ai[0], Projectile.owner);
                 SoundEngine.PlaySound(SoundID.DD2_BallistaTowerShot, Projectile.Center);
             }

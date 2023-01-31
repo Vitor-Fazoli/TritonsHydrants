@@ -40,7 +40,7 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                 Player.GetModPlayer<Vampire>().blood -= cost;
                 Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Player.position, Vector2.Zero, ModContent.ProjectileType<WarriorWraithProj>(), 0, 0, Player.whoAmI);
                 SoundEngine.PlaySound(SoundID.Item26, Player.position);
-                Player.AddBuff(BuffID.Inferno, Readability.ToTicks(5));
+                Player.AddBuff(BuffID.Inferno, Helper.Ticks(5));
             }
 
             if (VampireKeybinds.BatKeybind.JustPressed && blood >= cost)

@@ -11,7 +11,7 @@ namespace DevilsWarehouse.Common.UI
         private readonly int cooldown = 10;
         public override void Load()
         {
-            time = Readability.ToTicks(cooldown);
+            time = Helper.Ticks(cooldown);
         }
         public override void OnMouseHover(AccessorySlotType context)
         {
@@ -47,7 +47,7 @@ namespace DevilsWarehouse.Common.UI
 
             if (!IsEmpty)
             {
-                time = Readability.ToTicks(cooldown);
+                time = Helper.Ticks(cooldown);
             }
             #endregion
         }

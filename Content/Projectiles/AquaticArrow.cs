@@ -28,11 +28,11 @@ namespace DevilsWarehouse.Content.Projectiles
         public override void AI()
         {
             Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterPower>(), Vector2.Zero);
-
             Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
+            Projectile.rotation = Projectile.velocity.ToRotation();
 
             #region WaterEffects
-            Projectile.rotation = Projectile.velocity.ToRotation();
+
 
             if (Projectile.wet)
             {

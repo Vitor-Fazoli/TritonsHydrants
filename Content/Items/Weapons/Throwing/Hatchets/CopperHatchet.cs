@@ -18,15 +18,29 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
             Item.height = 20;
             Item.useTime = 16;
             Item.useAnimation = 16;
+
             Item.damage = 6;
             Item.knockBack = 8;
             Item.crit = 6;
+
             Item.rare = ItemRarityID.White;
             Item.shoot = ModContent.ProjectileType<CopperHatchetP>();
-            Item.shootSpeed = 8;
+            Item.shootSpeed = 7;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noUseGraphic = true;
             Item.DamageType = DamageClass.Throwing;
+            Item.consumable = true;
+        }
+        public override bool AllowPrefix(int pre)
+        {
+            return false;
+        }
+        public override void AddRecipes()
+        {
+              CreateRecipe(200)
+                .AddIngredient(ItemID.CopperBar)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
     internal class CopperHatchetP : ModProjectile
@@ -39,8 +53,8 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
 
         public override void SetDefaults()
         {
-            Projectile.width = 36;
-            Projectile.height = 30;
+            Projectile.width = 24;
+            Projectile.height = 20;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Throwing;
             Projectile.penetrate = 2;
@@ -52,7 +66,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
             Projectile.rotation += 0.4f * Projectile.direction;
             Projectile.spriteDirection = Projectile.direction;
 
-            if (Projectile.ai[0] >= Readability.ToTicks(0.3f))
+            if (Projectile.ai[0] >= Helper.Ticks(0.3f))
             {
                 Projectile.velocity.Y = Projectile.velocity.Y + 0.4f;
             }

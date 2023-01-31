@@ -53,38 +53,38 @@ namespace DevilsWarehouse.Content.Items.Artifacts
                     #region Arrows
                     if (Player.HasItem(ItemID.CursedArrow))
                     {
-                        target.AddBuff(BuffID.CursedInferno, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.CursedInferno, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.IchorArrow))
                     {
-                        target.AddBuff(BuffID.Ichor, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.Ichor, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.VenomArrow))
                     {
-                        target.AddBuff(BuffID.Venom, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.Venom, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.FrostburnArrow))
                     {
-                        target.AddBuff(BuffID.Frostburn, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.Frostburn, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.FlamingArrow))
                     {
-                        target.AddBuff(BuffID.OnFire, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.OnFire, Helper.Ticks(5));
                     }
                     #endregion
 
                     #region Bullets
                     if (Player.HasItem(ItemID.CursedBullet))
                     {
-                        target.AddBuff(BuffID.CursedInferno, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.CursedInferno, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.IchorBullet))
                     {
-                        target.AddBuff(BuffID.Ichor, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.Ichor, Helper.Ticks(5));
                     }
                     else if (Player.HasItem(ItemID.VenomBullet))
                     {
-                        target.AddBuff(BuffID.Venom, Readability.ToTicks(5));
+                        target.AddBuff(BuffID.Venom, Helper.Ticks(5));
                     }
                     #endregion
                 }

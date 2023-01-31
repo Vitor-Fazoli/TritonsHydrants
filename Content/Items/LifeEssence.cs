@@ -32,7 +32,7 @@ namespace DevilsWarehouse.Content.Items
             Lighting.AddLight(Item.position, 1f, 0.09f, 0.09f);
 
 
-            if(Item.timeSinceItemSpawned > Readability.ToTicks(10))
+            if(Item.timeSinceItemSpawned > Helper.Ticks(10))
             {
                 Item.active = false;
             }

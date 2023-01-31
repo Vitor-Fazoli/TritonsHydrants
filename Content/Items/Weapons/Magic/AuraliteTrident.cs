@@ -37,7 +37,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<AuraliteBar>(10)
+                .AddIngredient<AuraliteOre>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
