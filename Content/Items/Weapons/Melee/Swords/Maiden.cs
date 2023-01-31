@@ -19,35 +19,46 @@ namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
             Item.width = 80;
             Item.height = 80;
             Item.DamageType = DamageClass.Melee;
-            Item.crit = 14;
+            Item.crit = 4;
             Item.damage = 30;
-            Item.useTime = 30;
-            Item.useAnimation = 30;
+            Item.useTime = 45;
+            Item.useAnimation = 45;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<MaidenProj>();
+            Item.shootSpeed = 23f;
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int numberProjectiles = 6; // shoots 6 projectiles
-            for (int index = 0; index < numberProjectiles; ++index)
+            Vector2 target = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY);
+            float ceilingLimit = target.Y;
+            if (ceilingLimit > player.Center.Y - 200f)
             {
-                Vector2 vector2_1 = new((float)(player.position.X + player.width * 0.5 + (Main.rand.Next(201) * -player.direction) + (Main.mouseX + Main.screenPosition.X - player.position.X)),
-                    (float)(player.position.Y + player.height * 0.5 - 600.0));
-                vector2_1.X = (float)((vector2_1.X + player.Center.X) / 2.0) + Main.rand.Next(-200, 201);
-                vector2_1.Y -= (100 * index);
-                float num12 = Main.mouseX + Main.screenPosition.X - vector2_1.X;
-                float num13 = Main.mouseY + Main.screenPosition.Y - vector2_1.Y;
-                if ((double)num13 < 0.0) num13 *= -1f;
-                if ((double)num13 < 20.0) num13 = 20f;
-                float num14 = (float)Math.Sqrt((double)num12 * (double)num12 + (double)num13 * (double)num13);
-                float num15 = Item.shootSpeed / num14;
-                float num16 = num12 * num15;
-                float num17 = num13 * num15;
-                float SpeedX = num16 + Main.rand.Next(-40, 41) * 0.02f;
-                float SpeedY = num17 + Main.rand.Next(-40, 41) * 0.02f;
-                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), vector2_1.X, vector2_1.Y, SpeedX, SpeedY * 3, ModContent.ProjectileType<MaidenProj>(), damage, knockback, Main.myPlayer, 0, Main.rand.Next(5)); ;
+                ceilingLimit = player.Center.Y - 200f;
             }
+            // Loop these functions 3 times.
+            for (int i = 0; i < 3; i++)
+            {
+                position = player.Center - new Vector2(Main.rand.NextFloat(401) * player.direction, 600f);
+                position.Y -= 100 * i;
+                Vector2 heading = target - position;
+
+                if (heading.Y < 0f)
+                {
+                    heading.Y *= -1f;
+                }
+
+                if (heading.Y < 20f)
+                {
+                    heading.Y = 20f;
+                }
+
+                heading.Normalize();
+                heading *= velocity.Length();
+                heading.Y += Main.rand.Next(-40, 41) * 0.02f;
+                Projectile.NewProjectile(source, position, heading, type, damage * 2, knockback, player.whoAmI, 0f, ceilingLimit);
+            }
+
             return false;
         }
     }

@@ -1,15 +1,17 @@
 ﻿using DevilsWarehouse.Common.Systems.VampireSystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace DevilsWarehouse.Common.UI
 {
-    class VampireUI : UIState
+    class VampireUIState : UIState
     {
         private const float Precent = 0f;
         private UIImage point;
@@ -18,22 +20,22 @@ namespace DevilsWarehouse.Common.UI
 
         public override void OnInitialize()
         {
-            point = new UIImage(ModContent.Request<Texture2D>("DevilsWarehouse/Assets/Textures/VampireBlood"));
+            point = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireBlood"));
             point.Left.Set(0, Precent);
             point.Top.Set(0, Precent);
             point.Width.Set(50, Precent);
             point.Height.Set(42, Precent);
 
-            frame = new UIImage(ModContent.Request<Texture2D>("DevilsWarehouse/Assets/Textures/VampireBloodFrame"));
+            frame = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireBloodFrame"));
             frame.Left.Set(460, Precent);
             frame.Top.Set(20, Precent);
             frame.Width.Set(50, Precent);
             frame.Height.Set(42, Precent);
 
-            text = new UIText("Neutral Blood");
+            text = new UIText("");
             text.Width.Set(50, Precent);
             text.Height.Set(42, Precent);
-            text.Left.Set(60, Precent);
+            text.Left.Set(45, Precent);
             text.Top.Set(20, Precent);
 
             frame.Append(point);
@@ -63,8 +65,14 @@ namespace DevilsWarehouse.Common.UI
             float quotient = (float)player.blood / player.bloodMax;
             quotient = Utils.Clamp(quotient, 0f, 1f);
 
-            if (!player.vampire)
-                return;
+            if (player.blood <= player.bloodMax)
+            {
+                text.SetText(player.blood + "%");
+            }
+            else
+            {
+                text.SetText("Max");
+            }
 
 
             if (Main.playerInventory == false)
@@ -80,18 +88,65 @@ namespace DevilsWarehouse.Common.UI
                 point.ImageScale = quotient;
             }
 
-            if (player.blood < player.bloodMax)
+
+            if (frame.IsMouseHovering)
             {
-                if (frame.IsMouseHovering)
-                    Main.instance.MouseText(player.blood + " %", 0, 0);
+                Main.instance.MouseText("Click to open skill tree", 0, 0);
+                frame.SetImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireBloodFrameHover"));
             }
             else
             {
-                if (frame.IsMouseHovering)
-                    Main.instance.MouseText("Max");
+                frame.SetImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireBloodFrame"));
             }
 
             base.Update(gameTime);
+        }
+        public override void Click(UIMouseEvent evt)
+        {
+            if (frame.IsMouseHovering)
+            {
+                ModContent.GetInstance<VampirePanelSystem>().ShowHideVampirePanel();
+            }
+        }
+    }
+    internal class VampireUISystem : ModSystem
+    {
+
+        internal VampireUIState barActive;
+
+        private UserInterface _barActive;
+
+        public override void Load()
+        {
+
+            barActive = new VampireUIState();
+            barActive.Activate();
+            _barActive = new UserInterface();
+            _barActive.SetState(barActive);
+        }
+        public override void UpdateUI(GameTime gameTime)
+        {
+
+            _barActive?.Update(gameTime);
+        }
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        {
+
+            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+            if (mouseTextIndex != -1)
+            {
+
+                layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+                    Mod.DisplayName + ": making a interface for vampire",
+                    delegate
+                    {
+
+                        _barActive.Draw(Main.spriteBatch, new GameTime());
+                        return true;
+                    },
+                    InterfaceScaleType.UI)
+                );
+            }
         }
     }
 }

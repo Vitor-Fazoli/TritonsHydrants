@@ -6,6 +6,8 @@ namespace DevilsWarehouse
 {
     public static class Helper
     {
+        public const string GUIPath = "DevilsWarehouse/Assets/GUI/";
+
         public static double Ticks(double time)
         {
             return time * 60;
