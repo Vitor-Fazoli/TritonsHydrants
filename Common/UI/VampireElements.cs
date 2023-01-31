@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Terraria;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -8,33 +9,33 @@ namespace DevilsWarehouse.Common.UI
 {
     public class VampireSkill : UIElement
     {
-        private string image;
-        private object _text;
-        private UIElement.MouseEvent _clickAction;
-        private UIImage _uiImage;
+        private string name;
+        private UIImage SkillImage;
+        private string effect;
 
-        public VampireSkill(string text) : base()
+        public VampireSkill(string name, UIImage SkillImage, string effect) : base()
         {
-            image = text;
+            this.name = name;
+            this.SkillImage = SkillImage;
+            this.effect = effect;
         }
 
         public override void OnInitialize()
         {
-            _uiImage = new(ModContent.Request<Texture2D>(Helper.GUIPath + image));              
-            _uiImage.Width = StyleDimension.Fill;   
-            _uiImage.Height = StyleDimension.Fill;
-            _uiImage.ImageScale = 0.5f;
-            Append(_uiImage);
+            Width.Set(50, 0);
+            Height.Set(50, 0);
 
-            _uiImage.OnClick += _clickAction;       
+            SkillImage.Width = Width;
+            SkillImage.Height = Height;
+            SkillImage.VAlign = 0.5f;
+            SkillImage.HAlign = 0.5f;
         }
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            if (_text != null)
+            if (IsMouseHovering)
             {
-
+                Main.instance.MouseText(name + "\n" + effect);
             }
         }
     }

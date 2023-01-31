@@ -7,6 +7,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using static Humanizer.In;
 
 namespace DevilsWarehouse.Common.UI
 {
@@ -17,27 +18,14 @@ namespace DevilsWarehouse.Common.UI
             UIPanel panel = new();
             panel.Width.Set(300, 0);
             panel.Height.Set(600, 0);
-            panel.Left.Set(700, 0);
-            panel.Top.Set(200, 0);
-            panel.BackgroundColor = new(53, 18, 1);
-            panel.BorderColor = new(205,133,26);
+            panel.HAlign = panel.VAlign = 0.5f;
+            panel.BackgroundColor = new(23,23,23, 100);
             Append(panel);
 
             UIText header = new("Vampirism");
             header.Top.Set(30, 0);
             header.HAlign = 0.5f;
             panel.Append(header);
-
-            UIPanel button = new();
-            button.Width.Set(100, 0);
-            button.Height.Set(50, 0);
-            button.HAlign = 0.5f;
-            button.Top.Set(90, 0);
-            panel.Append(button);
-
-            UIText text = new("Click me!");
-            text.HAlign = text.VAlign = 0.5f;
-            button.Append(text);
 
             UIImage title = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireTitle"));
             title.Width.Set(88, 0);
@@ -47,25 +35,14 @@ namespace DevilsWarehouse.Common.UI
             title.ImageScale = 2f;
             panel.Append(title);
 
-            VampireSkill one = new("SkillFour");
-            one.Top.Set(100, 0);
+
+            UIImage one = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "skill"));
+            one.Width.Set(88, 0);
+            one.Height.Set(12, 0);
+            one.Top.Set(0, 0);
             one.HAlign = 0.5f;
+            one.ImageScale = 2f;
             panel.Append(one);
-
-            VampireSkill two = new("SkillSix");
-            two.Top.Set(160, 0);
-            two.HAlign = 0.5f;
-            panel.Append(two);
-
-            VampireSkill three = new("SkillThree");
-            three.Top.Set(210, 0);
-            three.HAlign = 0.5f;
-            panel.Append(three);
-
-            VampireSkill four = new("SkillTwo");
-            four.Top.Set(260, 0);
-            four.HAlign = 0.5f;
-            panel.Append(four);
 
         } 
     }
