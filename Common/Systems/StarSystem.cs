@@ -65,7 +65,7 @@ namespace DevilsWarehouse.Common.Systems
                 }
                 else
                 {
-                    sb.Append($"[i:{ModContent.ItemType<StarEmpty>}] ");
+                    sb.Append($"[i:{ItemID.ManaCrystal}] ");
                 }
             }
 
