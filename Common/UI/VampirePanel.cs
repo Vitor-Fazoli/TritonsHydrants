@@ -15,11 +15,15 @@ namespace DevilsWarehouse.Common.UI
     {
         public override void OnInitialize()
         {
+            int offset = 60;
+
+            List<UIPanel> panels = new List<UIPanel>();
+
             UIPanel panel = new();
             panel.Width.Set(300, 0);
-            panel.Height.Set(600, 0);
+            panel.Height.Set(500, 0);
             panel.HAlign = panel.VAlign = 0.5f;
-            panel.BackgroundColor = new(23,23,23, 100);
+            panel.BackgroundColor = new(23, 23, 23, 100);
             Append(panel);
 
             UIText header = new("Vampirism");
@@ -29,22 +33,37 @@ namespace DevilsWarehouse.Common.UI
 
             UIImage title = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireTitle"));
             title.Width.Set(88, 0);
-            title.Height.Set(12, 0);
+            title.Height.Set(22, 0);
             title.Top.Set(0, 0);
             title.HAlign = 0.5f;
             title.ImageScale = 2f;
             panel.Append(title);
 
-
-            UIImage one = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "skill"));
-            one.Width.Set(88, 0);
-            one.Height.Set(12, 0);
-            one.Top.Set(0, 0);
-            one.HAlign = 0.5f;
-            one.ImageScale = 2f;
-            panel.Append(one);
-
-        } 
+            for (int i = 0; i <= 5; i++)
+            {
+                UIPanel row = new();
+                row.Width.Set(300, 0);
+                row.Height.Set(offset, 0);
+                row.Top.Set(100 + (offset * i), 0);
+                row.HAlign = 0.5f;
+                row.BackgroundColor = new(0, 0, 0, 0);
+                row.BorderColor = new(0, 0, 0, 255);
+                panel.Append(row);
+                panels.Add(row);
+            }
+            for (int i = 0; i <= 5; i++)
+            {
+                for (int j = 1; j <= 3; j++)
+                {
+                    UIImage vs = new(ModContent.Request<Texture2D>(Helper.GUIPath + "skill"));
+                    vs.Width.Set(26, 0);
+                    vs.Height.Set(26, 0);
+                    vs.Top.Set(0, 0);
+                    vs.Left.Set(74 * j, 0);
+                    panels[i].Append(vs);
+                }
+            }
+        }
     }
     public class VampirePanelSystem : ModSystem
     {
