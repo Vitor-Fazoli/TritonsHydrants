@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -35,8 +33,8 @@ namespace DevilsWarehouse.Common.UI
             text = new UIText("");
             text.Width.Set(50, Precent);
             text.Height.Set(42, Precent);
-            text.Left.Set(45, Precent);
-            text.Top.Set(20, Precent);
+            text.Left.Set(0, Precent);
+            text.Top.Set(55, Precent);
 
             frame.Append(point);
             frame.Append(text);

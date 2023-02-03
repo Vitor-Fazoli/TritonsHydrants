@@ -1,17 +1,16 @@
 ﻿using Terraria;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace DevilsWarehouse.Common.UI
 {
     public class VampireSkill : UIElement
     {
-        private string name;
-        private UIImage SkillImage;
-        private string effect;
+        private const float Precent = 0f;
+        private readonly string name;
+        private readonly UIImage SkillImage;
+        private readonly string effect;
 
         public VampireSkill(string name, UIImage SkillImage, string effect) : base()
         {
@@ -22,26 +21,24 @@ namespace DevilsWarehouse.Common.UI
 
         public override void OnInitialize()
         {
-            Width.Set(50, 0);
-            Height.Set(50, 0);
+            this.Width.Set(50, Precent);
+            this.Height.Set(50, Precent);
 
-            SkillImage.Width = Width;
-            SkillImage.Height = Height;
+            SkillImage.Width.Set(26, Precent);
+            SkillImage.Height.Set(26, Precent);
             SkillImage.VAlign = 0.5f;
             SkillImage.HAlign = 0.5f;
+            Append(SkillImage);
         }
 
         public override void Update(GameTime gameTime)
         {
             if (IsMouseHovering)
             {
-                Main.instance.MouseText(name + "\n" + effect);
+                Main.instance.MouseText(name + effect);
             }
-        }
-    }
 
-    public class VampirePassive : UIElement
-    {
-    
+            base.Update(gameTime);
+        }
     }
 }

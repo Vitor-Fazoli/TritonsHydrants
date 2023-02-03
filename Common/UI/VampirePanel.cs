@@ -17,7 +17,7 @@ namespace DevilsWarehouse.Common.UI
         {
             int offset = 60;
 
-            List<UIPanel> panels = new List<UIPanel>();
+            List<UIPanel> panels = new();
 
             UIPanel panel = new();
             panel.Width.Set(300, 0);
@@ -31,7 +31,7 @@ namespace DevilsWarehouse.Common.UI
             header.HAlign = 0.5f;
             panel.Append(header);
 
-            UIImage title = new UIImage(ModContent.Request<Texture2D>(Helper.GUIPath + "VampireTitle"));
+            UIImage title = new (ModContent.Request<Texture2D>(Helper.GUIPath + "VampireTitle"));
             title.Width.Set(88, 0);
             title.Height.Set(22, 0);
             title.Top.Set(0, 0);
@@ -42,8 +42,9 @@ namespace DevilsWarehouse.Common.UI
             for (int i = 0; i <= 5; i++)
             {
                 UIPanel row = new();
-                row.Width.Set(300, 0);
+                row.Width.Set(panel.Width.Pixels, 0);
                 row.Height.Set(offset, 0);
+                row.SetPadding(0);
                 row.Top.Set(100 + (offset * i), 0);
                 row.HAlign = 0.5f;
                 row.BackgroundColor = new(0, 0, 0, 0);
@@ -53,13 +54,24 @@ namespace DevilsWarehouse.Common.UI
             }
             for (int i = 0; i <= 5; i++)
             {
-                for (int j = 1; j <= 3; j++)
+                for (int j = -1; j < 2; j++)
                 {
-                    UIImage vs = new(ModContent.Request<Texture2D>(Helper.GUIPath + "skill"));
+                    //UIImage vs = new(ModContent.Request<Texture2D>(Helper.GUIPath + "skill"));
+                    //vs.Width.Set(26, 0);
+                    //vs.Height.Set(26, 0);
+                    //vs.Top.Set(0, 0);
+                    //vs.Left.Set((vs.Width.Pixels + 50) * j, 0);
+                    //vs.HAlign = 0.5f;
+                    //vs.VAlign = 0.5f;
+                    //panels[i].Append(vs);
+                   
+                    VampireSkill vs = new("Power guido", new(ModContent.Request<Texture2D>(Helper.GUIPath + "skill")),"faz o pau maior");
                     vs.Width.Set(26, 0);
                     vs.Height.Set(26, 0);
                     vs.Top.Set(0, 0);
-                    vs.Left.Set(74 * j, 0);
+                    vs.Left.Set((vs.Width.Pixels + 50) * j, 0);
+                    vs.HAlign = 0.5f;
+                    vs.VAlign = 0.5f;
                     panels[i].Append(vs);
                 }
             }
