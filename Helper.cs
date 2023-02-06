@@ -1,12 +1,58 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Text;
 using Terraria;
 
 namespace DevilsWarehouse
 {
     public static class Helper
     {
+
         public const string GUIPath = "DevilsWarehouse/Assets/GUI/";
+
+        public static NPC FindClosestNPC(float maxDetectDistance, Projectile proj)
+        {
+            NPC closestNPC = null;
+
+            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
+
+            for (int k = 0; k < Main.maxNPCs; k++)
+            {
+                NPC target = Main.npc[k];
+
+                if (target.CanBeChasedBy())
+                {
+                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, proj.Center);
+
+                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
+                    {
+                        sqrMaxDetectDistance = sqrDistanceToTarget;
+                        closestNPC = target;
+                    }
+                }
+            }
+
+            return closestNPC;
+        }
+
+        public static string ToDisplay(string str)
+        {
+            StringBuilder sb = new();
+
+            for(int i = 0; i < str.Length; i++)
+            {
+                if (char.IsUpper(str[i]) && i != 0)
+                {
+                    sb.Append(' ');
+                    sb.Append(str[i]);
+                }
+                else
+                {
+                    sb.Append(str[i]);
+                }
+            }
+            return sb.ToString();
+        }
 
         public static double Ticks(double time)
         {
@@ -39,7 +85,7 @@ namespace DevilsWarehouse
             };
         }
 
-        public static String RemoveBegin(this String str, int len)
+        public static string RemoveBegin(this string str, int len)
         {
             if (str.Length < len)
             {
@@ -48,7 +94,7 @@ namespace DevilsWarehouse
 
             return str.Remove(len);
         }
-        public static String RemoveEnd(this String str, int len)
+        public static string RemoveEnd(this string str, int len)
         {
             if (str.Length < len)
             {

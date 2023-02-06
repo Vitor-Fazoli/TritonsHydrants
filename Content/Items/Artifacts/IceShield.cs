@@ -20,7 +20,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ice Shield");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("all damage decreased but you spawn with full health\n" +
                 "your defense is doubled, knockback immunity" +
                 "Significantly higher chance that enemies will target the wearer\n");

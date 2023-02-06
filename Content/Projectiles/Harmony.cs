@@ -50,7 +50,7 @@ namespace DevilsWarehouse.Content.Projectiles
             float maxDetectRadius = 400f; 
             float projSpeed = 5f; 
 
-            NPC closestNPC = FindClosestNPC(maxDetectRadius);
+            NPC closestNPC = Helper.FindClosestNPC(maxDetectRadius, this.Projectile);
             if (closestNPC == null)
                 return;
 
@@ -67,30 +67,6 @@ namespace DevilsWarehouse.Content.Projectiles
 
                 Lighting.AddLight(Projectile.position, d.color.R / 255, d.color.G / 255, d.color.B / 255);
             }
-        }
-        public NPC FindClosestNPC(float maxDetectDistance)
-        {
-            NPC closestNPC = null;
-
-            float sqrMaxDetectDistance = maxDetectDistance * maxDetectDistance;
-
-            for (int k = 0; k < Main.maxNPCs; k++)
-            {
-                NPC target = Main.npc[k];
-
-                if (target.CanBeChasedBy())
-                {
-                    float sqrDistanceToTarget = Vector2.DistanceSquared(target.Center, Projectile.Center);
-
-                    if (sqrDistanceToTarget < sqrMaxDetectDistance)
-                    {
-                        sqrMaxDetectDistance = sqrDistanceToTarget;
-                        closestNPC = target;
-                    }
-                }
-            }
-
-            return closestNPC;
         }
     }
 }

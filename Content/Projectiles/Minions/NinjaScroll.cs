@@ -1,4 +1,4 @@
-﻿using DevilsWarehouse.Content.Items.Accessories;
+﻿using DevilsWarehouse.Content.Items.Artifacts;
 using DevilsWarehouse.Content.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using System;

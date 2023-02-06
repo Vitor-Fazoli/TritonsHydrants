@@ -1,4 +1,5 @@
-﻿using DevilsWarehouse.Content.Projectiles.Minions;
+﻿using DevilsWarehouse.Common.Systems;
+using DevilsWarehouse.Content.Projectiles.Minions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -6,13 +7,14 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Items.Accessories
+namespace DevilsWarehouse.Content.Items.Artifacts
 {
     [AutoloadEquip(EquipType.Back)]
-    public class AncientScroll : ModItem
+    public class AncientScroll : Artifact
     {
         public override void SetStaticDefaults()
         {
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("With great scrolls comes great responsibility\n" +
                 "when you crit, a scroll uses your power\n" +
                 "increase throwing damage\n" +
