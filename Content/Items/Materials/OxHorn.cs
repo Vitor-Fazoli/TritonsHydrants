@@ -7,7 +7,7 @@ namespace DevilsWarehouse.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ox Horn");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
         }
         public override void SetDefaults()
         {

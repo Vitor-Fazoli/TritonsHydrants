@@ -13,7 +13,7 @@ namespace DevilsWarehouse.Common
             #region AdamantiteFragment
             if (npc.type == NPCID.RedSlime)
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AdamantiteFragment>(), 10, 1, 3));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AdamantiteFragment>(), 10, 1, 1));
             }
             #endregion
 

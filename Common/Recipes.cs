@@ -8,11 +8,13 @@ namespace DevilsWarehouse.Common
     {
         public override void AddRecipes()
         {
+            #region AdamantiteBar
             Recipe recipe = Recipe.Create(ItemID.AdamantiteBar);
             recipe.AddIngredient(ModContent.ItemType<AdamantiteFragment>());
             recipe.AddIngredient(ItemID.Meteorite, 2);
             recipe.AddTile(TileID.AdamantiteForge);
             recipe.Register();
+            #endregion
         }
     }
 }

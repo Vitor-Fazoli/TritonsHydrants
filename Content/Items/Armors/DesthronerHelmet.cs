@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using DevilsWarehouse.Content.Items.Materials;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,8 @@ namespace DevilsWarehouse.Content.Items.Armors
     {
         public override void SetStaticDefaults()
         {
-            Tooltip.SetDefault("");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
+            Tooltip.SetDefault("Increase throwing critical chance");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
@@ -21,16 +23,27 @@ namespace DevilsWarehouse.Content.Items.Armors
             Item.height = 28;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Green;
-            Item.defense = 4;
+            Item.defense = 3;
         }
         public override void UpdateEquip(Player player)
         {
-            // Dust.NewDust(player.Center + new Vector2(0, player.height / 2), 5, 5, ModContent.DustType<ArcanePowder>(), -player.velocity.X / 4, 0);
+            player.GetCritChance(DamageClass.Throwing) += 0.05f;
+        }
+        public override bool IsArmorSet(Item head, Item body, Item legs)
+        {
+            return body.type == ModContent.ItemType<DesthronerBreastplate>() && legs.type == ModContent.ItemType<DesthronerLeggings>();
         }
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "reduces mana cost by 10%";
-            player.manaCost -= 0.1f;
+            player.setBonus = "Increases dealt damage by 10%";
+            player.GetDamage(DamageClass.Generic) += 0.1f;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<DesthronerScale>(3)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DevilsWarehouse.Content.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Supply Crate");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
         }
 
         public override void SetDefaults()

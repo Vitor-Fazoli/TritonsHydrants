@@ -10,7 +10,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Hammer God");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("when hit a enemy with 10% of life, kill it");
         }
         public override void SetDefaults()

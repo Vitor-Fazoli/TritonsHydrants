@@ -33,8 +33,8 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Steroid Serynge");
-            Tooltip.SetDefault("only for strong man");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
+            Tooltip.SetDefault("only for strong people");
         }
         public override void SetDefaults()
         {

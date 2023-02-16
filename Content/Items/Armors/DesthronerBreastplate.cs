@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using DevilsWarehouse.Content.Items.Materials;
+using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +11,7 @@ namespace DevilsWarehouse.Content.Items.Armors
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desthroner Breastplate");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("Increase throwing attack speed");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -25,7 +26,14 @@ namespace DevilsWarehouse.Content.Items.Armors
         }
         public override void UpdateEquip(Player player)
         {
-            player.GetAttackSpeed(DamageClass.Throwing) += 0.20f;
+            player.GetAttackSpeed(DamageClass.Throwing) += 0.05f;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<DesthronerScale>(5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

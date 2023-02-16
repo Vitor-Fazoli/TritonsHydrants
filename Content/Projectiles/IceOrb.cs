@@ -1,7 +1,10 @@
 ﻿using DevilsWarehouse.Content.Buffs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Projectiles
@@ -11,6 +14,8 @@ namespace DevilsWarehouse.Content.Projectiles
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Ice Orb");
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 1;
         }
 
         public sealed override void SetDefaults()
@@ -21,6 +26,22 @@ namespace DevilsWarehouse.Content.Projectiles
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.damage = 30;
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.instance.LoadProjectile(Projectile.type);
+            Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
+
+            // Redraw the projectile with the color not influenced by light
+            Vector2 drawOrigin = new(texture.Width * 0.5f, Projectile.height * 0.5f);
+            for (int k = 0; k < Projectile.oldPos.Length; k++)
+            {
+                Vector2 drawPos = (Projectile.oldPos[k] - Main.screenPosition) + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+                Color color = Projectile.GetAlpha(lightColor) * ((Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
+                Main.EntitySpriteDraw(texture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+            }
+
+            return true;
         }
         public override void AI()
         {

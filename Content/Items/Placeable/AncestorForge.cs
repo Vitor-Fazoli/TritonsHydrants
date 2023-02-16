@@ -13,7 +13,7 @@ namespace DevilsWarehouse.Content.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Ancestor Forge");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
         public override void SetDefaults()

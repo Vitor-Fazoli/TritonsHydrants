@@ -10,7 +10,7 @@ namespace DevilsWarehouse.Content.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Holy Blood With Mint");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
 
             Tooltip.SetDefault("Now, Without your plague/n" +
                 "Remove Vampirism");
@@ -26,6 +26,7 @@ namespace DevilsWarehouse.Content.Items.Consumables
         }
         public override void OnConsumeItem(Player player)
         {
+            player.eyeColor = player.GetModPlayer<Vampire>().eyeColor;
             player.GetModPlayer<Vampire>().vampire = false;
         }
     }

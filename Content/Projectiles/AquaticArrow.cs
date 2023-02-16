@@ -1,16 +1,21 @@
 ﻿using DevilsWarehouse.Content.Dusts;
 using Microsoft.Xna.Framework;
+using Mono.Cecil;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace DevilsWarehouse.Content.Projectiles
 {
     public class AquaticArrow : ModProjectile
     {
-        private bool waterPower = false;
+        private bool empowered = false;
+        private bool activation = false;
+        private bool bouncyProjectile = false;
 
         public override void SetDefaults()
         {
@@ -21,6 +26,7 @@ namespace DevilsWarehouse.Content.Projectiles
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
             Projectile.timeLeft = 600;
+            Projectile.penetrate = 3;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
@@ -40,12 +46,26 @@ namespace DevilsWarehouse.Content.Projectiles
                 {
                     case 2:
 
+                        if (activation == false)
+                        {
+                            Projectile.Kill();
+                            float numberProjectiles = 5;
+                            float rotation = MathHelper.ToRadians(45);
+
+                            Projectile.position += Vector2.Normalize(Projectile.velocity) * 45f;
+                            for (int i = 0; i < numberProjectiles; i++)
+                            {
+                                Vector2 perturbedSpeed = Projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
+                                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            }
+                            activation = true;
+                        }
                         break;
                     case 3:
-
+                        Projectile.velocity *= 1.25f;
                         break;
                     case 4:
-
+                        //OnTileCollide
                         break;
                     case 5:
 
@@ -74,16 +94,16 @@ namespace DevilsWarehouse.Content.Projectiles
                 }
             }
 
-            if (waterPower)
+            if (empowered)
             {
 
-                waterPower = true;
+                empowered = true;
                 Projectile.ai[0]++;
 
                 if (Projectile.ai[0] >= 30)
                 {
 
-                    EmpowerProjectileOnWater();
+                    HomingProjectile();
 
                     if (Projectile.velocity == Vector2.Zero)
                     {
@@ -121,7 +141,39 @@ namespace DevilsWarehouse.Content.Projectiles
                 Lighting.AddLight(Projectile.position, d.color.R / 255, d.color.G / 255, d.color.B / 255);
             }
         }
-        private void EmpowerProjectileOnWater()
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (Main.waterStyle == 4)
+            {
+                Projectile.penetrate--;
+                if (Projectile.penetrate <= 0)
+                {
+                    Projectile.Kill();
+                }
+                else
+                {
+                    Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+                    SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
+
+                    // If the projectile hits the left or right side of the tile, reverse the X velocity
+                    if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon)
+                    {
+                        Projectile.velocity.X = -oldVelocity.X;
+                    }
+
+                    // If the projectile hits the top or bottom side of the tile, reverse the Y velocity
+                    if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
+                    {
+                        Projectile.velocity.Y = -oldVelocity.Y;
+                    }
+                }
+            }
+
+
+            return false;
+        }
+        private void HomingProjectile()
         {
             Vector2 move = Vector2.Zero;
             float distance = 400f;

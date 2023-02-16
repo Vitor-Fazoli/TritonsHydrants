@@ -27,7 +27,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
             Item.width = 22;
             Item.height = 20;
             Item.value = 10000;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ModContent.RarityType<ArtifactRarity>();
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

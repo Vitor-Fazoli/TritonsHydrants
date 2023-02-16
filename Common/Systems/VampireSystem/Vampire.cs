@@ -11,6 +11,7 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
 {
     public class Vampire : ModPlayer
     {
+        public Color eyeColor;
         public bool vampire = false;
         public int blood = 0;
         public int bloodMax = 100;
@@ -115,14 +116,15 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
         public override void SaveData(TagCompound tag)
         {
             tag["vampire"] = vampire;
+            tag["eyeColor"] = eyeColor;
         }
 
         public override void LoadData(TagCompound tag)
         {
             vampire = tag.GetBool("vampire");
+            eyeColor = tag.Get<Color>("eyeColor");
         }
         #endregion
-
         public bool CursedSilver()
         {
             for (int i = 0; i < Player.inventory.Length; i++)

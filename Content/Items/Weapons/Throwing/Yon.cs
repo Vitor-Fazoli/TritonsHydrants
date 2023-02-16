@@ -10,7 +10,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Victus and Yon");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
         }
         public override void SetDefaults()
         {
@@ -65,7 +65,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing
         public int distance = 50;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Victus");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
         }
         public override void SetDefaults()
         {
@@ -78,19 +78,17 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing
             Projectile.tileCollide = true;
             Projectile.aiStyle = ProjectileID.WoodenArrowFriendly;
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            Player p = Main.player[Projectile.owner];
-
-        }
         public override void Kill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-            for (int i = 0; i < 5; i++)
+            const int MAX_DUST = 10;
+
+            for (int i = 0; i < MAX_DUST; i++)
             {
                 Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                Dust.NewDustPerfect(Projectile.Center, DustID.Gold, speed * 2);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.Gold, speed * 5);
+                d.noGravity = true;
             }
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.position);
         }
     }
 }

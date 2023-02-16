@@ -31,7 +31,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         public override void SetStaticDefaults()
         {
 
-            DisplayName.SetDefault("Acai Berry");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

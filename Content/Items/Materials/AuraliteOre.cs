@@ -9,7 +9,7 @@ namespace DevilsWarehouse.Content.Items.Materials
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Auralite Ore");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
         public override void SetDefaults()

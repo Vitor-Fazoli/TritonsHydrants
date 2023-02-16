@@ -11,7 +11,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         public override void SetStaticDefaults()
         {
 
-            DisplayName.SetDefault("Medusa Scepter");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }

@@ -10,7 +10,7 @@ namespace DevilsWarehouse.Content.Items.Materials
         public float durability;
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Adamantite Fragment");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("a long story...");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 100;
         }
@@ -20,7 +20,7 @@ namespace DevilsWarehouse.Content.Items.Materials
             Item.height = 16;
             Item.material = true;
             Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(silver: 20);
+            Item.value = Item.sellPrice(gold: 5);
             Item.stack = 99;
         }
         public override bool OnPickup(Player player)

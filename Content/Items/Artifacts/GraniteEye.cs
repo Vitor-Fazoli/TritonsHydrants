@@ -11,7 +11,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         public override void SetStaticDefaults()
         {
 
-            DisplayName.SetDefault("Granite Eye");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("Summon and Ranged Damage now works together on all weapons with any damage type\n" +
                 "Ammo inflicts its debuff through minions, bullets and arrows work together");
             ItemID.Sets.CanGetPrefixes[Item.type] = false;

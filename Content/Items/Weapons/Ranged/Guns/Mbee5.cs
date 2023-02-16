@@ -42,8 +42,9 @@ namespace DevilsWarehouse.Content.Items.Weapons.Ranged.Guns
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<DemonHoneyIngot>(), 5)
+                .AddIngredient(ItemID.BeeWax, 20)
                 .AddIngredient(ItemID.Obsidian, 10)
+                .AddIngredient(ItemID.IllegalGunParts, 1)
                 .AddTile(TileID.Furnaces)
                 .Register();
         }

@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Items.Weapons.Summon
+namespace DevilsWarehouse.Content.Items.Weapons.Summon.Staffs
 {
     public class WanderingAuraliteBuff : ModBuff
     {
@@ -69,7 +69,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Summon
         public override bool? UseItem(Player player)
         {
             uses++;
-            if(uses != 0)
+            if (uses != 0)
             {
                 ModContent.GetInstance<LivingCore>().quantityMax++;
                 Item.shoot = ProjectileID.None;

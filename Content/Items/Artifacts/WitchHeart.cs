@@ -9,7 +9,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Witch Mask");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("This mask have a curse, if are using this your life its your mana\n" +
                 "increased life max in 20 \n" +
                 "your life regen is increased");

@@ -10,7 +10,7 @@ namespace DevilsWarehouse.Content.Items.Weapons.Throwing.Hatchets
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Copper Hatchet");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
         }
         public override void SetDefaults()
         {

@@ -1,5 +1,5 @@
 ﻿using DevilsWarehouse.Content.Items.Artifacts;
-using DevilsWarehouse.Content.Items.Weapons.Summon;
+using DevilsWarehouse.Content.Items.Weapons.Summon.Staffs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

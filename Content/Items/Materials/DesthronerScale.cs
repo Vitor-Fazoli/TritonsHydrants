@@ -2,11 +2,11 @@
 
 namespace DevilsWarehouse.Content.Items.Materials
 {
-    public class DesthronerScales : ModItem
+    public class DesthronerScale : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Desthroner Scales");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("So soft it makes you want to sleep");
         }
         public override void SetDefaults()

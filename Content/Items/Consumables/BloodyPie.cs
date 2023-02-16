@@ -13,7 +13,7 @@ namespace DevilsWarehouse.Content.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Delicious Bloody Pie");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
 
             Tooltip.SetDefault("it's dangerous\n" +
                 "Transform you in a vampire");
@@ -38,6 +38,7 @@ namespace DevilsWarehouse.Content.Items.Consumables
         }
         public override void OnConsumeItem(Player player)
         {
+            player.GetModPlayer<Vampire>().eyeColor = player.eyeColor;
             player.GetModPlayer<Vampire>().vampire = true;
         }
     }

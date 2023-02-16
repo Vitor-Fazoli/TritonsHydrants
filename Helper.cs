@@ -53,7 +53,10 @@ namespace DevilsWarehouse
             }
             return sb.ToString();
         }
-
+        public static int PercentOf(float quantity, int max)
+        {
+            return (int)(max * quantity);
+        }
         public static double Ticks(double time)
         {
             return time * 60;

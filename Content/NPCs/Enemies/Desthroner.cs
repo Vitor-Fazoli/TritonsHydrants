@@ -60,7 +60,7 @@ namespace DevilsWarehouse.Content.NPCs.Enemies
         }
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesthronerScales>(), 70, 2, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DesthronerScale>(), 70, 2, 5));
         }
         public override void FindFrame(int frameHeight)
         {
