@@ -7,7 +7,6 @@ namespace DevilsWarehouse
 {
     public static class Helper
     {
-
         public const string GUIPath = "DevilsWarehouse/Assets/GUI/";
 
         public static NPC FindClosestNPC(float maxDetectDistance, Projectile proj)
@@ -70,23 +69,6 @@ namespace DevilsWarehouse
             return time * 60;
         }
 
-        public static Color WaterLocal()
-        {
-            return Main.waterStyle switch
-            {
-                2 => new Color(59, 29, 131), //Corruption
-                3 => new Color(7, 145, 142), //Jungle
-                4 => new Color(171, 11, 209), //Hallow
-                5 => new Color(9, 137, 191), //Snow
-                6 => new Color(32, 168, 117), //Desert
-                7 => new Color(36, 60, 148), //Cavern
-                8 => new Color(65, 59, 101), //Cavern 2
-                9 => new Color(200, 0, 0), //BloodMoon
-                10 => new Color(177, 54, 79), //Crimsom
-                12 => new Color(168, 106, 32), //Desert 2 
-                _ => new Color(9, 61, 191), // Default
-            };
-        }
 
         public static string RemoveBegin(this string str, int len)
         {
@@ -105,6 +87,38 @@ namespace DevilsWarehouse
             }
 
             return str[..^len];
+        }
+    }
+    //<summary> This is used for make easy and visible the process with properties of water in terraria</summary>
+    public static class Water
+    {
+        public const int Corruption = 2;
+        public const int Jungle = 3;
+        public const int Hallow = 4;
+        public const int Snow = 5;
+        public const int Desert = 6;
+        public const int Cavern = 7;
+        public const int Cavern2 = 8;
+        public const int BloodMoon = 9;
+        public const int Crimsom = 10;
+        public const int Desert2 = 12;
+
+        public static Color WaterColor()
+        {
+            return Main.waterStyle switch
+            {
+                Corruption => new Color(59, 29, 131),
+                Jungle => new Color(7, 145, 142),
+                Hallow => new Color(171, 11, 209),
+                Snow => new Color(9, 137, 191),
+                Desert => new Color(32, 168, 117),
+                Cavern => new Color(36, 60, 148),
+                Cavern2 => new Color(65, 59, 101),
+                BloodMoon => new Color(200, 0, 0),
+                Crimsom => new Color(177, 54, 79),
+                Desert2 => new Color(168, 106, 32),
+                _ => new Color(9, 61, 191), // Default
+            };
         }
     }
 }

@@ -31,7 +31,7 @@ namespace DevilsWarehouse.Content.Dusts
                 dust.active = false;
             }
 
-            dust.color = Helper.WaterLocal();
+            dust.color = Water.WaterColor();
 
             return false;
         }

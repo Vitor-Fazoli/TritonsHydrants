@@ -1,21 +1,19 @@
 ﻿using DevilsWarehouse.Content.Dusts;
 using Microsoft.Xna.Framework;
-using Mono.Cecil;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace DevilsWarehouse.Content.Projectiles
 {
     public class AquaticArrow : ModProjectile
     {
-        private bool empowered = false;
-        private bool activation = false;
-        private bool bouncyProjectile = false;
+        private bool EnterOnWater = false;
+        private bool happen = false;
+        private bool active = false;
 
         public override void SetDefaults()
         {
@@ -26,108 +24,48 @@ namespace DevilsWarehouse.Content.Projectiles
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
             Projectile.timeLeft = 600;
-            Projectile.penetrate = 3;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.ai[0] = 0;
+            Projectile.ai[1] = 0;
+        }
         public override void AI()
         {
+            if (Projectile.velocity == Vector2.Zero)
+            {
+                Projectile.Kill();
+            }
+
             Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterPower>(), Vector2.Zero);
             Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
             Projectile.rotation = Projectile.velocity.ToRotation();
 
-            #region WaterEffects
-
+            WaterEffect();
 
             if (Projectile.wet)
             {
-                switch (Main.waterStyle)
+                if (!EnterOnWater)
                 {
-                    case 2:
-
-                        if (activation == false)
-                        {
-                            Projectile.Kill();
-                            float numberProjectiles = 5;
-                            float rotation = MathHelper.ToRadians(45);
-
-                            Projectile.position += Vector2.Normalize(Projectile.velocity) * 45f;
-                            for (int i = 0; i < numberProjectiles; i++)
-                            {
-                                Vector2 perturbedSpeed = Projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-                                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            }
-                            activation = true;
-                        }
-                        break;
-                    case 3:
-                        Projectile.velocity *= 1.25f;
-                        break;
-                    case 4:
-                        //OnTileCollide
-                        break;
-                    case 5:
-
-                        break;
-                    case 6:
-
-                        break;
-                    case 7:
-
-                        break;
-                    case 8:
-
-                        break;
-                    case 9:
-
-                        break;
-                    case 10:
-
-                        break;
-                    case 12:
-
-                        break;
-                    default:
-
-                        break;
+                    OnWetProjectile();
+                    EnterOnWater = true;
                 }
+                active = true;
             }
 
-            if (empowered)
+            if (active)
             {
-
-                empowered = true;
-                Projectile.ai[0]++;
-
-                if (Projectile.ai[0] >= 30)
-                {
-
-                    HomingProjectile();
-
-                    if (Projectile.velocity == Vector2.Zero)
-                    {
-                        Projectile.Kill();
-                    }
-                }
-
-                if (Projectile.ai[0] <= 1)
-                {
-                    for (int i = 0; i < 40; i++)
-                    {
-                        Vector2 speed = Main.rand.NextVector2CircularEdge(3f, 3f);
-                        Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
-                        d.noGravity = true;
-                    }
-                }
+                Empower();
             }
 
             if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
             {
-                Projectile.soundDelay = 10;
+                Projectile.soundDelay = 20;
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
-            #endregion
 
         }
         public override void Kill(int timeLeft)
@@ -142,9 +80,17 @@ namespace DevilsWarehouse.Content.Projectiles
             }
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Main.waterStyle == Water.Crimsom ||
+                Main.waterStyle == Water.BloodMoon)
+            {
+
+            }
+        }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Main.waterStyle == 4)
+            if (Main.waterStyle == Water.Hallow)
             {
                 Projectile.penetrate--;
                 if (Projectile.penetrate <= 0)
@@ -169,7 +115,6 @@ namespace DevilsWarehouse.Content.Projectiles
                     }
                 }
             }
-
 
             return false;
         }
@@ -207,6 +152,91 @@ namespace DevilsWarehouse.Content.Projectiles
             if (magnitude > 6f)
             {
                 vector *= 6f / magnitude;
+            }
+        }
+
+        private void OnWetProjectile()
+        {
+            #region Dust Effect
+            for (int i = 0; i < 40; i++)
+            {
+                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
+                d.noGravity = true;
+            }
+            #endregion
+        }
+        private void WaterEffect()
+        {
+            switch (Main.waterStyle)
+            {
+                case Water.Corruption:
+                    //Shotgun
+                    if (happen == false)
+                    {
+                        Projectile.Kill();
+                        float numberProjectiles = 5;
+                        float rotation = MathHelper.ToRadians(30);
+
+                        for (int i = 0; i < numberProjectiles; i++)
+                        {
+                            Vector2 perturbedSpeed = Projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
+                            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed * 2, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        }
+                        happen = true;
+                    }
+                    break;
+                case Water.Jungle:
+                    //Spike Mode
+                    Projectile.ai[0]++;
+                    Projectile.velocity /= 5;
+
+                    if (Projectile.ai[0] >= 60)
+                    {
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, 5), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, -5), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(5, 0), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(-5, 0), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.ai[0] = 0;
+                    }
+                    break;
+                case Water.Hallow:
+                    //Reflect Projectile when colide with tiles
+                    Projectile.penetrate = 3;
+                    break;
+                case Water.Snow:
+                    //Cause On fire
+                    break;
+                case Water.Desert:
+                    //when hit a npc, gain a buff
+                    break;
+                case Water.Cavern:
+
+                    break;
+                case Water.Cavern2:
+
+                    break;
+                case Water.BloodMoon:
+                    //LifeSteal
+                    break;
+                case Water.Crimsom:
+                    //LifeSteal
+                    break;
+                case Water.Desert2:
+                    //when hit a npc, gain a buff
+                    break;
+                default:
+
+                    break;
+            }
+        }
+        private void Empower()
+        {
+            Projectile.ai[1]++;
+
+            if (Projectile.ai[1] >= 25)
+            {
+                HomingProjectile();
             }
         }
     }
