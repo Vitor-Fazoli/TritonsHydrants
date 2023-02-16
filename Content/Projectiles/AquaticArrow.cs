@@ -32,6 +32,7 @@ namespace DevilsWarehouse.Content.Projectiles
         {
             Projectile.ai[0] = 0;
             Projectile.ai[1] = 0;
+            happen = false;
         }
         public override void AI()
         {
@@ -63,7 +64,7 @@ namespace DevilsWarehouse.Content.Projectiles
 
             if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
             {
-                Projectile.soundDelay = 20;
+                Projectile.soundDelay = 60;
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
 
@@ -82,10 +83,21 @@ namespace DevilsWarehouse.Content.Projectiles
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.waterStyle == Water.Crimsom ||
-                Main.waterStyle == Water.BloodMoon)
-            {
+            Player p = Main.player[Projectile.owner];
 
+            if (target.life <= 0 && (Main.waterStyle == Water.Crimsom || Main.waterStyle == Water.BloodMoon))
+            {
+                p.Heal((int)(p.GetDamage(DamageClass.Magic).Flat / 10));
+            }
+
+            if (Main.waterStyle == Water.Desert || Main.waterStyle == Water.Desert2)
+            {
+                p.AddBuff(BuffID.ManaRegeneration, 180);
+            }
+
+            if (Main.waterStyle == Water.Snow)
+            {
+                target.AddBuff(BuffID.Frostburn, 180);
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -102,20 +114,17 @@ namespace DevilsWarehouse.Content.Projectiles
                     Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
                     SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
 
-                    // If the projectile hits the left or right side of the tile, reverse the X velocity
                     if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon)
                     {
                         Projectile.velocity.X = -oldVelocity.X;
                     }
 
-                    // If the projectile hits the top or bottom side of the tile, reverse the Y velocity
                     if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
                     {
                         Projectile.velocity.Y = -oldVelocity.Y;
                     }
                 }
             }
-
             return false;
         }
         private void HomingProjectile()
@@ -138,7 +147,6 @@ namespace DevilsWarehouse.Content.Projectiles
                     }
                 }
             }
-
             if (isTarget)
             {
                 AdjustMagnitude(ref move);
@@ -154,7 +162,6 @@ namespace DevilsWarehouse.Content.Projectiles
                 vector *= 6f / magnitude;
             }
         }
-
         private void OnWetProjectile()
         {
             #region Dust Effect
@@ -168,29 +175,35 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         private void WaterEffect()
         {
+            Player p = Main.player[Projectile.owner];
+
+            double deg = (double)Projectile.ai[0];
+            double rad = deg * (Math.PI / 180);
+            double dist = 100;
+
             switch (Main.waterStyle)
             {
                 case Water.Corruption:
-                    //Shotgun
-                    if (happen == false)
+                    if (happen.Equals(false))
                     {
-                        Projectile.Kill();
-                        float numberProjectiles = 5;
+                        float numberProjectiles = 2;
                         float rotation = MathHelper.ToRadians(30);
 
                         for (int i = 0; i < numberProjectiles; i++)
                         {
                             Vector2 perturbedSpeed = Projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-                            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed * 2, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed * 3, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                         }
                         happen = true;
                     }
                     break;
                 case Water.Jungle:
-                    //Spike Mode
                     Projectile.ai[0]++;
-                    Projectile.velocity /= 5;
-
+                    if (happen == false)
+                    {
+                        Projectile.velocity /= 2;
+                        happen = true;
+                    }
                     if (Projectile.ai[0] >= 60)
                     {
                         Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, 5), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
@@ -201,32 +214,35 @@ namespace DevilsWarehouse.Content.Projectiles
                     }
                     break;
                 case Water.Hallow:
-                    //Reflect Projectile when colide with tiles
                     Projectile.penetrate = 3;
                     break;
                 case Water.Snow:
-                    //Cause On fire
                     break;
                 case Water.Desert:
-                    //when hit a npc, gain a buff
                     break;
                 case Water.Cavern:
+                    Projectile.tileCollide = false;
 
+                    Projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
+                    Projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
+
+                    Projectile.ai[0] += 2f;
                     break;
                 case Water.Cavern2:
+                    Projectile.tileCollide = false;
 
+                    Projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
+                    Projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
+
+                    Projectile.ai[0] += 2f;
                     break;
                 case Water.BloodMoon:
-                    //LifeSteal
                     break;
                 case Water.Crimsom:
-                    //LifeSteal
                     break;
                 case Water.Desert2:
-                    //when hit a npc, gain a buff
                     break;
                 default:
-
                     break;
             }
         }
