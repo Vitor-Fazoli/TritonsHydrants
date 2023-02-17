@@ -46,7 +46,12 @@ namespace DevilsWarehouse.Content.Items.Accessories
         {
             if(counter >= counterMax) 
             {
-                Player.statLife -= 20;
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+
+                Player.lifeRegenTime = 0;
+
+                Player.lifeRegen -= 10;
                 counter = 0;
             }
         }

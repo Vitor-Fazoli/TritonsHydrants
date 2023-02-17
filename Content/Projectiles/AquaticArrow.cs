@@ -87,7 +87,7 @@ namespace DevilsWarehouse.Content.Projectiles
 
             if (target.life <= 0 && (Main.waterStyle == Water.Crimsom || Main.waterStyle == Water.BloodMoon))
             {
-                p.Heal((int)(p.GetDamage(DamageClass.Magic).Flat / 10));
+                p.Heal((int)(3 * p.GetDamage(DamageClass.Magic).Multiplicative));
             }
 
             if (Main.waterStyle == Water.Desert || Main.waterStyle == Water.Desert2)
@@ -199,22 +199,28 @@ namespace DevilsWarehouse.Content.Projectiles
                     break;
                 case Water.Jungle:
                     Projectile.ai[0]++;
+                    Projectile.rotation += 0.5f;
+
                     if (happen == false)
                     {
-                        Projectile.velocity /= 2;
                         happen = true;
                     }
                     if (Projectile.ai[0] >= 60)
                     {
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, 5), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, -5), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(5, 0), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(-5, 0), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, 5 ).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, -5).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(5, 0).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(-5, 0).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                         Projectile.ai[0] = 0;
+                        Projectile.Kill();
                     }
                     break;
                 case Water.Hallow:
-                    Projectile.penetrate = 3;
+                    if (happen == false)
+                    {
+                        Projectile.penetrate = 3;
+                        happen = true;
+                    }
                     break;
                 case Water.Snow:
                     break;
