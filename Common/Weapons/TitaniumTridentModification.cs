@@ -24,24 +24,13 @@ namespace DevilsWarehouse.Common.Weapons
     }
     public class TitaniumTridentItem : GlobalItem
     {
-        private int portalQuantity;
-        public override bool InstancePerEntity => true;
-        public override void Load()
-        {
-            portalQuantity = 2;
-        }
-        public override void HoldItem(Item item, Player player)
-        {
-            for (int i = 0; i < portalQuantity; i++)
-            {
-                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.Center, Vector2.Zero, ModContent.ProjectileType<IceOrb>(), 5 + player.statDefense, 20, player.whoAmI);
-            }
-        }
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemID.TitaniumTrident;
         public override void SetDefaults(Item item)
         {
             item.DamageType = DamageClass.Magic;
-            item.mana = 10;
+            item.mana = 35;
+
+            item.StatsModifiedBy.Add(Mod);
         }
     }
 }

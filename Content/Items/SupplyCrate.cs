@@ -20,7 +20,7 @@ namespace DevilsWarehouse.Content.Items
 
         public override bool OnPickup(Player player)
         {
-            int percent = 10 * (player.statLifeMax2 / 100);
+            int percent = (player.statLifeMax2 / 100);
 
             int bonus = player.statManaMax2 / 2;
 

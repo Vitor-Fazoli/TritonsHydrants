@@ -54,12 +54,15 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         }
         public override void OnConsumeMana(Item item, int manaConsumed)
         {
-            if (witchHeart && Player.statLife > manaConsumed)
+            if (witchHeart)
             {
-                Player.statLife -= manaConsumed;
-            }
+                if (Player.statLife > manaConsumed)
+                {
+                    Player.statLife -= manaConsumed;
+                }
 
-            Player.statMana = Player.statLifeMax2;
+                Player.statMana = Player.statLifeMax2;
+            }
         }
         public override void ResetEffects()
         {
@@ -68,25 +71,35 @@ namespace DevilsWarehouse.Content.Items.Artifacts
     }
     public class WitchHeartSystem : GlobalItem
     {
+
         public override void HoldItem(Item item, Player player)
         {
+            var witchHeart = player.GetModPlayer<WitchHeartPlayer>().witchHeart;
 
-            if (item.type == ItemID.LastPrism)
+            if (witchHeart)
             {
-                if (player.statLife <= item.mana)
+                if (item.type == ItemID.LastPrism)
                 {
-                    Main.mouseRight = false;
-                    Main.mouseLeft = false;
+                    if (player.statLife <= item.mana)
+                    {
+                        Main.mouseRight = false;
+                        Main.mouseLeft = false;
+                    }
                 }
             }
         }
         public override bool CanUseItem(Item item, Player player)
         {
-            if (item.DamageType == DamageClass.Magic && player.GetModPlayer<WitchHeartPlayer>().witchHeart == true)
+            var witchHeart = player.GetModPlayer<WitchHeartPlayer>().witchHeart;
+
+            if (witchHeart)
             {
-                if (player.statLife <= item.mana)
+                if (item.DamageType == DamageClass.Magic)
                 {
-                    return false;
+                    if (player.statLife <= item.mana)
+                    {
+                        return false;
+                    }
                 }
             }
 

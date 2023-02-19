@@ -24,11 +24,18 @@ namespace DevilsWarehouse.Common.Weapons
     }
     public class TridentItem : GlobalItem
     {
-        public override bool AppliesToEntity(Item entity, bool lateInstantiation) => entity.type == ItemID.Trident;
+        public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+        {
+            lateInstantiation = false;
+            return entity.type == ItemID.Trident;
+        }
+
         public override void SetDefaults(Item item)
         {
             item.DamageType = DamageClass.Magic;
             item.mana = 10;
+
+            item.StatsModifiedBy.Add(Mod);
         }
     }
 }
