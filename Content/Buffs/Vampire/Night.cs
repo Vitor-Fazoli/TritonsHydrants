@@ -20,24 +20,24 @@ namespace DevilsWarehouse.Content.Buffs.Vampire
 
         public override void Update(Player Player, ref int buffIndex)
         {
-            Player.GetModPlayer<MoonBuffPlayer>().moonBuff = true;
+            Player.GetModPlayer<NightPlayer>().night = true;
         }
     }
-    public class MoonBuffPlayer : ModPlayer
+    public class NightPlayer : ModPlayer
     {
-        public bool moonBuff;
+        public bool night;
 
         public override void ResetEffects()
         {
-            moonBuff = false;
+            night = false;
         }
         public override void UpdateDead()
         {
-            moonBuff = false;
+            night = false;
         }
         public override void UpdateBadLifeRegen()
         {
-            if (moonBuff)
+            if (night)
             {
                 Player.moveSpeed += 0.3f;
 

@@ -8,7 +8,7 @@ namespace DevilsWarehouse.Content.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("STANDING");
-            Description.SetDefault("Supplies will give you resilience to withstand the battle");
+            Description.SetDefault("Supplies was give you resilience to withstand the battle");
         }
         public override void Update(Player player, ref int buffIndex)
         {

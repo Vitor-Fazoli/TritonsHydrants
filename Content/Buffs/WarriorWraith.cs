@@ -11,7 +11,7 @@ namespace DevilsWarehouse.Content.Buffs
 
             Main.buffNoTimeDisplay[Type] = false;
             Main.debuff[Type] = true;
-            DisplayName.SetDefault("Warrior Wraith");
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
             Description.SetDefault("Attackers also suffer part of damage\n" +
                 "Increase defense");
         }

@@ -1,10 +1,9 @@
-﻿using DevilsWarehouse.Content.Projectiles;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Buffs
 {
-    public class IceOrbBuff : ModBuff
+    public class IceOrb : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +15,7 @@ namespace DevilsWarehouse.Content.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.ownedProjectileCounts[ModContent.ProjectileType<IceOrb>()] > 0)
+            if (player.ownedProjectileCounts[ModContent.ProjectileType<Projectiles.IceOrb>()] > 0)
             {
                 player.buffTime[buffIndex] = 18000;
             }

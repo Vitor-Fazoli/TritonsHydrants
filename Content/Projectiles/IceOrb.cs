@@ -51,9 +51,9 @@ namespace DevilsWarehouse.Content.Projectiles
             // This is the "active check", makes sure the minion is alive while the player is alive, and despawns if not
             if (player.dead || !player.active)
             {
-                player.ClearBuff(ModContent.BuffType<IceOrbBuff>());
+                player.ClearBuff(ModContent.BuffType<Buffs.IceOrb>());
             }
-            if (player.HasBuff(ModContent.BuffType<IceOrbBuff>()))
+            if (player.HasBuff(ModContent.BuffType<Buffs.IceOrb>()))
             {
                 Projectile.timeLeft = 2;
             }

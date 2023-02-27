@@ -28,9 +28,9 @@ namespace DevilsWarehouse.Content.Projectiles
             #region Active check
             if (player.dead || !player.active)
             {
-                player.ClearBuff(ModContent.BuffType<IceOrbBuff>());
+                player.ClearBuff(ModContent.BuffType<Buffs.IceOrb>());
             }
-            if (player.HasBuff(ModContent.BuffType<IceOrbBuff>()))
+            if (player.HasBuff(ModContent.BuffType<Buffs.IceOrb>()))
             {
                 Projectile.timeLeft = 2;
             }

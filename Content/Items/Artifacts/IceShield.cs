@@ -43,8 +43,8 @@ namespace DevilsWarehouse.Content.Items.Artifacts
 
             if (distance <= 0 && quantity < 3)
             {
-                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.Center, Vector2.Zero, ModContent.ProjectileType<IceOrb>(), 5 + player.statDefense, 20, player.whoAmI);
-                player.AddBuff(ModContent.BuffType<IceOrbBuff>(), 2);
+                Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), player.Center, Vector2.Zero, ModContent.ProjectileType<Projectiles.IceOrb>(), 5 + player.statDefense, 20, player.whoAmI);
+                player.AddBuff(ModContent.BuffType<Buffs.IceOrb>(), 2);
                 distance = 120;
                 quantity++;
             }
@@ -76,7 +76,7 @@ namespace DevilsWarehouse.Content.Items.Artifacts
         {
             if (!iceShield)
             {
-                Player.ClearBuff(ModContent.BuffType<IceOrbBuff>());
+                Player.ClearBuff(ModContent.BuffType<Buffs.IceOrb>());
             }
         }
         public override void ResetEffects()

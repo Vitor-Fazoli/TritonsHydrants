@@ -19,25 +19,25 @@ namespace DevilsWarehouse.Content.Buffs.Vampire
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<SunDebuffPlayer>().sunDebuff = true;
+            player.GetModPlayer<DayPlayer>().Day = true;
         }
     }
 
-    public class SunDebuffPlayer : ModPlayer
+    public class DayPlayer : ModPlayer
     {
-        public bool sunDebuff;
+        public bool Day;
 
         public override void ResetEffects()
         {
-            sunDebuff = false;
+            Day = false;
         }
         public override void UpdateDead()
         {
-            sunDebuff = false;
+            Day = false;
         }
         public override void UpdateBadLifeRegen()
         {
-            if (sunDebuff)
+            if (Day)
             {
                 if (Player.lifeRegen > 0)
                     Player.lifeRegen = 0;
@@ -54,7 +54,7 @@ namespace DevilsWarehouse.Content.Buffs.Vampire
         }
         public override void DrawEffects(PlayerDrawSet drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
         {
-            if (sunDebuff)
+            if (Day)
             {
                 if (Main.rand.Next(4) < 3)
                 {

@@ -8,7 +8,7 @@ namespace DevilsWarehouse.Content.Buffs
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("FOWARD");
-            Description.SetDefault("Supplies will give you strenght to fight");
+            Description.SetDefault("Supplies was give you strenght to fight");
         }
         public override void Update(Player player, ref int buffIndex)
         {

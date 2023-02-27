@@ -1,21 +1,22 @@
 using DevilsWarehouse.Common.Systems;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Artifacts
 {
-    public class GraniteEye : Artifact
+    public class GraniteOptic : Artifact
     {
         public override void SetStaticDefaults()
         {
-
             DisplayName.SetDefault(Helper.ToDisplay(Name));
             Tooltip.SetDefault("Summon and Ranged Damage now works together on all weapons with any damage type\n" +
                 "Ammo inflicts its debuff through minions, bullets and arrows work together");
             ItemID.Sets.CanGetPrefixes[Item.type] = false;
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 6));
         }
         public override void SetDefaults()
         {
