@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/Vitor-Fazoli/DevilsWarehouse)
+![GitHub](https://img.shields.io/github/license/Vitor-Fazoli/DevilsWarehouse) <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Vitor-Fazoli/DevilsWarehouse">
 
 <p align="center" ><img  src="https://i.imgur.com/L39BVGx.png"/></p>
 
