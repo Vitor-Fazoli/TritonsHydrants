@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.Metadata;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.WorldBuilding;
 
 namespace DevilsWarehouse.Content.Tiles.Plants
 {
@@ -26,7 +29,7 @@ namespace DevilsWarehouse.Content.Tiles.Plants
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.newTile.CoordinateWidth = 16;
             TileObjectData.newTile.CoordinatePadding = 2;
-            TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.SnowBlock, TileID.IceBlock };
+            TileObjectData.newTile.AnchorValidTiles = new int[] { TileID.IceBlock};
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.DrawFlipHorizontal = true;
             TileObjectData.newTile.WaterPlacement = LiquidPlacement.NotAllowed;
@@ -35,19 +38,18 @@ namespace DevilsWarehouse.Content.Tiles.Plants
             TileObjectData.newTile.StyleMultiplier = 3;
 
             TileObjectData.addTile(Type);
-
+            
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault(Helper.ToDisplay(Name));
+            name.SetDefault("Thunder Boreal Sapling");
             AddMapEntry(new Color(200, 200, 200), name);
 
             TileID.Sets.TreeSapling[Type] = true;
             TileID.Sets.CommonSapling[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;
-            TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Plant"]); // Make this tile interact with golf balls in the same way other plants do
 
             DustType = DustID.BorealWood;
 
-            AdjTiles = new int[] { TileID.Saplings };
+            AdjTiles = new int[] { ModContent.TileType<ThunderBorealSaplingTile>() };
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
@@ -57,30 +59,14 @@ namespace DevilsWarehouse.Content.Tiles.Plants
 
         public override void RandomUpdate(int i, int j)
         {
-            // A random chance to slow down growth
-            if (!WorldGen.genRand.NextBool(20))
-            {
-                return;
-            }
 
-            Tile tile = Framing.GetTileSafely(i, j); // Safely get the tile at the given coordinates
-            bool growSucess; // A bool to see if the tree growing was sucessful.
+            bool growSucess;
 
-            // Style 0 is for the ExampleTree sapling, and style 1 is for ExamplePalmTree, so here we check frameX to call the correct method.
-            // Any pixels before 54 on the tilesheet are for ExampleTree while any pixels above it are for ExamplePalmTree
-            if (tile.TileFrameX < 54)
-            {
-                growSucess = WorldGen.GrowTree(i, j);
-            }
-            else
-            {
-                growSucess = WorldGen.GrowPalmTree(i, j);
-            }
+            growSucess = WorldGen.GrowTree(i, j);
 
-            // A flag to check if a player is near the sapling
+
             bool isPlayerNear = WorldGen.PlayerLOS(i, j);
 
-            //If growing the tree was a sucess and the player is near, show growing effects
             if (growSucess && isPlayerNear)
             {
                 WorldGen.TreeGrowFXCheck(i, j);
@@ -92,6 +78,48 @@ namespace DevilsWarehouse.Content.Tiles.Plants
             if (i % 2 == 1)
             {
                 effects = SpriteEffects.FlipHorizontally;
+            }
+        }
+
+
+    }
+    public class ExampleOreSystem : ModSystem
+    {
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+            int PlantingTrees = tasks.FindIndex(genpass => genpass.Name.Equals("Planting Trees"));
+
+            if (PlantingTrees != -1)
+            {
+                tasks.Insert(PlantingTrees + 1, new ThunderBorealPass("Thunder Boreal Trees", 237.4298f));
+            }
+        }
+    }
+
+    public class ThunderBorealPass : GenPass
+    {
+        public ThunderBorealPass(string name, float loadWeight) : base(name, loadWeight)
+        {
+        }
+
+        protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+        {
+            progress.Message = "Thunder Boreal Trees";
+
+
+            // Criando a malha de tiles
+            for (int x = 0; x < Main.maxTilesX; x++)
+            {
+                for (int y = 0; y < Main.maxTilesY; y++)
+                {
+                    Tile tile = Main.tile[x, y];
+
+                    if (tile.HasTile && tile.TileType == TileID.IceBlock && !tile.BottomSlope && !tile.TopSlope && !tile.IsHalfBlock && Main.rand.NextBool(10))
+                    {
+                        // Colocar uma árvore aleatória neste local
+                        WorldGen.PlaceTile(x, y - 1, ModContent.TileType<ThunderBorealSaplingTile>());
+                    }
+                }
             }
         }
     }

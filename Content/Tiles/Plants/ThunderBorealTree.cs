@@ -11,8 +11,6 @@ namespace DevilsWarehouse.Content.Tiles.Plants
 {
     public class ThunderBorealTree : ModTree
     {
-
-        private readonly int snow = TileID.SnowBlock;
         public override TreePaintingSettings TreeShaderSettings => new() 
         {
             UseSpecialGroups = true,
@@ -24,7 +22,7 @@ namespace DevilsWarehouse.Content.Tiles.Plants
 
         public override void SetStaticDefaults()
         {
-            GrowsOnTileId = new int[1] { snow };
+            GrowsOnTileId = new int[1] { TileID.IceBlock };
         }
 
         public override Asset<Texture2D> GetTexture()
@@ -62,7 +60,7 @@ namespace DevilsWarehouse.Content.Tiles.Plants
 
         public override bool Shake(int x, int y, ref bool createLeaves)
         {
-            Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, snow);
+            Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, ItemID.Elderberry);
             return false;
         }
 
