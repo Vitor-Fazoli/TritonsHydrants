@@ -56,17 +56,17 @@ namespace DevilsWarehouse
         {
             return (int)(max * quantity);
         }
-        public static double Ticks(double time)
+        public static double Ticks(double seconds)
         {
-            return time * 60;
+            return seconds * 60;
         }
-        public static float Ticks(float time)
+        public static float Ticks(float seconds)
         {
-            return time * 60;
+            return seconds * 60;
         }
-        public static int Ticks(int time)
+        public static int Ticks(int seconds)
         {
-            return time * 60;
+            return seconds * 60;
         }
 
 

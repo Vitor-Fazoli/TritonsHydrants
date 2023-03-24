@@ -9,3 +9,10 @@
 *.cache
 *.cache
 *.editorconfig
+*.cache
+*.json
+*.props
+*.json
+*.1
+*.1
+.vs/DevilsWarehouse/v17/.suo
