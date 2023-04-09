@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7r/6JtFVw4GHhjl3oYUy/1NMn1OOoK64rm5MKvkQ7++Hcw83kMZtUHEXJ7qXK95SE9guFuFiir/NoX5M7jsWcw==",
+  "dgSpecHash": "C1BSRVJ/8kxdqRWaSJ58AfHSd8KvMG5mPPf7AHwXaFGi1FV6kw79nkOaBAivYfmKtLhuq7qmcuTiNwrlm1jKpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+  "projectFilePath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hp\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
+    "C:\\Users\\vhfaz\\.nuget\\packages\\tmodloader.codeassist\\0.1.5\\tmodloader.codeassist.0.1.5.nupkg.sha512"
   ],
   "logs": []
 }
