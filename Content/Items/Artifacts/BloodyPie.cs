@@ -1,15 +1,40 @@
-﻿using Terraria.ModLoader.IO;
-using Terraria.ModLoader;
+using DevilsWarehouse.Common.Systems;
+using DevilsWarehouse.Content.Buffs.Vampire;
 using Microsoft.Xna.Framework;
 using Terraria;
-using DevilsWarehouse.Content.Items;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
-using DevilsWarehouse.Content.Buffs.Vampire;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
-namespace DevilsWarehouse.Common.Systems.VampireSystem
+namespace DevilsWarehouse.Content.Items.Consumables
 {
-    public class Vampire : ModPlayer
+    public class BloodyPie : Artifact
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault(Helper.ToDisplay(Name));
+
+            Tooltip.SetDefault("it's dangerous\n" +
+                "Transform you in a vampire");
+
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 5;
+        }
+        public override void SetDefaults()
+        {
+            Item.DefaultToFood(22, 22, ModContent.BuffType<Vampirism>(), 1);
+            Item.value = Item.buyPrice(0, 3);
+            Item.rare = ItemRarityID.Red;
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<BloodyPieArtifact>().eyeColor = player.eyeColor;
+            player.GetModPlayer<BloodyPieArtifact>().vampire = true;
+        }
+    }
+
+    public class BloodyPieArtifact : ModPlayer
     {
         public Color eyeColor;
         public bool vampire = false;
@@ -59,7 +84,6 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                 Player.AddBuff(ModContent.BuffType<Vampirism>(), 2);
                 bool ZoneSunHeight = (Player.ZoneOverworldHeight || Player.ZoneSkyHeight);
 
-                //Day and Night buffs
                 if (Main.dayTime)
                 {
                     if (Player.behindBackWall || !ZoneSunHeight)
@@ -83,11 +107,6 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
                         timer = 0;
                     }
                 }
-                //Silver debuffs
-                if (CursedSilver())
-                {
-                    Player.AddBuff(ModContent.BuffType<Silver>(), 2);
-                }
             }
         }
 
@@ -101,13 +120,13 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
         }
         public override void clientClone(ModPlayer clientClone)
         {
-            Vampire clone = clientClone as Vampire;
+            BloodyPieArtifact clone = clientClone as BloodyPieArtifact;
             clone.vampire = vampire;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            Vampire clone = clientPlayer as Vampire;
+            BloodyPieArtifact clone = clientPlayer as BloodyPieArtifact;
 
             if (vampire != clone.vampire)
                 SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
@@ -125,49 +144,5 @@ namespace DevilsWarehouse.Common.Systems.VampireSystem
             eyeColor = tag.Get<Color>("eyeColor");
         }
         #endregion
-        public bool CursedSilver()
-        {
-            for (int i = 0; i < Player.inventory.Length; i++)
-            {
-                switch (Player.inventory[i].type)
-                {
-                    case ItemID.SilverAxe:
-                        return true;
-                    case ItemID.SilverBar:
-                        return true;
-                    case ItemID.SilverBow:
-                        return true;
-                    case ItemID.SilverOre:
-                        return true;
-                    case ItemID.SilverGreaves:
-                        return true;
-                    case ItemID.SilverHelmet:
-                        return true;
-                    case ItemID.SilverPickaxe:
-                        return true;
-                    case ItemID.SilverShortsword:
-                        return true;
-                    case ItemID.SilverWatch:
-                        return true;
-                    case ItemID.SilverBrick:
-                        return true;
-                    case ItemID.SilverBrickWall:
-                        return true;
-                    case ItemID.SilverBullet:
-                        return true;
-                    case ItemID.SilverChainmail:
-                        return true;
-                    case ItemID.SilverChandelier:
-                        return true;
-                    case ItemID.SilverCoin:
-                        return true;
-                    case ItemID.SilverHammer:
-                        return true;
-                    case ItemID.GolfTrophySilver:
-                        return true;
-                }
-            }
-            return false;
-        }
     }
 }

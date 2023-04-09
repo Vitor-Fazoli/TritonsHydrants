@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace DevilsWarehouse.Content.Items.Artifacts
 {
-    public class TideNecklace : Artifact
+    public class SharkHelmet : Artifact
     {
         public override void SetStaticDefaults()
         {

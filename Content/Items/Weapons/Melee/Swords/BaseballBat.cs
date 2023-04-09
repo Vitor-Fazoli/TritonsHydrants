@@ -31,10 +31,11 @@ namespace DevilsWarehouse.Content.Items.Weapons.Melee.Swords
         }
         public override void OnConsumeMana(Player player, int manaConsumed)
         {
+
             for (int i = 0; i < Main.projectile.Length; i++)
             {
                 Projectile proj = Main.projectile[i];
-                if (proj.active && proj.hostile && !proj.friendly && proj.getRect().Intersects(Item.getRect()))
+                if (proj.active && proj.hostile && Item.getRect().Intersects(proj.getRect()))
                 {
                     proj.velocity = -proj.velocity;
                     proj.friendly = true;

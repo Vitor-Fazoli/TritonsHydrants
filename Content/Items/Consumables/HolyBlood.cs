@@ -26,8 +26,8 @@ namespace DevilsWarehouse.Content.Items.Consumables
         }
         public override void OnConsumeItem(Player player)
         {
-            player.eyeColor = player.GetModPlayer<Vampire>().eyeColor;
-            player.GetModPlayer<Vampire>().vampire = false;
+            player.eyeColor = player.GetModPlayer<BloodyPieArtifact>().eyeColor;
+            player.GetModPlayer<BloodyPieArtifact>().vampire = false;
         }
     }
 }
