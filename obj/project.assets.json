@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {
+    "net8.0": {
       "tModLoader.CodeAssist/0.1.5": {
         "type": "package"
       }
@@ -26,33 +26,28 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net6.0": [
+    "net8.0": [
       "tModLoader.CodeAssist >= 0.1.*"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\vhfaz\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\vhfaz\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
-      "projectName": "DevilsWarehouse",
-      "projectPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+      "projectUniqueName": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\MagicTridents.csproj",
+      "projectName": "MagicTridents",
+      "projectPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\MagicTridents.csproj",
       "packagesPath": "C:\\Users\\vhfaz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\obj\\",
+      "outputPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
         "C:\\Users\\vhfaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net6.0"
+        "net8.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -60,8 +55,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -69,11 +64,16 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
-      "net6.0": {
-        "targetAlias": "net6.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "tModLoader.CodeAssist": {
             "target": "Package",
@@ -96,7 +96,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

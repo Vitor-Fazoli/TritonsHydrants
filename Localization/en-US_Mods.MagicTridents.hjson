@@ -1,0 +1,49 @@
+Items: {
+	IronTrident: {
+		DisplayName: Iron Trident
+		Tooltip: ""
+	}
+
+	LeadTrident: {
+		DisplayName: Lead Trident
+		Tooltip: ""
+	}
+
+	HallowedTrident: {
+		DisplayName: Hallowed Trident
+		Tooltip: ""
+	}
+
+	TerraFork: {
+		DisplayName: Terra Fork
+		Tooltip: ""
+	}
+
+	UnholyTrident: {
+		DisplayName: Unholy Trident
+		Tooltip: ""
+	}
+
+	NeptuneGift: {
+		DisplayName: Neptune Gift
+		Tooltip: Every 10 seconds, the color of the water changes.
+	}
+
+	Galacticite: {
+		DisplayName: Galacticite
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	AquaticArrow.DisplayName: Aquatic Arrow
+	IronTridentProj.DisplayName: Iron Trident Proj
+	HallowedTridentProj.DisplayName: Hallowed Trident Proj
+	LeadTridentProj.DisplayName: Lead Trident Proj
+	TerraForkProj.DisplayName: Terra Fork Proj
+	UnholyTridentProj.DisplayName: Unholy Trident Proj
+	NeptuneFragment.DisplayName: Neptune Fragment
+	GalacticiteProj.DisplayName: Galacticite Proj
+	MoltenTridentProj.DisplayName: Molten Trident Proj
+	NebulaSpikeProj.DisplayName: Nebula Spike Proj
+}

@@ -1,4 +1,5 @@
-﻿using DevilsWarehouse.Content.Dusts;
+﻿using MagicTridents.Content.Dusts;
+using MagicTridents.Utils;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Projectiles
+namespace MagicTridents.Content.Projectiles
 {
     public class AquaticArrow : ModProjectile
     {
@@ -24,24 +25,45 @@ namespace DevilsWarehouse.Content.Projectiles
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
             Projectile.timeLeft = 600;
+            Projectile.netUpdate = true;
+            Projectile.ignoreWater = true;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void OnSpawn(IEntitySource source)
         {
+            switch (Main.waterStyle)
+            {
+                case Water.Hallow:
+                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Main.player[Projectile.owner].Center + new Vector2(-50, 0), new Vector2(-10, 0), ModContent.ProjectileType<NeptuneFragment>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Main.player[Projectile.owner].Center + new Vector2(+50, 0), new Vector2(+10, 0), ModContent.ProjectileType<NeptuneFragment>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                    break;
+                case Water.Jungle:
+                    Projectile.tileCollide = true;
+                    Projectile.penetrate = 3;
+                    break;
+                case Water.Snow:
+                    Projectile.tileCollide = false;
+                    Projectile.aiStyle = ProjAIStyleID.Boomerang;
+                    Projectile.timeLeft = 1200;
+                    Projectile.penetrate = 200;
+                    break;
+                case Water.Desert:
+                    Projectile.tileCollide = false;
+                    break;
+                case Water.Desert2:
+                    Projectile.tileCollide = false;
+                    break;
+            }
+
             Projectile.ai[0] = 0;
             Projectile.ai[1] = 0;
             happen = false;
         }
         public override void AI()
         {
-            if (Projectile.velocity == Vector2.Zero)
-            {
-                Projectile.Kill();
-            }
-
-            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterPower>(), Vector2.Zero);
+            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
             Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
             Projectile.rotation = Projectile.velocity.ToRotation();
 
@@ -64,69 +86,47 @@ namespace DevilsWarehouse.Content.Projectiles
 
             if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
             {
-                Projectile.soundDelay = 60;
+                Projectile.soundDelay = Helper.Ticks(1);
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
 
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
                 d.noGravity = true;
 
-                Lighting.AddLight(Projectile.position, d.color.R / 255, d.color.G / 255, d.color.B / 255);
+                Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
             }
         }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player p = Main.player[Projectile.owner];
 
-            if (target.life <= 0 && (Main.waterStyle == Water.Crimsom || Main.waterStyle == Water.BloodMoon))
+            if (target.life <= 0 && (Main.waterStyle is Water.Crimsom || Main.waterStyle is Water.BloodMoon))
             {
                 p.Heal((int)(3 * p.GetDamage(DamageClass.Magic).Multiplicative));
             }
 
-            if (Main.waterStyle == Water.Desert || Main.waterStyle == Water.Desert2)
+            if (Main.waterStyle is Water.Snow)
             {
-                p.AddBuff(BuffID.ManaRegeneration, 180);
-            }
-
-            if (Main.waterStyle == Water.Snow)
-            {
-                target.AddBuff(BuffID.Frostburn, 180);
+                target.AddBuff(BuffID.Frozen, Helper.Ticks(2));
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Main.waterStyle == Water.Hallow)
+            if (Main.waterStyle is Water.Jungle)
             {
-                Projectile.penetrate--;
-                if (Projectile.penetrate <= 0)
-                {
-                    Projectile.Kill();
-                }
-                else
-                {
-                    Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
-                    SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
-
-                    if (Math.Abs(Projectile.velocity.X - oldVelocity.X) > float.Epsilon)
-                    {
-                        Projectile.velocity.X = -oldVelocity.X;
-                    }
-
-                    if (Math.Abs(Projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
-                    {
-                        Projectile.velocity.Y = -oldVelocity.Y;
-                    }
-                }
+                ProjectileExtras.ApplyBounce(this, oldVelocity);
+                return false;
             }
-            return false;
+
+            return base.OnTileCollide(oldVelocity);
         }
+
         private void HomingProjectile()
         {
             Vector2 move = Vector2.Zero;
@@ -164,14 +164,12 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         private void OnWetProjectile()
         {
-            #region Dust Effect
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
                 d.noGravity = true;
             }
-            #endregion
         }
         private void WaterEffect()
         {
@@ -179,76 +177,20 @@ namespace DevilsWarehouse.Content.Projectiles
 
             double deg = (double)Projectile.ai[0];
             double rad = deg * (Math.PI / 180);
-            double dist = 100;
 
             switch (Main.waterStyle)
             {
-                case Water.Corruption:
-                    if (happen.Equals(false))
-                    {
-                        float numberProjectiles = 2;
-                        float rotation = MathHelper.ToRadians(30);
-
-                        for (int i = 0; i < numberProjectiles; i++)
-                        {
-                            Vector2 perturbedSpeed = Projectile.velocity.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * .2f; // Watch out for dividing by 0 if there is only 1 projectile.
-                            Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, perturbedSpeed * 3, ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        }
-                        happen = true;
-                    }
-                    break;
                 case Water.Jungle:
-                    Projectile.ai[0]++;
-                    Projectile.rotation += 0.5f;
-
-                    if (happen == false)
-                    {
-                        happen = true;
-                    }
-                    if (Projectile.ai[0] >= 60)
-                    {
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, 5 ).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(0, -5).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(5, 0).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center, new Vector2(-5, 0).RotatedByRandom(30), ModContent.ProjectileType<AquaticShard>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                        Projectile.ai[0] = 0;
-                        Projectile.Kill();
-                    }
-                    break;
-                case Water.Hallow:
-                    if (happen == false)
-                    {
-                        Projectile.penetrate = 3;
-                        happen = true;
-                    }
-                    break;
-                case Water.Snow:
+                    Projectile.velocity.Y = ProjectileExtras.ApplyGravity(Projectile.velocity.Y);
                     break;
                 case Water.Desert:
-                    break;
-                case Water.Cavern:
+                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
                     Projectile.tileCollide = false;
-
-                    Projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
-                    Projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
-
-                    Projectile.ai[0] += 2f;
-                    break;
-                case Water.Cavern2:
-                    Projectile.tileCollide = false;
-
-                    Projectile.position.X = p.Center.X - (int)(Math.Cos(rad) * dist) - Projectile.width / 2;
-                    Projectile.position.Y = p.Center.Y - (int)(Math.Sin(rad) * dist) - Projectile.height / 2;
-
-                    Projectile.ai[0] += 2f;
-                    break;
-                case Water.BloodMoon:
-                    break;
-                case Water.Crimsom:
                     break;
                 case Water.Desert2:
-                    break;
-                default:
+
+                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
+                    Projectile.tileCollide = false;
                     break;
             }
         }

@@ -1,5 +1,4 @@
-﻿using DevilsWarehouse.Content.Items.Materials;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 namespace DevilsWarehouse.Common
@@ -8,12 +7,12 @@ namespace DevilsWarehouse.Common
     {
         public override void AddRecipes()
         {
-            #region AdamantiteBar
-            Recipe recipe = Recipe.Create(ItemID.AdamantiteBar);
-            recipe.AddIngredient(ModContent.ItemType<AdamantiteFragment>());
-            recipe.AddIngredient(ItemID.Meteorite, 2);
-            recipe.AddTile(TileID.AdamantiteForge);
-            recipe.Register();
+            #region template
+           // Recipe recipe = Recipe.Create(ItemID.AdamantiteBar);
+           // recipe.AddIngredient(ModContent.ItemType<AdamantiteFragment>());
+           // recipe.AddIngredient(ItemID.Meteorite, 2);
+           // recipe.AddTile(TileID.AdamantiteForge);
+           // recipe.Register();
             #endregion
         }
     }
