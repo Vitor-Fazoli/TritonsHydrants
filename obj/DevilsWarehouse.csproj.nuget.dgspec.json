@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj": {}
+    "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\DevilsWarehouse.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj": {
+    "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\DevilsWarehouse.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+        "projectUniqueName": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\DevilsWarehouse.csproj",
         "projectName": "DevilsWarehouse",
-        "projectPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\DevilsWarehouse.csproj",
+        "projectPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\DevilsWarehouse.csproj",
         "packagesPath": "C:\\Users\\vhfaz\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\DevilsWarehouse\\obj\\",
+        "outputPath": "C:\\Users\\vhfaz\\OneDrive\\Documentos\\My Games\\Terraria\\tModLoader\\ModSources\\MagicTridents\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\vhfaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +35,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -61,12 +62,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.30, 6.0.30]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
