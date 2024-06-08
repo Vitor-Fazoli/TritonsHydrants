@@ -1,10 +1,9 @@
-﻿using DevilsWarehouse.Content.Dusts;
+﻿using MagicTridents.Content.Dusts;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Projectiles
+namespace MagicTridents.Content.Projectiles
 {
     public class AquaticShard : ModProjectile
     {
@@ -20,12 +19,12 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterPower>(), speed * 5);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
                 d.noGravity = true;
 
                 Lighting.AddLight(Projectile.position, d.color.R / 255, d.color.G / 255, d.color.B / 255);
@@ -33,7 +32,7 @@ namespace DevilsWarehouse.Content.Projectiles
         }
         public override void AI()
         {
-            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterPower>(), Vector2.Zero);
+            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
             Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
             Projectile.rotation = Projectile.velocity.ToRotation();
         }

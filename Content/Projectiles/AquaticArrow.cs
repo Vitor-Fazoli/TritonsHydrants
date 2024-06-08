@@ -26,36 +26,20 @@ namespace MagicTridents.Content.Projectiles
             Projectile.damage = 20;
             Projectile.timeLeft = 600;
             Projectile.netUpdate = true;
-            Projectile.ignoreWater = true;
+            Projectile.velocity *= 2;
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void OnSpawn(IEntitySource source)
         {
-            switch (Main.waterStyle)
+
+                if (Main.waterStyle is Water.Hallow)
             {
-                case Water.Hallow:
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Main.player[Projectile.owner].Center + new Vector2(-50, 0), new Vector2(-10, 0), ModContent.ProjectileType<NeptuneFragment>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Main.player[Projectile.owner].Center + new Vector2(+50, 0), new Vector2(+10, 0), ModContent.ProjectileType<NeptuneFragment>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                    break;
-                case Water.Jungle:
-                    Projectile.tileCollide = true;
-                    Projectile.penetrate = 3;
-                    break;
-                case Water.Snow:
-                    Projectile.tileCollide = false;
-                    Projectile.aiStyle = ProjAIStyleID.Boomerang;
-                    Projectile.timeLeft = 1200;
-                    Projectile.penetrate = 200;
-                    break;
-                case Water.Desert:
-                    Projectile.tileCollide = false;
-                    break;
-                case Water.Desert2:
-                    Projectile.tileCollide = false;
-                    break;
+                Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(-0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
             }
+
 
             Projectile.ai[0] = 0;
             Projectile.ai[1] = 0;
@@ -178,9 +162,14 @@ namespace MagicTridents.Content.Projectiles
             double deg = (double)Projectile.ai[0];
             double rad = deg * (Math.PI / 180);
 
+            float frequency = 0.2f; // Frequência do movimento senoidal
+            float amplitude = 2f; // Amplitude do movimento senoidal
+
             switch (Main.waterStyle)
             {
                 case Water.Jungle:
+                    Projectile.tileCollide = true;
+                    Projectile.penetrate = 3;
                     Projectile.velocity.Y = ProjectileExtras.ApplyGravity(Projectile.velocity.Y);
                     break;
                 case Water.Desert:
@@ -188,9 +177,22 @@ namespace MagicTridents.Content.Projectiles
                     Projectile.tileCollide = false;
                     break;
                 case Water.Desert2:
-
                     ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
                     Projectile.tileCollide = false;
+                    break;
+                case Water.Cavern:
+                    Projectile.tileCollide = false;
+                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                    break;
+                case Water.Cavern2:
+                    Projectile.tileCollide = false;
+                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                    break;
+                case Water.Snow:
+                    Projectile.tileCollide = false;
+                    Projectile.aiStyle = ProjAIStyleID.Boomerang;
+                    Projectile.timeLeft = 1200;
+                    Projectile.penetrate = 200;
                     break;
             }
         }
@@ -201,6 +203,7 @@ namespace MagicTridents.Content.Projectiles
             if (Projectile.ai[1] >= 25)
             {
                 HomingProjectile();
+                Projectile.velocity *= 1.0001f;
             }
         }
     }

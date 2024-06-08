@@ -46,4 +46,5 @@ Projectiles: {
 	GalacticiteProj.DisplayName: Galacticite Proj
 	MoltenTridentProj.DisplayName: Molten Trident Proj
 	NebulaSpikeProj.DisplayName: Nebula Spike Proj
+	AquaticShard.DisplayName: Aquatic Shard
 }

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace DevilsWarehouse.Content.Dusts
+namespace MagicTridents.Content.Dusts
 {
     public class ArcanePowder : ModDust
     {
