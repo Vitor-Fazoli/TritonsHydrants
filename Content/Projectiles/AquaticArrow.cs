@@ -10,6 +10,10 @@ using Terraria.ModLoader;
 
 namespace MagicTridents.Content.Projectiles
 {
+    //TODO: CRIMSOM -> Projétil Rouba vida
+    //TODO: CORRUPTION -> Pensar em algo
+    //TODO: Blood MOON -> Projétil Rouba vida
+
     public class AquaticArrow : ModProjectile
     {
         private bool EnterOnWater = false;
@@ -33,13 +37,16 @@ namespace MagicTridents.Content.Projectiles
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void OnSpawn(IEntitySource source)
         {
-
-                if (Main.waterStyle is Water.Hallow)
+            switch (Main.waterStyle)
             {
-                Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(-0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                case Water.Hallow:
+                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(-0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
+                    break;
+                case Water.Jungle:
+                    Projectile.penetrate = 5;
+                    break;
             }
-
 
             Projectile.ai[0] = 0;
             Projectile.ai[1] = 0;
@@ -86,20 +93,17 @@ namespace MagicTridents.Content.Projectiles
                 Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
             }
         }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player p = Main.player[Projectile.owner];
 
             if (target.life <= 0 && (Main.waterStyle is Water.Crimsom || Main.waterStyle is Water.BloodMoon))
             {
-                p.Heal((int)(3 * p.GetDamage(DamageClass.Magic).Multiplicative));
-            }
-
-            if (Main.waterStyle is Water.Snow)
-            {
-                target.AddBuff(BuffID.Frozen, Helper.Ticks(2));
+                p.Heal(Projectile.damage / 10);
             }
         }
+
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             if (Main.waterStyle is Water.Jungle)
@@ -159,9 +163,6 @@ namespace MagicTridents.Content.Projectiles
         {
             Player p = Main.player[Projectile.owner];
 
-            double deg = (double)Projectile.ai[0];
-            double rad = deg * (Math.PI / 180);
-
             float frequency = 0.2f; // Frequência do movimento senoidal
             float amplitude = 2f; // Amplitude do movimento senoidal
 
@@ -169,7 +170,6 @@ namespace MagicTridents.Content.Projectiles
             {
                 case Water.Jungle:
                     Projectile.tileCollide = true;
-                    Projectile.penetrate = 3;
                     Projectile.velocity.Y = ProjectileExtras.ApplyGravity(Projectile.velocity.Y);
                     break;
                 case Water.Desert:

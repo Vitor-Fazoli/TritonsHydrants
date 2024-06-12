@@ -1,12 +1,12 @@
-using MagicTridents.Content.Projectiles;
-using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
+using Terraria;
 using Terraria.ModLoader;
+using MagicTridents.Content.Projectiles;
+using Terraria.Audio;
 
 namespace MagicTridents.Content.Items.Weapons
 {
-    public class IronTrident : ModItem
+    public class NebulaSpike : ModItem
     {
         public override void SetDefaults()
         {
@@ -16,7 +16,7 @@ namespace MagicTridents.Content.Items.Weapons
             Item.mana = 5;
             Item.rare = ItemRarityID.White;
             Item.value = Item.sellPrice(silver: 10);
-            Item.shoot = ModContent.ProjectileType<IronTridentProj>();
+            Item.shoot = ModContent.ProjectileType<NebulaSpikeProj>();
             Item.useAnimation = 31;
             Item.useTime = 31;
 
@@ -33,15 +33,6 @@ namespace MagicTridents.Content.Items.Weapons
             Item.noUseGraphic = true;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item71;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.IronBar, 7)
-                .AddIngredient(ItemID.Wood, 15)
-                .AddTile(TileID.Anvils)
-                .Register();
         }
 
         public override bool CanUseItem(Player player)
