@@ -33,6 +33,11 @@ Items: {
 		DisplayName: Galacticite
 		Tooltip: ""
 	}
+
+	NebulaSpike: {
+		DisplayName: Nebula Spike
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
