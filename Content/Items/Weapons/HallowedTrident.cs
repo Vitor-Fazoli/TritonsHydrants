@@ -1,9 +1,9 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using MagicTridents.Content.Projectiles;
+using NeptunesTreasure.Content.Projectiles;
 
-namespace MagicTridents.Content.Items.Weapons
+namespace NeptunesTreasure.Content.Items.Weapons
 {
     public class HallowedTrident : ModItem
     {

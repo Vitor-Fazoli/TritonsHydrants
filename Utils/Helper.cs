@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 
-namespace MagicTridents.Utils
+namespace NeptunesTreasure.Utils
 {
     public static class Helper
     {

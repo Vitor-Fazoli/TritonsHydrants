@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Utils
+namespace NeptunesTreasure.Utils
 {
     /// <summary>
     /// This class is used to facilitate the usage of projectiles.
@@ -27,7 +27,7 @@ namespace MagicTridents.Utils
             }
             else
             {
-               return velocityY += power;
+                return velocityY += power;
             }
         }
 

@@ -1,11 +1,6 @@
-﻿using MagicTridents.Content.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using Terraria.ModLoader;
-using Terraria;
-using System;
+﻿using NeptunesTreasure.Content.Projectiles;
 
-namespace MagicTridents.Common
+namespace NeptunesTreasure.Common
 {
     /// <summary>
     /// 
@@ -63,7 +58,7 @@ namespace MagicTridents.Common
                 // Spawn aquatic arrow when spear reach your max distance
                 if (isHappen is false)
                 {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 4f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage, 
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 4f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage,
                         Projectile.knockBack, Projectile.owner);
 
                     isHappen = true;

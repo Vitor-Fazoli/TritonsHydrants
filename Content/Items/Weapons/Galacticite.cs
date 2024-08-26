@@ -1,10 +1,10 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using MagicTridents.Content.Projectiles;
+using NeptunesTreasure.Content.Projectiles;
 using Terraria.Audio;
 
-namespace MagicTridents.Content.Items.Weapons
+namespace NeptunesTreasure.Content.Items.Weapons
 {
     public class Galacticite : ModItem
     {

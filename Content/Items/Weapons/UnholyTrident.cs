@@ -2,7 +2,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Content.Items.Weapons
+namespace NeptunesTreasure.Content.Items.Weapons
 {
     public class UnholyTrident : ModItem
     {

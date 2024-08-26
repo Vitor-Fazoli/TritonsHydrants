@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
-using MagicTridents.Content.Projectiles;
+using NeptunesTreasure.Content.Projectiles;
 
-namespace MagicTridents.Common
+namespace NeptunesTreasure.Common
 {
     /// <summary>
     /// 

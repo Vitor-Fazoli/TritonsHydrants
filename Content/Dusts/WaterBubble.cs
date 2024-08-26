@@ -1,8 +1,8 @@
-﻿using MagicTridents.Utils;
+﻿using NeptunesTreasure.Utils;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Content.Dusts
+namespace NeptunesTreasure.Content.Dusts
 {
     public class WaterBubble : ModDust
     {

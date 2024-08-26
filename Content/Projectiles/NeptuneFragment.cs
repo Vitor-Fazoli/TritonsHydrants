@@ -1,11 +1,11 @@
-﻿using MagicTridents.Content.Dusts;
-using MagicTridents.Utils;
+﻿using NeptunesTreasure.Content.Dusts;
+using NeptunesTreasure.Utils;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Content.Projectiles
+namespace NeptunesTreasure.Content.Projectiles
 {
     public class NeptuneFragment : ModProjectile
     {

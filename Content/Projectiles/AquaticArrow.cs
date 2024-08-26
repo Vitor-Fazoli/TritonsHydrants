@@ -1,5 +1,5 @@
-﻿using MagicTridents.Content.Dusts;
-using MagicTridents.Utils;
+﻿using NeptunesTreasure.Content.Dusts;
+using NeptunesTreasure.Utils;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Content.Projectiles
+namespace NeptunesTreasure.Content.Projectiles
 {
     //TODO: CRIMSOM -> Projétil Rouba vida
     //TODO: CORRUPTION -> Pensar em algo

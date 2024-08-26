@@ -1,9 +1,9 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using MagicTridents.Common;
+using NeptunesTreasure.Common;
 
-namespace MagicTridents.Content.Projectiles
+namespace NeptunesTreasure.Content.Projectiles
 {
     /// <summary>
     /// 
@@ -13,7 +13,7 @@ namespace MagicTridents.Content.Projectiles
         protected override float HoldoutRangeMax => 120f;
         public override void SetDefaults()
         {
-            
+
             Projectile.width = 15;
             Projectile.height = 15;
             Projectile.aiStyle = ProjAIStyleID.Spear;

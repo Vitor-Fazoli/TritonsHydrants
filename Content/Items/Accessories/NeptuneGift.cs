@@ -1,11 +1,11 @@
-﻿using MagicTridents.Content.Dusts;
-using MagicTridents.Utils;
+﻿using NeptunesTreasure.Content.Dusts;
+using NeptunesTreasure.Utils;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MagicTridents.Content.Items.Accessories
+namespace NeptunesTreasure.Content.Items.Accessories
 {
     /// <summary>
     /// Represents the Neptune Gift accessory item.
@@ -45,7 +45,7 @@ namespace MagicTridents.Content.Items.Accessories
         public bool hasNeptuneGift = false;
         private float timer;
         private int waterType = Utils.Water.GetRandomWater();
-        
+
         /// <summary>
         /// Resets the player's effects when the accessory is unequipped.
         /// </summary>
@@ -59,7 +59,7 @@ namespace MagicTridents.Content.Items.Accessories
         /// </summary>
         public override void OnEnterWorld()
         {
-            if(hasNeptuneGift)
+            if (hasNeptuneGift)
             {
                 timer = 0;
             }
