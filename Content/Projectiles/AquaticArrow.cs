@@ -1,5 +1,5 @@
-﻿using NeptunesTreasure.Content.Dusts;
-using NeptunesTreasure.Utils;
+﻿using TritonsHydrants.Content.Dusts;
+using TritonsHydrants.Utils;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Projectiles
+namespace TritonsHydrants.Content.Projectiles
 {
     //TODO: CRIMSOM -> Projétil Rouba vida
     //TODO: CORRUPTION -> Pensar em algo

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 
-namespace NeptunesTreasure.Utils
+namespace TritonsHydrants.Utils
 {
     public static class Helper
     {

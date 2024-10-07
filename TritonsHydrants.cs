@@ -1,11 +1,11 @@
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure
+namespace TritonsHydrants
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class NeptunesTreasure : Mod
+	public class TritonsHydrants : Mod
 	{
 
 	}

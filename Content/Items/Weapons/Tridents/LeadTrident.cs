@@ -1,24 +1,24 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 using Terraria.Audio;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
-    public class Galacticite : ModItem
+    public class LeadTrident : ModItem
     {
         public override void SetDefaults()
         {
             // Item settings
-            Item.damage = 200;
-            Item.knockBack = 4.5f;
-            Item.mana = 20;
+            Item.damage = 12;
+            Item.knockBack = 6.5f;
+            Item.mana = 5;
             Item.rare = ItemRarityID.White;
-            Item.value = Item.sellPrice(gold: 23);
-            Item.shoot = ModContent.ProjectileType<GalacticiteProj>();
-            Item.useAnimation = 11;
-            Item.useTime = 11;
+            Item.value = Item.sellPrice(silver: 10);
+            Item.shoot = ModContent.ProjectileType<LeadTridentProj>();
+            Item.useAnimation = 31;
+            Item.useTime = 31;
 
             // Texture settings
             Item.width = 44;
@@ -26,7 +26,7 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.scale = 1f;
 
             // Default Stats
-            Item.shootSpeed = 11f;
+            Item.shootSpeed = 9f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Magic;
             Item.noMelee = true;
@@ -34,15 +34,14 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item71;
         }
+
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.IronBar, 7)
-                .AddIngredient(ItemID.Wood, 15)
-                .AddTile(TileID.Anvils)
-                .Register();
+            //CreateRecipe()
+            //    .AddIngredient<AuraliteOre>(10)
+            //    .AddTile(TileID.Anvils)
+            //    .Register();
         }
-
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;

@@ -1,11 +1,15 @@
-﻿using NeptunesTreasure.Content.Projectiles;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
+using TritonsHydrants.Content.Projectiles;
 
-namespace NeptunesTreasure.Common
+namespace TritonsHydrants.Common
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class MagicTridentProj : ModProjectile
+    public abstract class TridentBase : ModProjectile
     {
         private Vector2 MousePos = Vector2.Zero;
 

@@ -1,3 +1,3 @@
-displayName = Neptune's Treasure
+displayName = Tritons & Hydrants
 author = Oilmaker
 version = 0.1

@@ -1,32 +1,37 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using TritonsHydrants.Content.Projectiles;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
-    public class UnholyTrident : ModItem
+    public class HallowedTrident : ModItem
     {
         public override void SetDefaults()
         {
-            Item.damage = 40;
-            Item.useStyle = ItemUseStyleID.Thrust;
-            Item.useAnimation = 18;
-            Item.useTime = 30;
-            Item.shootSpeed = 3.7f;
+            // Item settings
+            Item.damage = 12;
             Item.knockBack = 6.5f;
+            Item.mana = 5;
+            Item.rare = ItemRarityID.White;
+            Item.value = Item.sellPrice(silver: 10);
+            Item.shoot = ModContent.ProjectileType<HallowedTridentProj>();
+            Item.useAnimation = 31;
+            Item.useTime = 31;
+
+            // Texture settings
             Item.width = 44;
             Item.height = 44;
             Item.scale = 1f;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = Item.sellPrice(silver: 10);
 
+            // Default Stats
+            Item.shootSpeed = 9f;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.DamageType = DamageClass.Magic;
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
-            Item.UseSound = SoundID.Item1;
-            Item.mana = 10;
-            Item.shoot = ModContent.ProjectileType<Projectiles.UnholyTridentProj>();
+            Item.UseSound = SoundID.Item71;
         }
 
         public override void AddRecipes()

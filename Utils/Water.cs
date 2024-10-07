@@ -1,6 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
-namespace NeptunesTreasure.Utils
+namespace TritonsHydrants.Utils
 {
     /// <summary>
     /// This class is used to facilitate the usage of water.

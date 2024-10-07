@@ -1,12 +1,12 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 using Terraria.Audio;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
-    public class LeadTrident : ModItem
+    public class NebulaSpike : ModItem
     {
         public override void SetDefaults()
         {
@@ -16,7 +16,7 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.mana = 5;
             Item.rare = ItemRarityID.White;
             Item.value = Item.sellPrice(silver: 10);
-            Item.shoot = ModContent.ProjectileType<LeadTridentProj>();
+            Item.shoot = ModContent.ProjectileType<NebulaSpikeProj>();
             Item.useAnimation = 31;
             Item.useTime = 31;
 
@@ -35,13 +35,6 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.UseSound = SoundID.Item71;
         }
 
-        public override void AddRecipes()
-        {
-            //CreateRecipe()
-            //    .AddIngredient<AuraliteOre>(10)
-            //    .AddTile(TileID.Anvils)
-            //    .Register();
-        }
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;

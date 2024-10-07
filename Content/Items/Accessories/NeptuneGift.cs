@@ -1,11 +1,11 @@
-﻿using NeptunesTreasure.Content.Dusts;
-using NeptunesTreasure.Utils;
+﻿using TritonsHydrants.Content.Dusts;
+using TritonsHydrants.Utils;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Items.Accessories
+namespace TritonsHydrants.Content.Items.Accessories
 {
     /// <summary>
     /// Represents the Neptune Gift accessory item.

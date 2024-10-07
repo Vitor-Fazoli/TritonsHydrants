@@ -1,9 +1,9 @@
-﻿using NeptunesTreasure.Content.Dusts;
+﻿using TritonsHydrants.Content.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Projectiles
+namespace TritonsHydrants.Content.Projectiles
 {
     public class AquaticShard : ModProjectile
     {

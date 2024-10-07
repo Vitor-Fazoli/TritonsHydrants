@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Utils
+namespace TritonsHydrants.Utils
 {
     /// <summary>
     /// This class is used to facilitate the usage of projectiles.

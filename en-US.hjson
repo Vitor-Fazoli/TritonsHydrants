@@ -1,0 +1,64 @@
+Mods: {
+	TritonsHydrants: {
+		Items: {
+			NeptuneGift: {
+				DisplayName: Neptune Gift
+				Tooltip: ""
+			}
+
+			Galacticite: {
+				DisplayName: Galacticite
+				Tooltip: ""
+			}
+
+			HallowedTrident: {
+				DisplayName: Hallowed Trident
+				Tooltip: ""
+			}
+
+			IronTrident: {
+				DisplayName: Iron Trident
+				Tooltip: ""
+			}
+
+			LeadTrident: {
+				DisplayName: Lead Trident
+				Tooltip: ""
+			}
+
+			NebulaSpike: {
+				DisplayName: Nebula Spike
+				Tooltip: ""
+			}
+
+			TerraFork: {
+				DisplayName: Terra Fork
+				Tooltip: ""
+			}
+
+			UnholyTrident: {
+				DisplayName: Unholy Trident
+				Tooltip: ""
+			}
+
+			RubberHose: {
+				DisplayName: Rubber Hose
+				Tooltip: ""
+			}
+		}
+
+		Projectiles: {
+			AquaticArrow.DisplayName: Aquatic Arrow
+			AquaticShard.DisplayName: Aquatic Shard
+			GalacticiteProj.DisplayName: Galacticite Proj
+			HallowedTridentProj.DisplayName: Hallowed Trident Proj
+			IronTridentProj.DisplayName: Iron Trident Proj
+			LeadTridentProj.DisplayName: Lead Trident Proj
+			MoltenTridentProj.DisplayName: Molten Trident Proj
+			NebulaSpikeProj.DisplayName: Nebula Spike Proj
+			NeptuneFragment.DisplayName: Neptune Fragment
+			TerraForkProj.DisplayName: Terra Fork Proj
+			UnholyTridentProj.DisplayName: Unholy Trident Proj
+		}
+	}
+}

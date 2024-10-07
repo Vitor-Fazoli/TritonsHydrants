@@ -1,10 +1,10 @@
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
     public class IronTrident : ModItem
     {

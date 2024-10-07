@@ -3,9 +3,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 
-namespace NeptunesTreasure.Common
+namespace TritonsHydrants.Common
 {
     /// <summary>
     /// 

@@ -2,9 +2,9 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
-    public class TerraFork : ModItem
+    public class UnholyTrident : ModItem
     {
         public override void SetDefaults()
         {
@@ -26,17 +26,8 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
             Item.mana = 10;
-            Item.shoot = ModContent.ProjectileType<Projectiles.TerraForkProj>();
+            Item.shoot = ModContent.ProjectileType<Projectiles.UnholyTridentProj>();
         }
-
-        public override void AddRecipes()
-        {
-            //CreateRecipe()
-            //    .AddIngredient<AuraliteOre>(10)
-            //    .AddTile(TileID.Anvils)
-            //    .Register();
-        }
-
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;

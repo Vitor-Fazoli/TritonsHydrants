@@ -1,14 +1,14 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using NeptunesTreasure.Common;
+using TritonsHydrants.Common;
 
-namespace NeptunesTreasure.Content.Projectiles
+namespace TritonsHydrants.Content.Projectiles
 {
     /// <summary>
     /// 
     /// </summary>
-    public class LeadTridentProj : MagicTridentProj
+    public class LeadTridentProj : TridentBase
     {
         protected override float HoldoutRangeMax => 120f;
         public override void SetDefaults()
