@@ -1,5 +1,7 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Hoses
 {
@@ -7,27 +9,28 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
     {
         public override void SetDefaults()
         {
-            // Item settings
-            Item.damage = 10;
-            Item.knockBack = 4.5f;
-            Item.rare = ItemRarityID.White;
-            //Item.value = Item.sellPrice(silver: 23);
-            //Item.shoot = ModContent.ProjectileType<RubberHoseProj>();
-            Item.useAnimation = 11;
-            Item.useTime = 11;
-
-            // Texture settings
-            Item.width = 44;
-            Item.height = 44;
-            Item.scale = 1f;
-
-            // Default Stats
-            Item.shootSpeed = 11f;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.DamageType = DamageClass.Magic;
-            Item.noMelee = true;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.knockBack = 6.75f;
+            Item.width = 30;
+            Item.height = 10;
+            Item.damage = 32;
+            Item.crit = 7;
+            Item.scale = 1.1f;
             Item.noUseGraphic = true;
-            Item.autoReuse = true;
+            Item.shoot = ModContent.ProjectileType<HoseBase>();
+            Item.shootSpeed = 12f;
+            Item.UseSound = SoundID.Item1;
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(gold: 2, silver: 50);
+            Item.DamageType = DamageClass.MeleeNoSpeed;
+            Item.channel = true;
+            Item.noMelee = true;
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return player.ownedProjectileCounts[Item.shoot] < 1;
         }
         public override void AddRecipes()
         {

@@ -1,5 +1,5 @@
-using Terraria.ID;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents
@@ -8,7 +8,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Tridents
     {
         public override void SetDefaults()
         {
-            Item.damage = 40;
+            Item.damage = 38;
             Item.useStyle = ItemUseStyleID.Thrust;
             Item.useAnimation = 18;
             Item.useTime = 30;

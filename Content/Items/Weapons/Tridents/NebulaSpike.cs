@@ -1,8 +1,8 @@
-using Terraria.ID;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Projectiles;
-using Terraria.Audio;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents
 {
@@ -11,7 +11,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Tridents
         public override void SetDefaults()
         {
             // Item settings
-            Item.damage = 12;
+            Item.damage = 116;
             Item.knockBack = 6.5f;
             Item.mana = 5;
             Item.rare = ItemRarityID.White;

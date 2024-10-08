@@ -1,19 +1,14 @@
-﻿using TritonsHydrants.Content.Dusts;
-using TritonsHydrants.Utils;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TritonsHydrants.Content.Dusts;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Projectiles
 {
-    //TODO: CRIMSOM -> Projétil Rouba vida
-    //TODO: CORRUPTION -> Pensar em algo
-    //TODO: Blood MOON -> Projétil Rouba vida
-
     public class AquaticArrow : ModProjectile
     {
         private bool EnterOnWater = false;
@@ -22,41 +17,36 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 4;
-            Projectile.height = 4;
+            Projectile.width = 26;
+            Projectile.height = 26;
             Projectile.friendly = true;
             Projectile.light = 1f;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 100;
             Projectile.netUpdate = true;
             Projectile.velocity *= 2;
         }
-        public override Color? GetAlpha(Color lightColor) => Color.White;
 
-        //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
-        public override void OnSpawn(IEntitySource source)
+        public override void SetStaticDefaults()
         {
-            switch (Main.waterStyle)
-            {
-                case Water.Hallow:
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(-0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                    break;
-                case Water.Jungle:
-                    Projectile.penetrate = 5;
-                    break;
-            }
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
 
-            Projectile.ai[0] = 0;
-            Projectile.ai[1] = 0;
-            happen = false;
+            ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
         }
+
+        public override Color? GetAlpha(Color lightColor) => Water.GetWaterColor().MultiplyRGBA(Color.White);
+
         public override void AI()
         {
-            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45);
+
+            Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), Vector2.Zero);
+            dust.color = Water.GetWaterColor();
+
             Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
-            Projectile.rotation = Projectile.velocity.ToRotation();
+
 
             WaterEffect();
 
@@ -84,35 +74,14 @@ namespace TritonsHydrants.Content.Projectiles
         }
         public override void OnKill(int timeLeft)
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 25; i++)
             {
-                Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
-                d.noGravity = true;
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), Main.rand.NextVector2Circular(2, 2));
+                dust.color = Water.GetWaterColor();
+                dust.noGravity = true;
 
                 Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
             }
-        }
-
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Player p = Main.player[Projectile.owner];
-
-            if (target.life <= 0 && (Main.waterStyle is Water.Crimsom || Main.waterStyle is Water.BloodMoon))
-            {
-                p.Heal(Projectile.damage / 10);
-            }
-        }
-
-        public override bool OnTileCollide(Vector2 oldVelocity)
-        {
-            if (Main.waterStyle is Water.Jungle)
-            {
-                ProjectileExtras.ApplyBounce(this, oldVelocity);
-                return false;
-            }
-
-            return base.OnTileCollide(oldVelocity);
         }
 
         private void HomingProjectile()
@@ -142,6 +111,7 @@ namespace TritonsHydrants.Content.Projectiles
                 AdjustMagnitude(ref Projectile.velocity);
             }
         }
+
         private static void AdjustMagnitude(ref Vector2 vector)
         {
             float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
@@ -150,52 +120,41 @@ namespace TritonsHydrants.Content.Projectiles
                 vector *= 6f / magnitude;
             }
         }
+
         private void OnWetProjectile()
         {
             for (int i = 0; i < 40; i++)
             {
                 Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), speed * 5);
                 d.noGravity = true;
             }
         }
+
         private void WaterEffect()
         {
             Player p = Main.player[Projectile.owner];
 
-            float frequency = 0.2f; // Frequência do movimento senoidal
-            float amplitude = 2f; // Amplitude do movimento senoidal
-
             switch (Main.waterStyle)
             {
                 case Water.Jungle:
-                    Projectile.tileCollide = true;
-                    Projectile.velocity.Y = ProjectileExtras.ApplyGravity(Projectile.velocity.Y);
                     break;
-                case Water.Desert:
-                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
-                    Projectile.tileCollide = false;
+                case Water.Desert or Water.Desert2:
                     break;
-                case Water.Desert2:
-                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
-                    Projectile.tileCollide = false;
+                case Water.Cavern or Water.Cavern2:
                     break;
-                case Water.Cavern:
-                    Projectile.tileCollide = false;
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                case Water.BloodMoon or Water.Crimsom:
                     break;
-                case Water.Cavern2:
-                    Projectile.tileCollide = false;
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                case Water.Corruption:
                     break;
                 case Water.Snow:
-                    Projectile.tileCollide = false;
-                    Projectile.aiStyle = ProjAIStyleID.Boomerang;
-                    Projectile.timeLeft = 1200;
-                    Projectile.penetrate = 200;
                     break;
             }
         }
+
+        /// <summary>
+        /// When projectile is on water, it will empower (Upgrade velocity and adding homing)
+        /// </summary>
         private void Empower()
         {
             Projectile.ai[1]++;

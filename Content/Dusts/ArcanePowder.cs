@@ -14,13 +14,12 @@ namespace TritonsHydrants.Content.Dusts
 
         public override bool Update(Dust dust)
         {
-            dust.color = Main.DiscoColor;
             dust.position += dust.velocity;
             dust.rotation += dust.velocity.X;
-            dust.scale -= 0.01f;
-            dust.alpha = 100;
+            dust.scale -= 0.015f;
+            dust.alpha = 50;
 
-            if (dust.scale < 0.5f)
+            if (dust.scale < 0.2f)
             {
                 dust.active = false;
             }

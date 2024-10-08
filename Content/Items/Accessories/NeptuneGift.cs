@@ -1,9 +1,9 @@
-﻿using TritonsHydrants.Content.Dusts;
-using TritonsHydrants.Utils;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TritonsHydrants.Content.Dusts;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Items.Accessories
 {
@@ -80,7 +80,7 @@ namespace TritonsHydrants.Content.Items.Accessories
                     for (int i = 0; i < waterBubbleCount; i++)
                     {
                         Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                        Dust d = Dust.NewDustPerfect(Player.Center, ModContent.DustType<WaterBubble>(), speed * 5);
+                        Dust d = Dust.NewDustPerfect(Player.Center, ModContent.DustType<ArcanePowder>(), speed * 5);
                         d.noGravity = true;
 
                         Lighting.AddLight(Player.position, Water.GetWaterColor().ToVector3());

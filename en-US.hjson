@@ -59,6 +59,8 @@ Mods: {
 			NeptuneFragment.DisplayName: Neptune Fragment
 			TerraForkProj.DisplayName: Terra Fork Proj
 			UnholyTridentProj.DisplayName: Unholy Trident Proj
+			HoseBase.DisplayName: Hose Base
+			GallonBase.DisplayName: Gallon Base
 		}
 	}
 }

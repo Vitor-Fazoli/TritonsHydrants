@@ -1,79 +1,50 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
-using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    public abstract class HoseBase : ModProjectile
+    public class HoseBase : ModProjectile
     {
-        private Vector2 MousePos = Vector2.Zero;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual float HoldoutRangeMin => 24f;
-
-        /// <summary>
-        /// 
-        /// </summary>
-		protected virtual float HoldoutRangeMax => 96f;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual float DistanceSpawnProj => 100;
-
-        /// <summary>
-        /// this bool makes the projectile happen one time
-        /// </summary>
-        private bool isHappen = false;
-
-        public override void OnSpawn(IEntitySource source)
+        public override void SetDefaults()
         {
-            MousePos = Main.MouseWorld;
+            Projectile.netImportant = true; // This ensures that the projectile is synced when other players join the world.
+            Projectile.width = 24; // The width of your projectile
+            Projectile.height = 24; // The height of your projectile
+            Projectile.friendly = true; // Deals damage to enemies
+            Projectile.penetrate = -1; // Infinite pierce
+            Projectile.DamageType = DamageClass.Melee; // Deals melee damage
+            Projectile.usesLocalNPCImmunity = true; // Used for hit cooldown changes in the ai hook
+            Projectile.localNPCHitCooldown = 10; // This facilitates custom hit cooldown logic
         }
+
+        private enum AIState
+        {
+            WaterCannon,
+            WaterLance
+        }
+
+        private AIState CurrentAIState
+        {
+            get => (AIState)Projectile.ai[0];
+            set => Projectile.ai[0] = (float)value;
+        }
+
+        public ref float StateTimer => ref Projectile.ai[1];
+        public ref float CollisionCounter => ref Projectile.localAI[0];
+        public ref float SpinningStateTimer => ref Projectile.localAI[1];
 
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            int duration = player.itemAnimationMax;
-
-            player.heldProj = Projectile.whoAmI;
-
-            if (Projectile.timeLeft > duration)
+            switch (CurrentAIState)
             {
-                Projectile.timeLeft = duration;
+                case AIState.WaterCannon:
+
+                    break;
+                case AIState.WaterLance:
+
+                    break;
             }
-
-            Projectile.velocity = Vector2.Normalize(Projectile.velocity);
-
-            float halfDuration = duration * 0.5f;
-            float progress;
-
-            if (Projectile.timeLeft < halfDuration)
-            {
-                progress = Projectile.timeLeft / halfDuration;
-
-                // Spawn aquatic arrow when spear reach your max distance
-                if (isHappen is false)
-                {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 4f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage,
-                        Projectile.knockBack, Projectile.owner);
-
-                    isHappen = true;
-                }
-            }
-            else
-            {
-                progress = (duration - Projectile.timeLeft) / halfDuration;
-            }
-
-            Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
         }
     }
 }
