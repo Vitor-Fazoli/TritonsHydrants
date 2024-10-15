@@ -1,44 +1,35 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
+using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Content.Items.Weapons.Hoses
 {
     public class RubberHose : ModItem
     {
+        // You can use a vanilla texture for your item by using the format: "Terraria/Item_<Item ID>".
+        public override string Texture => "Terraria/Images/Item_" + ItemID.LastPrism;
+        public static Color OverrideColor = new(122, 173, 255);
+
         public override void SetDefaults()
         {
-            Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useAnimation = 45;
-            Item.useTime = 45;
-            Item.knockBack = 6.75f;
-            Item.width = 30;
-            Item.height = 10;
-            Item.damage = 32;
-            Item.crit = 7;
-            Item.scale = 1.1f;
-            Item.noUseGraphic = true;
-            Item.shoot = ModContent.ProjectileType<HoseBase>();
-            Item.shootSpeed = 12f;
-            Item.UseSound = SoundID.Item1;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(gold: 2, silver: 50);
-            Item.DamageType = DamageClass.MeleeNoSpeed;
-            Item.channel = true;
-            Item.noMelee = true;
+            // Start by using CloneDefaults to clone all the basic item properties from the vanilla Last Prism.
+            // For example, this copies sprite size, use style, sell price, and the item being a magic weapon.
+            Item.CloneDefaults(ItemID.LastPrism);
+            Item.mana = 4;
+            Item.damage = 42;
+            Item.shoot = ModContent.ProjectileType<AquaBurst>();
+            Item.shootSpeed = 30f;
+
+            // Change the item's draw color so that it is visually distinct from the vanilla Last Prism.
+            Item.color = OverrideColor;
         }
+
+        // Because this weapon fires a holdout projectile, it needs to block usage if its projectile already exists.
         public override bool CanUseItem(Player player)
         {
-            return player.ownedProjectileCounts[Item.shoot] < 1;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.IronBar, 3)
-                .AddIngredient(ItemID.Wood, 15)
-                .AddTile(TileID.Anvils)
-                .Register();
+            return player.ownedProjectileCounts[ModContent.ProjectileType<AquaBurst>()] <= 0;
         }
     }
 }

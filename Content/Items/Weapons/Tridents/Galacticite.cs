@@ -1,8 +1,8 @@
-using Terraria.ID;
 using Terraria;
-using Terraria.ModLoader;
-using TritonsHydrants.Content.Projectiles;
 using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
+using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
@@ -37,9 +37,10 @@ public class Galacticite : ModItem
     public override void AddRecipes()
     {
         CreateRecipe()
-            .AddIngredient(ItemID.IronBar, 7)
-            .AddIngredient(ItemID.Wood, 15)
-            .AddTile(TileID.Anvils)
+            .AddIngredient(ModContent.ItemType<NebulaSpike>(), 1)
+            .AddIngredient(ItemID.LunarBar, 10)
+            .AddIngredient(ItemID.FragmentNebula, 8)
+            .AddTile(TileID.LunarCraftingStation)
             .Register();
     }
 
@@ -56,5 +57,25 @@ public class Galacticite : ModItem
         }
 
         return null;
+    }
+}
+
+public class GalacticiteProj : TridentBase
+{
+    protected override float HoldoutRangeMax => 150f;
+    public override void SetDefaults()
+    {
+
+        Projectile.width = 15;
+        Projectile.height = 15;
+        Projectile.aiStyle = ProjAIStyleID.Spear;
+        Projectile.penetrate = -1;
+        Projectile.scale = 1.3f;
+        Projectile.alpha = 0;
+        Projectile.hide = true;
+        Projectile.ownerHitCheck = true;
+        Projectile.DamageType = DamageClass.Magic;
+        Projectile.tileCollide = false;
+        Projectile.friendly = true;
     }
 }

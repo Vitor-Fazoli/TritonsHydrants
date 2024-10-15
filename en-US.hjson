@@ -61,6 +61,9 @@ Mods: {
 			UnholyTridentProj.DisplayName: Unholy Trident Proj
 			HoseBase.DisplayName: Hose Base
 			GallonBase.DisplayName: Gallon Base
+			CanisterBase.DisplayName: Canister Base
+			AquaBurst.DisplayName: Aqua Burst
+			AquaBurstHoldout.DisplayName: Aqua Burst Holdout
 		}
 	}
 }
