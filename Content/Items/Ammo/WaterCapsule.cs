@@ -22,7 +22,6 @@ namespace TritonsHydrants.Content.Items.Ammo
             Item.value = Item.sellPrice(0, 0, 0, 20); 
             Item.rare = ItemRarityID.Yellow; 
             Item.shoot = ModContent.ProjectileType<Projectiles.AquaBurst>();
-
             Item.ammo = Item.type;
         }
         

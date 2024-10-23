@@ -17,6 +17,8 @@
 		<None Remove="Content\Items\Weapons\TerraFork.png" />
 		<None Remove="Content\Items\Weapons\UnholyTrident.png" />
 		<None Remove="Content\Projectiles\AquaticArrow.png" />
+		<None Remove="Content\Buffs\Copper_armor.webp" />
+		<None Remove="Content\Buffs\Growing_cactus.webp" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="Content\Items\Accessories\NeptuneGift.cs" />
