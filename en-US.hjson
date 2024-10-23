@@ -45,6 +45,21 @@ Mods: {
 				DisplayName: Rubber Hose
 				Tooltip: ""
 			}
+
+			BookOfKnowledge: {
+				DisplayName: Book Of Knowledge
+				Tooltip: ""
+			}
+
+			CopperHose: {
+				DisplayName: Copper Hose
+				Tooltip: ""
+			}
+
+			WaterCapsule: {
+				DisplayName: Water Capsule
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -62,8 +77,16 @@ Mods: {
 			HoseBase.DisplayName: Hose Base
 			GallonBase.DisplayName: Gallon Base
 			CanisterBase.DisplayName: Canister Base
+			Canister.DisplayName: Canister
 			AquaBurst.DisplayName: Aqua Burst
 			AquaBurstHoldout.DisplayName: Aqua Burst Holdout
+		}
+
+		Buffs: {
+			HydroCanisterBoost: {
+				DisplayName: Hydro Canister Boost
+				Description: Mods.TritonsHydrants.Buffs.HydroCanisterBoost.Description
+			}
 		}
 	}
 }

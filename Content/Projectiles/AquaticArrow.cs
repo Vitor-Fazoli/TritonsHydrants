@@ -11,10 +11,8 @@ namespace TritonsHydrants.Content.Projectiles
 {
     public class AquaticArrow : ModProjectile
     {
-        private bool EnterOnWater = false;
-        private bool happen = false;
-        private bool active = false;
-
+        private bool _enterOnWater;
+        private bool _active;
         public override void SetDefaults()
         {
             Projectile.width = 26;
@@ -45,22 +43,22 @@ namespace TritonsHydrants.Content.Projectiles
             Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), Vector2.Zero);
             dust.color = Water.GetWaterColor();
 
-            Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
+            Lighting.AddLight(Projectile.position, dust.color.R / 255f, dust.color.G / 255f, dust.color.B / 255f);
 
 
             WaterEffect();
 
             if (Projectile.wet)
             {
-                if (!EnterOnWater)
+                if (!_enterOnWater)
                 {
                     OnWetProjectile();
-                    EnterOnWater = true;
+                    _enterOnWater = true;
                 }
-                active = true;
+                _active = true;
             }
 
-            if (active)
+            if (_active)
             {
                 Empower();
             }
@@ -133,7 +131,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void WaterEffect()
         {
-            Player p = Main.player[Projectile.owner];
+            //Player p = Main.player[Projectile.owner];
 
             switch (Main.waterStyle)
             {

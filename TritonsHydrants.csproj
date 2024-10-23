@@ -18,5 +18,8 @@
 		<None Remove="Content\Items\Weapons\UnholyTrident.png" />
 		<None Remove="Content\Projectiles\AquaticArrow.png" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Compile Remove="Content\Items\Accessories\NeptuneGift.cs" />
+	</ItemGroup>
 
 </Project>

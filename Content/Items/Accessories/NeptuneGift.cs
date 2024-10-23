@@ -33,7 +33,7 @@ namespace TritonsHydrants.Content.Items.Accessories
         /// <param name="hideVisual">Determines if the accessory's visual effects should be hidden.</param>
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<NeptuneGiftPlayer>().hasNeptuneGift = true;
+            player.GetModPlayer<NeptuneGiftPlayer>().HasNeptuneGift = true;
         }
     }
 
@@ -42,16 +42,16 @@ namespace TritonsHydrants.Content.Items.Accessories
     /// </summary>
     internal class NeptuneGiftPlayer : ModPlayer
     {
-        public bool hasNeptuneGift = false;
-        private float timer;
-        private int waterType = Utils.Water.GetRandomWater();
+        public bool HasNeptuneGift = false;
+        private float _timer;
+        private int _waterType = Utils.Water.GetRandomWater();
 
         /// <summary>
         /// Resets the player's effects when the accessory is unequipped.
         /// </summary>
         public override void ResetEffects()
         {
-            hasNeptuneGift = false;
+            HasNeptuneGift = false;
         }
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace TritonsHydrants.Content.Items.Accessories
         /// </summary>
         public override void OnEnterWorld()
         {
-            if (hasNeptuneGift)
+            if (HasNeptuneGift)
             {
-                timer = 0;
+                _timer = 0;
             }
         }
 
@@ -73,9 +73,9 @@ namespace TritonsHydrants.Content.Items.Accessories
             const int cooldown = 600;
             const int waterBubbleCount = 40;
 
-            if (hasNeptuneGift)
+            if (HasNeptuneGift)
             {
-                if (timer >= cooldown)
+                if (_timer >= cooldown)
                 {
                     for (int i = 0; i < waterBubbleCount; i++)
                     {
@@ -86,12 +86,12 @@ namespace TritonsHydrants.Content.Items.Accessories
                         Lighting.AddLight(Player.position, Water.GetWaterColor().ToVector3());
                     }
 
-                    waterType = Utils.Water.GetRandomWater();
-                    timer = 0;
+                    _waterType = Utils.Water.GetRandomWater();
+                    _timer = 0;
                 }
 
-                Main.waterStyle = waterType;
-                timer++;
+                Main.waterStyle = _waterType;
+                _timer++;
             }
         }
     }
