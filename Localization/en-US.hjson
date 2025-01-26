@@ -1,0 +1,52 @@
+Mods: {
+	TritonsHydrants: {
+		Projectiles: {
+		}
+
+		Items: {
+			UnholyTrident: {
+			}
+
+			TerraFork: {
+			}
+
+			NebulaSpike: {
+			}
+
+			LeadTrident: {
+			}
+
+			IronTrident: {
+			}
+
+			HallowedTrident: {
+			}
+
+			Galacticite: {
+			}
+
+			CopperHose: {
+			}
+
+			WaterCapsule: {
+			}
+
+			NeptuneGift: {
+			}
+
+			BookOfKnowledge: {
+			}
+		}
+
+		Buffs: {
+			Refueled: {
+			}
+
+			Refreshed: {
+			}
+
+			HydrantBuff: {
+			}
+		}
+	}
+}

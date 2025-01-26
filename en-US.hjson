@@ -6,9 +6,14 @@ Mods: {
 				Description: Mods.TritonsHydrants.Buffs.HydrantBuff.Description
 			}
 
-			HydroCanisterBoost: {
-				DisplayName: Hydro Canister Boost
-				Description: Mods.TritonsHydrants.Buffs.HydroCanisterBoost.Description
+			Refreshed: {
+				DisplayName: Refreshed
+				Description: Mods.TritonsHydrants.Buffs.Refreshed.Description
+			}
+
+			Refueled: {
+				DisplayName: Refueled
+				Description: Mods.TritonsHydrants.Buffs.Refueled.Description
 			}
 		}
 

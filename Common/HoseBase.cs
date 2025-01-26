@@ -16,10 +16,13 @@ namespace TritonsHydrants.Common
         protected const int MIN_MANA_COST = 10;
         protected const int MIN_USE_TIME_ANIMATION = 30;
 
+
         protected virtual int ManaCost { get; set; }
         protected virtual int BurstDamage { get; set; }
         protected virtual int BurstKnockback { get; set; }
         protected virtual int UseTimeAnimation { get; set; }
+        protected virtual int HydrantArea { get; set; }
+        protected virtual ModBuff Buff { get; set; }
 
         public override void HoldItem(Player player)
         {
@@ -28,10 +31,6 @@ namespace TritonsHydrants.Common
                 player.back = player.HeldItem.backSlot;
                 player.cBack = 0;
             }
-        }
-        public override bool CanConsumeAmmo(Item ammo, Player player)
-        {
-            return player.GetModPlayer<HydroCanisterBoosterPlayer>().IsConsumed;
         }
         public override bool AltFunctionUse(Player player)
         {

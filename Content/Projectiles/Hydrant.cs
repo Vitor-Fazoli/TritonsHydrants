@@ -11,6 +11,8 @@ namespace TritonsHydrants.Content.Projectiles
 {
     public class Hydrant : ModProjectile
     {
+        public ModBuff Buff { get; set; }
+
         public override void SetStaticDefaults()
         {
             Main.projPet[Projectile.type] = true; // Denotes that this projectile is a pet or minion
@@ -18,10 +20,11 @@ namespace TritonsHydrants.Content.Projectiles
             ProjectileID.Sets.MinionSacrificable[Projectile.type] = true; // This is needed so your minion can properly spawn when summoned and replaced when other minions are summoned
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true; // Make the cultist resistant to this proje
         }
+
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 48;
+            Projectile.width = 15;
+            Projectile.height = 30;
             Projectile.damage = 0;
             Projectile.aiStyle = 0;
             Projectile.friendly = true;
@@ -61,7 +64,7 @@ namespace TritonsHydrants.Content.Projectiles
             }
 
             AuraEffect(Projectile.Center, owner.AuraRadius);
-            PlayersBuff(Projectile.Center, owner.AuraRadius);
+            PlayersBuff(Projectile.Center, owner.AuraRadius, pOwner);
             Gravity(Projectile);
         }
         private bool CheckActive(Player owner)
@@ -85,14 +88,17 @@ namespace TritonsHydrants.Content.Projectiles
             proj.velocity.Y += 0.1f;
             proj.rotation = 0;
         }
-        private static void PlayersBuff(Vector2 projPosition, float auraSize)
+        private static void PlayersBuff(Vector2 projPosition, float auraSize, Player owner)
         {
-            var players = Main.player;
+
+
+            Player[] players = Main.player;
+
             Parallel.ForEach(players, player =>
             {
                 if (Vector2.Distance(player.position, projPosition) < (int)auraSize)
                 {
-                    player.AddBuff(ModContent.BuffType<HydroCanisterBoost>(), 1, false);
+                    player.AddBuff(ModContent.BuffType<Refreshed>(), 1, false);
                 }
             });
         }
@@ -115,7 +121,7 @@ namespace TritonsHydrants.Content.Projectiles
 
     public class CanisterPlayer : ModPlayer
     {
-        private const float AuraRadiusBase = 100;
+        private const float AuraRadiusBase = 200;
 
         public float AuraRadius;
         private float _auraRadius = AuraRadiusBase;

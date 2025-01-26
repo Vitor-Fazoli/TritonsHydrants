@@ -79,11 +79,11 @@ namespace TritonsHydrants.Content.Items.Accessories
                 {
                     for (int i = 0; i < waterBubbleCount; i++)
                     {
-                        Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
-                        Dust d = Dust.NewDustPerfect(Player.Center, ModContent.DustType<ArcanePowder>(), speed * 5);
-                        d.noGravity = true;
+                        // Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
+                        // Dust d = Dust.NewDustPerfect(Player.Center, ModContent.DustType<ArcanePowder>(), speed * 5);
+                        // d.noGravity = true;
 
-                        Lighting.AddLight(Player.position, Water.GetWaterColor().ToVector3());
+                        // Lighting.AddLight(Player.position, Water.GetWaterColor().ToVector3());
                     }
 
                     _waterType = Utils.Water.GetRandomWater();

@@ -10,8 +10,8 @@ namespace TritonsHydrants.Content.Items.Accessories
         public override void SetDefaults()
         {
             Item.width = 10;
-            Item.height = 10;   
-            
+            Item.height = 10;
+
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.defense = 15;
@@ -26,7 +26,7 @@ namespace TritonsHydrants.Content.Items.Accessories
         public bool BookOfKnowledge;
         private const int KnowledgeStatMax = 3;
         private int _knowledgeStat;
-        
+
         private bool _knowledgePower;
 
         public override void ResetEffects()
@@ -39,7 +39,7 @@ namespace TritonsHydrants.Content.Items.Accessories
 
             if (_knowledgeStat <= KnowledgeStatMax)
                 return;
-            
+
             _knowledgeStat = 0;
             _knowledgePower = true;
         }
@@ -47,7 +47,7 @@ namespace TritonsHydrants.Content.Items.Accessories
         {
             if (!_knowledgePower || modifiers.DamageType != DamageClass.Magic)
                 return;
-            
+
             _knowledgePower = false;
             modifiers.FinalDamage *= 2f;
         }
@@ -55,26 +55,29 @@ namespace TritonsHydrants.Content.Items.Accessories
         {
             if (!_knowledgePower || modifiers.DamageType != DamageClass.Magic)
                 return;
-            
+
             _knowledgePower = false;
             modifiers.FinalDamage *= 2f;
         }
         public override void PostUpdateMiscEffects()
         {
-            switch (_knowledgeStat)
+            if (BookOfKnowledge)
             {
-                case 1:
-                    Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Blue, new Vector2(0,-Main.rand.Next(4)), Scale: 1f);
-                    d1.noGravity = true;
-                    break;
-                case 2:
-                    Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Pink, new Vector2(0,-Main.rand.Next(4)), Scale: 1f);
-                    d2.noGravity = true;
-                    break;
-                case 3:
-                    Dust d3 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Red, new Vector2(0,-Main.rand.Next(4)), Scale: 1f);
-                    d3.noGravity = true;
-                    break;
+                switch (_knowledgeStat)
+                {
+                    case 1:
+                        Dust d1 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Blue, new Vector2(0, -Main.rand.Next(4)), Scale: 1f);
+                        d1.noGravity = true;
+                        break;
+                    case 2:
+                        Dust d2 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Pink, new Vector2(0, -Main.rand.Next(4)), Scale: 1f);
+                        d2.noGravity = true;
+                        break;
+                    case 3:
+                        Dust d3 = Dust.NewDustPerfect(Main.LocalPlayer.Top, DustID.Firework_Red, new Vector2(0, -Main.rand.Next(4)), Scale: 1f);
+                        d3.noGravity = true;
+                        break;
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ namespace TritonsHydrants.Content.Items.Ammo
             Item.damage = 5;
             Item.DamageType = DamageClass.Ranged;
 
-            Item.maxStack = 99;
+            Item.maxStack = 999;
             Item.consumable = true;
             Item.knockBack = 2f;
             Item.value = Item.sellPrice(0, 0, 0, 20);

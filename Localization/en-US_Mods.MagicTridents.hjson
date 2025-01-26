@@ -42,14 +42,13 @@ Items: {
 
 Projectiles: {
 	AquaticArrow.DisplayName: Aquatic Arrow
-	IronTridentProj.DisplayName: Iron Trident Proj
-	HallowedTridentProj.DisplayName: Hallowed Trident Proj
-	LeadTridentProj.DisplayName: Lead Trident Proj
-	TerraForkProj.DisplayName: Terra Fork Proj
-	UnholyTridentProj.DisplayName: Unholy Trident Proj
+	IronTridentProj.DisplayName: Iron Trident
+	HallowedTridentProj.DisplayName: Hallowed Trident
+	LeadTridentProj.DisplayName: Lead Trident
+	TerraForkProj.DisplayName: Terra Fork
+	UnholyTridentProj.DisplayName: Unholy Trident
 	NeptuneFragment.DisplayName: Neptune Fragment
-	GalacticiteProj.DisplayName: Galacticite Proj
-	MoltenTridentProj.DisplayName: Molten Trident Proj
-	NebulaSpikeProj.DisplayName: Nebula Spike Proj
-	AquaticShard.DisplayName: Aquatic Shard
+	GalacticiteProj.DisplayName: Galacticite
+	MoltenTridentProj.DisplayName: Molten Trident
+	NebulaSpikeProj.DisplayName: Nebula Spike
 }
