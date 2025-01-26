@@ -1,8 +1,35 @@
 Mods: {
 	TritonsHydrants: {
+		Buffs: {
+			HydrantBuff: {
+				DisplayName: Hydrant Buff
+				Description: Mods.TritonsHydrants.Buffs.HydrantBuff.Description
+			}
+
+			HydroCanisterBoost: {
+				DisplayName: Hydro Canister Boost
+				Description: Mods.TritonsHydrants.Buffs.HydroCanisterBoost.Description
+			}
+		}
+
 		Items: {
+			BookOfKnowledge: {
+				DisplayName: Book Of Knowledge
+				Tooltip: ""
+			}
+
 			NeptuneGift: {
 				DisplayName: Neptune Gift
+				Tooltip: ""
+			}
+
+			WaterCapsule: {
+				DisplayName: Water Capsule
+				Tooltip: ""
+			}
+
+			CopperHose: {
+				DisplayName: Copper Hose
 				Tooltip: ""
 			}
 
@@ -40,59 +67,20 @@ Mods: {
 				DisplayName: Unholy Trident
 				Tooltip: ""
 			}
-
-			RubberHose: {
-				DisplayName: Rubber Hose
-				Tooltip: ""
-			}
-
-			BookOfKnowledge: {
-				DisplayName: Book Of Knowledge
-				Tooltip: ""
-			}
-
-			CopperHose: {
-				DisplayName: Copper Hose
-				Tooltip: ""
-			}
-
-			WaterCapsule: {
-				DisplayName: Water Capsule
-				Tooltip: ""
-			}
 		}
 
 		Projectiles: {
-			AquaticArrow.DisplayName: Aquatic Arrow
-			AquaticShard.DisplayName: Aquatic Shard
 			GalacticiteProj.DisplayName: Galacticite Proj
 			HallowedTridentProj.DisplayName: Hallowed Trident Proj
 			IronTridentProj.DisplayName: Iron Trident Proj
 			LeadTridentProj.DisplayName: Lead Trident Proj
 			MoltenTridentProj.DisplayName: Molten Trident Proj
 			NebulaSpikeProj.DisplayName: Nebula Spike Proj
-			NeptuneFragment.DisplayName: Neptune Fragment
 			TerraForkProj.DisplayName: Terra Fork Proj
 			UnholyTridentProj.DisplayName: Unholy Trident Proj
-			HoseBase.DisplayName: Hose Base
-			GallonBase.DisplayName: Gallon Base
-			CanisterBase.DisplayName: Canister Base
-			Canister.DisplayName: Canister
 			AquaBurst.DisplayName: Aqua Burst
-			AquaBurstHoldout.DisplayName: Aqua Burst Holdout
+			AquaticArrow.DisplayName: Aquatic Arrow
 			Hydrant.DisplayName: Hydrant
-		}
-
-		Buffs: {
-			HydroCanisterBoost: {
-				DisplayName: Hydro Canister Boost
-				Description: Mods.TritonsHydrants.Buffs.HydroCanisterBoost.Description
-			}
-
-			HydrantBuff: {
-				DisplayName: Hydrant Buff
-				Description: Mods.TritonsHydrants.Buffs.HydrantBuff.Description
-			}
 		}
 	}
 }

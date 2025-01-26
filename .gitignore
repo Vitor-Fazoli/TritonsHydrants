@@ -18,7 +18,8 @@
 .vs/DevilsWarehouse/v17/.suo
 /bin
 /obj
-/.github/
+/.github/*
 /.idea/
-/.vs/
+.vs
 /bin/
+.github

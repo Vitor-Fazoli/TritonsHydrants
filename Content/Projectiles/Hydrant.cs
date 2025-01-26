@@ -36,12 +36,13 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.minionSlots = 1;
             Projectile.DamageType = DamageClass.Summon; // Declares the damage type (needed for it to deal damage)
         }
-        public override bool? CanCutTiles() {
+        public override bool? CanCutTiles()
+        {
             return true;
         }
         public override void OnSpawn(IEntitySource source)
         {
-            Projectile.velocity += new Vector2(0, -3);
+            Projectile.velocity += new Vector2(0, -1.5f);
             Projectile.damage = 0;
         }
         public override bool MinionContactDamage()
@@ -53,23 +54,27 @@ namespace TritonsHydrants.Content.Projectiles
             CanisterPlayer owner = Main.player[Projectile.owner].GetModPlayer<CanisterPlayer>();
             Player pOwner = Main.player[Projectile.owner];
 
-            
-            if (!CheckActive(pOwner)) {
+
+            if (!CheckActive(pOwner))
+            {
                 return;
             }
-            
+
             AuraEffect(Projectile.Center, owner.AuraRadius);
             PlayersBuff(Projectile.Center, owner.AuraRadius);
             Gravity(Projectile);
         }
-        private bool CheckActive(Player owner) {
-            if (owner.dead || !owner.active) {
+        private bool CheckActive(Player owner)
+        {
+            if (owner.dead || !owner.active)
+            {
                 owner.ClearBuff(ModContent.BuffType<HydrantBuff>());
 
                 return false;
             }
 
-            if (owner.HasBuff(ModContent.BuffType<HydrantBuff>())) {
+            if (owner.HasBuff(ModContent.BuffType<HydrantBuff>()))
+            {
                 Projectile.timeLeft = 2;
             }
 
@@ -107,14 +112,13 @@ namespace TritonsHydrants.Content.Projectiles
             return false;
         }
     }
-    
+
     public class CanisterPlayer : ModPlayer
     {
-        private const float AuraRadiusBase = 150;
+        private const float AuraRadiusBase = 100;
 
         public float AuraRadius;
         private float _auraRadius = AuraRadiusBase;
-        
 
         public override void PostUpdate()
         {

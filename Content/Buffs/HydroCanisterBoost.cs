@@ -7,11 +7,10 @@ namespace TritonsHydrants.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetModPlayer<HydroCanisterBoosterPlayer>().IsConsumed = false;
-            
-            player.GetDamage(DamageClass.Ranged) += 0.10f; // 10%++
-            player.GetAttackSpeed(DamageClass.Melee) += 0.5f; // 50%++
+            player.GetAttackSpeed(DamageClass.Ranged) += 2.0f;
         }
     }
+
     public class HydroCanisterBoosterPlayer : ModPlayer
     {
         public bool IsConsumed;

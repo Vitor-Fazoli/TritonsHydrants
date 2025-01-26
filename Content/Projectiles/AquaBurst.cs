@@ -27,13 +27,14 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void AI()
         {
-            Player owner = Main.player[Projectile.owner];
-            float targetDist = Vector2.Distance(owner.Center, Projectile.Center);
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-            Vector2 dustVel = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
-            Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVel, Main.rand.NextBool(4) ? 264 : 66, dustVel, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
-            dust.noGravity = true;
-            dust.color = Main.rand.NextBool() ? Color.Lerp(MainColor, Color.White, 0.5f) : MainColor;
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                dust.noGravity = true;
+                dust.color = Main.rand.NextBool() ? Color.Lerp(MainColor, Color.White, 0.5f) : MainColor;
+            }
         }
 
         public override void OnKill(int timeLeft)
@@ -41,7 +42,7 @@ namespace TritonsHydrants.Content.Projectiles
             for (int i = 0; i < 28; i++)
             {
                 Vector2 dustVel = Projectile.velocity * Main.rand.NextFloat(0.1f, 1.5f);
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVel + Main.rand.NextVector2Circular(6, 6), Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, dustVel, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVel + Main.rand.NextVector2Circular(6, 6), Main.rand.NextBool(4) ? DustID.Water : DustID.Cloud, dustVel, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
                 dust.color = Main.rand.NextBool() ? Color.Lerp(MainColor, Color.White, 0.5f) : MainColor;
             }
@@ -49,7 +50,7 @@ namespace TritonsHydrants.Content.Projectiles
         public override void OnSpawn(IEntitySource source)
         {
             Player owner = Main.player[Projectile.owner];
-            owner.velocity += - (Projectile.velocity / 2);
+            owner.velocity += -(Projectile.velocity / 2);
             SoundEngine.PlaySound(SoundID.LiquidsHoneyWater with { Volume = 1.25f, Pitch = 0.6f }, Projectile.Center);
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
