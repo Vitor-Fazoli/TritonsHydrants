@@ -17,12 +17,13 @@ namespace TritonsHydrants.Common
         protected const int MIN_USE_TIME_ANIMATION = 30;
 
 
+
         protected virtual int ManaCost { get; set; }
         protected virtual int BurstDamage { get; set; }
         protected virtual int BurstKnockback { get; set; }
         protected virtual int UseTimeAnimation { get; set; }
         protected virtual int HydrantArea { get; set; }
-        protected virtual ModBuff Buff { get; set; }
+        protected virtual int BuffType { get; set; }
 
         public override void HoldItem(Player player)
         {
@@ -37,17 +38,19 @@ namespace TritonsHydrants.Common
             return true;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            foreach (TooltipLine tooltip in tooltips)
-            {
-                if (tooltip.Name != "ItemName")
-                {
-                    tooltip.Hide();
-                }
+            if (player.altFunctionUse is not 2)
+                return true;
 
-                //TODO: Colocar uma descrição que recebe  todas as especificações do item como Tamanho da area do hidrante dano do burst e etc
-            }
+            player.AddBuff(Item.buffType, 2);
+
+            Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, 0, 0, Main.myPlayer);
+            projectile.originalDamage = 0;
+
+            projectile.ai[0] = BuffType;
+
+            return false;
         }
     }
 }

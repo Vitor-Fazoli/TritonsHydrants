@@ -16,6 +16,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 		override protected int ManaCost => 20;
 		override protected int BurstDamage => 10;
 		override protected int BurstKnockback => 2;
+		protected override int BuffType => ModContent.BuffType<Refreshed>();
 
 		public override void SetDefaults()
 		{
@@ -70,18 +71,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 
 			return base.CanUseItem(player);
 		}
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-		{
-			if (player.altFunctionUse is not 2)
-				return true;
 
-			player.AddBuff(Item.buffType, 2);
-
-			Projectile projectile = Projectile.NewProjectileDirect(source, position, velocity, type, 0, 0, Main.myPlayer);
-			projectile.originalDamage = 0;
-
-			return false;
-		}
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);

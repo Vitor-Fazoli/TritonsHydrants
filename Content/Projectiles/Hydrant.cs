@@ -11,7 +11,7 @@ namespace TritonsHydrants.Content.Projectiles
 {
     public class Hydrant : ModProjectile
     {
-        public ModBuff Buff { get; set; }
+        public int BuffType { get; set; }
 
         public override void SetStaticDefaults()
         {
@@ -47,6 +47,8 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Projectile.velocity += new Vector2(0, -1.5f);
             Projectile.damage = 0;
+
+            BuffType = (int)Projectile.ai[0];
         }
         public override bool MinionContactDamage()
         {
@@ -64,7 +66,7 @@ namespace TritonsHydrants.Content.Projectiles
             }
 
             AuraEffect(Projectile.Center, owner.AuraRadius);
-            PlayersBuff(Projectile.Center, owner.AuraRadius, pOwner);
+            PlayersBuff(Projectile, owner.AuraRadius, pOwner);
             Gravity(Projectile);
         }
         private bool CheckActive(Player owner)
@@ -88,7 +90,7 @@ namespace TritonsHydrants.Content.Projectiles
             proj.velocity.Y += 0.1f;
             proj.rotation = 0;
         }
-        private static void PlayersBuff(Vector2 projPosition, float auraSize, Player owner)
+        private static void PlayersBuff(Projectile projectile, float auraSize, Player owner)
         {
 
 
@@ -96,9 +98,9 @@ namespace TritonsHydrants.Content.Projectiles
 
             Parallel.ForEach(players, player =>
             {
-                if (Vector2.Distance(player.position, projPosition) < (int)auraSize)
+                if (Vector2.Distance(player.position, projectile.Center) < (int)auraSize)
                 {
-                    player.AddBuff(ModContent.BuffType<Refreshed>(), 1, false);
+                    player.AddBuff((int)projectile.ai[0], 1, false);
                 }
             });
         }

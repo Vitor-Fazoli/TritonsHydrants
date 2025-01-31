@@ -2,6 +2,7 @@
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Dusts;
@@ -13,6 +14,7 @@ namespace TritonsHydrants.Content.Projectiles
     {
         private bool _enterOnWater;
         private bool _active;
+        private int _initialWaterStyle;
         public override void SetDefaults()
         {
             Projectile.width = 26;
@@ -34,19 +36,27 @@ namespace TritonsHydrants.Content.Projectiles
             ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            WaterEffect();
+            _initialWaterStyle = Main.waterStyle;
+        }
+
         public override Color? GetAlpha(Color lightColor) => Water.GetWaterColor().MultiplyRGBA(Color.White);
 
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45);
 
-            Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), Vector2.Zero);
-            dust.color = Water.GetWaterColor();
+            for (int i = 0; i < 10; i++)
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool() ? DustID.Water : DustID.BubbleBurst_White, Vector2.Zero);
+                dust.color = Water.GetWaterColor();
+            }
 
-            Lighting.AddLight(Projectile.position, dust.color.R / 255f, dust.color.G / 255f, dust.color.B / 255f);
+            Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
 
-
-            WaterEffect();
+            OnWaterChange();
 
             if (Projectile.wet)
             {
@@ -74,7 +84,7 @@ namespace TritonsHydrants.Content.Projectiles
         {
             for (int i = 0; i < 25; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), Main.rand.NextVector2Circular(2, 2));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Water, Main.rand.NextVector2Circular(2, 2));
                 dust.color = Water.GetWaterColor();
                 dust.noGravity = true;
 
@@ -129,7 +139,7 @@ namespace TritonsHydrants.Content.Projectiles
             }
         }
 
-        private void WaterEffect()
+        private static void WaterEffect()
         {
             //Player p = Main.player[Projectile.owner];
 
@@ -147,6 +157,14 @@ namespace TritonsHydrants.Content.Projectiles
                     break;
                 case Water.Snow:
                     break;
+            }
+        }
+
+        private void OnWaterChange()
+        {
+            if (_initialWaterStyle != Main.waterStyle)
+            {
+                WaterEffect();
             }
         }
 
