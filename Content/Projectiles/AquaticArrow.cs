@@ -15,17 +15,18 @@ namespace TritonsHydrants.Content.Projectiles
         private bool _enterOnWater;
         private bool _active;
         private int _initialWaterStyle;
+        private bool _lifeSteal = false;
+        private bool _freezeOnThird = false;
         public override void SetDefaults()
         {
             Projectile.width = 26;
             Projectile.height = 26;
             Projectile.friendly = true;
-            Projectile.light = 1f;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.damage = 20;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 200;
             Projectile.netUpdate = true;
-            Projectile.velocity *= 2;
+            Projectile.velocity *= 1.05f;
         }
 
         public override void SetStaticDefaults()
@@ -38,7 +39,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void OnSpawn(IEntitySource source)
         {
-            WaterEffect();
+            WaterEffect(Projectile);
             _initialWaterStyle = Main.waterStyle;
         }
 
@@ -50,13 +51,16 @@ namespace TritonsHydrants.Content.Projectiles
 
             for (int i = 0; i < 10; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool() ? DustID.Water : DustID.BubbleBurst_White, Vector2.Zero);
-                dust.color = Water.GetWaterColor();
+                Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
+
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                dust.noGravity = true;
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
 
             Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
 
-            OnWaterChange();
+            OnWaterChange(Projectile);
 
             if (Projectile.wet)
             {
@@ -82,13 +86,35 @@ namespace TritonsHydrants.Content.Projectiles
         }
         public override void OnKill(int timeLeft)
         {
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 50; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Water, Main.rand.NextVector2Circular(2, 2));
-                dust.color = Water.GetWaterColor();
-                dust.noGravity = true;
+                Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-                Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                dust.noGravity = true;
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+            }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Player player = Main.player[Projectile.owner];
+
+            if (target.life <= 0 && _lifeSteal)
+            {
+                player.statLife += 5;
+                player.HealEffect(5);
+            }
+
+            if (_freezeOnThird)
+            {
+                AquaticArrowP p = player.GetModPlayer<AquaticArrowP>();
+                p.amountToFreeze++;
+
+                if (p.amountToFreeze >= 3)
+                {
+                    target.AddBuff(BuffID.Frostburn, 30);
+                    p.amountToFreeze = 0;
+                }
             }
         }
 
@@ -131,40 +157,58 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void OnWetProjectile()
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 35; i++)
             {
-                Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ArcanePowder>(), speed * 5);
+                Vector2 speed = Main.rand.NextVector2CircularEdge(1.2f, 1.2f);
+                Dust d = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? 264 : 66, speed * 5);
                 d.noGravity = true;
             }
         }
 
-        private static void WaterEffect()
+        private void WaterEffect(Projectile projectile)
         {
             //Player p = Main.player[Projectile.owner];
 
             switch (Main.waterStyle)
             {
+                case Water.Hallow:
+                    break;
                 case Water.Jungle:
+
                     break;
                 case Water.Desert or Water.Desert2:
+                    projectile.velocity /= 5;
+                    projectile.damage *= 2;
                     break;
                 case Water.Cavern or Water.Cavern2:
+                    projectile.light = 0.5f;
+                    projectile.tileCollide = false;
                     break;
                 case Water.BloodMoon or Water.Crimsom:
+                    _lifeSteal = true;
                     break;
                 case Water.Corruption:
+                    projectile.penetrate = 5;
                     break;
                 case Water.Snow:
+                    _freezeOnThird = true;
+                    break;
+                default:
+                    projectile.knockBack *= 1.1f;
                     break;
             }
         }
 
-        private void OnWaterChange()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="projectile"></param>
+        private void OnWaterChange(Projectile projectile)
         {
             if (_initialWaterStyle != Main.waterStyle)
             {
-                WaterEffect();
+                WaterEffect(projectile);
+                _initialWaterStyle = Main.waterStyle;
             }
         }
 
@@ -181,5 +225,16 @@ namespace TritonsHydrants.Content.Projectiles
                 Projectile.velocity *= 1.0001f;
             }
         }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class AquaticArrowP : ModPlayer
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public int amountToFreeze = 0;
     }
 }

@@ -62,7 +62,7 @@ namespace TritonsHydrants.Common
                 // Spawn aquatic arrow when spear reach your max distance
                 if (isHappen is false)
                 {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 8f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage * 2,
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 8f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage,
                         Projectile.knockBack, Projectile.owner);
 
                     isHappen = true;
