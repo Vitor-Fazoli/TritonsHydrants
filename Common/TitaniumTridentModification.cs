@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
+using TritonsHydrants.Content.Buffs;
 
 namespace TritonsHydrants.Common
 {
@@ -49,6 +50,11 @@ namespace TritonsHydrants.Common
                 item.UseSound = SoundID.Item71;
 
                 item.StatsModifiedBy.Add(Mod);
+            }
+
+            public override void HoldItem(Item item, Player player)
+            {
+                player.AddBuff(ModContent.BuffType<WaterAffinity>(), 2);
             }
         }
     }

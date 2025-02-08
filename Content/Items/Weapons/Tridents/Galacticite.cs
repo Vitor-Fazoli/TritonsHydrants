@@ -6,7 +6,7 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class Galacticite : ModItem
+public class Galacticite : TridentBaseItem
 {
     public override void SetDefaults()
     {
@@ -34,6 +34,7 @@ public class Galacticite : ModItem
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item71;
     }
+    
     public override void AddRecipes()
     {
         CreateRecipe()
@@ -60,7 +61,7 @@ public class Galacticite : ModItem
     }
 }
 
-public class GalacticiteProj : TridentBase
+public class GalacticiteProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 150f;
     public override void SetDefaults()

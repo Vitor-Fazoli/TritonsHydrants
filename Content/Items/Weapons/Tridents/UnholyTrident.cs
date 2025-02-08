@@ -5,7 +5,7 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class UnholyTrident : ModItem
+public class UnholyTrident : TridentBaseItem
 {
     public override void SetDefaults()
     {
@@ -35,7 +35,7 @@ public class UnholyTrident : ModItem
     }
 }
 
-public class UnholyTridentProj : TridentBase
+public class UnholyTridentProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()

@@ -5,7 +5,7 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class HallowedTrident : ModItem
+public class HallowedTrident : TridentBaseItem
 {
     public override void SetDefaults()
     {
@@ -47,7 +47,7 @@ public class HallowedTrident : ModItem
         return player.ownedProjectileCounts[Item.shoot] < 1;
     }
 }
-public class HallowedTridentProj : TridentBase
+public class HallowedTridentProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()

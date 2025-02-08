@@ -5,11 +5,11 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class MoltenTrident
+public class MoltenTrident 
 {
 }
 
-public class MoltenTridentProj : TridentBase
+public class MoltenTridentProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()

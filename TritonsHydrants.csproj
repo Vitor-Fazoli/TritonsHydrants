@@ -21,7 +21,7 @@
 		<None Remove="Content\Buffs\Growing_cactus.webp" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Compile Remove="Content\Items\Accessories\NeptuneGift.cs" />
+		<Compile Remove="Content\Items\Accessories\NeptuneGift.cs" />
 	</ItemGroup>
 
 </Project>

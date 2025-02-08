@@ -6,7 +6,7 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class NebulaSpike : ModItem
+public class NebulaSpike : TridentBaseItem
 {
     public override void SetDefaults()
     {
@@ -51,7 +51,7 @@ public class NebulaSpike : ModItem
     }
 }
 
-public class NebulaSpikeProj : TridentBase
+public class NebulaSpikeProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()

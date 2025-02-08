@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using TritonsHydrants.Content.Buffs;
 using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Common
@@ -9,7 +10,7 @@ namespace TritonsHydrants.Common
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TridentBase : ModProjectile
+    public abstract class TridentBaseProj : ModProjectile
     {
         private Vector2 MousePos = Vector2.Zero;
 
@@ -74,6 +75,13 @@ namespace TritonsHydrants.Common
             }
 
             Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
+        }
+    }
+    public abstract class TridentBaseItem : ModItem
+    {
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<WaterAffinity>(), 2);
         }
     }
 }

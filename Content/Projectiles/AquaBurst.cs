@@ -6,6 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Utils;
+
 namespace TritonsHydrants.Content.Projectiles
 {
     public class AquaBurst : ModProjectile

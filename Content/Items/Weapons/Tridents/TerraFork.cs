@@ -5,7 +5,7 @@ using TritonsHydrants.Common;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class TerraFork : ModItem
+public class TerraFork : TridentBaseItem
 {
     public override void SetDefaults()
     {
@@ -44,7 +44,7 @@ public class TerraFork : ModItem
     }
 }
 
-public class TerraForkProj : TridentBase
+public class TerraForkProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()
