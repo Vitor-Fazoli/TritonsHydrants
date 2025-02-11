@@ -15,7 +15,7 @@ public class HallowedTrident : TridentBaseItem
         Item.mana = 5;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(silver: 10);
-        Item.shoot = ModContent.ProjectileType<HallowedTridentProj>();
+        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.HallowedTrident>();
         Item.useAnimation = 31;
         Item.useTime = 31;
 
@@ -36,27 +36,9 @@ public class HallowedTrident : TridentBaseItem
 
     public override void AddRecipes()
     {
-        //CreateRecipe()
-        //    .AddIngredient<AuraliteOre>(10)
-        //    .AddTile(TileID.Anvils)
-        //    .Register();
-    }
-}
-public class HallowedTridentProj : TridentBaseProj
-{
-    protected override float HoldoutRangeMax => 120f;
-    public override void SetDefaults()
-    {
-        Projectile.width = 15;
-        Projectile.height = 15;
-        Projectile.aiStyle = ProjAIStyleID.Spear;
-        Projectile.penetrate = -1;
-        Projectile.scale = 1.3f;
-        Projectile.alpha = 0;
-        Projectile.hide = true;
-        Projectile.ownerHitCheck = true;
-        Projectile.DamageType = DamageClass.Magic;
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        CreateRecipe()
+           .AddIngredient(ItemID.HallowedBar, 12)
+           .AddTile(TileID.MythrilAnvil)
+           .Register();
     }
 }

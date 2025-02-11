@@ -16,7 +16,7 @@ public class LeadTrident : TridentBaseItem
         Item.mana = 5;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(silver: 10);
-        Item.shoot = ModContent.ProjectileType<LeadTridentProj>();
+        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.LeadTrident>();
         Item.useAnimation = 31;
         Item.useTime = 31;
 
@@ -37,43 +37,10 @@ public class LeadTrident : TridentBaseItem
 
     public override void AddRecipes()
     {
-        //CreateRecipe()
-        //    .AddIngredient<AuraliteOre>(10)
-        //    .AddTile(TileID.Anvils)
-        //    .Register();
-    }
-    public override bool CanUseItem(Player player)
-    {
-        return player.ownedProjectileCounts[Item.shoot] < 1;
-    }
-
-    public override bool? UseItem(Player player)
-    {
-        if (!Main.dedServ && Item.UseSound.HasValue)
-        {
-            SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
-        }
-
-        return null;
-    }
-}
-
-public class LeadTridentProj : TridentBaseProj
-{
-    protected override float HoldoutRangeMax => 120f;
-    public override void SetDefaults()
-    {
-
-        Projectile.width = 15;
-        Projectile.height = 15;
-        Projectile.aiStyle = ProjAIStyleID.Spear;
-        Projectile.penetrate = -1;
-        Projectile.scale = 1.3f;
-        Projectile.alpha = 0;
-        Projectile.hide = true;
-        Projectile.ownerHitCheck = true;
-        Projectile.DamageType = DamageClass.Magic;
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        CreateRecipe()
+            .AddIngredient(ItemID.LeadBar, 7)
+            .AddIngredient(ItemID.Wood, 15)
+            .AddTile(TileID.Anvils)
+            .Register();
     }
 }

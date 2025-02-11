@@ -3,7 +3,6 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
-using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
@@ -17,7 +16,7 @@ public class Galacticite : TridentBaseItem
         Item.mana = 20;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(gold: 23);
-        Item.shoot = ModContent.ProjectileType<GalacticiteProj>();
+        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.Galacticite>();
         Item.useAnimation = 11;
         Item.useTime = 11;
 
@@ -40,44 +39,13 @@ public class Galacticite : TridentBaseItem
     {
         CreateRecipe()
             .AddIngredient(ModContent.ItemType<NebulaSpike>(), 1)
-            .AddIngredient(ItemID.LunarBar, 10)
-            .AddIngredient(ItemID.FragmentNebula, 8)
+            .AddIngredient(ItemID.LunarBar, 15)
+            .AddIngredient(ItemID.FragmentNebula, 10)
+            .AddIngredient(ItemID.FragmentSolar, 10)
+            .AddIngredient(ItemID.FragmentStardust, 10)
+            .AddIngredient(ItemID.FragmentVortex, 10)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
     }
-
-    public override bool CanUseItem(Player player)
-    {
-        return player.ownedProjectileCounts[Item.shoot] < 1;
-    }
-
-    public override bool? UseItem(Player player)
-    {
-        if (!Main.dedServ && Item.UseSound.HasValue)
-        {
-            SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
-        }
-
-        return null;
-    }
 }
 
-public class GalacticiteProj : TridentBaseProj
-{
-    protected override float HoldoutRangeMax => 150f;
-    protected override int Proj => ModContent.ProjectileType<AquaBurst>();
-    public override void SetDefaults()
-    {
-        Projectile.width = 15;
-        Projectile.height = 15;
-        Projectile.aiStyle = ProjAIStyleID.Spear;
-        Projectile.penetrate = -1;
-        Projectile.scale = 1.3f;
-        Projectile.alpha = 0;
-        Projectile.hide = true;
-        Projectile.ownerHitCheck = true;
-        Projectile.DamageType = DamageClass.Magic;
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
-    }
-}

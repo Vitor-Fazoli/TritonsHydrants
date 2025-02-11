@@ -27,30 +27,6 @@ public class UnholyTrident : TridentBaseItem
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item1;
         Item.mana = 10;
-        Item.shoot = ModContent.ProjectileType<UnholyTridentProj>();
-    }
-    public override bool CanUseItem(Player player)
-    {
-        return player.ownedProjectileCounts[Item.shoot] < 1;
-    }
-}
-
-public class UnholyTridentProj : TridentBaseProj
-{
-    protected override float HoldoutRangeMax => 120f;
-    public override void SetDefaults()
-    {
-
-        Projectile.width = 15;
-        Projectile.height = 15;
-        Projectile.aiStyle = ProjAIStyleID.Spear;
-        Projectile.penetrate = -1;
-        Projectile.scale = 1.3f;
-        Projectile.alpha = 0;
-        Projectile.hide = true;
-        Projectile.ownerHitCheck = true;
-        Projectile.DamageType = DamageClass.Magic;
-        Projectile.tileCollide = false;
-        Projectile.friendly = true;
+        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.UnholyTrident>();
     }
 }

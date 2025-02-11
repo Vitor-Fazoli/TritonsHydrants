@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace TritonsHydrants.Content.Buffs
 {
-    public class KnowledgePower : ModBuff
+    public class MindExplosion : ModBuff
     {
         public override void SetStaticDefaults()
         {
@@ -15,35 +15,35 @@ namespace TritonsHydrants.Content.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<BookOfKnowledgePlayer>().knowledgePower = true;
+            player.GetModPlayer<MindExplosionPlayer>().mindExplosion = true;
         }
     }
 
-    public class BookOfKnowledgePlayer : ModPlayer
+    public class MindExplosionPlayer : ModPlayer
     {
-        public bool knowledgePower;
+        public bool mindExplosion;
 
         public override void ResetEffects()
         {
-            knowledgePower = false;
+            mindExplosion = false;
         }
 
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (!knowledgePower || item.DamageType != DamageClass.Magic)
+            if (!mindExplosion || item.DamageType != DamageClass.Magic)
                 return;
 
-            knowledgePower = false;
+            mindExplosion = false;
             hit.Damage *= 2;
             target.StrikeNPC(hit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (!knowledgePower || proj.DamageType != DamageClass.Magic)
+            if (!mindExplosion || proj.DamageType != DamageClass.Magic)
                 return;
 
-            knowledgePower = false;
+            mindExplosion = false;
             hit.Damage *= 2;
             target.StrikeNPC(hit);
         }
