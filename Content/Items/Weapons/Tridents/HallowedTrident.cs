@@ -41,18 +41,12 @@ public class HallowedTrident : TridentBaseItem
         //    .AddTile(TileID.Anvils)
         //    .Register();
     }
-
-    public override bool CanUseItem(Player player)
-    {
-        return player.ownedProjectileCounts[Item.shoot] < 1;
-    }
 }
 public class HallowedTridentProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 120f;
     public override void SetDefaults()
     {
-
         Projectile.width = 15;
         Projectile.height = 15;
         Projectile.aiStyle = ProjAIStyleID.Spear;

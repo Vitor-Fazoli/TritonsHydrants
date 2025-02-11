@@ -86,6 +86,7 @@ Mods: {
 			AquaBurst.DisplayName: Aqua Burst
 			AquaticArrow.DisplayName: Aquatic Arrow
 			Hydrant.DisplayName: Hydrant
+			GalacticiteAquaticArrow.DisplayName: Galacticite Aquatic Arrow
 		}
 	}
 }

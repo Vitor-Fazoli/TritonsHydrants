@@ -35,13 +35,16 @@ namespace TritonsHydrants.Content.Items.Accessories
         }
         public override void OnHurt(Player.HurtInfo info)
         {
-            _knowledgeStat++;
+            if (BookOfKnowledge)
+            {
+                _knowledgeStat++;
 
-            if (_knowledgeStat <= KnowledgeStatMax)
-                return;
+                if (_knowledgeStat <= KnowledgeStatMax)
+                    return;
 
-            _knowledgeStat = 0;
-            _knowledgePower = true;
+                _knowledgeStat = 0;
+                _knowledgePower = true;
+            }
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
         {

@@ -15,10 +15,11 @@ namespace TritonsHydrants.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.accFlipper = true;
+            player.waterWalk = true;
 
             if (player.wet)
             {
-                player.moveSpeed += 0.12f;
+                player.moveSpeed += 0.20f;
             }
         }
     }

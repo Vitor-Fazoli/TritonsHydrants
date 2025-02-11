@@ -167,36 +167,75 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void WaterEffect(Projectile projectile)
         {
-            //Player p = Main.player[Projectile.owner];
-
             switch (Main.waterStyle)
             {
                 case Water.Hallow:
+                    HallowEffect(projectile);
                     break;
                 case Water.Jungle:
-
+                    JungleEffect(projectile);
                     break;
                 case Water.Desert or Water.Desert2:
-                    projectile.velocity /= 5;
-                    projectile.damage *= 2;
+                    DesertEffect(projectile);
                     break;
                 case Water.Cavern or Water.Cavern2:
-                    projectile.light = 0.5f;
-                    projectile.tileCollide = false;
+                    CavernEffect(projectile);
                     break;
                 case Water.BloodMoon or Water.Crimsom:
-                    _lifeSteal = true;
+                    CrimsomEffect(projectile);
                     break;
                 case Water.Corruption:
-                    projectile.penetrate = 5;
+                    CorruptionEffect(projectile);
                     break;
                 case Water.Snow:
-                    _freezeOnThird = true;
+                    SnowEffect(projectile);
                     break;
                 default:
-                    projectile.knockBack *= 1.1f;
+                    ForestEffect(projectile);
                     break;
             }
+        }
+
+        public virtual void HallowEffect(Projectile projectile)
+        {
+
+        }
+
+        public virtual void JungleEffect(Projectile projectile)
+        {
+
+        }
+
+        public virtual void DesertEffect(Projectile projectile)
+        {
+            projectile.velocity /= 5;
+            projectile.damage *= 2;
+        }
+
+        public virtual void CavernEffect(Projectile projectile)
+        {
+            projectile.light = 0.5f;
+            projectile.tileCollide = false;
+        }
+
+        public virtual void CrimsomEffect(Projectile projectile)
+        {
+            _lifeSteal = true;
+        }
+
+        public virtual void CorruptionEffect(Projectile projectile)
+        {
+            projectile.penetrate = 5;
+        }
+
+        public virtual void SnowEffect(Projectile projectile)
+        {
+            _freezeOnThird = true;
+        }
+
+        public virtual void ForestEffect(Projectile projectile)
+        {
+            projectile.knockBack *= 1.1f;
         }
 
         /// <summary>

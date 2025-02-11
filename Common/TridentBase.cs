@@ -2,16 +2,15 @@
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using TritonsHydrants.Content.Buffs;
 using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public abstract class TridentBaseProj : ModProjectile
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private Vector2 MousePos = Vector2.Zero;
 
         /// <summary>
@@ -28,6 +27,11 @@ namespace TritonsHydrants.Common
         /// 
         /// </summary>
         protected virtual float DistanceSpawnProj => 100;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected virtual int Proj => ModContent.ProjectileType<AquaticArrow>();
 
         /// <summary>
         /// this bool makes the projectile happen one time
@@ -63,7 +67,7 @@ namespace TritonsHydrants.Common
                 // Spawn aquatic arrow when spear reach your max distance
                 if (isHappen is false)
                 {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 8f, ModContent.ProjectileType<AquaticArrow>(), Projectile.damage,
+                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 8f, Proj, Projectile.damage,
                         Projectile.knockBack, Projectile.owner);
 
                     isHappen = true;
@@ -79,9 +83,9 @@ namespace TritonsHydrants.Common
     }
     public abstract class TridentBaseItem : ModItem
     {
-        public override void HoldItem(Player player)
+        public override bool CanUseItem(Player player)
         {
-            player.AddBuff(ModContent.BuffType<WaterAffinity>(), 2);
+            return player.ownedProjectileCounts[Item.shoot] < 1;
         }
     }
 }

@@ -3,6 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
+using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
@@ -34,7 +35,7 @@ public class Galacticite : TridentBaseItem
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item71;
     }
-    
+
     public override void AddRecipes()
     {
         CreateRecipe()
@@ -64,9 +65,9 @@ public class Galacticite : TridentBaseItem
 public class GalacticiteProj : TridentBaseProj
 {
     protected override float HoldoutRangeMax => 150f;
+    protected override int Proj => ModContent.ProjectileType<AquaBurst>();
     public override void SetDefaults()
     {
-
         Projectile.width = 15;
         Projectile.height = 15;
         Projectile.aiStyle = ProjAIStyleID.Spear;

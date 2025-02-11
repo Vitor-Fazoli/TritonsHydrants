@@ -36,6 +36,21 @@ Mods: {
 
 			BookOfKnowledge: {
 			}
+
+			FireBreakerBreastplate: {
+				DisplayName: Fire Breaker Breastplate
+				Tooltip: ""
+			}
+
+			FireBreakerHelmet: {
+				DisplayName: Fire Breaker Helmet
+				Tooltip: ""
+			}
+
+			FireBreakerLeggings: {
+				DisplayName: Fire Breaker Leggings
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -46,6 +61,11 @@ Mods: {
 			}
 
 			HydrantBuff: {
+			}
+
+			WaterAffinity: {
+				DisplayName: Water Affinity
+				Description: Mods.TritonsHydrants.Buffs.WaterAffinity.Description
 			}
 		}
 	}
