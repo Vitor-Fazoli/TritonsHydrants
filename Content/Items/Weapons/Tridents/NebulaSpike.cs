@@ -3,10 +3,11 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
+using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class NebulaSpike : TridentBaseItem
+public class NebulaSpike : BaseTridentItem
 {
     public override void SetDefaults()
     {

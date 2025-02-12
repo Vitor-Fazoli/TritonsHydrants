@@ -1,10 +1,11 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
+using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Projectiles.Tridents
 {
-    public class Galacticite : TridentBaseProj
+    public class Galacticite : BaseTridentProjectile
     {
         protected override float HoldoutRangeMax => 150f;
         protected override int Proj => ModContent.ProjectileType<AquaticArrow>();

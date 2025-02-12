@@ -1,10 +1,11 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
+using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Projectiles.Tridents
 {
-    public class LeadTrident : TridentBaseProj
+    public class LeadTrident : BaseTridentProjectile
     {
         protected override float HoldoutRangeMax => 120f;
         public override void SetDefaults()

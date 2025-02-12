@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Projectiles;
 
-namespace TritonsHydrants.Common
+namespace TritonsHydrants.Common.Systems
 {
-    public abstract class TridentBaseProj : ModProjectile
+    public abstract class BaseTridentProjectile : ModProjectile
     {
         /// <summary>
         /// 
@@ -80,23 +79,6 @@ namespace TritonsHydrants.Common
             }
 
             Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
-        }
-    }
-    public abstract class TridentBaseItem : ModItem
-    {
-        public override bool CanUseItem(Player player)
-        {
-            return player.ownedProjectileCounts[Item.shoot] < 1;
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            if (!Main.dedServ && Item.UseSound.HasValue)
-            {
-                SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
-            }
-
-            return null;
         }
     }
 }

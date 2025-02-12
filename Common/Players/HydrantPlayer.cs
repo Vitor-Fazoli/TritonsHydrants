@@ -11,7 +11,6 @@ namespace TritonsHydrants.Common.Players
         {
             Refreshed,
             Refueled,
-            
         }
 
 

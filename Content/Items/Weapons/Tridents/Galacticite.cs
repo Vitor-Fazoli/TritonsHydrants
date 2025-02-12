@@ -1,12 +1,11 @@
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
+using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
 
-public class Galacticite : TridentBaseItem
+public class Galacticite : BaseTridentItem
 {
     public override void SetDefaults()
     {
@@ -16,7 +15,7 @@ public class Galacticite : TridentBaseItem
         Item.mana = 20;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(gold: 23);
-        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.Galacticite>();
+        Item.shoot = ModContent.ProjectileType<Content.Projectiles.Tridents.Galacticite>();
         Item.useAnimation = 11;
         Item.useTime = 11;
 
