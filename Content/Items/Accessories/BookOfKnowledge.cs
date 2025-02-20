@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Items.Accessories
 {
@@ -18,6 +19,7 @@ namespace TritonsHydrants.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.GetDamage(DamageClass.Magic) -= Helper.Percentage(10);
             player.GetModPlayer<BookOfKnowledgePlayer>().BookOfKnowledge = true;
         }
     }

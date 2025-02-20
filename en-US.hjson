@@ -15,6 +15,11 @@ Mods: {
 				DisplayName: Refueled
 				Description: Mods.TritonsHydrants.Buffs.Refueled.Description
 			}
+
+			MindExplosion: {
+				DisplayName: Mind Explosion
+				Description: Mods.TritonsHydrants.Buffs.MindExplosion.Description
+			}
 		}
 
 		Items: {
@@ -72,21 +77,58 @@ Mods: {
 				DisplayName: Unholy Trident
 				Tooltip: ""
 			}
+
+			LittleAnchor: {
+				DisplayName: Little Anchor
+				Tooltip: ""
+			}
+
+			AegiriumBar: {
+				DisplayName: Aegirium Bar
+				Tooltip: ""
+			}
+
+			AegiriumOre: {
+				DisplayName: Aegirium Ore
+				Tooltip: ""
+			}
+
+			CrownFragment: {
+				DisplayName: Crown Fragment
+				Tooltip: ""
+			}
+
+			DemonSkin: {
+				DisplayName: Demon Skin
+				Tooltip: ""
+			}
+
+			Spectremite: {
+				DisplayName: Spectremite
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
 			GalacticiteProj.DisplayName: Galacticite Proj
 			HallowedTridentProj.DisplayName: Hallowed Trident Proj
+			HallowedTrident.DisplayName: Hallowed Trident
 			IronTridentProj.DisplayName: Iron Trident Proj
+			IronTrident.DisplayName: Iron Trident
 			LeadTridentProj.DisplayName: Lead Trident Proj
+			LeadTrident.DisplayName: Lead Trident
 			MoltenTridentProj.DisplayName: Molten Trident Proj
+			MoltenTrident.DisplayName: Molten Trident
 			NebulaSpikeProj.DisplayName: Nebula Spike Proj
+			NebulaSpike.DisplayName: Nebula Spike
 			TerraForkProj.DisplayName: Terra Fork Proj
 			UnholyTridentProj.DisplayName: Unholy Trident Proj
+			UnholyTrident.DisplayName: Unholy Trident
 			AquaBurst.DisplayName: Aqua Burst
 			AquaticArrow.DisplayName: Aquatic Arrow
 			Hydrant.DisplayName: Hydrant
 			GalacticiteAquaticArrow.DisplayName: Galacticite Aquatic Arrow
+			Galacticite.DisplayName: Galacticite
 		}
 	}
 }
