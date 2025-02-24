@@ -82,8 +82,8 @@ namespace TritonsHydrants.Content.Projectiles
                 Projectile.soundDelay = Helper.Ticks(1);
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
-
         }
+
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 50; i++)
@@ -95,6 +95,7 @@ namespace TritonsHydrants.Content.Projectiles
                 dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
         }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
@@ -198,12 +199,12 @@ namespace TritonsHydrants.Content.Projectiles
 
         public virtual void HallowEffect(Projectile projectile)
         {
-
+            projectile.velocity *= 1.5f;
         }
 
         public virtual void JungleEffect(Projectile projectile)
         {
-
+            ProjectileExtras.ApplyBounce(projectile, projectile.oldVelocity);
         }
 
         public virtual void DesertEffect(Projectile projectile)

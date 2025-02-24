@@ -51,6 +51,11 @@ Mods: {
 				DisplayName: Fire Breaker Leggings
 				Tooltip: ""
 			}
+
+			OceaniteOre: {
+				DisplayName: Oceanite Ore
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -68,5 +73,8 @@ Mods: {
 				Description: Mods.TritonsHydrants.Buffs.WaterAffinity.Description
 			}
 		}
+
+		Tiles.Oceanite.MapEntry: Oceanite
+		WorldGen.OceaniteOrePassMessage: Oceanite Generation
 	}
 }

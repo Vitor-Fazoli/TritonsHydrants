@@ -11,6 +11,7 @@ namespace TritonsHydrants.Content.Items.Materials
             Item.height = 24;
             Item.maxStack = 999;
             Item.rare = ItemRarityID.Orange;
+            Item.material = true;
         }
     }
 }

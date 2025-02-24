@@ -53,6 +53,7 @@ namespace TritonsHydrants.Content.Projectiles
             owner.velocity += -(Projectile.velocity / 2);
             SoundEngine.PlaySound(SoundID.LiquidsHoneyWater with { Volume = 1.25f, Pitch = 0.6f }, Projectile.Center);
         }
+
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             for (int i = 0; i <= 8; i++)
@@ -73,6 +74,7 @@ namespace TritonsHydrants.Content.Projectiles
                 dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
         }
+
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(HitDirect);
