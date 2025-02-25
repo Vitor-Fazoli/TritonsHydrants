@@ -19,10 +19,7 @@ namespace TritonsHydrants.Content.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage(DamageClass.Magic) -= Helper.Percentage(10);
+            player.thorns = 0.1f;
         }
-    }
-    public class LittleAnchorPlayer : ModPlayer
-    {
-
     }
 }

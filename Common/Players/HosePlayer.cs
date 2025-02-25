@@ -5,6 +5,11 @@ namespace TritonsHydrants.Common.Players
 {
     public class HosePlayer : ModPlayer
     {
-        public float HoseDamageMultiplier = 1f;
+        public float WaterDamageMultiplier = 1f;
+
+        public override void ResetEffects()
+        {
+            WaterDamageMultiplier = 1f;
+        }
     }
 }

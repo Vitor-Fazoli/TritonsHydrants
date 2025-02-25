@@ -1,39 +1,34 @@
 using Terraria;
 using Terraria.ModLoader;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Common.Players
 {
     public class HydrantPlayer : ModPlayer
     {
-        // ESTILOS DE BUFF DOS HIDRANTES
-
-        public enum HydrantStyle
-        {
-            Refreshed,
-            Refueled,
-        }
-
-
-        public bool isRefreshed = false;
-        public bool isRefueled = false;
+        public bool isRefreshed = false; // Refrescado
+        public bool isRefueled = false; // Reabastecido
+        public bool isLithe = false; // Agil
+        public bool isFlooded = false; // Inundado
 
         public override void ResetEffects()
         {
             isRefreshed = false;
             isRefueled = false;
+            isLithe = false;
+            isFlooded = false;
         }
 
         public override void UpdateDead()
         {
-            isRefreshed = false;
-            isRefueled = false;
+            ResetEffects();
         }
 
         public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
         {
             if (isRefreshed)
             {
-                int damageReceived = hurtInfo.Damage / 5;
+                int damageReceived = (int)(hurtInfo.Damage * Helper.Percentage(20));
 
                 Player.HealEffect(damageReceived, true);
                 Player.Heal(damageReceived);
@@ -44,8 +39,7 @@ namespace TritonsHydrants.Common.Players
         {
             if (isRefreshed)
             {
-
-                int damageReceived = hurtInfo.Damage / 5;
+                int damageReceived = (int)(hurtInfo.Damage * Helper.Percentage(20));
 
                 Player.HealEffect(damageReceived, true);
                 Player.Heal(damageReceived);

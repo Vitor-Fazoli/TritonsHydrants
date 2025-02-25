@@ -1,22 +1,14 @@
-using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
-using TritonsHydrants.Content.Buffs;
 
 namespace TritonsHydrants.Common
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public abstract class HoseBase : ModItem
     {
         protected const int MIN_MANA_COST = 10;
         protected const int MIN_USE_TIME_ANIMATION = 30;
-
-
 
         protected virtual int ManaCost { get; set; }
         protected virtual int BurstDamage { get; set; }
@@ -50,6 +42,11 @@ namespace TritonsHydrants.Common
 
             projectile.ai[0] = BuffType;
 
+            return false;
+        }
+
+        public override bool RangedPrefix()
+        {
             return false;
         }
     }

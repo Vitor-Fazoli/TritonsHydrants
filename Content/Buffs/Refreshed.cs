@@ -1,7 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
 using TritonsHydrants.Common.Players;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Buffs
 {
@@ -12,8 +12,10 @@ namespace TritonsHydrants.Content.Buffs
     {
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetAttackSpeed(DamageClass.Ranged) += 0.1f; //10% attack speed
-            player.GetModPlayer<HydrantPlayer>().isRefreshed = true;
+            var hydrantP = player.GetModPlayer<HydrantPlayer>();
+
+            player.GetKnockback(DamageClass.Ranged) += Helper.Percentage(10);
+            hydrantP.isRefreshed = true;
         }
     }
 }

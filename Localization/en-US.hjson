@@ -56,13 +56,20 @@ Mods: {
 				DisplayName: Oceanite Ore
 				Tooltip: ""
 			}
+
+			RoyalHelmetOfTheDeep: {
+				DisplayName: Royal Helmet Of The Deep
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
 			Refueled: {
+				Description: 10% Ranged Speed and 20% chance to save ammo
 			}
 
 			Refreshed: {
+				Description: 10% Ranged knockback and when take damage, heal 20%
 			}
 
 			HydrantBuff: {

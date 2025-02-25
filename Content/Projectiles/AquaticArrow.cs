@@ -5,7 +5,6 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Content.Dusts;
 using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Projectiles
@@ -239,10 +238,6 @@ namespace TritonsHydrants.Content.Projectiles
             projectile.knockBack *= 1.1f;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="projectile"></param>
         private void OnWaterChange(Projectile projectile)
         {
             if (_initialWaterStyle != Main.waterStyle)
@@ -272,9 +267,6 @@ namespace TritonsHydrants.Content.Projectiles
     /// </summary>
     public class AquaticArrowP : ModPlayer
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public int amountToFreeze = 0;
     }
 }

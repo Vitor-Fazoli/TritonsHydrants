@@ -33,6 +33,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 			Item.useAmmo = ModContent.ItemType<WaterCapsule>();
 			Item.DamageType = DamageClass.Ranged;
 			Item.buffType = 0;
+			Item.UseSound = SoundID.Item21;
 		}
 		public override bool CanUseItem(Player player)
 		{
@@ -67,11 +68,11 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 				Item.useAmmo = ModContent.ItemType<WaterCapsule>();
 				Item.DamageType = DamageClass.Ranged;
 				Item.buffType = 0;
+				Item.UseSound = SoundID.Item25;
 			}
 
 			return base.CanUseItem(player);
 		}
-
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(-10, 0);

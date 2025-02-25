@@ -1,6 +1,5 @@
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
 using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Projectiles.Tridents
