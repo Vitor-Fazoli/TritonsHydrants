@@ -47,7 +47,12 @@ namespace TritonsHydrants.Common
 
         public override bool RangedPrefix()
         {
-            return false;
+            return true;
+        }
+
+        public override bool MagicPrefix()
+        {
+            return true;
         }
     }
 }

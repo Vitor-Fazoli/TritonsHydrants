@@ -15,7 +15,7 @@ public class Galacticite : BaseTridentItem
         Item.mana = 20;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(gold: 23);
-        Item.shoot = ModContent.ProjectileType<Content.Projectiles.Tridents.Galacticite>();
+        Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.Galacticite>();
         Item.useAnimation = 11;
         Item.useTime = 11;
 
@@ -33,6 +33,8 @@ public class Galacticite : BaseTridentItem
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item71;
     }
+
+
 
     public override void AddRecipes()
     {

@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
+using TritonsHydrants.Content.Buffs;
 
 namespace TritonsHydrants.Common.Systems
 {
@@ -19,6 +20,11 @@ namespace TritonsHydrants.Common.Systems
             }
 
             return null;
+        }
+
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<WaterAffinity>(), 2);
         }
     }
 }
