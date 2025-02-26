@@ -1,5 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
+
 namespace TritonsHydrants.Utils
 {
     /// <summary>
@@ -7,9 +8,6 @@ namespace TritonsHydrants.Utils
     /// </summary>
     public class Water
     {
-        /// <summary>
-        /// Represents the different types of water in the game.
-        /// </summary>
         public const int Corruption = 2;
         public const int Jungle = 3;
         public const int Hallow = 4;
@@ -42,7 +40,6 @@ namespace TritonsHydrants.Utils
                 _ => new Color(9, 61, 191), // Default
             };
         }
-
 
         /// <summary>
         /// Gets a random water type.

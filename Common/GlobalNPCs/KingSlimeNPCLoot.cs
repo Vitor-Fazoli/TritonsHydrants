@@ -6,7 +6,7 @@ using TritonsHydrants.Content.Items.Materials;
 
 namespace TritonsHydrants.Common.GlobalNPCs
 {
-    public class EntityNPCLoot : GlobalNPC
+    public class KingSlimeNPCLoot : GlobalNPC
     {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
