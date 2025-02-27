@@ -15,6 +15,7 @@ namespace TritonsHydrants.Content.Projectiles
         private bool _active;
         private int _initialWaterStyle;
         private bool _lifeSteal = false;
+        private bool _bouncer = false;
         private bool _freezeOnThird = false;
         public override void SetDefaults()
         {
@@ -93,6 +94,16 @@ namespace TritonsHydrants.Content.Projectiles
                 dust.noGravity = true;
                 dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (_bouncer)
+            {
+                ProjectileExtras.ApplyBounce(Projectile, Projectile.oldVelocity);
+            }
+
+            return base.OnTileCollide(oldVelocity);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -203,7 +214,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public virtual void JungleEffect(Projectile projectile)
         {
-            ProjectileExtras.ApplyBounce(projectile, projectile.oldVelocity);
+            _bouncer = true;
         }
 
         public virtual void DesertEffect(Projectile projectile)

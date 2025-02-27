@@ -97,18 +97,29 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Little Anchor
 			}
+
+			TideEmblem: {
+				DisplayName: Tide Emblem
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
 			Refueled: {
-				Description: '''10% Ranged Speed
-				 20% chance to save ammo'''
+				Description:
+					'''
+					10% Ranged Speed
+					20% chance to save ammo
+					'''
 				DisplayName: Refueled
 			}
 
 			Refreshed: {
-				Description: '''10% Ranged knockback
-				 when take damage, heal 20%'''
+				Description:
+					'''
+					10% Ranged knockback
+					when take damage, heal 20%
+					'''
 				DisplayName: Refreshed
 			}
 
@@ -135,6 +146,16 @@ Mods: {
 			Lithe: {
 				Description: Mods.TritonsHydrants.Buffs.Lithe.Description
 				DisplayName: Lithe
+			}
+
+			HighTide: {
+				DisplayName: High Tide
+				Description: Mods.TritonsHydrants.Buffs.HighTide.Description
+			}
+
+			LowTide: {
+				DisplayName: Low Tide
+				Description: Mods.TritonsHydrants.Buffs.LowTide.Description
 			}
 		}
 
