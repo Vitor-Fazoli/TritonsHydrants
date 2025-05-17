@@ -5,16 +5,14 @@ using Terraria.ModLoader;
 
 namespace TritonsHydrants.Common
 {
-    public abstract class HoseBase : ModItem
+    public abstract class GusherBase : ModItem
     {
         protected const int MIN_MANA_COST = 10;
         protected const int MIN_USE_TIME_ANIMATION = 30;
 
-        protected virtual int ManaCost { get; set; }
-        protected virtual int BurstDamage { get; set; }
-        protected virtual int BurstKnockback { get; set; }
-        protected virtual int UseTimeAnimation { get; set; }
-        protected virtual int HydrantArea { get; set; }
+        protected virtual int ManaCost { get; set; } = 10;
+        protected virtual int BurstDamage { get; set; } = 20;
+        protected virtual int BurstKnockback { get; set; } = 5;
         protected virtual int BuffType { get; set; }
 
         public override void HoldItem(Player player)
@@ -43,16 +41,6 @@ namespace TritonsHydrants.Common
             projectile.ai[0] = BuffType;
 
             return false;
-        }
-
-        public override bool RangedPrefix()
-        {
-            return true;
-        }
-
-        public override bool MagicPrefix()
-        {
-            return true;
         }
     }
 }

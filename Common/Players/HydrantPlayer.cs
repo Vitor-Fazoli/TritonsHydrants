@@ -50,7 +50,7 @@ namespace TritonsHydrants.Common.Players
         {
             if (isRefueled)
             {
-                if (item.type == ModContent.ItemType<HoseBase>())
+                if (item.type == ModContent.ItemType<GusherBase>())
                 {
                     Player.ammoCost80 = true;
                 }

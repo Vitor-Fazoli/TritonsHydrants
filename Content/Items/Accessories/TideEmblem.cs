@@ -1,11 +1,19 @@
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using TritonsHydrants.Utils;
+using Terraria.ModLoader.IO;
+using TritonsHydrants.Common.Players;
 
 namespace TritonsHydrants.Content.Items.Accessories
 {
+    /// <summary>
+    /// This item is evolutive and have 5 levels, before any tasks to do!
+    /// </summary>
     public class TideEmblem : ModItem
     {
+        private const int LEVEL_MAX = 5;
+        public int level = 0;
+
         public override void SetDefaults()
         {
             Item.width = 8;
@@ -14,70 +22,22 @@ namespace TritonsHydrants.Content.Items.Accessories
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<TideEmblemP>().isActive = true;
+            player.GetModPlayer<TideEmblemPlayer>().isActive = true;
         }
-    }
 
-    public class TideEmblemP : ModPlayer
-    {
-        public readonly int timerMax = Helper.Ticks(30);
-        public int timer = Helper.Ticks(29);
-        public bool isActive = false;
-        public bool HighTide = false;
-        public bool LowTide = false;
-
-
-        public override void UpdateDead()
+        public override void LoadData(TagCompound tag)
         {
-            isActive = false;
+            level = tag.Get<int>("level");
         }
 
-        override public void ResetEffects()
+        public override void SaveData(TagCompound tag)
         {
-            isActive = false;
+            tag.Add("level", level);
         }
 
-        public override void PreUpdate()
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (isActive)
-            {
-                timer++;
-
-                if (timer >= timerMax)
-                {
-                    ToggleTide();
-                    timer = 0;
-                }
-
-
-                if (HighTide)
-                {
-                    Player.AddBuff(ModContent.BuffType<Buffs.HighTide>(), 2);
-                }
-                else if (LowTide)
-                {
-                    Player.AddBuff(ModContent.BuffType<Buffs.LowTide>(), 2);
-                }
-            }
+            base.ModifyTooltips(tooltips);
         }
-
-        public void ToggleTide()
-        {
-            if (HighTide)
-            {
-                HighTide = false;
-                LowTide = true;
-            }
-            else if (LowTide)
-            {
-                LowTide = false;
-                HighTide = true;
-            }
-            else
-            {
-                HighTide = true;
-            }
-        }
-
     }
 }

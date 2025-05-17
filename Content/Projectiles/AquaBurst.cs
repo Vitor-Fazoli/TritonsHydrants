@@ -15,14 +15,15 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 50;
-            Projectile.height = 50;
+            Projectile.width = 15;
+            Projectile.height = 15;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Ranged;
+            Projectile.DamageType = DamageClass.Summon;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 90;
             Projectile.extraUpdates = 75;
+            Projectile.tileCollide = true;
         }
 
         public override void AI()
@@ -32,17 +33,6 @@ namespace TritonsHydrants.Content.Projectiles
                 Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
                 Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
-                dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
-            }
-        }
-
-        public override void OnKill(int timeLeft)
-        {
-            for (int i = 0; i < 28; i++)
-            {
-                Vector2 dustVel = Projectile.velocity * Main.rand.NextFloat(0.1f, 1.5f);
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVel + Main.rand.NextVector2Circular(6, 6), Main.rand.NextBool(4) ? DustID.Water : DustID.Cloud, dustVel, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
                 dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }

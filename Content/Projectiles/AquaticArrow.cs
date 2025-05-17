@@ -100,7 +100,7 @@ namespace TritonsHydrants.Content.Projectiles
         {
             if (_bouncer)
             {
-                ProjectileExtras.ApplyBounce(Projectile, Projectile.oldVelocity);
+                ProjectileExtras.ApplyBounce(Projectile, oldVelocity);
             }
 
             return base.OnTileCollide(oldVelocity);
@@ -249,6 +249,10 @@ namespace TritonsHydrants.Content.Projectiles
             projectile.knockBack *= 1.1f;
         }
 
+        /// <summary>
+        /// Happens when the water style changes in the world
+        /// </summary>
+        /// <param name="projectile">the projectile to change</param>
         private void OnWaterChange(Projectile projectile)
         {
             if (_initialWaterStyle != Main.waterStyle)

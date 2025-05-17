@@ -102,6 +102,16 @@ Mods: {
 				DisplayName: Tide Emblem
 				Tooltip: ""
 			}
+
+			TritonJailed: {
+				DisplayName: Triton Jailed
+				Tooltip: ""
+			}
+
+			CopperGusher: {
+				DisplayName: Copper Gusher
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -159,7 +169,11 @@ Mods: {
 			}
 		}
 
-		Tiles.Oceanite.MapEntry: Oceanite
+		Tiles: {
+			Oceanite.MapEntry: Oceanite
+			TritonJailed.MapEntry: Triton Jailed
+		}
+
 		WorldGen.OceaniteOrePassMessage: Oceanite Generation
 	}
 }

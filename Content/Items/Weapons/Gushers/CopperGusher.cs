@@ -1,21 +1,19 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
 using TritonsHydrants.Content.Buffs;
-using TritonsHydrants.Content.Items.Ammo;
 using TritonsHydrants.Content.Projectiles;
 
-namespace TritonsHydrants.Content.Items.Weapons.Hoses
+namespace TritonsHydrants.Content.Items.Weapons.Gushers
 {
 	[AutoloadEquip(EquipType.Back)]
-	public class CopperHose : HoseBase
+	public class CopperGusher : GusherBase
 	{
-		override protected int ManaCost => 20;
-		override protected int BurstDamage => 10;
-		override protected int BurstKnockback => 2;
+		override protected int ManaCost => 10;
+		override protected int BurstDamage => 20;
+		override protected int BurstKnockback => 6;
 		protected override int BuffType => ModContent.BuffType<Refreshed>();
 
 		public override void SetDefaults()
@@ -30,8 +28,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 			Item.knockBack = BurstKnockback;
 			Item.noUseGraphic = false;
 			Item.shoot = ModContent.ProjectileType<AquaBurst>();
-			Item.useAmmo = ModContent.ItemType<WaterCapsule>();
-			Item.DamageType = DamageClass.Ranged;
+			Item.DamageType = DamageClass.Summon;
 			Item.buffType = 0;
 			Item.UseSound = SoundID.Item21;
 		}
@@ -39,23 +36,23 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 		{
 			if (player.altFunctionUse is 2)
 			{
-				if (player.statMana < MIN_MANA_COST + (ManaCost - Item.damage / 3))
+				if (player.statMana < Item.mana)
 					return false;
 
-				Item.mana = MIN_MANA_COST + (ManaCost - Item.damage / 3);
+				Item.mana = ManaCost;
 				Item.useStyle = ItemUseStyleID.Swing;
 				Item.shootSpeed = 0.1f;
 				Item.useTime = 30;
 				Item.useAnimation = 30;
 				Item.noUseGraphic = true;
 				Item.shoot = ModContent.ProjectileType<Hydrant>();
-				Item.useAmmo = 0;
 				Item.noMelee = true;
 				Item.buffType = ModContent.BuffType<HydrantBuff>();
+				Item.UseSound = SoundID.Item25;
 			}
 			else
 			{
-				Item.mana = 0;
+				Item.mana = ManaCost;
 				Item.useStyle = ItemUseStyleID.Shoot;
 				Item.noMelee = true;
 				Item.shootSpeed = 10f;
@@ -65,10 +62,8 @@ namespace TritonsHydrants.Content.Items.Weapons.Hoses
 				Item.knockBack = BurstKnockback;
 				Item.noUseGraphic = false;
 				Item.shoot = ModContent.ProjectileType<AquaBurst>();
-				Item.useAmmo = ModContent.ItemType<WaterCapsule>();
-				Item.DamageType = DamageClass.Ranged;
 				Item.buffType = 0;
-				Item.UseSound = SoundID.Item25;
+				Item.UseSound = SoundID.Item21;
 			}
 
 			return base.CanUseItem(player);
