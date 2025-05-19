@@ -32,6 +32,10 @@ namespace TritonsHydrants.Content.Items.Weapons.Gushers
 			Item.buffType = 0;
 			Item.UseSound = SoundID.Item21;
 		}
+		public override bool? UseItem(Player player)
+		{
+			return base.UseItem(player);
+		}
 		public override bool CanUseItem(Player player)
 		{
 			if (player.altFunctionUse is 2)

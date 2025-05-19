@@ -15,8 +15,8 @@ namespace TritonsHydrants.Content.Buffs
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense *= 2; // twice your defense
-            player.GetDamage(DamageClass.Melee) /= 2;
+            player.GetDamage<GenericDamageClass>() += 0.1f;
+            player.statDefense -= 10;
         }
     }
 }

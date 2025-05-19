@@ -9,12 +9,11 @@ namespace TritonsHydrants.Content.Items.Accessories
     {
         public override void SetDefaults()
         {
-            Item.width = 10;
-            Item.height = 10;
+            Item.width = 17;
+            Item.height = 19;
 
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
-            Item.defense = 15;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
