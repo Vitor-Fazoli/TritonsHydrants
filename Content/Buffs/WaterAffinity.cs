@@ -8,7 +8,7 @@ public class WaterAffinity : ModBuff
 {
     public override void SetStaticDefaults()
     {
-        Main.debuff[Type] = true;
+        Main.debuff[Type] = false;
         Main.buffNoSave[Type] = true;
         Main.buffNoTimeDisplay[Type] = true;
     }

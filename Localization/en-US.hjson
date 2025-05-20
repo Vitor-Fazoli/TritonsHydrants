@@ -112,6 +112,17 @@ Mods: {
 				DisplayName: Copper Gusher
 				Tooltip: ""
 			}
+
+			Canteen: {
+				RightClick: Mods.TritonsHydrants.Items.Canteen.RightClick
+				DrawMode_0: Mods.TritonsHydrants.Items.Canteen.DrawMode_0
+				DrawMode_1: Mods.TritonsHydrants.Items.Canteen.DrawMode_1
+				DrawMode_2: Mods.TritonsHydrants.Items.Canteen.DrawMode_2
+				DrawMode_3: Mods.TritonsHydrants.Items.Canteen.DrawMode_3
+				DrawMode_4: Mods.TritonsHydrants.Items.Canteen.DrawMode_4
+				DisplayName: Canteen
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -175,5 +186,6 @@ Mods: {
 		}
 
 		WorldGen.OceaniteOrePassMessage: Oceanite Generation
+		NPCs.SirenMerchant.DisplayName: Siren Merchant
 	}
 }

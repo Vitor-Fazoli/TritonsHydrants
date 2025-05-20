@@ -8,7 +8,7 @@ namespace TritonsHydrants.Content.Buffs
     {
         public override void SetStaticDefaults()
         {
-            Main.debuff[Type] = true;
+            Main.debuff[Type] = false;
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;

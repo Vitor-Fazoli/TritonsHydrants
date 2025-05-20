@@ -1,8 +1,4 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -16,22 +12,12 @@ namespace TritonsHydrants.Content.NPCs
     public class SirenMerchant : ModNPC
     {
         private static Profiles.StackedNPCProfile NPCProfile;
-        private static Asset<Texture2D> shimmerGun;
-
-        public override void Load()
-        {
-            shimmerGun = ModContent.Request<Texture2D>(Texture + "_Shimmer_Gun");
-        }
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 25;
-            NPCID.Sets.AttackFrameCount[Type] = 4;
+            Main.npcFrameCount[Type] = 1;
             NPCID.Sets.DangerDetectRange[Type] = 0;
             NPCID.Sets.PrettySafe[Type] = 300;
-            NPCID.Sets.AttackType[Type] = 0;
-            NPCID.Sets.AttackAverageChance[Type] = 30;
-            NPCID.Sets.HatOffsetY[Type] = 4;
             NPCID.Sets.ShimmerTownTransform[NPC.type] = false;
 
             // This sets entry is the most important part of this NPC. Since it is true, it tells the game that we want this NPC to act like a town NPC without ACTUALLY being one.
@@ -51,34 +37,32 @@ namespace TritonsHydrants.Content.NPCs
             //NPCID.Sets.AllowDoorInteraction[Type] = true;
 
             // Influences how the NPC looks in the Bestiary
-            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new()
             {
-                Velocity = 1f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
-                Direction = 1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
+                Velocity = 0f, // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+                Direction = -1 // -1 is left and 1 is right. NPCs are drawn facing the left by default but ExamplePerson will be drawn facing the right
             };
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
 
-            NPCProfile = new Profiles.StackedNPCProfile(
-                new Profiles.DefaultNPCProfile(Texture, -1),
-                new Profiles.DefaultNPCProfile(Texture + "_Shimmer", -1)
-            );
+            // NPCProfile = new Profiles.StackedNPCProfile(
+            //     new Profiles.DefaultNPCProfile(Texture, -1),
+            //     new Profiles.DefaultNPCProfile(Texture + "_Shimmer", -1)
+            // );
         }
 
         public override void SetDefaults()
         {
             NPC.friendly = true; // NPC Will not attack player
-            NPC.width = 18;
-            NPC.height = 40;
-            NPC.aiStyle = 7;
+            NPC.width = 148;
+            NPC.height = 180;
+            NPC.aiStyle = 0;
             NPC.damage = 10;
             NPC.defense = 15;
-            NPC.lifeMax = 250;
+            NPC.lifeMax = 1000;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
-
-            AnimationType = NPCID.Guide;
         }
 
         public override bool CanChat()
