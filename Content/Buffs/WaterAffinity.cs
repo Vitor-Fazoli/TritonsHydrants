@@ -19,7 +19,7 @@ public class WaterAffinity : ModBuff
 
         if (player.wet)
         {
-            player.moveSpeed += Helper.Percentage(10);
+            player.moveSpeed += TritonsHelper.Percentage(10);
         }
     }
 }

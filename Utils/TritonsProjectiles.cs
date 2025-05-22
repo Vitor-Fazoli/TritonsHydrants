@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace TritonsHydrants.Utils;
 
-public static class ProjectileExtras
+public static class TritonsProjectiles
 {
     public static void ApplyBounce(Projectile proj, Vector2 oldVelocity)
     {

@@ -114,14 +114,25 @@ Mods: {
 			}
 
 			Canteen: {
-				RightClick: Mods.TritonsHydrants.Items.Canteen.RightClick
-				DrawMode_0: Mods.TritonsHydrants.Items.Canteen.DrawMode_0
-				DrawMode_1: Mods.TritonsHydrants.Items.Canteen.DrawMode_1
-				DrawMode_2: Mods.TritonsHydrants.Items.Canteen.DrawMode_2
-				DrawMode_3: Mods.TritonsHydrants.Items.Canteen.DrawMode_3
-				DrawMode_4: Mods.TritonsHydrants.Items.Canteen.DrawMode_4
 				DisplayName: Canteen
-				Tooltip: ""
+				Tooltip:
+					'''
+					Drop in water to fill with water
+
+					Change your trident projectiles to their respective water
+					'''
+
+				WaterName: {
+					Forest: Forest
+					Corruption: Corruption
+					Jungle: Jungle
+					Hallow: Hallow
+					Snow: Snow
+					Desert: Desert
+					Cavern: Cavern
+					BloodMoon: Blood Moon
+					Crimson: Crimson
+				}
 			}
 		}
 

@@ -11,7 +11,7 @@ public class Lithe : ModBuff
     {
         HydrantPlayer hydrantP = player.GetModPlayer<HydrantPlayer>();
 
-        player.GetDamage(DamageClass.Ranged) += Helper.Percentage(15);
+        player.GetDamage(DamageClass.Ranged) += TritonsHelper.Percentage(15);
         hydrantP.isLithe = true;
     }
 }

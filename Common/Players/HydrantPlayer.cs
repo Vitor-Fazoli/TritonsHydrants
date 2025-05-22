@@ -28,7 +28,7 @@ namespace TritonsHydrants.Common.Players
         {
             if (isRefreshed)
             {
-                int damageReceived = (int)(hurtInfo.Damage * Helper.Percentage(20));
+                int damageReceived = (int)(hurtInfo.Damage * TritonsHelper.Percentage(20));
 
                 Player.HealEffect(damageReceived, true);
                 Player.Heal(damageReceived);
@@ -39,7 +39,7 @@ namespace TritonsHydrants.Common.Players
         {
             if (isRefreshed)
             {
-                int damageReceived = (int)(hurtInfo.Damage * Helper.Percentage(20));
+                int damageReceived = (int)(hurtInfo.Damage * TritonsHelper.Percentage(20));
 
                 Player.HealEffect(damageReceived, true);
                 Player.Heal(damageReceived);

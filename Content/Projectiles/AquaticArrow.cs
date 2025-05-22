@@ -79,7 +79,7 @@ namespace TritonsHydrants.Content.Projectiles
 
             if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
             {
-                Projectile.soundDelay = Helper.Ticks(1);
+                Projectile.soundDelay = TritonsHelper.Ticks(1);
                 SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
             }
         }
@@ -100,7 +100,7 @@ namespace TritonsHydrants.Content.Projectiles
         {
             if (_bouncer)
             {
-                ProjectileExtras.ApplyBounce(Projectile, oldVelocity);
+                TritonsProjectiles.ApplyBounce(Projectile, oldVelocity);
             }
 
             return base.OnTileCollide(oldVelocity);

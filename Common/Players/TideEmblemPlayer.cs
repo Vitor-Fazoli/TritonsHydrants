@@ -6,8 +6,8 @@ namespace TritonsHydrants.Common.Players;
 
 public class TideEmblemPlayer : ModPlayer
 {
-    public readonly int timerMax = Helper.Ticks(30);
-    public int timer = Helper.Ticks(29);
+    public readonly int timerMax = TritonsHelper.Ticks(30);
+    public int timer = TritonsHelper.Ticks(29);
     public bool isActive = false;
     public bool HighTide = false;
     public bool LowTide = false;

@@ -1,5 +1,6 @@
 using Terraria;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace TritonsHydrants.Utils;
 
@@ -19,6 +20,24 @@ public class Water
     public const int Crimsom = 10;
     public const int Desert2 = 12;
 
+    public static int GetWater(int waterType)
+    {
+        return waterType switch
+        {
+            Corruption => Corruption,
+            Jungle => Jungle,
+            Hallow => Hallow,
+            Snow => Snow,
+            Desert => Desert,
+            Cavern => Cavern,
+            Cavern2 => Cavern2,
+            BloodMoon => BloodMoon,
+            Crimsom => Crimsom,
+            Desert2 => Desert2,
+            _ => 0, // Default
+        };
+    }
+
     /// <summary>
     /// Gets the color of the current water style.
     /// </summary>
@@ -26,6 +45,24 @@ public class Water
     public static Color GetWaterColor()
     {
         return Main.waterStyle switch
+        {
+            Corruption => new Color(59, 29, 131),
+            Jungle => new Color(7, 145, 142),
+            Hallow => new Color(171, 11, 209),
+            Snow => new Color(9, 137, 191),
+            Desert => new Color(32, 168, 117),
+            Cavern => new Color(36, 60, 148),
+            Cavern2 => new Color(65, 59, 101),
+            BloodMoon => new Color(200, 0, 0),
+            Crimsom => new Color(177, 54, 79),
+            Desert2 => new Color(168, 106, 32),
+            _ => new Color(9, 61, 191), // Default
+        };
+    }
+
+    public static Color GetWaterColor(int waterType)
+    {
+        return waterType switch
         {
             Corruption => new Color(59, 29, 131),
             Jungle => new Color(7, 145, 142),

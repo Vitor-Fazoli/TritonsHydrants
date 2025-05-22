@@ -34,7 +34,7 @@ namespace TritonsHydrants.Content.Projectiles
 
                 Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust.color = Water.GetWaterColor();
             }
         }
         public override void OnSpawn(IEntitySource source)
@@ -42,6 +42,31 @@ namespace TritonsHydrants.Content.Projectiles
             Player owner = Main.player[Projectile.owner];
             owner.velocity += -(Projectile.velocity / 2);
             SoundEngine.PlaySound(SoundID.LiquidsHoneyWater with { Volume = 1.25f, Pitch = 0.6f }, Projectile.Center);
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+
+            for (int i = 0; i <= 25; i++)
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, (Projectile.velocity.SafeNormalize(Vector2.UnitY) * 15f).RotatedByRandom(MathHelper.ToRadians(360f)) * Main.rand.NextFloat(0.1f, 0.8f), 0, default,
+                    Main.rand.NextFloat(1.2f, 1.6f));
+
+                dust.noGravity = true;
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+            }
+
+            for (int k = 0; k < 50; k++)
+            {
+                Vector2 shootVel = Main.rand.NextVector2Circular(1f, 1f);
+
+                Dust dust2 = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, shootVel);
+                dust2.scale = Main.rand.NextFloat(1.15f, 1.45f);
+                dust2.noGravity = true;
+                dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+            }
+
+            return base.OnTileCollide(oldVelocity);
         }
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)

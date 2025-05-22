@@ -14,7 +14,7 @@ public class Refreshed : ModBuff
     {
         var hydrantP = player.GetModPlayer<HydrantPlayer>();
 
-        player.GetKnockback(DamageClass.Ranged) += Helper.Percentage(10);
+        player.GetKnockback(DamageClass.Ranged) += TritonsHelper.Percentage(10);
         hydrantP.isRefreshed = true;
     }
 }

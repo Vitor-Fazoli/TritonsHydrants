@@ -31,7 +31,7 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.tileCollide = true;
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = Helper.Ticks(18000);
+            Projectile.timeLeft = TritonsHelper.Ticks(18000);
             Projectile.light = 0f;
             Projectile.scale = 1f;
             Projectile.minion = true;
