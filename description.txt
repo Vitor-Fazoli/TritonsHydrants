@@ -1,1 +1,6 @@
-Modify this file with a description of your mod.
+Tritons & Hydrants splashes into Terraria with two refreshing weapon classes!
+Harness the power of the Trident, a magic weapon that changes its behavior based on the color of nearby water — from healing blood-soaked strikes to piercing bolts of icy wrath.
+
+Or take command as a summoner with the Gusher, a pressure-powered hose that blasts enemies with water jets and lets you place Hydrants on the battlefield. These special sentries support allies and drench foes, turning the tide of any fight.
+
+Flood your foes. Empower your friends. Rule the battlefield like the ocean itself!.

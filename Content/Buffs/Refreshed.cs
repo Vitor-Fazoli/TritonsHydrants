@@ -1,20 +1,52 @@
 using Terraria;
 using Terraria.ModLoader;
-using TritonsHydrants.Common.Players;
 using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Buffs;
 
-/// <summary>
-/// Heal the player when hit by a NPC or projectile if is on Hydrant area and receive 10% attack speed
-/// </summary>
 public class Refreshed : ModBuff
 {
     public override void Update(Player player, ref int buffIndex)
     {
-        var hydrantP = player.GetModPlayer<HydrantPlayer>();
+        var p = player.GetModPlayer<RefreshedPlayer>();
 
-        player.GetKnockback(DamageClass.Ranged) += TritonsHelper.Percentage(10);
-        hydrantP.isRefreshed = true;
+        player.GetAttackSpeed(DamageClass.Summon) += TritonsHelper.Percentage(10);
+        p.isRefreshed = true;
+    }
+}
+
+internal class RefreshedPlayer : ModPlayer
+{
+    public bool isRefreshed;
+
+    public override void ResetEffects()
+    {
+        isRefreshed = false;
+    }
+
+    public override void UpdateDead()
+    {
+        ResetEffects();
+    }
+    public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+    {
+        if (isRefreshed)
+        {
+            int fractionalDamage = (int)(hurtInfo.Damage * TritonsHelper.Percentage(20));
+
+            if (fractionalDamage > 0)
+                Player.Heal(fractionalDamage);
+        }
+    }
+
+    public override void OnHitByProjectile(Projectile proj, Player.HurtInfo hurtInfo)
+    {
+        if (isRefreshed)
+        {
+            int fractionalDamage = (int)(hurtInfo.Damage * TritonsHelper.Percentage(20));
+
+            if (fractionalDamage > 0)
+                Player.Heal(fractionalDamage);
+        }
     }
 }

@@ -134,6 +134,11 @@ Mods: {
 					Crimson: Crimson
 				}
 			}
+
+			TinGusher: {
+				DisplayName: Tin Gusher
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -149,15 +154,15 @@ Mods: {
 			Refreshed: {
 				Description:
 					'''
-					10% Ranged knockback
+					10% Increased Summon Speed
 					when take damage, heal 20%
 					'''
 				DisplayName: Refreshed
 			}
 
 			HydrantBuff: {
-				Description: Mods.TritonsHydrants.Buffs.HydrantBuff.Description
-				DisplayName: Hydrant Buff
+				Description: The Hydrant will benefit you if you stay close to it
+				DisplayName: Hydrant
 			}
 
 			WaterAffinity: {

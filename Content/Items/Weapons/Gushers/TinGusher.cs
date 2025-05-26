@@ -10,7 +10,7 @@ using TritonsHydrants.Content.Projectiles;
 namespace TritonsHydrants.Content.Items.Weapons.Gushers
 {
 	[AutoloadEquip(EquipType.Back)]
-	public class CopperGusher : GusherBase
+	public class TinGusher : GusherBase
 	{
 		override protected int ManaCost => 10;
 		override protected int BurstDamage => 20;
@@ -73,6 +73,7 @@ namespace TritonsHydrants.Content.Items.Weapons.Gushers
 
 			return base.CanUseItem(player);
 		}
+
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
 			if (player.altFunctionUse is not 2)
