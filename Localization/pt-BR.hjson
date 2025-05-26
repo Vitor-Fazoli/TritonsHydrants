@@ -1,0 +1,128 @@
+Mods: {
+	TritonsHydrants: {
+		Projectiles: {
+			UnholyTrident.DisplayName: Tridente Profano
+			NebulaSpike.DisplayName: Espinho de Névoa
+			MoltenTrident.DisplayName: Tridente Derretido
+			LeadTrident.DisplayName: Tridente de Chumbo
+			IronTrident.DisplayName: Tridente de Ferro
+			HallowedTrident.DisplayName: Tridente Sagrado
+			Galacticite.DisplayName: Galactita
+			Hydrant.DisplayName: Hidrante
+			GalacticiteAquaticArrow.DisplayName: Flecha Aquática de Galactita
+			AquaticArrow.DisplayName: Flecha Aquática
+			AquaBurst.DisplayName: Explosão Aquática
+		}
+
+		Items: {
+			NebulaSpike: {
+				Tooltip: ""
+				DisplayName: Espinho de Névoa
+			}
+
+			LeadTrident: {
+				Tooltip: ""
+				DisplayName: Tridente de Chumbo
+			}
+
+			IronTrident: {
+				Tooltip: ""
+				DisplayName: Tridente de Ferro
+			}
+
+			HallowedTrident: {
+				Tooltip: ""
+				DisplayName: Tridente Sagrado
+			}
+
+			Galacticite: {
+				Tooltip: ""
+				DisplayName: Galactita
+			}
+
+			CopperGusher: {
+				DisplayName: Mangueira de Cobre
+				Tooltip: ""
+			}
+
+			TinGusher: {
+				DisplayName: Mangueira de Estanho
+				Tooltip: ""
+			}
+
+			LittleAnchor: {
+				Tooltip: '''
+				Alterna entre Maré Alta e Maré Baixa ao causar ou receber dano
+
+				Maré Alta: aumenta o dano em 10% e reduz a defesa em 8
+				Maré Baixa: aumenta a defesa em 8 e reduz o dano em 10%
+				'''
+				DisplayName: Ancorinha
+			}
+
+			Canteen: {
+				DisplayName: Cantil
+				Tooltip:
+					'''
+					Jogue na água para encher o cantil
+
+					Altere os projéteis do seu tridente para o líquido dentro do cantil
+					'''
+				WaterName: {
+					Forest: Floresta
+					Corruption: Corrupção
+					Jungle: Selva
+					Hallow: Sagrado
+					Snow: Neve
+					Desert: Deserto
+					Cavern: Caverna
+					BloodMoon: Lua de Sangue
+					Crimson: Carmim
+				}
+			}
+		}
+
+		Buffs: {
+
+			Refreshed: {
+				Description:
+					'''
+					Aumenta a velocidade de invocação em 10%
+					ao receber dano, cura 20%
+					'''
+				DisplayName: Refrescado
+			}
+
+			HydrantBuff: {
+				Description: O Hidrante irá beneficiá-lo se você ficar próximo a ele
+				DisplayName: Hidrante
+			}
+
+			WaterAffinity: {
+				DisplayName: Afinidade Aquática
+				Description:
+					'''
+					Aumenta a velocidade de movimento em 10%
+					permite nadar para cima em líquidos
+					Permite andar sobre água e mel
+					'''
+			}
+
+			HighTide: {
+				DisplayName: Maré Alta
+				Description: '''
+				Reduz a defesa em 8
+				Aumenta o dano em 10%
+				'''
+			}
+
+			LowTide: {
+				DisplayName: Maré Baixa
+				Description: '''
+				Aumenta a defesa em 8
+				Reduz o dano em 10%
+				'''
+			}
+		}
+	}
+}

@@ -15,14 +15,6 @@ Mods: {
 		}
 
 		Items: {
-			UnholyTrident: {
-				Tooltip: ""
-				DisplayName: Unholy Trident
-			}
-
-			TerraFork: {
-			}
-
 			NebulaSpike: {
 				Tooltip: ""
 				DisplayName: Nebula Spike
@@ -48,69 +40,19 @@ Mods: {
 				DisplayName: Galacticite
 			}
 
-			CopperHose: {
-				Tooltip: ""
-				DisplayName: Copper Hose
-			}
-
-			WaterCapsule: {
-				Tooltip: ""
-				DisplayName: Water Capsule
-			}
-
-			NeptuneGift: {
-				Tooltip: ""
-				DisplayName: Neptune Gift
-			}
-
-			BookOfKnowledge: {
-				Tooltip: ""
-				DisplayName: Book Of Knowledge
-			}
-
-			OceaniteOre: {
-				DisplayName: Oceanite Ore
+			CopperGusher: {
+				DisplayName: Copper Gusher
 				Tooltip: ""
 			}
 
-			RoyalHelmetOfTheDeep: {
-				DisplayName: Royal Helmet Of The Deep
+			TinGusher: {
+				DisplayName: Tin Gusher
 				Tooltip: ""
-			}
-
-			Spectremite: {
-				Tooltip: ""
-				DisplayName: Spectremite
-			}
-
-			DemonSkin: {
-				Tooltip: ""
-				DisplayName: Demon Skin
-			}
-
-			CrownFragment: {
-				Tooltip: ""
-				DisplayName: Crown Fragment
 			}
 
 			LittleAnchor: {
 				Tooltip: ""
 				DisplayName: Little Anchor
-			}
-
-			TideEmblem: {
-				DisplayName: Tide Emblem
-				Tooltip: ""
-			}
-
-			TritonJailed: {
-				DisplayName: Triton Jailed
-				Tooltip: ""
-			}
-
-			CopperGusher: {
-				DisplayName: Copper Gusher
-				Tooltip: ""
 			}
 
 			Canteen: {
@@ -121,7 +63,6 @@ Mods: {
 
 					Change your trident projectiles to their respective water
 					'''
-
 				WaterName: {
 					Forest: Forest
 					Corruption: Corruption
@@ -134,22 +75,9 @@ Mods: {
 					Crimson: Crimson
 				}
 			}
-
-			TinGusher: {
-				DisplayName: Tin Gusher
-				Tooltip: ""
-			}
 		}
 
 		Buffs: {
-			Refueled: {
-				Description:
-					'''
-					10% Ranged Speed
-					20% chance to save ammo
-					'''
-				DisplayName: Refueled
-			}
 
 			Refreshed: {
 				Description:
@@ -175,33 +103,21 @@ Mods: {
 					'''
 			}
 
-			MindExplosion: {
-				Description: Mods.TritonsHydrants.Buffs.MindExplosion.Description
-				DisplayName: Mind Explosion
-			}
-
-			Lithe: {
-				Description: Mods.TritonsHydrants.Buffs.Lithe.Description
-				DisplayName: Lithe
-			}
-
 			HighTide: {
 				DisplayName: High Tide
-				Description: Mods.TritonsHydrants.Buffs.HighTide.Description
+				Description: '''
+				Decreases defense by 8
+				Increases damage by 10%
+				'''
 			}
 
 			LowTide: {
 				DisplayName: Low Tide
-				Description: Mods.TritonsHydrants.Buffs.LowTide.Description
+				Description: '''
+				Increases defense by 8
+				Decreases damage by 10%
+				'''
 			}
 		}
-
-		Tiles: {
-			Oceanite.MapEntry: Oceanite
-			TritonJailed.MapEntry: Triton Jailed
-		}
-
-		WorldGen.OceaniteOrePassMessage: Oceanite Generation
-		NPCs.SirenMerchant.DisplayName: Siren Merchant
 	}
 }

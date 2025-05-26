@@ -16,7 +16,7 @@ namespace TritonsHydrants.Content.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.GetDamage<GenericDamageClass>() += 0.1f;
-            player.statDefense -= 10;
+            player.statDefense -= 8;
         }
     }
 }
