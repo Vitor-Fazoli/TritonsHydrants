@@ -1,8 +1,6 @@
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
 using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;

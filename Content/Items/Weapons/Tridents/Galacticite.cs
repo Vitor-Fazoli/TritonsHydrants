@@ -1,4 +1,6 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common.Systems;
@@ -16,8 +18,8 @@ public class Galacticite : BaseTridentItem
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(gold: 23);
         Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.Galacticite>();
-        Item.useAnimation = 11;
-        Item.useTime = 11;
+        Item.useAnimation = 17;
+        Item.useTime = 17;
 
         // Texture settings
         Item.width = 44;
@@ -34,7 +36,23 @@ public class Galacticite : BaseTridentItem
         Item.UseSound = SoundID.Item71;
     }
 
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+    {
+        Vector2 offset = new(velocity.X * 3, velocity.Y * 3);
+        position += offset;
 
+        const int MINIMUM_RADIAN = -20;
+        int radians = 20;
+        int amountProjectiles = 2;
+
+        for (int i = MINIMUM_RADIAN; i < radians * amountProjectiles; i += radians)
+        {
+            Vector2 newVelocity = velocity.RotatedBy(MathHelper.ToRadians(i));
+            Projectile.NewProjectile(source, position, newVelocity, type, damage, knockback, player.whoAmI);
+        }
+
+        return base.Shoot(player, source, position, velocity, type, damage, knockback);
+    }
 
     public override void AddRecipes()
     {

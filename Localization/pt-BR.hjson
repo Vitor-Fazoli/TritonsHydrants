@@ -51,12 +51,13 @@ Mods: {
 			}
 
 			LittleAnchor: {
-				Tooltip: '''
-				Alterna entre Maré Alta e Maré Baixa ao causar ou receber dano
+				Tooltip:
+					'''
+					Alterna entre Maré Alta e Maré Baixa ao causar ou receber dano
 
-				Maré Alta: aumenta o dano em 10% e reduz a defesa em 8
-				Maré Baixa: aumenta a defesa em 8 e reduz o dano em 10%
-				'''
+					Maré Alta: aumenta o dano em 10% e reduz a defesa em 8
+					Maré Baixa: aumenta a defesa em 8 e reduz o dano em 10%
+					'''
 				DisplayName: Ancorinha
 			}
 
@@ -68,6 +69,7 @@ Mods: {
 
 					Altere os projéteis do seu tridente para o líquido dentro do cantil
 					'''
+
 				WaterName: {
 					Forest: Floresta
 					Corruption: Corrupção
@@ -80,10 +82,14 @@ Mods: {
 					Crimson: Carmim
 				}
 			}
+
+			StellarSiphon: {
+				// Tooltip: ""
+				// DisplayName: Stellar Siphon
+			}
 		}
 
 		Buffs: {
-
 			Refreshed: {
 				Description:
 					'''
@@ -110,18 +116,20 @@ Mods: {
 
 			HighTide: {
 				DisplayName: Maré Alta
-				Description: '''
-				Reduz a defesa em 8
-				Aumenta o dano em 10%
-				'''
+				Description:
+					'''
+					Reduz a defesa em 8
+					Aumenta o dano em 10%
+					'''
 			}
 
 			LowTide: {
 				DisplayName: Maré Baixa
-				Description: '''
-				Aumenta a defesa em 8
-				Reduz o dano em 10%
-				'''
+				Description:
+					'''
+					Aumenta a defesa em 8
+					Reduz o dano em 10%
+					'''
 			}
 		}
 	}

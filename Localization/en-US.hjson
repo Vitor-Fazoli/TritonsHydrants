@@ -63,6 +63,7 @@ Mods: {
 
 					Change your trident projectiles to their respective water
 					'''
+
 				WaterName: {
 					Forest: Forest
 					Corruption: Corruption
@@ -75,10 +76,14 @@ Mods: {
 					Crimson: Crimson
 				}
 			}
+
+			StellarSiphon: {
+				Tooltip: ""
+				DisplayName: Stellar Siphon
+			}
 		}
 
 		Buffs: {
-
 			Refreshed: {
 				Description:
 					'''
@@ -105,18 +110,20 @@ Mods: {
 
 			HighTide: {
 				DisplayName: High Tide
-				Description: '''
-				Decreases defense by 8
-				Increases damage by 10%
-				'''
+				Description:
+					'''
+					Decreases defense by 8
+					Increases damage by 10%
+					'''
 			}
 
 			LowTide: {
 				DisplayName: Low Tide
-				Description: '''
-				Increases defense by 8
-				Decreases damage by 10%
-				'''
+				Description:
+					'''
+					Increases defense by 8
+					Decreases damage by 10%
+					'''
 			}
 		}
 	}
