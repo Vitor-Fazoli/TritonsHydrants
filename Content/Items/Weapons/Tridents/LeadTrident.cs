@@ -10,7 +10,7 @@ public class LeadTrident : BaseTridentItem
     public override void SetDefaults()
     {
         // Item settings
-        Item.damage = 7;
+        Item.damage = 17;
         Item.knockBack = 6.5f;
         Item.mana = 5;
         Item.rare = ItemRarityID.White;

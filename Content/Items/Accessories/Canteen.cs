@@ -97,4 +97,14 @@ public class Canteen : ModItem
 
         return true;
     }
+
+    public override void AddRecipes()
+    {
+        CreateRecipe()
+            .AddIngredient(ItemID.Bottle, 5)
+            .AddIngredient(ItemID.WaterBucket, 1)
+            .AddIngredient(ItemID.Sandstone, 5)
+            .AddTile(TileID.Bottles)
+            .Register();
+    }
 }

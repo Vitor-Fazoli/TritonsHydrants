@@ -1,8 +1,6 @@
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using TritonsHydrants.Common;
 using TritonsHydrants.Common.Systems;
 
 namespace TritonsHydrants.Content.Items.Weapons.Tridents;
@@ -12,7 +10,7 @@ public class NebulaSpike : BaseTridentItem
     public override void SetDefaults()
     {
         // Item settings
-        Item.damage = 116;
+        Item.damage = 156;
         Item.knockBack = 6.5f;
         Item.mana = 5;
         Item.rare = ItemRarityID.White;

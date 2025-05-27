@@ -11,9 +11,9 @@ public class HallowedTrident : BaseTridentItem
     public override void SetDefaults()
     {
         // Item settings
-        Item.damage = 12;
+        Item.damage = 117;
         Item.knockBack = 6.5f;
-        Item.mana = 5;
+        Item.mana = 20;
         Item.rare = ItemRarityID.White;
         Item.value = Item.sellPrice(silver: 10);
         Item.shoot = ModContent.ProjectileType<Projectiles.Tridents.HallowedTrident>();
