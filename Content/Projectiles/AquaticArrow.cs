@@ -219,7 +219,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public virtual void DesertEffect(Projectile projectile)
         {
-            projectile.velocity /= 5;
+            projectile.velocity /= 2.5f;
             projectile.damage *= 2;
         }
 

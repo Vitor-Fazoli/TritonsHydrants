@@ -12,6 +12,7 @@ Mods: {
 			GalacticiteAquaticArrow.DisplayName: Galacticite Aquatic Arrow
 			AquaticArrow.DisplayName: Aquatic Arrow
 			AquaBurst.DisplayName: Aqua Burst
+			MeteorFork.DisplayName: Meteor Fork
 		}
 
 		Items: {
@@ -80,6 +81,11 @@ Mods: {
 			StellarSiphon: {
 				Tooltip: ""
 				DisplayName: Stellar Siphon
+			}
+
+			MeteorFork: {
+				DisplayName: Meteor Fork
+				Tooltip: ""
 			}
 		}
 

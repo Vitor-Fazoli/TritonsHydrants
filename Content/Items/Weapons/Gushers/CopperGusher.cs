@@ -72,6 +72,15 @@ public class CopperGusher : GusherBase
 
 		return base.CanUseItem(player);
 	}
+	public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+	{
+		if (player.altFunctionUse is not 2)
+		{
+			target.AddBuff(BuffID.Slow, 500);
+		}
+
+		base.OnHitNPC(player, target, hit, damageDone);
+	}
 	public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 	{
 		if (player.altFunctionUse is not 2)

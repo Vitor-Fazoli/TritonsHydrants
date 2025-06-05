@@ -22,7 +22,7 @@ namespace TritonsHydrants.Content.Items.Accessories
 
     internal class LittleAnchorPlayer : ModPlayer
     {
-        private const int MAX_DAMAGE_TAKEN = 150;
+        private const int MAX_DAMAGE_TAKEN = 300;
         private int _tidePoints = 0;
         private bool _isHighTide = false;
 

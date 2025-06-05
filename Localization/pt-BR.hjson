@@ -12,6 +12,7 @@ Mods: {
 			GalacticiteAquaticArrow.DisplayName: Flecha Aquática de Galactita
 			AquaticArrow.DisplayName: Flecha Aquática
 			AquaBurst.DisplayName: Explosão Aquática
+			// MeteorFork.DisplayName: Meteor Fork
 		}
 
 		Items: {
@@ -84,8 +85,13 @@ Mods: {
 			}
 
 			StellarSiphon: {
+				Tooltip: ""
+				DisplayName: Sifão Estelar
+			}
+
+			MeteorFork: {
+				// DisplayName: Meteor Fork
 				// Tooltip: ""
-				// DisplayName: Stellar Siphon
 			}
 		}
 
