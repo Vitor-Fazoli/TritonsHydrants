@@ -13,6 +13,7 @@ Mods: {
 			AquaticArrow.DisplayName: Flecha Aquática
 			AquaBurst.DisplayName: Explosão Aquática
 			// MeteorFork.DisplayName: Meteor Fork
+			// AquaBurstHeld.DisplayName: Aqua Burst Held
 		}
 
 		Items: {
