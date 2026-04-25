@@ -47,8 +47,8 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Projectile.velocity += new Vector2(0, -1.5f);
             Projectile.damage = 0;
-
             BuffType = (int)Projectile.ai[0];
+            Projectile.netUpdate = true;
         }
         public override bool MinionContactDamage()
         {
@@ -56,19 +56,26 @@ namespace TritonsHydrants.Content.Projectiles
         }
         public override void AI()
         {
-            CanisterPlayer owner = Main.player[Projectile.owner].GetModPlayer<CanisterPlayer>();
             Player pOwner = Main.player[Projectile.owner];
+            CanisterPlayer owner = pOwner.GetModPlayer<CanisterPlayer>();
 
-
-            if (!CheckActive(pOwner))
+            // CheckActive só roda no cliente dono
+            if (Main.myPlayer == Projectile.owner)
             {
-                return;
+                if (!CheckActive(pOwner))
+                    return;
+            }
+            else
+            {
+                // Outros clientes só checam se o dono está vivo e ativo
+                if (pOwner.dead || !pOwner.active)
+                    return;
             }
 
             AuraEffect(Projectile.Center, owner.AuraRadius);
-            PlayersBuff(Projectile, owner.AuraRadius, pOwner);
             Gravity(Projectile);
         }
+
         private bool CheckActive(Player owner)
         {
             if (owner.dead || !owner.active)
@@ -89,20 +96,6 @@ namespace TritonsHydrants.Content.Projectiles
         {
             proj.velocity.Y += 0.1f;
             proj.rotation = 0;
-        }
-        private static void PlayersBuff(Projectile projectile, float auraSize, Player owner)
-        {
-
-
-            Player[] players = Main.player;
-
-            Parallel.ForEach(players, player =>
-            {
-                if (Vector2.Distance(player.position, projectile.Center) < (int)auraSize)
-                {
-                    player.AddBuff((int)projectile.ai[0], 1, false);
-                }
-            });
         }
         private static void AuraEffect(Vector2 pos, float auraSize)
         {
@@ -131,6 +124,36 @@ namespace TritonsHydrants.Content.Projectiles
         public override void PostUpdate()
         {
             AuraRadius = Player.GetDamage(DamageClass.Summon).ApplyTo(_auraRadius);
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            // Garante que só roda para o jogador local desta máquina
+            if (Player != Main.LocalPlayer)
+                return;
+
+            CheckHydrantAuras();
+        }
+
+        private void CheckHydrantAuras()
+        {
+            int found = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile proj = Main.projectile[i];
+                if (!proj.active || proj.type != ModContent.ProjectileType<Hydrant>())
+                    continue;
+
+                found++;
+                float dist = Vector2.Distance(Player.Center, proj.Center);
+                Main.NewText($"Hydrant encontrado, distância: {dist}, aura: {AuraRadiusBase}, buffType: {(int)proj.ai[0]}");
+
+                if (dist < AuraRadiusBase)
+                    Player.AddBuff((int)proj.ai[0], 2, false);
+            }
+
+            if (found == 0)
+                Main.NewText("Nenhum Hydrant encontrado no loop");
         }
 
         public override void ResetEffects()

@@ -26,15 +26,16 @@ public class CopperGusher : GusherBase
         Item.shootSpeed = 10f;
         Item.useAnimation = 30;
         Item.useTime = 30;
-        Item.channel = true;          // mantém channel ativo enquanto segura
-        Item.noUseGraphic = true;     // esconde o item — o held proj desenha a arma
+        Item.channel = true;
+        Item.noUseGraphic = true;
         Item.damage = BurstDamage;
         Item.knockBack = BurstKnockback;
-        Item.noUseGraphic = true;
-        Item.shoot = ModContent.ProjectileType<AquaBurst>(); // fallback, sobrescrito no Shoot
+        Item.shoot = ModContent.ProjectileType<AquaBurst>();
         Item.DamageType = DamageClass.Summon;
         Item.buffType = 0;
         Item.UseSound = SoundID.Item21;
+        Item.width = 58;
+        Item.height = 22;
     }
 
     public override bool CanUseItem(Player player)
@@ -65,9 +66,9 @@ public class CopperGusher : GusherBase
             Item.useAnimation = 30;
             Item.useTime = 30;
             Item.channel = true;
+            Item.noUseGraphic = true;
             Item.damage = BurstDamage;
             Item.knockBack = BurstKnockback;
-            Item.noUseGraphic = true;
             Item.shoot = ModContent.ProjectileType<AquaBurst>();
             Item.buffType = 0;
             Item.UseSound = SoundID.Item21;
