@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Projectiles;
 
@@ -35,8 +36,6 @@ namespace TritonsHydrants.Common
         {
             if (player.altFunctionUse is not 2)
             {
-                // Spawna o held projectile — ele controla tudo
-                // ai[1] = MaxChargeTicks, ai[2] = MaxDamageMultiplier × 100
                 var proj = Projectile.NewProjectileDirect(source,
                     position,
                     Vector2.Normalize(velocity) * 20f,
@@ -54,6 +53,9 @@ namespace TritonsHydrants.Common
                 source, position, velocity, type, 0, 0, Main.myPlayer);
             projectile.originalDamage = 0;
             projectile.ai[0] = BuffType;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+                NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projectile.whoAmI);
             return false;
         }
     }

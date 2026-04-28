@@ -1,11 +1,10 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
-using TritonsHydrants.Content.Items.Weapons.Gushers;
-using TritonsHydrants.Content.Projectiles;
 
 namespace TritonsHydrants.Content.Projectiles
 {
@@ -14,9 +13,6 @@ namespace TritonsHydrants.Content.Projectiles
         public override string Texture =>
             "TritonsHydrants/Content/Items/Weapons/Gushers/CopperGusher";
 
-        // ai[0] = charge timer
-        // ai[1] = max charge ticks
-        // ai[2] = max damage multiplier × 100
         public ref float ChargeTimer => ref Projectile.ai[0];
         public ref float MaxCharge => ref Projectile.ai[1];
         public ref float MaxMultiplierX100 => ref Projectile.ai[2];
@@ -31,7 +27,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 22;
+            Projectile.width = 58;
             Projectile.height = 22;
             Projectile.friendly = false;
             Projectile.penetrate = -1;
@@ -39,9 +35,6 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.hide = true;
             Projectile.ignoreWater = true;
             Projectile.DamageType = DamageClass.Summon;
-
-            DrawOffsetX = -17;
-            DrawOriginOffsetY = 2;
         }
 
         public override bool? CanDamage() => false;
@@ -49,57 +42,47 @@ namespace TritonsHydrants.Content.Projectiles
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            Vector2 playerCenter = player.RotatedRelativePoint(player.MountedCenter);
 
-            // Mata se jogador morreu ou trocou de item
             if (player.dead || player.HeldItem.ModItem is not GusherBase)
             {
                 Projectile.Kill();
                 return;
             }
 
-            // Só roda lógica de carga no dono
+            player.heldProj = Projectile.whoAmI;
+
+            // Velocity sempre normalizada — representa só direção, nunca magnitude
+            Projectile.velocity = Vector2.Normalize(Projectile.velocity);
+
             if (Main.myPlayer == Projectile.owner)
             {
                 if (player.channel && !player.noItems && !player.CCed)
                 {
-                    // Atualiza velocidade (= direção do holdout) para seguir o mouse
-                    float holdoutDistance = 10f * Projectile.scale;
-                    Vector2 holdoutOffset = holdoutDistance *
-                        Vector2.Normalize(Main.MouseWorld - playerCenter);
-
-                    if (holdoutOffset.X != Projectile.velocity.X ||
-                        holdoutOffset.Y != Projectile.velocity.Y)
+                    Vector2 direction = Vector2.Normalize(Main.MouseWorld - player.MountedCenter);
+                    if (direction != Projectile.velocity)
+                    {
+                        Projectile.velocity = direction;
                         Projectile.netUpdate = true;
+                    }
 
-                    Projectile.velocity = holdoutOffset;
-
-                    // Acumula carga
                     if (ChargeTimer < MaxCharge)
                         ChargeTimer++;
 
-                    SpawnChargeDust();
-                }
-                else if(ChargeTimer < MaxCharge / 3)
-                {
-                    Projectile.Kill();
-                    return;
+                    SpawnChargeDust(player);
                 }
                 else
                 {
-                    // Soltou — dispara AquaBurst com dano escalonado
                     float maxMult = MaxMultiplierX100 / 100f;
                     float multiplier = MathHelper.Lerp(1f, maxMult, ChargeProgress);
                     int damage = (int)(Projectile.damage * multiplier);
                     float knockback = Projectile.knockBack * multiplier;
 
-                    Vector2 shootVelocity = Vector2.Normalize(Projectile.velocity) *
-                        player.HeldItem.shootSpeed;
-                    Vector2 spawnPos = playerCenter +
-                        new Vector2(shootVelocity.X * 4, shootVelocity.Y * 4);
+                    Vector2 shootVelocity = Projectile.velocity * player.HeldItem.shootSpeed;
+                    Vector2 spawnPos = player.MountedCenter + Projectile.velocity * 50f;
 
-                    var source = player.GetSource_ItemUse(player.HeldItem);
-                    Projectile.NewProjectile(source, spawnPos, shootVelocity,
+                    Projectile.NewProjectile(
+                        player.GetSource_ItemUse(player.HeldItem),
+                        spawnPos, shootVelocity,
                         ModContent.ProjectileType<AquaBurst>(),
                         damage, knockback, Projectile.owner);
 
@@ -108,24 +91,56 @@ namespace TritonsHydrants.Content.Projectiles
                 }
             }
 
-            // Padrão obrigatório de held projectile (igual ao exemplo)
+            Projectile.Center = player.MountedCenter + Projectile.velocity * 8f;
+
             Projectile.direction = Projectile.velocity.X < 0 ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
             player.ChangeDir(Projectile.direction);
-            player.heldProj = Projectile.whoAmI;
             player.SetDummyItemTime(2);
-            Projectile.Center = playerCenter;
 
-            float rotationOffset = Projectile.spriteDirection == -1 ? MathHelper.Pi : 0f;
-            Projectile.rotation = Projectile.velocity.ToRotation() + rotationOffset;
+            Projectile.rotation = Projectile.velocity.ToRotation();
+
             player.itemRotation = (Projectile.velocity * Projectile.direction).ToRotation();
+
+            // Braço — compensa a direção do jogador no ângulo
+            float armRotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
+            player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, armRotation);
 
             Projectile.timeLeft = 2;
         }
 
-        private void SpawnChargeDust()
+        public override bool PreDraw(ref Color lightColor)
         {
-            Vector2 center = Projectile.Center;
+            Player player = Main.player[Projectile.owner];
+            Texture2D texture = TextureAssets.Projectile[Type].Value;
+
+            // origin = (0, height/2) significa que o pivot de rotação
+            // é a borda esquerda da sprite, centralizada verticalmente
+            // = onde a mão do jogador segura a mangueira
+            Vector2 origin = new(30f, texture.Height / 2f);
+
+            SpriteEffects flip = player.direction == -1
+                ? SpriteEffects.FlipVertically
+                : SpriteEffects.None;
+
+            Main.EntitySpriteDraw(
+                texture,
+                Projectile.Center - Main.screenPosition,
+                null,
+                lightColor,
+                Projectile.rotation,
+                origin,
+                Projectile.scale,
+                flip,
+                0);
+
+            return false;
+        }
+
+        private void SpawnChargeDust(Player player)
+        {
+            // Dust na ponta da sprite (base + comprimento total = 14 + 58 = ~72px)
+            Vector2 center = player.MountedCenter + Projectile.velocity * 60f;
 
             if (IsMaxCharge)
             {
@@ -134,21 +149,8 @@ namespace TritonsHydrants.Content.Projectiles
                     for (int i = 0; i < 4; i++)
                     {
                         Vector2 vel = Main.rand.NextVector2CircularEdge(2f, 2f);
-                        Dust d = Dust.NewDustDirect(center - new Vector2(8f), 8, 8,
+                        Dust d = Dust.NewDustDirect(center - new Vector2(4f), 8, 8,
                             DustID.GoldFlame, vel.X, vel.Y, 0, default, 1.4f);
-                        d.noGravity = true;
-                    }
-                }
-            }
-            else if(ChargeTimer > MaxCharge / 3)
-            {
-                if (Main.GameUpdateCount % 5 == 0)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Vector2 vel = Main.rand.NextVector2CircularEdge(2f, 2f);
-                        Dust d = Dust.NewDustDirect(center - new Vector2(8f), 8, 8,
-                            DustID.BeachShell, vel.X, vel.Y, 0, default, 1.4f);
                         d.noGravity = true;
                     }
                 }

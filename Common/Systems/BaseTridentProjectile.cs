@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Projectiles;
 
@@ -67,9 +68,23 @@ namespace TritonsHydrants.Common.Systems
                 // Spawn aquatic arrow when spear reach your max distance
                 if (isHappen is false)
                 {
-                    Projectile.NewProjectile(new EntitySource_TileBreak(2, 2), Projectile.Center + player.Center.DirectionTo(MousePos) * DistanceSpawnProj, Projectile.velocity * 8f, Proj, Projectile.damage,
-                        Projectile.knockBack, Projectile.owner);
+                    if (Main.myPlayer == Projectile.owner)
+                    {
+                        int proj = Projectile.NewProjectile(
+                            Projectile.GetSource_FromThis(),          // source correto: "veio deste projétil"
+                            Projectile.Center + player.Center.DirectionTo(Main.MouseWorld) * DistanceSpawnProj,
+                            Projectile.velocity * 8f,
+                            Proj,
+                            Projectile.damage,
+                            Projectile.knockBack,
+                            Projectile.owner
+                        );
 
+                        // Força o servidor a notificar todos os clientes sobre este projétil
+                        if (proj >= 0 && proj < Main.maxProjectiles)
+                            NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
+                    }
+            
                     isHappen = true;
                 }
             }
