@@ -1,6 +1,5 @@
 using Terraria;
 using Microsoft.Xna.Framework;
-using Terraria.Localization;
 
 namespace TritonsHydrants.Utils;
 

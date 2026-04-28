@@ -94,6 +94,11 @@ Mods: {
 				// DisplayName: Meteor Fork
 				// Tooltip: ""
 			}
+
+			SharkMeat: {
+				// Tooltip: ""
+				// DisplayName: Shark Meat
+			}
 		}
 
 		Buffs: {
