@@ -45,7 +45,7 @@ public class Canteen : ModItem
 
     public override void Load()
     {
-        uiTexture = ModContent.Request<Texture2D>("TritonsHydrants/Assets/UI/WaterIcon");
+        uiTexture = ModContent.Request<Texture2D>("TritonsHydrants/Common/Assets/UI/WaterIcon");
     }
     public override void SetStaticDefaults()
     {

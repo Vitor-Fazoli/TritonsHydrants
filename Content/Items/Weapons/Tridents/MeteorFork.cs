@@ -63,7 +63,7 @@ public class MeteorForkPlayer : ModPlayer
 
     override public void Load()
     {
-        OrbTexture = ModContent.Request<Texture2D>("TritonsHydrants/Assets/UI/WaterIcon");
+        OrbTexture = ModContent.Request<Texture2D>("TritonsHydrants/Common/Assets/UI/WaterIcon");
     }
 
     public override void ResetEffects()
