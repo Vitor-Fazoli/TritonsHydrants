@@ -138,5 +138,7 @@ Mods: {
 					'''
 			}
 		}
+
+		NPCs.Victrimeire.DisplayName: Victrimeire
 	}
 }

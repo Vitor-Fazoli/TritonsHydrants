@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace TritonsHydrants.Utils;
 
@@ -17,5 +18,10 @@ public class TritonsDusts
         Dust dust = Dust.NewDustPerfect(position, type, velocity, 0, default, scale);
         dust.noGravity = true;
         dust.color = Water.GetWaterColor();
+    }
+
+    public static int GetGusherDust()
+    {
+        return Main.rand.NextBool(4) ? 264 : 66;
     }
 }

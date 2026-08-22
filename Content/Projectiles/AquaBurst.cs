@@ -32,7 +32,7 @@ namespace TritonsHydrants.Content.Projectiles
             {
                 Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, TritonsDusts.GetGusherDust(), dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
                 dust.color = Water.GetWaterColor();
             }

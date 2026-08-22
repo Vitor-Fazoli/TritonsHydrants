@@ -72,7 +72,7 @@ namespace TritonsHydrants.Content.Projectiles
                     return;
             }
 
-            AuraEffect(Projectile.Center, owner.AuraRadius);
+            AuraEffect(Projectile, owner.AuraRadius);
             Gravity(Projectile);
         }
 
@@ -97,14 +97,25 @@ namespace TritonsHydrants.Content.Projectiles
             proj.velocity.Y += 0.1f;
             proj.rotation = 0;
         }
-        private static void AuraEffect(Vector2 pos, float auraSize)
+        private static void AuraEffect(Projectile proj, float auraSize)
         {
             for (int i = 0; i < 10; i++)
             {
                 Vector2 offset = Main.rand.NextVector2CircularEdge((int)auraSize, (int)auraSize);
-                Dust d = Dust.NewDustPerfect(pos + offset, Main.rand.NextBool(4) ? 264 : 66, Vector2.Zero, Scale: 1.0f);
+                Dust d = Dust.NewDustPerfect(proj.position + offset, Main.rand.NextBool(4) ? 264 : 66, Vector2.Zero, Scale: 1.0f);
                 d.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
                 d.noGravity = true;
+            }
+
+            foreach(var player in Main.player)
+            {
+                if (!proj.active || proj.type != ModContent.ProjectileType<Hydrant>())
+                    continue;
+
+                float dist = Vector2.Distance(player.Center, proj.Center);
+
+                if (dist < auraSize)
+                    player.AddBuff((int)proj.ai[0], 2, false);
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -124,36 +135,6 @@ namespace TritonsHydrants.Content.Projectiles
         public override void PostUpdate()
         {
             AuraRadius = Player.GetDamage(DamageClass.Summon).ApplyTo(_auraRadius);
-        }
-
-        public override void PreUpdateBuffs()
-        {
-            // Garante que só roda para o jogador local desta máquina
-            if (Player != Main.LocalPlayer)
-                return;
-
-            CheckHydrantAuras();
-        }
-
-        private void CheckHydrantAuras()
-        {
-            int found = 0;
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                Projectile proj = Main.projectile[i];
-                if (!proj.active || proj.type != ModContent.ProjectileType<Hydrant>())
-                    continue;
-
-                found++;
-                float dist = Vector2.Distance(Player.Center, proj.Center);
-                Main.NewText($"Hydrant encontrado, distância: {dist}, aura: {AuraRadiusBase}, buffType: {(int)proj.ai[0]}");
-
-                if (dist < AuraRadiusBase)
-                    Player.AddBuff((int)proj.ai[0], 2, false);
-            }
-
-            if (found == 0)
-                Main.NewText("Nenhum Hydrant encontrado no loop");
         }
 
         public override void ResetEffects()

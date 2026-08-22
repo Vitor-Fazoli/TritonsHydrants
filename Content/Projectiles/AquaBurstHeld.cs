@@ -2,9 +2,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Common;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Projectiles
 {
@@ -78,7 +80,7 @@ namespace TritonsHydrants.Content.Projectiles
                     float knockback = Projectile.knockBack * multiplier;
 
                     Vector2 shootVelocity = Projectile.velocity * player.HeldItem.shootSpeed;
-                    Vector2 spawnPos = player.MountedCenter + Projectile.velocity * 50f;
+                    Vector2 spawnPos = player.MountedCenter + Projectile.velocity * 25f;
 
                     Projectile.NewProjectile(
                         player.GetSource_ItemUse(player.HeldItem),
@@ -139,19 +141,20 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void SpawnChargeDust(Player player)
         {
-            // Dust na ponta da sprite (base + comprimento total = 14 + 58 = ~72px)
-            Vector2 center = player.MountedCenter + Projectile.velocity * 60f;
+            //TODO: Adjust this dust offset
+            Vector2 spawnPos = player.MountedCenter + Projectile.velocity * 30f;
 
             if (IsMaxCharge)
             {
                 if (Main.GameUpdateCount % 5 == 0)
                 {
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 20; i++)
                     {
                         Vector2 vel = Main.rand.NextVector2CircularEdge(2f, 2f);
-                        Dust d = Dust.NewDustDirect(center - new Vector2(4f), 8, 8,
-                            DustID.GoldFlame, vel.X, vel.Y, 0, default, 1.4f);
+                        Dust d = Dust.NewDustDirect(spawnPos, 8, 8,
+                            TritonsDusts.GetGusherDust(), vel.X, vel.Y, 0, default, 1.4f);
                         d.noGravity = true;
+                        d.color = Water.GetWaterColor();
                     }
                 }
             }
@@ -164,7 +167,7 @@ namespace TritonsHydrants.Content.Projectiles
                         MathHelper.Lerp(0.3f, 1.5f, ChargeProgress),
                         MathHelper.Lerp(0.3f, 1.5f, ChargeProgress));
 
-                    Dust d = Dust.NewDustDirect(center - new Vector2(4f), 8, 8,
+                    Dust d = Dust.NewDustDirect(spawnPos, 8, 8,
                         DustID.Water, vel.X, vel.Y, 100, default,
                         MathHelper.Lerp(0.5f, 1.0f, ChargeProgress));
                     d.noGravity = true;
