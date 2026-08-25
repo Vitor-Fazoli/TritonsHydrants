@@ -12,8 +12,9 @@ Mods: {
 			GalacticiteAquaticArrow.DisplayName: Flecha Aquática de Galactita
 			AquaticArrow.DisplayName: Flecha Aquática
 			AquaBurst.DisplayName: Explosão Aquática
-			// MeteorFork.DisplayName: Meteor Fork
+			MeteorFork.DisplayName: Garfo de meteorito
 			// AquaBurstHeld.DisplayName: Aqua Burst Held
+			AbyssalFlag.DisplayName: Bandeira Abissal
 		}
 
 		Items: {
@@ -91,13 +92,19 @@ Mods: {
 			}
 
 			MeteorFork: {
-				// DisplayName: Meteor Fork
+				DisplayName: Garfo de meteorito
 				// Tooltip: ""
 			}
 
 			SharkMeat: {
+				DisplayName: Carne de tubarão
 				// Tooltip: ""
-				// DisplayName: Shark Meat
+			}
+
+			AbyssalFlag: {
+				DisplayName: Bandeira Abissal
+				Tooltip: '''Arremessa uma bandeira para cima, se acertar o chão ela irá ficar presa nele e gerar uma aura que aumenta a velocidade de movimento e de ataque de quem estiver próximo dela
+				'''
 			}
 		}
 
@@ -145,6 +152,6 @@ Mods: {
 			}
 		}
 
-		// NPCs.Victrimeire.DisplayName: Victrimeire
+		NPCs.Siren.DisplayName: Victrimeire
 	}
 }

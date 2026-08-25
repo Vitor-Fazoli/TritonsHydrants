@@ -14,9 +14,9 @@ namespace TritonsHydrants.Content.Projectiles
         private bool _enterOnWater;
         private bool _active;
         private int _initialWaterStyle;
-        private bool _lifeSteal = false;
-        private bool _bouncer = false;
-        private bool _freezeOnThird = false;
+        private bool _lifeSteal;
+        private bool _bouncer;
+        private bool _freezeOnThird;
         public override void SetDefaults()
         {
             Projectile.width = 26;
@@ -49,11 +49,11 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.ToRadians(45);
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
+                var dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                var dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
                 dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
@@ -77,20 +77,20 @@ namespace TritonsHydrants.Content.Projectiles
                 Empower();
             }
 
-            if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
-            {
-                Projectile.soundDelay = TritonsHelper.Ticks(1);
-                SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
-            }
+            if (Projectile.soundDelay != 0 ||
+                !(Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)) return;
+            
+            Projectile.soundDelay = TritonsHelper.Ticks(1);
+            SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
         }
 
         public override void OnKill(int timeLeft)
         {
-            for (int i = 0; i < 50; i++)
+            for (var i = 0; i < 50; i++)
             {
-                Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
+                var dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                var dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
                 dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
             }
@@ -108,7 +108,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Player player = Main.player[Projectile.owner];
+            var player = Main.player[Projectile.owner];
 
             if (target.life <= 0 && _lifeSteal)
             {
@@ -116,50 +116,48 @@ namespace TritonsHydrants.Content.Projectiles
                 player.HealEffect(5);
             }
 
-            if (_freezeOnThird)
-            {
-                AquaticArrowP p = player.GetModPlayer<AquaticArrowP>();
-                p.amountToFreeze++;
+            if (!_freezeOnThird) return;
+            
+            var p = player.GetModPlayer<AquaticArrowP>();
+            p.AmountToFreeze++;
 
-                if (p.amountToFreeze >= 3)
-                {
-                    target.AddBuff(BuffID.Frostburn, 30);
-                    p.amountToFreeze = 0;
-                }
-            }
+            if (p.AmountToFreeze < 3) return;
+            
+            target.AddBuff(BuffID.Frostburn, 30);
+            p.AmountToFreeze = 0;
         }
 
         private void HomingProjectile()
         {
-            Vector2 move = Vector2.Zero;
-            float distance = 400f;
-            bool isTarget = false;
+            var move = Vector2.Zero;
+            var distance = 400f;
+            var isTarget = false;
 
-            for (int k = 0; k < 100; k++)
+            for (var k = 0; k < 100; k++)
             {
-                if (Main.npc[k].active && !Main.npc[k].dontTakeDamage && !Main.npc[k].friendly && Main.npc[k].lifeMax > 5)
-                {
-                    Vector2 newMove = Main.npc[k].Center - Projectile.Center;
-                    float distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
-                    if (distanceTo < distance)
-                    {
-                        move = newMove;
-                        distance = distanceTo;
-                        isTarget = true;
-                    }
-                }
+                if (!Main.npc[k].active || Main.npc[k].dontTakeDamage || Main.npc[k].friendly ||
+                    Main.npc[k].lifeMax <= 5) continue;
+                
+                var newMove = Main.npc[k].Center - Projectile.Center;
+                var distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
+
+                if (!(distanceTo < distance)) continue;
+                
+                move = newMove;
+                distance = distanceTo;
+                isTarget = true;
             }
-            if (isTarget)
-            {
-                AdjustMagnitude(ref move);
-                Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
-                AdjustMagnitude(ref Projectile.velocity);
-            }
+
+            if (!isTarget) return;
+            
+            AdjustMagnitude(ref move);
+            Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
+            AdjustMagnitude(ref Projectile.velocity);
         }
 
         private static void AdjustMagnitude(ref Vector2 vector)
         {
-            float magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+            var magnitude = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
             if (magnitude > 6f)
             {
                 vector *= 6f / magnitude;
@@ -168,10 +166,10 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void OnWetProjectile()
         {
-            for (int i = 0; i < 35; i++)
+            for (var i = 0; i < 35; i++)
             {
-                Vector2 speed = Main.rand.NextVector2CircularEdge(1.2f, 1.2f);
-                Dust d = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? 264 : 66, speed * 5);
+                var speed = Main.rand.NextVector2CircularEdge(1.2f, 1.2f);
+                var d = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? 264 : 66, speed * 5);
                 d.noGravity = true;
             }
         }
@@ -255,11 +253,10 @@ namespace TritonsHydrants.Content.Projectiles
         /// <param name="projectile">the projectile to change</param>
         private void OnWaterChange(Projectile projectile)
         {
-            if (_initialWaterStyle != Main.waterStyle)
-            {
-                WaterEffect(projectile);
-                _initialWaterStyle = Main.waterStyle;
-            }
+            if (_initialWaterStyle == Main.waterStyle) return;
+            
+            WaterEffect(projectile);
+            _initialWaterStyle = Main.waterStyle;
         }
 
         /// <summary>
@@ -269,11 +266,10 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Projectile.ai[1]++;
 
-            if (Projectile.ai[1] >= 25)
-            {
-                HomingProjectile();
-                Projectile.velocity *= 1.0001f;
-            }
+            if (!(Projectile.ai[1] >= 25)) return;
+            
+            HomingProjectile();
+            Projectile.velocity *= 1.0001f;
         }
     }
 
@@ -282,6 +278,6 @@ namespace TritonsHydrants.Content.Projectiles
     /// </summary>
     public class AquaticArrowP : ModPlayer
     {
-        public int amountToFreeze = 0;
+        public int AmountToFreeze;
     }
 }

@@ -52,8 +52,7 @@ namespace TritonsHydrants.Content.Projectiles
             }
 
             player.heldProj = Projectile.whoAmI;
-
-            // Velocity sempre normalizada — representa só direção, nunca magnitude
+            
             Projectile.velocity = Vector2.Normalize(Projectile.velocity);
 
             if (Main.myPlayer == Projectile.owner)
@@ -113,15 +112,15 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Player player = Main.player[Projectile.owner];
-            Texture2D texture = TextureAssets.Projectile[Type].Value;
+            var player = Main.player[Projectile.owner];
+            var texture = TextureAssets.Projectile[Type].Value;
 
             // origin = (0, height/2) significa que o pivot de rotação
             // é a borda esquerda da sprite, centralizada verticalmente
             // = onde a mão do jogador segura a mangueira
             Vector2 origin = new(30f, texture.Height / 2f);
 
-            SpriteEffects flip = player.direction == -1
+            var flip = player.direction == -1
                 ? SpriteEffects.FlipVertically
                 : SpriteEffects.None;
 
@@ -133,40 +132,38 @@ namespace TritonsHydrants.Content.Projectiles
                 Projectile.rotation,
                 origin,
                 Projectile.scale,
-                flip,
-                0);
+                flip);
 
             return false;
         }
 
         private void SpawnChargeDust(Player player)
         {
-            Vector2 offset = new(50f, -10f * player.direction);
-            Vector2 spawnPos = player.MountedCenter + offset.RotatedBy(Projectile.rotation);
+            var offset = new Vector2(50f, -10f * player.direction);
+            var spawnPos = player.MountedCenter + offset.RotatedBy(Projectile.rotation);
 
-            int dustCount = IsMaxCharge ? 5 : (int)MathHelper.Lerp(1, 3, ChargeProgress);
-            float chance = MathHelper.Lerp(0.2f, 1f, ChargeProgress);
+            var dustCount = IsMaxCharge ? 5 : (int)MathHelper.Lerp(1, 3, ChargeProgress);
+            var chance = MathHelper.Lerp(0.2f, 1f, ChargeProgress);
 
-            for (int i = 0; i < dustCount; i++)
+            for (var i = 0; i < dustCount; i++)
             {
-                if (Main.rand.NextFloat() <= chance)
-                {
-                    float radius = MathHelper.Lerp(60f, 25f, ChargeProgress);
-                    float speed = MathHelper.Lerp(2f, 7f, ChargeProgress);
+                if (!(Main.rand.NextFloat() <= chance)) continue;
+                
+                var radius = MathHelper.Lerp(60f, 25f, ChargeProgress);
+                var speed = MathHelper.Lerp(2f, 7f, ChargeProgress);
 
-                    Vector2 dir = Main.rand.NextVector2CircularEdge(radius, radius);
-                    Vector2 dustPos = spawnPos + dir;
-                    Vector2 vel = -dir.SafeNormalize(Vector2.Zero) * speed;
+                var dir = Main.rand.NextVector2CircularEdge(radius, radius);
+                var dustPos = spawnPos + dir;
+                var vel = -dir.SafeNormalize(Vector2.Zero) * speed;
 
-                    int dustType = IsMaxCharge ? TritonsDusts.GetGusherDust() : DustID.Water;
-                    float scale = MathHelper.Lerp(0.5f, 1.4f, ChargeProgress);
+                var dustType = IsMaxCharge ? TritonsDusts.GetGusherDust() : DustID.Water;
+                var scale = MathHelper.Lerp(0.5f, 1.4f, ChargeProgress);
 
-                    Dust d = Dust.NewDustDirect(dustPos, 8, 8, dustType, vel.X, vel.Y, 100, default, scale);
-                    d.noGravity = true;
+                var d = Dust.NewDustDirect(dustPos, 8, 8, dustType, vel.X, vel.Y, 100, default, scale);
+                d.noGravity = true;
 
-                    if (IsMaxCharge)
-                        d.color = Water.GetWaterColor();
-                }
+                if (IsMaxCharge)
+                    d.color = Water.GetWaterColor();
             }
         }
     }

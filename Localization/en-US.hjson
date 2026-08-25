@@ -14,6 +14,7 @@ Mods: {
 			AquaBurst.DisplayName: Aqua Burst
 			MeteorFork.DisplayName: Meteor Fork
 			AquaBurstHeld.DisplayName: Aqua Burst Held
+			AbyssalFlag.DisplayName: Abyssal Flag
 		}
 
 		Items: {
@@ -93,6 +94,11 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Shark Meat
 			}
+
+			AbyssalFlag: {
+				DisplayName: Abyssal Flag
+				Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -139,6 +145,6 @@ Mods: {
 			}
 		}
 
-		NPCs.Victrimeire.DisplayName: Victrimeire
+		NPCs.Siren.DisplayName: Victrimeire
 	}
 }
