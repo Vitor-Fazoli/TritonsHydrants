@@ -141,36 +141,31 @@ namespace TritonsHydrants.Content.Projectiles
 
         private void SpawnChargeDust(Player player)
         {
-            //TODO: Adjust this dust offset
-            Vector2 spawnPos = player.MountedCenter + Projectile.velocity * 30f;
+            Vector2 offset = new(50f, -10f * player.direction);
+            Vector2 spawnPos = player.MountedCenter + offset.RotatedBy(Projectile.rotation);
 
-            if (IsMaxCharge)
-            {
-                if (Main.GameUpdateCount % 5 == 0)
-                {
-                    for (int i = 0; i < 20; i++)
-                    {
-                        Vector2 vel = Main.rand.NextVector2CircularEdge(2f, 2f);
-                        Dust d = Dust.NewDustDirect(spawnPos, 8, 8,
-                            TritonsDusts.GetGusherDust(), vel.X, vel.Y, 0, default, 1.4f);
-                        d.noGravity = true;
-                        d.color = Water.GetWaterColor();
-                    }
-                }
-            }
-            else
-            {
-                float chance = MathHelper.Lerp(0.1f, 0.7f, ChargeProgress);
-                if (Main.rand.NextFloat() < chance)
-                {
-                    Vector2 vel = Main.rand.NextVector2CircularEdge(
-                        MathHelper.Lerp(0.3f, 1.5f, ChargeProgress),
-                        MathHelper.Lerp(0.3f, 1.5f, ChargeProgress));
+            int dustCount = IsMaxCharge ? 5 : (int)MathHelper.Lerp(1, 3, ChargeProgress);
+            float chance = MathHelper.Lerp(0.2f, 1f, ChargeProgress);
 
-                    Dust d = Dust.NewDustDirect(spawnPos, 8, 8,
-                        DustID.Water, vel.X, vel.Y, 100, default,
-                        MathHelper.Lerp(0.5f, 1.0f, ChargeProgress));
+            for (int i = 0; i < dustCount; i++)
+            {
+                if (Main.rand.NextFloat() <= chance)
+                {
+                    float radius = MathHelper.Lerp(60f, 25f, ChargeProgress);
+                    float speed = MathHelper.Lerp(2f, 7f, ChargeProgress);
+
+                    Vector2 dir = Main.rand.NextVector2CircularEdge(radius, radius);
+                    Vector2 dustPos = spawnPos + dir;
+                    Vector2 vel = -dir.SafeNormalize(Vector2.Zero) * speed;
+
+                    int dustType = IsMaxCharge ? TritonsDusts.GetGusherDust() : DustID.Water;
+                    float scale = MathHelper.Lerp(0.5f, 1.4f, ChargeProgress);
+
+                    Dust d = Dust.NewDustDirect(dustPos, 8, 8, dustType, vel.X, vel.Y, 100, default, scale);
                     d.noGravity = true;
+
+                    if (IsMaxCharge)
+                        d.color = Water.GetWaterColor();
                 }
             }
         }

@@ -41,7 +41,7 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Player owner = Main.player[Projectile.owner];
             owner.velocity += -(Projectile.velocity / 2);
-            SoundEngine.PlaySound(SoundID.LiquidsHoneyWater with { Volume = 1.25f, Pitch = 0.6f }, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item66 with { Volume = 1.3f, Pitch = 0.8f }, Projectile.Center);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
