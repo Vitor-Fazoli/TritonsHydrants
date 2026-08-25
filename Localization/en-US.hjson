@@ -15,6 +15,7 @@ Mods: {
 			MeteorFork.DisplayName: Meteor Fork
 			AquaBurstHeld.DisplayName: Aqua Burst Held
 			AbyssalFlag.DisplayName: Abyssal Flag
+			WaterBubble.DisplayName: Water Bubble
 		}
 
 		Items: {
@@ -146,5 +147,6 @@ Mods: {
 		}
 
 		NPCs.Siren.DisplayName: Victrimeire
+		Tiles.BubbleMaker.MapEntry: Bubble Maker
 	}
 }

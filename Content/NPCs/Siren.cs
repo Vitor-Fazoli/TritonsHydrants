@@ -59,7 +59,7 @@ public class Siren : ModNPC
         bestiaryEntry.Info.AddRange([
             BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean,
 
-                new FlavorTextBestiaryInfoElement("Mods.TritonsHydrants.Bestiary.Victrimeire"),
+                new FlavorTextBestiaryInfoElement("Mods.TritonsHydrants.Bestiary.Siren"),
             ]);
     }
 
@@ -89,7 +89,9 @@ public class Siren : ModNPC
     {
         return
         [
-            "Victrimeire"
+            "Victrimeire",
+            "Seline",
+            "Lyra",
         ];
     }
 
@@ -110,7 +112,7 @@ public class Siren : ModNPC
 
     public override void SetChatButtons(ref string button, ref string button2)
     {
-        button = Language.GetTextValue("LegacyInterface.28"); // This is the key to the word "Shop"
+        button = Language.GetTextValue("LegacyInterface.28");
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shop)

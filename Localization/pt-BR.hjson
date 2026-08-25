@@ -15,6 +15,7 @@ Mods: {
 			MeteorFork.DisplayName: Garfo de meteorito
 			// AquaBurstHeld.DisplayName: Aqua Burst Held
 			AbyssalFlag.DisplayName: Bandeira Abissal
+			// WaterBubble.DisplayName: Water Bubble
 		}
 
 		Items: {
@@ -97,14 +98,13 @@ Mods: {
 			}
 
 			SharkMeat: {
-				DisplayName: Carne de tubarão
 				// Tooltip: ""
+				DisplayName: Carne de tubarão
 			}
 
 			AbyssalFlag: {
 				DisplayName: Bandeira Abissal
-				Tooltip: '''Arremessa uma bandeira para cima, se acertar o chão ela irá ficar presa nele e gerar uma aura que aumenta a velocidade de movimento e de ataque de quem estiver próximo dela
-				'''
+				Tooltip: Arremessa uma bandeira para cima, se acertar o chão ela irá ficar presa nele e gerar uma aura que aumenta a velocidade de movimento e de ataque de quem estiver próximo dela
 			}
 		}
 
@@ -153,5 +153,6 @@ Mods: {
 		}
 
 		NPCs.Siren.DisplayName: Victrimeire
+		// Tiles.BubbleMaker.MapEntry: Bubble Maker
 	}
 }

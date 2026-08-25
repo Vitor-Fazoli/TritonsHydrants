@@ -61,6 +61,7 @@ namespace TritonsHydrants.Content.Projectiles
             Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
 
             OnWaterChange(Projectile);
+            HitOtherWaterProjectile();
 
             if (Projectile.wet)
             {
@@ -79,7 +80,7 @@ namespace TritonsHydrants.Content.Projectiles
 
             if (Projectile.soundDelay != 0 ||
                 !(Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)) return;
-            
+
             Projectile.soundDelay = TritonsHelper.Ticks(1);
             SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
         }
@@ -117,14 +118,36 @@ namespace TritonsHydrants.Content.Projectiles
             }
 
             if (!_freezeOnThird) return;
-            
+
             var p = player.GetModPlayer<AquaticArrowP>();
             p.AmountToFreeze++;
 
             if (p.AmountToFreeze < 3) return;
-            
+
             target.AddBuff(BuffID.Frostburn, 30);
             p.AmountToFreeze = 0;
+        }
+
+        private void HitOtherWaterProjectile()
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                Projectile other = Main.projectile[i];
+                if (other.active && (other.type == ModContent.ProjectileType<WaterBubble>()))
+                {
+                    if (Projectile.Hitbox.Intersects(other.Hitbox))
+                    {
+                        if (!_enterOnWater)
+                        {
+                            OnWetProjectile();
+                            _enterOnWater = true;
+                        }
+                        _active = true;
+                        other.Kill();
+                        break;
+                    }
+                }
+            }
         }
 
         private void HomingProjectile()
@@ -137,19 +160,19 @@ namespace TritonsHydrants.Content.Projectiles
             {
                 if (!Main.npc[k].active || Main.npc[k].dontTakeDamage || Main.npc[k].friendly ||
                     Main.npc[k].lifeMax <= 5) continue;
-                
+
                 var newMove = Main.npc[k].Center - Projectile.Center;
                 var distanceTo = (float)Math.Sqrt(newMove.X * newMove.X + newMove.Y * newMove.Y);
 
                 if (!(distanceTo < distance)) continue;
-                
+
                 move = newMove;
                 distance = distanceTo;
                 isTarget = true;
             }
 
             if (!isTarget) return;
-            
+
             AdjustMagnitude(ref move);
             Projectile.velocity = (10 * Projectile.velocity + move) / 11f;
             AdjustMagnitude(ref Projectile.velocity);
@@ -254,7 +277,7 @@ namespace TritonsHydrants.Content.Projectiles
         private void OnWaterChange(Projectile projectile)
         {
             if (_initialWaterStyle == Main.waterStyle) return;
-            
+
             WaterEffect(projectile);
             _initialWaterStyle = Main.waterStyle;
         }
@@ -267,7 +290,7 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.ai[1]++;
 
             if (!(Projectile.ai[1] >= 25)) return;
-            
+
             HomingProjectile();
             Projectile.velocity *= 1.0001f;
         }
