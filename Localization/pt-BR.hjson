@@ -16,6 +16,7 @@ Mods: {
 			// AquaBurstHeld.DisplayName: Aqua Burst Held
 			AbyssalFlag.DisplayName: Bandeira Abissal
 			// WaterBubble.DisplayName: Water Bubble
+			// WaterElementalGateProjectile.DisplayName: Water Elemental Gate Projectile
 		}
 
 		Items: {
@@ -106,6 +107,11 @@ Mods: {
 				DisplayName: Bandeira Abissal
 				Tooltip: Arremessa uma bandeira para cima, se acertar o chão ela irá ficar presa nele e gerar uma aura que aumenta a velocidade de movimento e de ataque de quem estiver próximo dela
 			}
+
+			WaterElementalGate: {
+				// DisplayName: Water Elemental Gate
+				// Tooltip: ""
+			}
 		}
 
 		Buffs: {
@@ -153,6 +159,10 @@ Mods: {
 		}
 
 		NPCs.Siren.DisplayName: Victrimeire
-		// Tiles.BubbleMaker.MapEntry: Bubble Maker
+
+		Tiles: {
+			// BubbleMaker.MapEntry: Bubble Maker
+			// WaterElementalGate.MapEntry: Water Elemental Gate
+		}
 	}
 }
