@@ -10,6 +10,7 @@ namespace TritonsHydrants.Content.Tiles
 {
     public class IronCage : ModTile
     {
+        private int chainLevel = 1;
         private int projectileInstance = -1;
 
         public override void SetStaticDefaults()
@@ -47,6 +48,29 @@ namespace TritonsHydrants.Content.Tiles
             }
         }
 
+        public override bool RightClick(int i, int j)
+        {
+            if (projectileInstance >= 0 && projectileInstance < Main.maxProjectiles)
+            {
+                Projectile projectile = Main.projectile[projectileInstance];
+                if (projectile.active && projectile.type == ModContent.ProjectileType<Projectiles.IronCageP>())
+                {
+                    if (chainLevel < 5)
+                    {
+                        chainLevel += 2;
+                    }
+                    else
+                    {
+                        chainLevel = 1;
+                    }
+
+                    (projectile.ModProjectile as Projectiles.IronCageP).ChainLength = 30f * chainLevel;
+                }
+            }
+
+            return true;
+        }
+
         public override void PlaceInWorld(int i, int j, Item item)
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -60,7 +84,7 @@ namespace TritonsHydrants.Content.Tiles
                     }
                 }
 
-                Vector2 position = new(i * 16 + 16, j * 16);
+                Vector2 position = new(i * 16, j * 16);
                 Vector2 velocity = new(0f, -3f);
 
                 projectileInstance = Projectile.NewProjectile(

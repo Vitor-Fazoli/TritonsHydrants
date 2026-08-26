@@ -12,6 +12,7 @@ namespace TritonsHydrants.Content.Projectiles
 {
     public class IronCageP : ModProjectile
     {
+        public float ChainLength = 30f;
         private const string ChainTexturePath = "TritonsHydrants/Content/Projectiles/IronChainExtra";
         private const string ChainTextureExtraPath = "TritonsHydrants/Content/Projectiles/IronChain";
 
@@ -31,8 +32,8 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void SetDefaults()
         {
-            Projectile.width = 34;
-            Projectile.height = 42;
+            Projectile.width = 42;
+            Projectile.height = 46;
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = -1;
@@ -42,16 +43,19 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.damage = 0;
         }
 
+        public override bool? CanDamage() => false;
         public override void AI()
         {
             Animate();
 
+            DustEffects();
+
             Projectile.timeLeft = 2;
 
-            if (Main.rand.NextBool(30))
+            if (Main.rand.NextBool(100))
             {
-                Vector2 position = new(Projectile.position.X, Projectile.position.Y - 5);
-                Vector2 velocity = new(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -1f));
+                Vector2 position = new(Projectile.Center.X + Main.rand.NextFloat(-2f, 2f), Projectile.position.Y - 5);
+                Vector2 velocity = new(Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-2f, 0.5f));
 
                 Projectile.NewProjectile(
                     new EntitySource_TileBreak(2, 2),
@@ -78,7 +82,7 @@ namespace TritonsHydrants.Content.Projectiles
             float windEffect = Main.windSpeedCurrent * 1.05f;
             float waveEffect = (float)Math.Sin(Projectile.ai[0] * 0.05f) * 10f;
 
-            float maxChainLength = 50f;
+            float maxChainLength = ChainLength;
             Vector2 targetPosition = origin + new Vector2(waveEffect + windEffect * 30f, -maxChainLength);
 
             Projectile.Center = Vector2.Lerp(Projectile.Center, targetPosition, 0.05f);
@@ -156,6 +160,16 @@ namespace TritonsHydrants.Content.Projectiles
 
                 if (++Projectile.frame >= Main.projFrames[Type])
                     Projectile.frame = 0;
+            }
+        }
+
+        private void DustEffects()
+        {
+            if (Main.rand.NextBool(4))
+            {
+                Dust dust = Dust.NewDustDirect(Projectile.position / 2, Projectile.width, Projectile.height / 2, DustID.Water, 0f, 0f, 100, default, Projectile.scale);
+                dust.noGravity = true;
+                dust.velocity *= 0.4f;
             }
         }
     }

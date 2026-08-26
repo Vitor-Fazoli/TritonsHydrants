@@ -287,10 +287,6 @@ namespace TritonsHydrants.Content.Projectiles
         /// </summary>
         private void Empower()
         {
-            Projectile.ai[1]++;
-
-            if (!(Projectile.ai[1] >= 25)) return;
-
             HomingProjectile();
             Projectile.velocity *= 1.0001f;
         }

@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,7 +16,7 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.penetrate = 5;
-            Projectile.timeLeft = 1000;
+            Projectile.timeLeft = 500;
             Projectile.alpha = 50;
             Projectile.light = 0.1f;
             Projectile.ignoreWater = false;
@@ -23,11 +24,16 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.extraUpdates = 1;
         }
 
+        public override void OnSpawn(IEntitySource source)
+        {
+            Projectile.timeLeft += Main.rand.Next(-200, 200);
+        }
+
         public override void AI()
         {
             if (Projectile.localAI[0] == 0f)
             {
-                Projectile.scale = Main.rand.NextFloat(0.7f, 1.25f);
+                Projectile.scale = Main.rand.NextFloat(0.3f, 1.1f);
                 Projectile.localAI[0] = 1f;
             }
 
