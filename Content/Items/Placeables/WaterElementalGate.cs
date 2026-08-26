@@ -15,7 +15,7 @@ namespace TritonsHydrants.Content.Items.Placeables
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.WaterElementalGate>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.IronCage>());
             Item.width = 12;
             Item.height = 12;
             Item.value = 3000;

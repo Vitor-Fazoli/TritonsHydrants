@@ -10,10 +10,10 @@ using Terraria.ModLoader;
 
 namespace TritonsHydrants.Content.Projectiles
 {
-    public class WaterElementalGateProjectile : ModProjectile
+    public class IronCageP : ModProjectile
     {
-        private const string ChainTexturePath = "TritonsHydrants/Content/Projectiles/ExampleAdvancedFlailProjectileChain";
-        private const string ChainTextureExtraPath = "TritonsHydrants/Content/Projectiles/ExampleAdvancedFlailProjectileChainExtra";
+        private const string ChainTexturePath = "TritonsHydrants/Content/Projectiles/IronChainExtra";
+        private const string ChainTextureExtraPath = "TritonsHydrants/Content/Projectiles/IronChain";
 
         private static Asset<Texture2D> chainTexture;
         private static Asset<Texture2D> chainTextureExtra;
@@ -26,8 +26,7 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Type] = 6;
-            ProjectileID.Sets.TrailingMode[Type] = 2;
+            Main.projFrames[Type] = 8;
         }
 
         public override void SetDefaults()
@@ -35,13 +34,18 @@ namespace TritonsHydrants.Content.Projectiles
             Projectile.width = 34;
             Projectile.height = 42;
             Projectile.friendly = true;
+            Projectile.hostile = false;
             Projectile.penetrate = -1;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
+            Projectile.light = 0.5f;
+            Projectile.damage = 0;
         }
 
         public override void AI()
         {
+            Animate();
+
             Projectile.timeLeft = 2;
 
             if (Main.rand.NextBool(30))
@@ -60,7 +64,6 @@ namespace TritonsHydrants.Content.Projectiles
                 );
             }
 
-            // Define a posição de origem (base do tile) no primeiro tick
             if (Projectile.ai[1] == 0f && Projectile.ai[2] == 0f)
             {
                 Projectile.ai[1] = Projectile.Center.X;
@@ -75,14 +78,11 @@ namespace TritonsHydrants.Content.Projectiles
             float windEffect = Main.windSpeedCurrent * 1.05f;
             float waveEffect = (float)Math.Sin(Projectile.ai[0] * 0.05f) * 10f;
 
-            // Posição alvo mantida acima da base presa pela corrente
             float maxChainLength = 50f;
             Vector2 targetPosition = origin + new Vector2(waveEffect + windEffect * 30f, -maxChainLength);
 
-            // Suaviza o movimento em direção ao alvo preso à corrente
             Projectile.Center = Vector2.Lerp(Projectile.Center, targetPosition, 0.05f);
 
-            // Rotação acompanhando a inclinação da corrente
             Vector2 chainVector = Projectile.Center - origin;
             Projectile.rotation = chainVector.ToRotation() + MathHelper.PiOver2;
         }
@@ -91,7 +91,7 @@ namespace TritonsHydrants.Content.Projectiles
         {
             Vector2 origin = new(Projectile.ai[1], Projectile.ai[2]);
             Vector2 vectorFromOrigin = Projectile.Center - origin;
-            float remainingLength = vectorFromOrigin.Length() - 12f; // Ajuste para o comprimento do projétil
+            float remainingLength = vectorFromOrigin.Length() - 24f;
             Vector2 unitVector = vectorFromOrigin.SafeNormalize(Vector2.Zero);
             float chainRotation = vectorFromOrigin.ToRotation() + MathHelper.PiOver2;
 
@@ -99,7 +99,6 @@ namespace TritonsHydrants.Content.Projectiles
             float segmentLength = 12f;
             int segmentIndex = 0;
 
-            // Desenha as correntes alternando entre os dois sprites a cada segmento
             while (remainingLength > 0f)
             {
                 Asset<Texture2D> activeTexture = (segmentIndex % 2 == 0) ? chainTexture : chainTextureExtra;
@@ -122,19 +121,41 @@ namespace TritonsHydrants.Content.Projectiles
                 segmentIndex++;
             }
 
-            // Desenha o projétil principal com rastro
             Texture2D projectileTexture = TextureAssets.Projectile[Type].Value;
-            Vector2 drawOrigin = new(projectileTexture.Width * 0.5f, Projectile.height * 0.5f);
+            int frameHeight = projectileTexture.Height / Main.projFrames[Type];
+            Rectangle sourceRectangle = new(0, frameHeight * Projectile.frame, projectileTexture.Width, frameHeight);
+            Vector2 drawOrigin = sourceRectangle.Size() * 0.5f;
             SpriteEffects spriteEffects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
             for (int k = 0; k < Projectile.oldPos.Length; k++)
             {
                 Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
                 Color color = Projectile.GetAlpha(lightColor) * ((float)(Projectile.oldPos.Length - k) / Projectile.oldPos.Length);
-                Main.spriteBatch.Draw(projectileTexture, drawPos, null, color, Projectile.rotation, drawOrigin, Projectile.scale - k / (float)Projectile.oldPos.Length / 3, spriteEffects, 0f);
+                Main.spriteBatch.Draw(
+                    projectileTexture,
+                    drawPos,
+                    sourceRectangle,
+                    color,
+                    Projectile.rotation,
+                    drawOrigin,
+                    Projectile.scale - k / (float)Projectile.oldPos.Length / 3,
+                    spriteEffects,
+                    0f
+                );
             }
 
             return true;
+        }
+
+        private void Animate()
+        {
+            if (++Projectile.frameCounter >= 5)
+            {
+                Projectile.frameCounter = 0;
+
+                if (++Projectile.frame >= Main.projFrames[Type])
+                    Projectile.frame = 0;
+            }
         }
     }
 }

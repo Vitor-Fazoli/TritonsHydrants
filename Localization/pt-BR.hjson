@@ -17,6 +17,7 @@ Mods: {
 			AbyssalFlag.DisplayName: Bandeira Abissal
 			// WaterBubble.DisplayName: Water Bubble
 			// WaterElementalGateProjectile.DisplayName: Water Elemental Gate Projectile
+			// IronCageP.DisplayName: Iron Cage P
 		}
 
 		Items: {
@@ -163,6 +164,7 @@ Mods: {
 		Tiles: {
 			// BubbleMaker.MapEntry: Bubble Maker
 			// WaterElementalGate.MapEntry: Water Elemental Gate
+			// IronCage.MapEntry: Iron Cage
 		}
 	}
 }
