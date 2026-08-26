@@ -89,9 +89,10 @@ namespace TritonsHydrants.Content.Projectiles
 
         public override bool PreDraw(ref Color lightColor)
         {
+            float offsetY = 24f;
             Vector2 origin = new(Projectile.ai[1], Projectile.ai[2]);
             Vector2 vectorFromOrigin = Projectile.Center - origin;
-            float remainingLength = vectorFromOrigin.Length() - 24f;
+            float remainingLength = vectorFromOrigin.Length() - offsetY;
             Vector2 unitVector = vectorFromOrigin.SafeNormalize(Vector2.Zero);
             float chainRotation = vectorFromOrigin.ToRotation() + MathHelper.PiOver2;
 
