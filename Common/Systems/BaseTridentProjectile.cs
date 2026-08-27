@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using TritonsHydrants.Content.Projectiles;
@@ -9,40 +8,11 @@ namespace TritonsHydrants.Common.Systems
 {
     public abstract class BaseTridentProjectile : ModProjectile
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private Vector2 MousePos = Vector2.Zero;
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected virtual float HoldoutRangeMin => 24f;
-
-        /// <summary>
-        /// 
-        /// </summary>
-		protected virtual float HoldoutRangeMax => 96f;
-
-        /// <summary>
-        /// 
-        /// </summary>
+        protected virtual float HoldoutRangeMax => 96f;
         protected virtual float DistanceSpawnProj => 100;
-
-        /// <summary>
-        /// 
-        /// </summary>
         protected virtual int Proj => ModContent.ProjectileType<AquaticArrow>();
-
-        /// <summary>
-        /// this bool makes the projectile happen one time
-        /// </summary>
         private bool isHappen = false;
-
-        public override void OnSpawn(IEntitySource source)
-        {
-            MousePos = Main.MouseWorld;
-        }
 
         public override void AI()
         {
@@ -72,7 +42,7 @@ namespace TritonsHydrants.Common.Systems
                     {
                         int proj = Projectile.NewProjectile(
                             Projectile.GetSource_FromThis(),          // source correto: "veio deste projétil"
-                            Projectile.Center + player.Center.DirectionTo(Main.MouseWorld) * DistanceSpawnProj,
+                            Projectile.Center + Projectile.velocity * DistanceSpawnProj,
                             Projectile.velocity * 8f,
                             Proj,
                             Projectile.damage,
@@ -84,7 +54,7 @@ namespace TritonsHydrants.Common.Systems
                         if (proj >= 0 && proj < Main.maxProjectiles)
                             NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, proj);
                     }
-            
+
                     isHappen = true;
                 }
             }
