@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -63,30 +62,44 @@ namespace TritonsHydrants.Content.Items.Accessories
                 isFrenzied = true;
             }
 
-            if (isFrenzied)
+            if (!isFrenzied) return;
+
+            frenzyScore -= 0.3f;
+            FrenzyEffect();
+            FrenzyVisualEffect();
+
+            if (frenzyScore > 0f) return;
+
+            ResetFrenzy();
+        }
+
+        private void FrenzyVisualEffect()
+        {
+            if (Main.rand.NextBool(3))
             {
-                frenzyScore -= 1f;
+                Dust dust = Dust.NewDustDirect(
+                    Player.position,
+                    Player.width,
+                    Player.height,
+                    DustID.Blood
+                );
 
-                if (Main.rand.NextBool(3))
-                {
-                    Dust dust = Dust.NewDustDirect(
-                        Player.position,
-                        Player.width,
-                        Player.height,
-                        DustID.Blood
-                    );
-
-                    dust.velocity *= 1.5f;
-                    dust.scale = 1.3f;
-                    dust.noGravity = true;
-                }
-
-                if (frenzyScore <= 0f)
-                {
-                    frenzyScore = 0f;
-                    isFrenzied = false;
-                }
+                dust.velocity *= 1.5f;
+                dust.scale = 1.3f;
+                dust.noGravity = true;
             }
+        }
+        private void FrenzyEffect()
+        {
+            Player.AddBuff(BuffID.Battle, 60);
+            Player.AddBuff(BuffID.Rage, 60);
+        }
+
+        private void ResetFrenzy()
+        {
+            frenzyScore = 0f;
+            isFrenzied = false;
+            frenzyTimer = 0f;
         }
     }
 

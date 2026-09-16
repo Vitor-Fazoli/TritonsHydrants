@@ -9,8 +9,6 @@ namespace TritonsHydrants.Content.Items.Placeables
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 100;
-            ItemID.Sets.SortingPriorityMaterials[Item.type] = 58;
-            ItemID.Sets.OreDropsFromSlime[Type] = (3, 13);
         }
 
         public override void SetDefaults()

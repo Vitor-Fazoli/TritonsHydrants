@@ -18,6 +18,7 @@ Mods: {
 			WaterBubble.DisplayName: Water Bubble
 			WaterElementalGateProjectile.DisplayName: Water Elemental Gate Projectile
 			IronCageP.DisplayName: Iron Cage P
+			SirenAquaticArrow.DisplayName: Siren Aquatic Arrow
 		}
 
 		Items: {
@@ -107,6 +108,11 @@ Mods: {
 				DisplayName: Water Elemental Gate
 				Tooltip: ""
 			}
+
+			TritonPacifier: {
+				Tooltip: ""
+				DisplayName: Triton Pacifier
+			}
 		}
 
 		Buffs: {
@@ -153,7 +159,52 @@ Mods: {
 			}
 		}
 
-		NPCs.Siren.DisplayName: Victrimeire
+		NPCs: {
+			Siren: {
+				DisplayName: Siren
+
+				TownNPCMood: {
+					Content: Things are all right here... Could we sit quietly for a little while?
+					NoHome: I wish I had a little place of my own... with enough room to stretch.
+					FarFromHome: My home is so far away... I think I would rather go back.
+					LoveSpace: I can breathe here, and practice without so many eyes on me.
+					DislikeCrowded: There are too many people nearby... My voice just disappears.
+					HateCrowded: S-sorry... I need somewhere quiet. I cannot sing like this.
+					LoveBiome: The waves sing with me in {BiomeName}. It is easier to let my voice out...
+					LikeBiome: I like {BiomeName}. There is a melody in the wind, if you listen closely.
+					DislikeBiome: "{BiomeName} makes my throat dry... I should probably rest my voice."
+					HateBiome: "{BiomeName} frightens me... Could we leave, please?"
+					LoveNPC: "{NPCName} listens without rushing me. Being near someone like that makes me want to sing."
+					LikeNPC: I like listening to {NPCName}'s stories... even the ones that sound made up.
+					DislikeNPC: "{NPCName} wants me to sing in front of everyone... Just thinking about it makes me nervous."
+					HateNPC: "{NPCName}'s explosions startle me. I always forget the next note..."
+					LikeNPC_Princess: "{NPCName} is so kind... She does not seem to mind when I speak softly."
+					Princess_LovesNPC: "{NPCName} has such a gentle voice. I hope she feels comfortable sharing it someday."
+				}
+			}
+		}
+
+		Dialogue: {
+			Siren: {
+				StandardDialogue1: H-hi... I heard you coming. I was just trying to think of something to say.
+				StandardDialogue2: If I speak too softly, you can come a little closer... Just a little.
+				StandardDialogue3: I saved a pretty shell for you... I mean, for the shop. But you can have a look.
+				StandardDialogue4: Thank you for the high ceiling. It is nice not having to curl up all the time.
+				StandardDialogue5: Underwater, nobody notices when I blush... It is harder up here.
+				StandardDialogue6: I know how to use a trident. I just do not really know how to start a conversation...
+				HappyDialogue1: I was humming just now... You can stay for the rest, if you like.
+				HappyDialogue2: The melody came all by itself today. I think I am starting to feel at home.
+				HappyDialogue3: You heard that? It was a song from my childhood... I could sing a little more, if you like.
+				ShyDialogue1: I do sing... But my voice hides when I realize someone is waiting for it.
+				ShyDialogue2: Maybe I will sing in a little while. Could we just listen to the wind until then?
+				ShyDialogue3: It is not that I dislike your company... I just need a little time to get used to it.
+				UnhappyDialogue1: I would rather be quiet today... I hope you do not mind.
+				UnhappyDialogue2: I tried singing a little, but stopped after the first note. I miss feeling safe.
+				UnhappyDialogue3: I still remember the songs... I just do not feel like singing them here.
+			}
+		}
+
+		Bestiary.Siren: A shy siren who finds in songs the courage she lacks in conversation. Her voice is heard more often when she feels at home.
 
 		Tiles: {
 			BubbleMaker.MapEntry: Bubble Maker

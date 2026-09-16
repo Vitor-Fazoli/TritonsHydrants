@@ -2,113 +2,87 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace TritonsHydrants.Content.Items.Accessories
-{
-    public class LittleAnchor : ModItem
-    {
-        public override void SetDefaults()
-        {
-            Item.width = 17;
-            Item.height = 19;
+namespace TritonsHydrants.Content.Items.Accessories;
 
-            Item.accessory = true;
-            Item.rare = ItemRarityID.Pink;
-        }
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.GetModPlayer<LittleAnchorPlayer>().isLittleAnchor = true;
-        }
+public class LittleAnchor : ModItem
+{
+    public override void SetDefaults()
+    {
+        Item.width = 17;
+        Item.height = 19;
+
+        Item.accessory = true;
+        Item.rare = ItemRarityID.Pink;
     }
 
-    internal class LittleAnchorPlayer : ModPlayer
+    public override void UpdateAccessory(Player player, bool hideVisual)
     {
-        private const int MAX_DAMAGE_TAKEN = 300;
-        private int _tidePoints = 0;
-        private bool _isHighTide = false;
+        player.GetModPlayer<LittleAnchorPlayer>().isLittleAnchor = true;
+    }
+}
 
-        public bool isLittleAnchor = false;
+internal class LittleAnchorPlayer : ModPlayer
+{
+    private const int MAX_TIDE_POINTS = 150;
+    private const int HIGH_TIDE_THRESHOLD = 50;
+    private const int MIN_TIDE_POINTS = -150;
+    private const int LOW_TIDE_THRESHOLD = -50;
+    private int _tidePoints = 0;
+    private bool _isHighTide = false;
 
-        public override void ResetEffects()
+    public bool isLittleAnchor = false;
+
+    public override void ResetEffects() => isLittleAnchor = false;
+
+    public override void UpdateBadLifeRegen()
+    {
+        if (!isLittleAnchor)
+            return;
+
+        if (_isHighTide)
+            Player.AddBuff(ModContent.BuffType<Buffs.HighTide>(), 2);
+        else
+            Player.AddBuff(ModContent.BuffType<Buffs.LowTide>(), 2);
+
+    }
+    public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+    {
+        if (!isLittleAnchor)
+            return;
+
+        if (_tidePoints <= MAX_TIDE_POINTS)
+            _tidePoints += 10;
+
+        if (_tidePoints > HIGH_TIDE_THRESHOLD)
         {
-            isLittleAnchor = false;
+            _isHighTide = true;
         }
+    }
+    public override void OnHitByProjectile(Projectile projectile, Player.HurtInfo hurtInfo)
+    {
+        if (!isLittleAnchor)
+            return;
 
-        public override void UpdateBadLifeRegen()
+
+        if (_tidePoints <= MAX_TIDE_POINTS)
+            _tidePoints += 10;
+
+        if (_tidePoints > HIGH_TIDE_THRESHOLD)
         {
-            if (!isLittleAnchor)
-                return;
-
-            if (_isHighTide)
-            {
-                Player.AddBuff(ModContent.BuffType<Buffs.HighTide>(), 2);
-            }
-            else
-            {
-                Player.AddBuff(ModContent.BuffType<Buffs.LowTide>(), 2);
-            }
+            _isHighTide = true;
         }
-        public override void OnHitByNPC(NPC npc, Player.HurtInfo hurtInfo)
+    }
+    public override void OnHurt(Player.HurtInfo info)
+    {
+        if (!isLittleAnchor)
+            return;
+
+        if (_tidePoints >= MIN_TIDE_POINTS)
+            _tidePoints -= 10;
+
+        if (_tidePoints < LOW_TIDE_THRESHOLD)
         {
-            if (!isLittleAnchor)
-                return;
-
-            _tidePoints += hurtInfo.Damage;
-
-            if (_tidePoints >= MAX_DAMAGE_TAKEN)
-            {
-                if (_isHighTide)
-                {
-                    _isHighTide = false;
-                    _tidePoints = 0;
-                }
-                else
-                {
-                    _isHighTide = true;
-                    _tidePoints = 0;
-                }
-            }
-        }
-        public override void OnHitByProjectile(Projectile projectile, Player.HurtInfo hurtInfo)
-        {
-            if (!isLittleAnchor)
-                return;
-
-            _tidePoints += hurtInfo.Damage;
-
-            if (_tidePoints >= MAX_DAMAGE_TAKEN)
-            {
-                if (_isHighTide)
-                {
-                    _isHighTide = false;
-                    _tidePoints = 0;
-                }
-                else
-                {
-                    _isHighTide = true;
-                    _tidePoints = 0;
-                }
-            }
-        }
-        public override void OnHurt(Player.HurtInfo info)
-        {
-            if (!isLittleAnchor)
-                return;
-
-            _tidePoints += info.Damage;
-
-            if (_tidePoints >= MAX_DAMAGE_TAKEN)
-            {
-                if (_isHighTide)
-                {
-                    _isHighTide = false;
-                    _tidePoints = 0;
-                }
-                else
-                {
-                    _isHighTide = true;
-                    _tidePoints = 0;
-                }
-            }
+            _isHighTide = false;
         }
     }
 }
