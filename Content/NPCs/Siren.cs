@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Utilities;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -10,9 +13,11 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using TritonsHydrants.Common.Systems;
 using TritonsHydrants.Content.Dusts;
 using TritonsHydrants.Content.Projectiles;
 using TritonsHydrants.Utils;
+using XPT.Core.Audio.MP3Sharp;
 
 namespace TritonsHydrants.Content.NPCs;
 
@@ -28,8 +33,30 @@ public class Siren : ModNPC
         Attacking
     }
 
-    private const int SingingDuration = 3 * 60;
-    private const int NoteInterval = 20;
+    // Singing test settings. Times are in ticks (60 ticks = 1 second).
+    // Set UseFixedSingingDelay to false to restore the happiness-based delay.
+    private const bool UseFixedSingingDelay = true;
+    private const int FixedSingingDelay = 5 * 60;
+    private const int NoteInterval = 20; // Must be at least 1.
+    private const int SingingFrameDuration = 8; // Must be at least 1.
+    private const float NoteOffsetX = -4f;
+    private const float NoteScale = 1.5f;
+    private const float ChatBubbleOffsetX = -6f;
+
+    private const string SongAsset = "Common/Assets/Musics/SirenSong";
+    private static readonly SoundStyle SingingSound = new("TritonsHydrants/" + SongAsset, SoundType.Music)
+    {
+        IsLooped = false,
+        MaxInstances = 0,
+        PauseBehavior = PauseBehavior.PauseWithGame
+    };
+    private static int singingDuration;
+    private SlotId singingSoundSlot;
+    private bool startedSingingSound;
+
+    internal bool IsSongAudible => SirenSingingSystem.SingingEnabled && CurrentState == SirenState.Singing && startedSingingSound &&
+        SoundEngine.TryGetActiveSound(singingSoundSlot, out var song) &&
+        song.IsPlayingOrPaused && song.Sound.Volume > 0f;
 
     private const int AttackFrameDuration = 6;
     private const int AttackDuration = 16 * AttackFrameDuration;
@@ -42,6 +69,32 @@ public class Siren : ModNPC
     // ai[0] stores the current state; ai[1] counts ticks in that state.
     private SirenState CurrentState => (SirenState)NPC.ai[0];
 
+    private Vector2 MouthPosition => NPC.Top + new Vector2(NPC.spriteDirection * 8f, 32f + NPC.gfxOffY);
+
+    public override void Load()
+    {
+        double durationSeconds;
+        if (Main.dedServ)
+        {
+            // Match tModLoader's MP3 reader: decoded PCM is 16-bit stereo.
+            // A dedicated server must measure the song without creating an audio device.
+            using var mp3 = new MP3Stream(Mod.GetFileStream(SongAsset + ".mp3"));
+            byte[] buffer = new byte[8192];
+            long decodedBytes = 0;
+            int bytesRead;
+            while ((bytesRead = mp3.Read(buffer, 0, buffer.Length)) > 0)
+                decodedBytes += bytesRead;
+            durationSeconds = decodedBytes / (mp3.Frequency * 4d);
+        }
+        else
+        {
+            durationSeconds = ModContent.Request<SoundEffect>("TritonsHydrants/" + SongAsset,
+                ReLogic.Content.AssetRequestMode.ImmediateLoad).Value.Duration.TotalSeconds;
+        }
+
+        singingDuration = Math.Max(1, (int)Math.Ceiling(durationSeconds * 60d));
+    }
+
     public override void SetStaticDefaults()
     {
         Main.npcFrameCount[Type] = 22;
@@ -51,12 +104,13 @@ public class Siren : ModNPC
 
         NPC.Happiness
             .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
-            .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
+            .SetBiomeAffection<JungleBiome>(AffectionLevel.Like)
             .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.Angler, AffectionLevel.Like)
+            .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Like)
             .SetNPCAffection(NPCID.PartyGirl, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
+            .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Dislike)
+            .SetNPCAffection(NPCID.Angler, AffectionLevel.Hate);
 
         NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
@@ -85,11 +139,20 @@ public class Siren : ModNPC
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0f;
+        NPC.direction = -1;
     }
 
     public override bool CanChat()
     {
         return true;
+    }
+
+    public override void ChatBubblePosition(ref Vector2 position, ref SpriteEffects spriteEffects)
+    {
+        position = MouthPosition - Main.screenPosition + new Vector2(
+            NPC.spriteDirection * 12f + ChatBubbleOffsetX - TextureAssets.Chat.Value.Width / 2f,
+            -TextureAssets.Chat.Value.Height);
+        spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -103,6 +166,13 @@ public class Siren : ModNPC
 
     public override void HitEffect(NPC.HitInfo hit)
     {
+        if (hit.Damage > 0 && CurrentState == SirenState.Singing && Main.netMode != NetmodeID.MultiplayerClient)
+        {
+            // Receiving damage interrupts the song; the next AI tick can select an attack target.
+            ChangeState(SirenState.Idle);
+            UpdateSingingSound();
+        }
+
         SoundEngine.PlaySound(SoundID.AbigailCry, Entity.position);
 
         int num = NPC.life > 0 ? 1 : 5;
@@ -117,7 +187,7 @@ public class Siren : ModNPC
     {
         NPC.ai[1]++;
 
-        if (CurrentState != SirenState.Attacking && Main.netMode != NetmodeID.MultiplayerClient)
+        if (CurrentState == SirenState.Idle && Main.netMode != NetmodeID.MultiplayerClient)
         {
             int targetIndex = FindAttackTarget();
             if (targetIndex >= 0)
@@ -133,11 +203,13 @@ public class Siren : ModNPC
         switch (CurrentState)
         {
             case SirenState.Idle:
-                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] % 60 == 0)
+                if (SirenSingingSystem.SingingEnabled && Main.netMode != NetmodeID.MultiplayerClient &&
+                    (UseFixedSingingDelay || NPC.ai[1] % 60 == 0))
                 {
                     int playerIndex = Player.FindClosest(NPC.position, NPC.width, NPC.height);
                     Player listener = Main.player[playerIndex];
-                    if (listener.active && !listener.dead && NPC.ai[1] >= GetSingingDelay(listener))
+                    int singingDelay = UseFixedSingingDelay ? FixedSingingDelay : GetSingingDelay(listener);
+                    if (listener.active && !listener.dead && NPC.ai[1] >= singingDelay)
                         ChangeState(SirenState.Singing);
                 }
                 break;
@@ -149,24 +221,61 @@ public class Siren : ModNPC
             case SirenState.Singing:
                 if (!Main.dedServ && NPC.ai[1] % NoteInterval == 0)
                 {
-                    Vector2 mouthPosition = NPC.Top + new Vector2(NPC.spriteDirection * 8f, 32f);
+                    Vector2 mouthPosition = MouthPosition + new Vector2(NoteOffsetX, 0f);
                     mouthPosition += new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
-                    Dust.NewDustPerfect(mouthPosition, ModContent.DustType<Notes>(), Scale: 1.5f);
+                    Dust.NewDustPerfect(mouthPosition, ModContent.DustType<Notes>(), Scale: NoteScale);
                 }
 
-                if (NPC.ai[1] >= SingingDuration)
+                // The server uses the file's duration; single player also waits for playback.
+                if (NPC.ai[1] >= singingDuration &&
+                    (Main.dedServ || !SoundEngine.TryGetActiveSound(singingSoundSlot, out var song) || !song.IsPlayingOrPaused))
                 {
                     ChangeState(SirenState.Idle);
                 }
                 break;
         }
+
+        UpdateSingingSound();
+    }
+
+    private void UpdateSingingSound()
+    {
+        if (Main.dedServ)
+            return;
+
+        if (!SirenSingingSystem.SingingEnabled || CurrentState != SirenState.Singing)
+        {
+            if (startedSingingSound && SoundEngine.TryGetActiveSound(singingSoundSlot, out var song))
+                song.Stop();
+            startedSingingSound = false;
+            return;
+        }
+
+        if (startedSingingSound)
+            return;
+
+        startedSingingSound = true;
+        singingSoundSlot = SoundEngine.PlaySound(SingingSound, MouthPosition, sound =>
+        {
+            sound.Position = MouthPosition;
+            return NPC.active && NPC.life > 0 && SirenSingingSystem.SingingEnabled &&
+                CurrentState == SirenState.Singing && !Main.gameMenu;
+        });
+    }
+
+    internal void OnSingingSettingChanged()
+    {
+        // Restart the waiting period when toggled, without interrupting combat.
+        if (CurrentState != SirenState.Attacking)
+            ChangeState(SirenState.Idle);
+        UpdateSingingSound();
     }
 
     public override void FindFrame(int frameHeight)
     {
         int frame = CurrentState switch
         {
-            SirenState.Singing => 1 + (int)(NPC.ai[1] / 8) % 5,
+            SirenState.Singing => 1 + (int)(NPC.ai[1] / SingingFrameDuration) % 5,
             SirenState.Attacking => AttackFrame,
             _ => 0
         };
@@ -316,6 +425,8 @@ public class Siren : ModNPC
     public override void SetChatButtons(ref string button, ref string button2)
     {
         button = Language.GetTextValue("LegacyInterface.28");
+        button2 = Language.GetTextValue("Mods.TritonsHydrants.Dialogue.Siren." +
+            (SirenSingingSystem.SingingEnabled ? "DisableSinging" : "EnableSinging"));
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shop)
@@ -323,6 +434,18 @@ public class Siren : ModNPC
         if (firstButton)
         {
             shop = "Shop";
+        }
+        else if (Main.netMode == NetmodeID.MultiplayerClient)
+        {
+            ModPacket packet = Mod.GetPacket();
+            packet.Write(global::TritonsHydrants.TritonsHydrants.SetSirenSinging);
+            packet.Write((short)NPC.whoAmI);
+            packet.Write(!SirenSingingSystem.SingingEnabled);
+            packet.Send();
+        }
+        else
+        {
+            SirenSingingSystem.SetSingingEnabled(!SirenSingingSystem.SingingEnabled);
         }
     }
 

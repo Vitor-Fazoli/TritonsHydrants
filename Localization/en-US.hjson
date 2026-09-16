@@ -186,6 +186,8 @@ Mods: {
 
 		Dialogue: {
 			Siren: {
+				DisableSinging: Disable singing
+				EnableSinging: Enable singing
 				StandardDialogue1: H-hi... I heard you coming. I was just trying to think of something to say.
 				StandardDialogue2: If I speak too softly, you can come a little closer... Just a little.
 				StandardDialogue3: I saved a pretty shell for you... I mean, for the shop. But you can have a look.

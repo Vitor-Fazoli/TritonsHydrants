@@ -192,6 +192,8 @@ Mods: {
 
 		Dialogue: {
 			Siren: {
+				DisableSinging: Desativar canto
+				EnableSinging: Ativar canto
 				StandardDialogue1: O-oi... Eu ouvi você chegando. Só estava pensando no que dizer.
 				StandardDialogue2: Se eu falar muito baixo, pode chegar um pouquinho mais perto... Só um pouquinho.
 				StandardDialogue3: Guardei uma concha bonita para você... Quer dizer, para a loja. Mas pode olhar.
