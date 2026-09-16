@@ -32,9 +32,9 @@ namespace TritonsHydrants.Content.Projectiles
             {
                 Vector2 dustVelocity = new Vector2(2, 2).RotatedByRandom(100) * Main.rand.NextFloat(0.1f, 0.8f);
 
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, TritonsDusts.GetGusherDust(), dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, TritonsDusts.GetWaterDust(), dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
-                dust.color = Water.GetWaterColor();
+                dust.color = Water.GetColor();
             }
         }
         public override void OnSpawn(IEntitySource source)
@@ -49,21 +49,21 @@ namespace TritonsHydrants.Content.Projectiles
 
             for (int i = 0; i <= 25; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, (Projectile.velocity.SafeNormalize(Vector2.UnitY) * 15f).RotatedByRandom(MathHelper.ToRadians(360f)) * Main.rand.NextFloat(0.1f, 0.8f), 0, default,
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, TritonsDusts.GetWaterDust(), (Projectile.velocity.SafeNormalize(Vector2.UnitY) * 15f).RotatedByRandom(MathHelper.ToRadians(360f)) * Main.rand.NextFloat(0.1f, 0.8f), 0, default,
                     Main.rand.NextFloat(1.2f, 1.6f));
 
                 dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
 
             for (int k = 0; k < 50; k++)
             {
                 Vector2 shootVel = Main.rand.NextVector2Circular(1f, 1f);
 
-                Dust dust2 = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, shootVel);
+                Dust dust2 = Dust.NewDustPerfect(Projectile.Center, TritonsDusts.GetWaterDust(), shootVel);
                 dust2.scale = Main.rand.NextFloat(1.15f, 1.45f);
                 dust2.noGravity = true;
-                dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
 
             return base.OnTileCollide(oldVelocity);
@@ -73,20 +73,20 @@ namespace TritonsHydrants.Content.Projectiles
         {
             for (int i = 0; i <= 8; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, (Projectile.velocity.SafeNormalize(Vector2.UnitY) * 15f).RotatedByRandom(MathHelper.ToRadians(15f)) * Main.rand.NextFloat(0.1f, 0.8f), 0, default,
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, TritonsDusts.GetWaterDust(), (Projectile.velocity.SafeNormalize(Vector2.UnitY) * 15f).RotatedByRandom(MathHelper.ToRadians(15f)) * Main.rand.NextFloat(0.1f, 0.8f), 0, default,
                     Main.rand.NextFloat(1.2f, 1.6f));
                 dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
 
             for (int k = 0; k < 20; k++)
             {
                 Vector2 shootVel = (Projectile.velocity * 20).RotatedByRandom(0.5f) * Main.rand.NextFloat(0.1f, 1.8f);
 
-                Dust dust2 = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(4) ? DustID.PortalBoltTrail : DustID.RainbowTorch, shootVel);
+                Dust dust2 = Dust.NewDustPerfect(Projectile.Center, TritonsDusts.GetWaterDust(), shootVel);
                 dust2.scale = Main.rand.NextFloat(1.15f, 1.45f);
                 dust2.noGravity = true;
-                dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust2.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
         }
 

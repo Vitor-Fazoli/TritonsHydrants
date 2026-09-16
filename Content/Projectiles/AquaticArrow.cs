@@ -43,7 +43,7 @@ namespace TritonsHydrants.Content.Projectiles
             _initialWaterStyle = Main.waterStyle;
         }
 
-        public override Color? GetAlpha(Color lightColor) => Water.GetWaterColor().MultiplyRGBA(Color.White);
+        public override Color? GetAlpha(Color lightColor) => Water.GetColor().MultiplyRGBA(Color.White);
 
         public override void AI()
         {
@@ -55,10 +55,10 @@ namespace TritonsHydrants.Content.Projectiles
 
                 var dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
 
-            Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
+            Lighting.AddLight(Projectile.position, Water.GetColor().ToVector3());
 
             OnWaterChange(Projectile);
             HitOtherWaterProjectile();
@@ -93,7 +93,7 @@ namespace TritonsHydrants.Content.Projectiles
 
                 var dust = Dust.NewDustPerfect(Projectile.Center + dustVelocity, Main.rand.NextBool(4) ? 264 : 66, dustVelocity, 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
-                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                dust.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
             }
         }
 

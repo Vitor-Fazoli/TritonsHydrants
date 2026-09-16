@@ -19,7 +19,7 @@ public class Water
     public const int Crimsom = 10;
     public const int Desert2 = 12;
 
-    public static int GetWater(int waterType)
+    public static int Get(int waterType)
     {
         return waterType switch
         {
@@ -41,7 +41,7 @@ public class Water
     /// Gets the color of the current water style.
     /// </summary>
     /// <returns>The color of the current water style.</returns>
-    public static Color GetWaterColor()
+    public static Color GetColor()
     {
         return Main.waterStyle switch
         {
@@ -59,7 +59,7 @@ public class Water
         };
     }
 
-    public static Color GetWaterColor(int waterType)
+    public static Color GetColor(int waterType)
     {
         return waterType switch
         {
@@ -81,8 +81,19 @@ public class Water
     /// Gets a random water type.
     /// </summary>
     /// <returns>A random water type.</returns>
-    public static int GetRandomWater()
+    public static int GetRandomType()
     {
         return Main.rand.Next(2, 13);
+    }
+
+    /// <summary>
+    /// Gets a random water color.
+    /// </summary>
+    /// <returns>
+    /// A random water color.
+    /// </returns>
+    public static Color GetRandomColor()
+    {
+        return GetColor(GetRandomType());
     }
 }

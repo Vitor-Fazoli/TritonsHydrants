@@ -52,7 +52,7 @@ namespace TritonsHydrants.Content.Projectiles
             }
 
             player.heldProj = Projectile.whoAmI;
-            
+
             Projectile.velocity = Vector2.Normalize(Projectile.velocity);
 
             if (Main.myPlayer == Projectile.owner)
@@ -148,7 +148,7 @@ namespace TritonsHydrants.Content.Projectiles
             for (var i = 0; i < dustCount; i++)
             {
                 if (!(Main.rand.NextFloat() <= chance)) continue;
-                
+
                 var radius = MathHelper.Lerp(60f, 25f, ChargeProgress);
                 var speed = MathHelper.Lerp(2f, 7f, ChargeProgress);
 
@@ -156,14 +156,14 @@ namespace TritonsHydrants.Content.Projectiles
                 var dustPos = spawnPos + dir;
                 var vel = -dir.SafeNormalize(Vector2.Zero) * speed;
 
-                var dustType = IsMaxCharge ? TritonsDusts.GetGusherDust() : DustID.Water;
+                var dustType = IsMaxCharge ? TritonsDusts.GetWaterDust() : DustID.Water;
                 var scale = MathHelper.Lerp(0.5f, 1.4f, ChargeProgress);
 
                 var d = Dust.NewDustDirect(dustPos, 8, 8, dustType, vel.X, vel.Y, 100, default, scale);
                 d.noGravity = true;
 
                 if (IsMaxCharge)
-                    d.color = Water.GetWaterColor();
+                    d.color = Water.GetColor();
             }
         }
     }

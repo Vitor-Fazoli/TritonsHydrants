@@ -103,11 +103,11 @@ namespace TritonsHydrants.Content.Projectiles
             {
                 Vector2 offset = Main.rand.NextVector2CircularEdge((int)auraSize, (int)auraSize);
                 Dust d = Dust.NewDustPerfect(proj.position + offset, Main.rand.NextBool(4) ? 264 : 66, Vector2.Zero, Scale: 1.0f);
-                d.color = Main.rand.NextBool() ? Color.Lerp(Water.GetWaterColor(), Color.White, 0.5f) : Water.GetWaterColor();
+                d.color = Main.rand.NextBool() ? Color.Lerp(Water.GetColor(), Color.White, 0.5f) : Water.GetColor();
                 d.noGravity = true;
             }
 
-            foreach(var player in Main.player)
+            foreach (var player in Main.player)
             {
                 if (!proj.active || proj.type != ModContent.ProjectileType<Hydrant>())
                     continue;

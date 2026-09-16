@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.Projectiles;
 
@@ -68,9 +69,9 @@ public class SirenAquaticArrow : AquaticArrow
             for (int i = 0; i < 3; i++)
             {
                 Vector2 position = Projectile.Center - Projectile.velocity * (i / 3f)
-                    + Main.rand.NextVector2Circular(6f, 6f);
-                Dust dust = Dust.NewDustPerfect(position, DustID.BlueTorch, -Projectile.velocity * 0.2f,
-                    newColor: Color.Cyan, Scale: Main.rand.NextFloat(1.7f, 2.3f));
+                    + Main.rand.NextVector2Circular(7f, 7f);
+                Dust dust = Dust.NewDustPerfect(position, TritonsDusts.GetWaterDust(), -Projectile.velocity * 0.2f,
+                    newColor: Water.GetColor(), Scale: Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
             }
 

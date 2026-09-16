@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using TritonsHydrants.Content.Dusts;
 using TritonsHydrants.Content.Projectiles;
+using TritonsHydrants.Utils;
 
 namespace TritonsHydrants.Content.NPCs;
 
@@ -207,8 +208,8 @@ public class Siren : ModNPC
             {
                 Vector2 position = tip + Main.rand.NextVector2CircularEdge(28f, 28f);
                 Vector2 velocity = (tip - position).SafeNormalize(Vector2.Zero) * 3f;
-                Dust dust = Dust.NewDustPerfect(position, DustID.BlueTorch, velocity,
-                    newColor: Color.Cyan, Scale: Main.rand.NextFloat(1.7f, 2.3f));
+                Dust dust = Dust.NewDustPerfect(position, TritonsDusts.GetWaterDust(), velocity,
+                    newColor: Water.GetColor(), Scale: Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = true;
             }
 

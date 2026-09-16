@@ -77,7 +77,7 @@ public class Canteen : ModItem
     {
         if (Item.wet)
         {
-            WaterType = Water.GetWater(Main.waterStyle);
+            WaterType = Water.Get(Main.waterStyle);
         }
     }
 
@@ -91,7 +91,7 @@ public class Canteen : ModItem
         var backSourceRectangle = uiTexture.Frame(verticalFrames: 1, frameY: 0);
         var backOrigin = backSourceRectangle.Size();
 
-        drawColor = Water.GetWaterColor(WaterType);
+        drawColor = Water.GetColor(WaterType);
 
         spriteBatch.Draw(uiTexture.Value, position + new Vector2(17, -7), backSourceRectangle, drawColor, 0, backOrigin, scale, SpriteEffects.None, 1);
 
